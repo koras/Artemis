@@ -1,0 +1,19 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Button name="offers-open-btn" text="Offers" class="offers-open-btn"/>
+
+    <ui:VisualElement name="offers-panel" class="offers-panel">
+        <ui:VisualElement class="offers-panel-header">
+            <ui:Label text="Offers" class="offers-panel-title"/>
+            <ui:Label name="offers-gold-label" text="Gold: 0" class="offers-gold-label"/>
+            <ui:Button name="offers-close-btn" text="X" class="offers-close-btn"/>
+        </ui:VisualElement>
+
+        <ui:Label text="New offers" class="offers-list-title"/>
+        <ui:ScrollView name="offers-available-list" class="offers-list"/>
+
+        <ui:Label text="Accepted tasks" class="offers-list-title"/>
+        <ui:ScrollView name="offers-active-list" class="offers-list"/>
+    </ui:VisualElement>
+</ui:UXML>
+
+

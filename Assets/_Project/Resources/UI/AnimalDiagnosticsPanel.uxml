@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="animal-diagnostics-panel" class="character-diagnostics-panel">
+        <ui:VisualElement class="character-diagnostics-header">
+            <ui:Label text="Animals" class="character-diagnostics-title"/>
+            <ui:Button name="animal-diagnostics-close-btn" text="X" class="character-diagnostics-close-btn"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="character-diagnostics-details">
+            <ui:Label name="animal-diagnostics-selected-name" text="No animal selected" class="character-diagnostics-selected-name"/>
+            <ui:Label name="animal-diagnostics-species" text="Species: -" class="character-diagnostics-row"/>
+            <ui:Label name="animal-diagnostics-cell" text="Cell: -" class="character-diagnostics-row"/>
+            <ui:Label name="animal-diagnostics-hunger" text="Hunger: -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="animal-diagnostics-hunger-bar" value="0" title="0/0"/>
+            <ui:Label name="animal-diagnostics-speed" text="Speed: -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="animal-diagnostics-speed-bar" value="0" title="0/0"/>
+            <ui:VisualElement name="animal-diagnostics-loyalty-row">
+                <ui:Label name="animal-diagnostics-loyalty" text="Loyalty: -" class="character-diagnostics-row"/>
+                <ui:ProgressBar name="animal-diagnostics-loyalty-bar" value="0" title="0/0"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="animal-diagnostics-eaten-prey-row">
+                <ui:Label name="animal-diagnostics-eaten-prey" text="Mice eaten: 0" class="character-diagnostics-row"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="animal-diagnostics-egg-row">
+                <ui:Label name="animal-diagnostics-egg" text="Egg in: -" class="character-diagnostics-row"/>
+                <ui:ProgressBar name="animal-diagnostics-egg-bar" value="0" title="0/0"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

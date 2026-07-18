@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2cb1f5397d4068acd19e6f38ae6af0, type: 3}
+  m_Name: HudMenuIconSet
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Presentation.UI.HudMenuIconSet
+  _bottomMenuEnergyIcon: {fileID: 4841367913988442963, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _bottomMenuOxygenIcon: {fileID: -8995782541248983973, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _bottomMenuWaterIcon: {fileID: 9072608998986983123, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _bottomMenuModuleIcon: {fileID: 4995528953559091192, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _solarPanelIcon: {fileID: 7000286213710170695, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _batteryIcon: {fileID: -8355878931891455547, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _buildCableIcon: {fileID: 4841367913988442963, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _cancelCableIcon: {fileID: 7146671329355084749, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _oxygenStorageIcon: {fileID: -3265510624760232496, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _oxygenProcessingIcon: {fileID: -5356235205854507632, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _buildOxygenIcon: {fileID: -8995782541248983973, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _cancelOxygenIcon: {fileID: 5805456392269864764, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _waterReclamationIcon: {fileID: 608734835209051216, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _waterProcessingIcon: {fileID: -5867601065980497780, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _buildWaterIcon: {fileID: 5805456392269864764, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _cancelWaterIcon: {fileID: -3597964420892295022, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _buildLadderIcon: {fileID: 7436860926580171409, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _buildBridgeIcon: {fileID: 799499406603659676, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _buildStorageIcon: {fileID: -8198134604075662670, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _regolithProcessingIcon: {fileID: 4162731277323802494, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _sleepModuleIcon: {fileID: -8115304365486302945, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _dinnerIcon: {fileID: -7801491425260804980, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _destructionIcon: {fileID: 835613917238440801, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _shovelIcon: {fileID: -3651911838383698933, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _cancelShovelIcon: {fileID: -3651911838383698933, guid: a1a646b5ad0fff749b9116fe45405eb5, type: 3}
+  _exitCableIcon: {fileID: 0}
+  _exitWaterIcon: {fileID: 0}
+  _exitOxygenIcon: {fileID: 0}

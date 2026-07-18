@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
+
+    <ui:VisualElement name="resource-inventory-panel" class="resource-inventory-panel">
+        <ui:Label name="resource-inventory-title" text="Ваши ресурсы"/>
+        <ui:VisualElement name="resource-inventory-list" class="resource-inventory-list"/>
+        <ui:VisualElement name="resource-tooltip" class="resource-tooltip">
+            <ui:Label name="resource-tooltip-label" text=""/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

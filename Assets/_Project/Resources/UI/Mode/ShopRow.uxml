@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement class="shop-table-row">
+        <ui:VisualElement name="shop-row-product" class="shop-table-cell shop-col-product">
+            <ui:Label name="shop-row-product-name" class="shop-product-name"/>
+        </ui:VisualElement>
+        <ui:Label name="shop-row-supplier" class="shop-table-cell shop-col-supplier"/>
+        <ui:VisualElement name="shop-row-selected" class="shop-table-cell shop-col-selected">
+            <ui:Button name="shop-row-minus" text="-" class="shop-quantity-btn"/>
+            <ui:Label name="shop-row-selected-value" class="shop-quantity-label"/>
+            <ui:Button name="shop-row-plus" text="+" class="shop-quantity-btn"/>
+        </ui:VisualElement>
+        <ui:Label name="shop-row-max" class="shop-table-cell shop-col-max"/>
+        <ui:Label name="shop-row-unit-price" class="shop-table-cell shop-col-unit-price"/>
+        <ui:Label name="shop-row-total-price" class="shop-table-cell shop-col-total-price"/>
+        <ui:VisualElement class="shop-col-actions">
+            <ui:Button name="shop-row-order" text="Order"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

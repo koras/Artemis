@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de745ccf7ca431bb9ed3fab8711d922, type: 3}
+  m_Name: BatteryBuildingDef
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
+  ObjectType: 8
+  UiName: Electric battery
+  UiDescription: Electric battery
+  PreviewSprite: {fileID: -234510497, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
+  BuiltSprite: {fileID: 480467094, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
+  Width: 2
+  Height: 2
+  CanRotate: 0
+  IsWalkableAfterBuild: 0
+  SupportRequirement: 0
+  CanBuildOnlyOnBuiltLifeModule: 0
+  AllowedLifeModulePlacementZone: 0
+  AllowedPlacementCellTypes: 
+  RequiredBelowAnyCellTypes: 0100000002000000030000000b000000
+  RequiredBelowAnyBuildObjectTypes: 0200000001000000
+  BuildTicks: 2
+  CostItems:
+  - ResourceId: Titan
+    Amount: 0
+  - ResourceId: aluminium
+    Amount: 2
+  - ResourceId: Rogalite
+    Amount: 5
+  RequiresPower: 0
+  UsesPowerNetwork: 1
+  PowerConsumptionKw: 0
+  PowerGenerationKwDay: 0
+  BatteryCapacityKwh: 450
+  BatteryMaxChargeKw: 200
+  BatteryMaxDischargeKw: 100
+  PowerPriority: 0
+  PowerInputOffset: {x: 0, y: 0}
+  HeatProduction: 0
+  WaterConsumption: 0
+  UsesWaterNetwork: 0
+  WaterRole: 0
+  WaterPortOffset: {x: 0, y: 0}
+  IsWaterProducerEnabledByDefault: 1
+  WaterProductionLitersPerHour: 0
+  WaterProductionRogalitePerCycle: 0
+  WaterProductionLitersPerCycle: 0
+  WaterConsumerFillRateLitersPerHour: 0
+  WaterConsumerCapacityLiters: 0
+  WaterStorageCapacityLiters: 0
+  WaterStorageFillRateLitersPerHour: 0
+  WaterStorageDischargeRateLitersPerHour: 0
+  WaterConsumerPriority: 0
+  UsesOxygenNetwork: 0
+  OxygenRole: 0
+  OxygenPortOffset: {x: 0, y: 0}
+  IsOxygenProducerEnabledByDefault: 1
+  OxygenProductionLitersPerHour: 0
+  OxygenProductionRegolithPerCycle: 0
+  OxygenProductionLitersPerCycle: 0
+  OxygenWaterConsumptionLitersPerHour: 0
+  OxygenConsumerFillRateLitersPerHour: 0
+  OxygenConsumerCapacityLiters: 0
+  OxygenConsumerPriority: 0
+  OxygenStorageCapacityLiters: 0
+  OxygenStorageFillRateLitersPerHour: 0
+  OxygenStorageDischargeRateLitersPerHour: 0

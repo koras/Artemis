@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
+    <ui:VisualElement name="bottom-popup-oxygen" class="bottom-popup-panel">
+        <ui:VisualElement class="bottom-popup-row">
+            <ui:Button name="oxygen-storage-btn" text="Oxygen Storage" class="menu-icon-btn"/>
+            <ui:Button name="oxygen-processing-btn" text="Oxygen Proc" class="menu-icon-btn"/>
+            <ui:Button name="build-oxygen-btn" text="Oxygen Build" class="menu-icon-btn"/>
+            <ui:Button name="cancel-oxygen-btn" text="Oxygen Cancel" class="menu-icon-btn"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

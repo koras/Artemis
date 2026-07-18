@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="character-diagnostics-panel" class="character-diagnostics-panel">
+        <ui:VisualElement class="character-diagnostics-header">
+            <ui:Label text="Characters" class="character-diagnostics-title"/>
+            <ui:Button name="character-diagnostics-close-btn" text="X" class="character-diagnostics-close-btn"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="character-diagnostics-details">
+            <ui:Label name="character-diagnostics-selected-name" text="No characters" class="character-diagnostics-selected-name"/>
+            <ui:Label name="character-diagnostics-name-key" text="NameKey: -" class="character-diagnostics-row"/>
+            <ui:Label name="character-diagnostics-state" text="State: -" class="character-diagnostics-row"/>
+            <ui:Label name="character-diagnostics-local-state" text="Local: -" class="character-diagnostics-row"/>
+            <ui:Label name="character-diagnostics-work-decision" text="Work decision: -" class="character-diagnostics-row"/>
+            <ui:Label name="character-diagnostics-task-block-reason" text="Task block reason: -" class="character-diagnostics-row"/>
+            <ui:Label name="character-diagnostics-food-preferences" text="Food preferences: -" class="character-diagnostics-row"/>
+            <ui:Label name="character-diagnostics-hunger" text="Hunger: -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="character-diagnostics-hunger-bar" value="0" title="0/300"/>
+            <ui:Label name="character-diagnostics-sleep" text="Sleep desire: -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="character-diagnostics-sleep-bar" value="0" title="0/300"/>
+            <ui:Label name="character-diagnostics-mood" text="Mood: -" class="character-diagnostics-row"/>
+            <ui:Label name="character-diagnostics-sleep-cycle" text="Sleep cycle: -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="character-diagnostics-sleep-cycle-bar" value="0" title="0/0"/>
+            <ui:Label name="character-diagnostics-eat-cycle" text="Eat cycle: -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="character-diagnostics-eat-cycle-bar" value="0" title="0/0"/>
+            <ui:Label name="character-diagnostics-work" text="Work (24h): -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="character-diagnostics-work-bar" value="0" title="0/0"/>
+            <ui:Label name="character-diagnostics-rest-cycle" text="Rest cycle: -" class="character-diagnostics-row"/>
+            <ui:ProgressBar name="character-diagnostics-rest-cycle-bar" value="0" title="0/0"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

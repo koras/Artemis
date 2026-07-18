@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e5dfc7c8f5420ea46d443a791bd341, type: 3}
+  m_Name: CharacterDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Character.CharacterDefinition
+  _characterPrefab: {fileID: 5127466785833370187, guid: baceb236dcdbb7c43b88993f02db198a, type: 3}
+  _startHunger: 100
+  _startSleepDesire: 100
+  _startMood: 60

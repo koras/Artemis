@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="power-overlay-item" class="power-overlay-item">
+        <ui:Label name="power-overlay-item-label" class="power-overlay-item-label"/>
+        <ui:VisualElement name="power-overlay-item-icon" class="power-overlay-item-icon"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,15 @@
+energyblock.png
+size:546,492
+filter:Linear,Linear
+pma:true
+energy_block
+bounds:2,2,488,508
+offsets:1,1,490,510
+rotate:90
+energy_block_light
+bounds:512,440,16,11
+offsets:1,1,18,13
+rotate:90
+glow
+bounds:512,458,32,32
+offsets:2,3,36,36

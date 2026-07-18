@@ -1,0 +1,3 @@
+.colony-event-banner {
+    min-height: 72px;
+}

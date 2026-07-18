@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
+
+    <ui:VisualElement name="task-queue-panel" class="task-queue-panel">
+        <ui:Label name="task-queue-title" text="Task Queue"/>
+        <ui:ScrollView name="task-queue-list" class="task-queue-list"/>
+    </ui:VisualElement>
+</ui:UXML>

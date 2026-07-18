@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="power-debug-panel" class="power-debug-panel">
+        <ui:Label name="power-debug-title" text="Power Debug (I)" class="power-debug-title"/>
+        <ui:Label name="power-debug-hover-cell" text="Hover: -" class="power-debug-row"/>
+        <ui:Label name="power-debug-network" text="Network: -" class="power-debug-row"/>
+        <ui:Label name="power-debug-building" text="Building: -" class="power-debug-row"/>
+        <ui:Label name="power-debug-power" text="Power: -" class="power-debug-row"/>
+        <ui:Label name="power-debug-battery" text="Battery: -" class="power-debug-row"/>
+    </ui:VisualElement>
+</ui:UXML>

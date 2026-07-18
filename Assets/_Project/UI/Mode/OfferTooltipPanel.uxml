@@ -1,0 +1,26 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="offer-tooltip-panel" class="offer-tooltip-panel">
+        <ui:VisualElement class="offer-tooltip-header">
+            <ui:VisualElement class="offer-tooltip-left">
+                <ui:Image name="offer-tooltip-portrait" class="offer-tooltip-portrait"/>
+                <ui:Label name="offer-tooltip-customer-name" class="offer-tooltip-customer-name"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="offer-tooltip-right">
+                <ui:Label name="offer-tooltip-company-name" class="offer-tooltip-company-name"/>
+                <ui:Label name="offer-tooltip-company-description" class="offer-tooltip-company-description"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label name="offer-tooltip-title" class="offer-tooltip-title"/>
+        <ui:Label name="offer-tooltip-description" class="offer-tooltip-description"/>
+        <ui:Label name="offer-tooltip-requirements" class="offer-tooltip-requirements"/>
+        <ui:Label name="offer-tooltip-deadline" class="offer-tooltip-deadline"/>
+        <ui:VisualElement class="offer-tooltip-buttons">
+            <ui:Button name="offer-tooltip-accept-btn" text="Accept"/>
+            <ui:Button name="offer-tooltip-close-btn" text="Close"/>
+            <ui:Button name="offer-tooltip-reject-btn" text="Reject"/>
+        </ui:VisualElement>
+        <ui:Button name="offer-tooltip-header-close-btn" text="X" class="offer-tooltip-header-close-btn"/>
+    </ui:VisualElement>
+</ui:UXML>
+
+

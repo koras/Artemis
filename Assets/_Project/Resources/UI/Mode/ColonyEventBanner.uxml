@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
+    <Style src="project://database/Assets/_Project/UI/Mode/ColonyEventBanner.uss?fileID=7433441132597879392&amp;guid=55d56ea5521146fab13c08fcd5c912cb&amp;type=3#ColonyEventBanner"/>
+
+    <ui:VisualElement name="colony-event-banner" class="colony-event-banner">
+        <ui:VisualElement class="colony-event-banner-header">
+            <ui:Label name="colony-event-title" class="colony-event-banner-title" text="Daily Event"/>
+        </ui:VisualElement>
+        <ui:Label name="colony-event-description" class="colony-event-banner-description" text="Event description"/>
+        <ui:Button name="colony-event-ack-btn" class="colony-event-banner-ack-btn" text="Понятно"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
+
+    <ui:VisualElement name="offers-panel" class="offers-panel">
+        <ui:VisualElement class="offers-panel-header">
+            <ui:Label text="Offers" class="offers-panel-title"/>
+            <ui:Label name="offers-gold-label" text="Gold: 0" class="offers-gold-label"/>
+            <ui:Button name="offers-close-btn" text="X" class="offers-close-btn"/>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="offers-tab-row">
+            <ui:Button name="offers-tab-new" text="New Offers" class="offers-tab-btn"/>
+            <ui:Button name="offers-tab-accepted" text="Accepted" class="offers-tab-btn offers-tab-btn-accepted"/>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="offers-content">
+            <ui:VisualElement name="offers-available-section" class="offers-section">
+                <ui:Label text="New Offers" class="offers-list-title"/>
+                <ui:ScrollView name="offers-available-list" class="offers-list"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="offers-active-section" class="offers-section">
+                <ui:Label text="Accepted Tasks" class="offers-list-title"/>
+                <ui:ScrollView name="offers-active-list" class="offers-list"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

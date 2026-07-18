@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7d95204a004519949144af5ccdffeb, type: 3}
+  m_Name: LunarResidentAnimalDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Animals.AnimalDefinition
+  _animalPrefab: {fileID: 8159345104001001003, guid: f89ee103a8394065be5a1e37f40f11c2, type: 3}
+  _speciesId: lunar_resident
+  _displayName: Lunar Resident
+  _lifecycleMode: 1
+  _startHunger: 12
+  _startGrowth: 0.18
+  _hasLoyaltyStat: 1
+  _minStartLoyalty: 20
+  _maxStartLoyalty: 85
+  _minVisualScale: 0.9
+  _maxVisualScale: 1.08
+  _growthDurationGameHours: 18
+  _growthPerFeeding: 0.2
+  _hungerIncreasePerGameHour: 40
+  _maxHunger: 300
+  _movementSpeedMultiplier: 0.55
+  _maxMoveSpeed: 2.2
+  _moveAcceleration: 6
+  _moveDeceleration: 9
+  _slowdownDistance: 0.3
+  _stopDistance: 0.03
+  _reproductionIntervalGameHours: 999
+  _maxPopulation: 4
+  _eggLayIntervalGameHours: 0.5
+  _eggDefinition: {fileID: 11400000, guid: 9b3121ce93ce435d8f24667aba6bee9b, type: 2}
+  _eggLayGrowthThreshold: 0.8
+  _huntStartHunger: 200
+  _huntHungerRelief: 150
+  _preySpeciesId: mouse
+  _wanderRadiusCells: 8
+  _idlePauseRangeSeconds: {x: 1.4, y: 3.2}

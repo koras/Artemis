@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0ea9da2f9b72b48b7a0e5b66d5b6c7, type: 3}
+  m_Name: LifeModuleVisualCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Presentation.Grid.LifeModuleVisualCatalog
+  _previewLeftSprite: {fileID: -7385313885881653581, guid: c5058aadcf408224b8e5d59a55f69db6, type: 3}
+  _previewMiddle1Sprite: {fileID: 1211611509430519305, guid: c5058aadcf408224b8e5d59a55f69db6, type: 3}
+  _previewMiddle2Sprite: {fileID: 688856032950900996, guid: c5058aadcf408224b8e5d59a55f69db6, type: 3}
+  _previewMiddle3Sprite: {fileID: 9211068213271993742, guid: c5058aadcf408224b8e5d59a55f69db6, type: 3}
+  _previewMiddle4Sprite: {fileID: -7112069711930652646, guid: c5058aadcf408224b8e5d59a55f69db6, type: 3}
+  _previewMiddle5Sprite: {fileID: 3697249935199132139, guid: c5058aadcf408224b8e5d59a55f69db6, type: 3}
+  _previewRightSprite: {fileID: -4714159548508703546, guid: c5058aadcf408224b8e5d59a55f69db6, type: 3}
+  _builtLeftSprite: {fileID: -2844531666745678743, guid: 96d002e752322224f8a67329f290ff23, type: 3}
+  _builtMiddle2Sprite: {fileID: 772575435, guid: 96d002e752322224f8a67329f290ff23, type: 3}
+  _builtMiddle3Sprite: {fileID: 1355875867, guid: 96d002e752322224f8a67329f290ff23, type: 3}
+  _builtMiddle4Sprite: {fileID: 2064336013, guid: 96d002e752322224f8a67329f290ff23, type: 3}
+  _builtMiddle5Sprite: {fileID: 430566315, guid: 96d002e752322224f8a67329f290ff23, type: 3}
+  _builtRightSprite: {fileID: 1577963706, guid: 96d002e752322224f8a67329f290ff23, type: 3}

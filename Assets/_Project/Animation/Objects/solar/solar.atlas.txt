@@ -1,0 +1,6 @@
+solar.png
+size:499,517
+filter:Linear,Linear
+pma:true
+solar__panel
+bounds:2,2,495,513

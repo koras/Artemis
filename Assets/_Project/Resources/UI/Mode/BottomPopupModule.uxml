@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
+    <ui:VisualElement name="bottom-popup-module" class="bottom-popup-panel">
+        <ui:VisualElement class="bottom-popup-row"> 
+            <ui:Button name="build-bridge-btn" text="Bridge" class="menu-icon-btn"/>
+            <ui:Button name="build-storage-btn" text="Storage" class="menu-icon-btn"/>
+            <ui:Button name="regolith-processing-btn" text="Regolith Proc" class="menu-icon-btn"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="bottom-popup-row">
+            <ui:Button name="sleep-module-btn" text="Sleep Module" class="menu-icon-btn"/>
+            <ui:Button name="dinner-btn" text="Dinner" class="menu-icon-btn"/>
+            <ui:Button name="build-life-module-btn" text="Life Module" class="menu-icon-btn"/>
+            <ui:Button name="cancel-life-module-btn" text="Cancel Life" class="menu-icon-btn"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
