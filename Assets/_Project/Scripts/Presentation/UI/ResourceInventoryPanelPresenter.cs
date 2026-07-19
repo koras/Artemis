@@ -24,6 +24,8 @@ namespace _Project.Scripts.Presentation.UI
         private readonly ResourceInventoryService _resourceInventoryService;
         private readonly SceneResourceObjectService _sceneResourceObjectService;
         private readonly Dictionary<string, Texture2D> _resourceIconCache = new Dictionary<string, Texture2D>();
+        private readonly Dictionary<string, ResourceRowView> _resourceRowsById =
+            new Dictionary<string, ResourceRowView>(StringComparer.Ordinal);
 
         public ResourceInventoryPanelPresenter(
             VisualElement root,
@@ -39,7 +41,7 @@ namespace _Project.Scripts.Presentation.UI
 
             if (_resourceInventoryService != null)
             {
-                _resourceInventoryService.InventoryChanged += OnInventoryChanged;
+                _resourceInventoryService.ResourceAmountChanged += OnResourceAmountChanged;
             }
 
             Render();
@@ -49,15 +51,21 @@ namespace _Project.Scripts.Presentation.UI
         {
             if (_resourceInventoryService != null)
             {
-                _resourceInventoryService.InventoryChanged -= OnInventoryChanged;
+                _resourceInventoryService.ResourceAmountChanged -= OnResourceAmountChanged;
             }
+
+            foreach (ResourceRowView rowView in _resourceRowsById.Values)
+            {
+                UnregisterTooltipCallbacks(rowView.Row);
+            }
+
+            _resourceRowsById.Clear();
+            _resourceList?.Clear();
         }
 
         public void Render()
         {
             if (_resourceList == null) return;
-
-            _resourceList.Clear();
 
             List<string> resourceIds = BuildResourceIds();
             for (int i = 0; i < resourceIds.Count; i++)
@@ -66,13 +74,13 @@ namespace _Project.Scripts.Presentation.UI
                 int amount = _resourceInventoryService != null
                     ? _resourceInventoryService.GetAmount(resourceId)
                     : 0;
-                _resourceList.Add(BuildResourceItem(resourceId, amount));
+                UpdateResourceItem(resourceId, amount);
             }
 
             int droppedPrefabs = _sceneResourceObjectService != null
                 ? _sceneResourceObjectService.GetTotalDroppedPrefabCount()
                 : 0;
-            _resourceList.Add(BuildResourceItem(DroppedPrefabsLabel, droppedPrefabs));
+            UpdateResourceItem(DroppedPrefabsLabel, droppedPrefabs);
         }
 
         private List<string> BuildResourceIds()
@@ -92,7 +100,7 @@ namespace _Project.Scripts.Presentation.UI
             return resourceIds;
         }
 
-        private VisualElement BuildResourceItem(string resourceId, int amount)
+        private ResourceRowView BuildResourceItem(string resourceId)
         {
             // Иконка в HUD компактная: первая буква ресурса в круге.
             var row = new VisualElement();
@@ -103,20 +111,41 @@ namespace _Project.Scripts.Presentation.UI
                 : resourceId.Substring(0, 1).ToUpperInvariant();
             var iconLabel = new Label(iconText);
             iconLabel.AddToClassList("resource-icon");
-            iconLabel.tooltip = BuildTooltipText(resourceId, amount);
             TryApplyIconTexture(iconLabel, resourceId);
 
             var nameLabel = new Label(resourceId);
             nameLabel.AddToClassList("resource-row-name");
 
-            var amountLabel = new Label(amount.ToString());
+            var amountLabel = new Label();
             amountLabel.AddToClassList("resource-row-amount");
 
             row.Add(iconLabel);
             row.Add(nameLabel);
             row.Add(amountLabel);
-            RegisterTooltipCallbacks(row, resourceId, amount);
-            return row;
+
+            var rowView = new ResourceRowView(resourceId, row, iconLabel, amountLabel);
+            row.userData = rowView;
+            RegisterTooltipCallbacks(row);
+            return rowView;
+        }
+
+        private void UpdateResourceItem(string resourceId, int amount)
+        {
+            if (string.IsNullOrWhiteSpace(resourceId))
+            {
+                return;
+            }
+
+            if (!_resourceRowsById.TryGetValue(resourceId, out ResourceRowView rowView))
+            {
+                rowView = BuildResourceItem(resourceId);
+                _resourceRowsById.Add(resourceId, rowView);
+                _resourceList.Add(rowView.Row);
+            }
+
+            rowView.Amount = amount;
+            rowView.AmountLabel.text = amount.ToString();
+            rowView.IconLabel.tooltip = BuildTooltipText(resourceId, amount);
         }
 
         private static string BuildTooltipText(string resourceId, int amount)
@@ -150,20 +179,45 @@ namespace _Project.Scripts.Presentation.UI
             iconLabel.style.unityBackgroundImageTintColor = Color.white;
         }
 
-        private void OnInventoryChanged()
+        private void OnResourceAmountChanged(ResourceAmountChangedEvent change)
         {
-            Render();
+            if (_resourceList == null)
+            {
+                return;
+            }
+
+            UpdateResourceItem(change.ResourceId, change.TotalAmount);
         }
 
-        private void RegisterTooltipCallbacks(VisualElement row, string resourceId, int amount)
+        private void RegisterTooltipCallbacks(VisualElement row)
         {
             if (_resourceTooltip == null || _resourceTooltipLabel == null)
             {
                 return;
             }
 
-            row.RegisterCallback<MouseEnterEvent>(_ => ShowTooltip(row, resourceId, amount));
-            row.RegisterCallback<MouseLeaveEvent>(_ => HideTooltip());
+            row.RegisterCallback<MouseEnterEvent>(OnResourceRowMouseEnter);
+            row.RegisterCallback<MouseLeaveEvent>(OnResourceRowMouseLeave);
+        }
+
+        private void UnregisterTooltipCallbacks(VisualElement row)
+        {
+            row.UnregisterCallback<MouseEnterEvent>(OnResourceRowMouseEnter);
+            row.UnregisterCallback<MouseLeaveEvent>(OnResourceRowMouseLeave);
+            row.userData = null;
+        }
+
+        private void OnResourceRowMouseEnter(MouseEnterEvent evt)
+        {
+            if (evt.currentTarget is VisualElement row && row.userData is ResourceRowView rowView)
+            {
+                ShowTooltip(row, rowView.ResourceId, rowView.Amount);
+            }
+        }
+
+        private void OnResourceRowMouseLeave(MouseLeaveEvent evt)
+        {
+            HideTooltip();
         }
 
         private void ShowTooltip(VisualElement row, string resourceId, int amount)
@@ -213,6 +267,27 @@ namespace _Project.Scripts.Presentation.UI
 
             panel.RemoveFromHierarchy();
             root.Add(panel);
+        }
+
+        private sealed class ResourceRowView
+        {
+            public ResourceRowView(
+                string resourceId,
+                VisualElement row,
+                Label iconLabel,
+                Label amountLabel)
+            {
+                ResourceId = resourceId;
+                Row = row;
+                IconLabel = iconLabel;
+                AmountLabel = amountLabel;
+            }
+
+            public string ResourceId { get; }
+            public VisualElement Row { get; }
+            public Label IconLabel { get; }
+            public Label AmountLabel { get; }
+            public int Amount { get; set; }
         }
     }
 }
