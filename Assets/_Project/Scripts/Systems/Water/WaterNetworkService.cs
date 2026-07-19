@@ -19,6 +19,7 @@ namespace _Project.Scripts.Systems.Water
 
         public void Recalculate()
         {
+            return;
             if (_gridState == null)
             {
                 return;

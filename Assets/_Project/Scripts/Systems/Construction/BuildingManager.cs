@@ -845,6 +845,34 @@ namespace _Project.Scripts.Systems.Construction
             }
         }
 
+        public bool IsActiveStorageDeliveryPoint(Vector2Int storageCell, Vector2Int deliveryCell)
+        {
+            if (_buildingsByAnchor.TryGetValue(storageCell, out BuildingRuntimeEntity entity)
+                && entity != null
+                && entity.IsActive
+                && entity.BuildingDef != null)
+            {
+                BuildObjectType objectType = entity.BuildingDef.ObjectType;
+                bool isStorage = objectType == BuildObjectType.Storage || objectType == BuildObjectType.RocketData;
+                if (isStorage
+                    && entity.AnchorCell + entity.BuildingDef.ResourceDeliveryTargetOffset == deliveryCell)
+                {
+                    return true;
+                }
+            }
+
+            if (storageCell != deliveryCell) return false;
+            if (_externalStorageCells.Contains(storageCell)) return true;
+            if (!_grid.IsInside(storageCell.x, storageCell.y)) return false;
+
+            Cell cell = _grid.GetCell(storageCell.x, storageCell.y);
+            if (!cell.BuildObjectType.HasValue) return false;
+
+            BuildObjectType cellObjectType = cell.BuildObjectType.Value;
+            bool isStorageCell = cellObjectType == BuildObjectType.Storage || cellObjectType == BuildObjectType.RocketData;
+            return isStorageCell && !_activeBuildingsByCell.ContainsKey(storageCell);
+        }
+
         public void FillActiveStorageDeliveryPoints(List<StorageDeliveryPoint> resultBuffer)
         {
             if (resultBuffer == null)

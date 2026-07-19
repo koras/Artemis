@@ -3432,11 +3432,11 @@ MonoBehaviour:
   _characterSpawnSeed: 12345
   _animalDebugSpawnConfigs:
   - _definition: {fileID: 11400000, guid: cba1b756ec5b41b1a77b2b62366e863e, type: 2}
-    _initialSpawnCount: 3
+    _initialSpawnCount: 4
     _spawnCell: {x: 58, y: 95}
     _spawnSeed: 3
   - _definition: {fileID: 11400000, guid: bfd545c27a68447996eef241d058a23c, type: 2}
-    _initialSpawnCount: 1
+    _initialSpawnCount: 2
     _spawnCell: {x: 40, y: 95}
     _spawnSeed: 3
   _buildingViewRegistry: {fileID: 368959564}

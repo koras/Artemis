@@ -70,6 +70,60 @@ namespace _Project.Scripts.Systems.Units
         }
 
         /// <summary>
+        /// Проверяет путь строго до указанной клетки, не подменяя её соседней достижимой клеткой.
+        /// </summary>
+        public bool CanReachExactCell(int unitId, Vector2Int unitCell, Vector2Int targetCell)
+        {
+            if (!_grid.IsInside(targetCell.x, targetCell.y)) return false;
+            if (unitCell == targetCell) return true;
+            return _navigation.TryBuildPath(unitId, unitCell, targetCell, out _);
+        }
+
+        /// <summary>
+        /// Находит первую достижимую точную цель среди ближайших по Manhattan-distance кандидатов.
+        /// Порядок исходного списка используется как стабильный tie-breaker для равных расстояний.
+        /// </summary>
+        public bool TryFindNearestReachableExactCell(
+            int unitId,
+            Vector2Int unitCell,
+            IReadOnlyList<Vector2Int> candidateCells,
+            out Vector2Int reachableCell)
+        {
+            reachableCell = unitCell;
+            if (candidateCells == null || candidateCells.Count == 0) return false;
+
+            int previousDistance = -1;
+            while (true)
+            {
+                int nextDistance = int.MaxValue;
+                for (int i = 0; i < candidateCells.Count; i++)
+                {
+                    Vector2Int candidate = candidateCells[i];
+                    int distance = Mathf.Abs(candidate.x - unitCell.x) + Mathf.Abs(candidate.y - unitCell.y);
+                    if (distance > previousDistance && distance < nextDistance)
+                    {
+                        nextDistance = distance;
+                    }
+                }
+
+                if (nextDistance == int.MaxValue) return false;
+
+                for (int i = 0; i < candidateCells.Count; i++)
+                {
+                    Vector2Int candidate = candidateCells[i];
+                    int distance = Mathf.Abs(candidate.x - unitCell.x) + Mathf.Abs(candidate.y - unitCell.y);
+                    if (distance != nextDistance) continue;
+                    if (!CanReachExactCell(unitId, unitCell, candidate)) continue;
+
+                    reachableCell = candidate;
+                    return true;
+                }
+
+                previousDistance = nextDistance;
+            }
+        }
+
+        /// <summary>
         /// Подбирает рабочую клетку для задачи, в которую юнит сможет дойти и из которой сможет работать по цели.
         /// </summary>
         // Method TryFindWorkCell: executes the TryFindWorkCell workflow.

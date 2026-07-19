@@ -22,6 +22,7 @@ namespace _Project.Scripts.Systems.Units
         private readonly System.Action<UnitTaskState, bool> _resetUnitTask;
         private readonly System.Func<Vector2Int, float> _onStorageDeliveryCompleted;
         private readonly List<BuildingManager.StorageDeliveryPoint> _storageDeliveryPointsBuffer = new List<BuildingManager.StorageDeliveryPoint>();
+        private readonly List<Vector2Int> _storageDeliveryCellsBuffer = new List<Vector2Int>();
         private const string CABLE_SALVAGE_RESOURCE_ID = "Cable";
         private const int CABLE_SALVAGE_AMOUNT = 1;
         private const string WATER_SALVAGE_RESOURCE_ID = "Water Pipe";
@@ -114,24 +115,37 @@ namespace _Project.Scripts.Systems.Units
                 return;
             }
 
-            bool isAtDeliveryCell = state.CurrentCell == state.CurrentGoalCell;
-            if (state.HasResourceStorageTarget
-                && isAtDeliveryCell
-                && _workCellResolver.CanWorkWithTargetFromCell(state.CurrentCell, state.CurrentStorageTargetCell))
+            if (state.HasResourceStorageTarget)
             {
-                _resourceInventoryService.Add(state.CarriedResourceId, state.CarriedResourceAmount);
-                float interactionWaitSeconds = Mathf.Max(0f, _onStorageDeliveryCompleted?.Invoke(state.CurrentStorageTargetCell) ?? 0f);
-                state.IsWaitingForStorageInteraction = interactionWaitSeconds > 0f;
-                state.StorageInteractionWaitRemainingSeconds = interactionWaitSeconds;
-                state.CurrentGoalCell = state.CurrentCell;
-                state.MoveNoProgressSeconds = 0f;
-                if (state.IsWaitingForStorageInteraction)
+                bool hasActiveTarget = _buildingManager.IsActiveStorageDeliveryPoint(
+                    state.CurrentStorageTargetCell,
+                    state.CurrentGoalCell);
+                if (hasActiveTarget && state.CurrentCell != state.CurrentGoalCell)
                 {
                     return;
                 }
 
-                ContinueAfterResourceDelivery(state);
-                return;
+                if (hasActiveTarget
+                    && _workCellResolver.CanWorkWithTargetFromCell(state.CurrentCell, state.CurrentStorageTargetCell))
+                {
+                    _resourceInventoryService.Add(state.CarriedResourceId, state.CarriedResourceAmount);
+                    float interactionWaitSeconds = Mathf.Max(0f, _onStorageDeliveryCompleted?.Invoke(state.CurrentStorageTargetCell) ?? 0f);
+                    state.IsWaitingForStorageInteraction = interactionWaitSeconds > 0f;
+                    state.StorageInteractionWaitRemainingSeconds = interactionWaitSeconds;
+                    state.CurrentGoalCell = state.CurrentCell;
+                    state.MoveNoProgressSeconds = 0f;
+                    if (state.IsWaitingForStorageInteraction)
+                    {
+                        return;
+                    }
+
+                    ContinueAfterResourceDelivery(state);
+                    return;
+                }
+
+                state.HasResourceStorageTarget = false;
+                state.CurrentStorageTargetCell = state.CurrentCell;
+                state.CurrentGoalCell = state.CurrentCell;
             }
 
             if (TryFindNearestStorageDeliveryCell(state.UnitId, state.CurrentCell, out Vector2Int storageCell, out Vector2Int deliveryCell))
@@ -168,7 +182,6 @@ namespace _Project.Scripts.Systems.Units
         {
             storageCell = unitCell;
             deliveryCell = unitCell;
-            float bestDistance = float.PositiveInfinity;
             _buildingManager.FillActiveStorageDeliveryPoints(_storageDeliveryPointsBuffer);
 
             if (_storageDeliveryPointsBuffer.Count == 0)
@@ -176,25 +189,31 @@ namespace _Project.Scripts.Systems.Units
                 return false;
             }
 
+            _storageDeliveryCellsBuffer.Clear();
+            for (int i = 0; i < _storageDeliveryPointsBuffer.Count; i++)
+            {
+                _storageDeliveryCellsBuffer.Add(_storageDeliveryPointsBuffer[i].DeliveryCell);
+            }
+
+            if (!_workCellResolver.TryFindNearestReachableExactCell(
+                    unitId,
+                    unitCell,
+                    _storageDeliveryCellsBuffer,
+                    out deliveryCell))
+            {
+                return false;
+            }
+
             for (int i = 0; i < _storageDeliveryPointsBuffer.Count; i++)
             {
                 BuildingManager.StorageDeliveryPoint candidatePoint = _storageDeliveryPointsBuffer[i];
-                if (!_workCellResolver.TryFindNearestReachableCell(unitId, unitCell, candidatePoint.DeliveryCell, out Vector2Int reachableCell)
-                    || reachableCell != candidatePoint.DeliveryCell)
-                {
-                    continue;
-                }
+                if (candidatePoint.DeliveryCell != deliveryCell) continue;
 
-                float distance = Mathf.Abs(candidatePoint.DeliveryCell.x - unitCell.x)
-                                 + Mathf.Abs(candidatePoint.DeliveryCell.y - unitCell.y);
-                if (distance >= bestDistance) continue;
-
-                bestDistance = distance;
                 storageCell = candidatePoint.StorageCell;
-                deliveryCell = candidatePoint.DeliveryCell;
+                return true;
             }
 
-            return !float.IsInfinity(bestDistance) && !float.IsNaN(bestDistance);
+            return false;
         }
 
         // Method TryCompleteDroppedResourceDelivery: executes the TryCompleteDroppedResourceDelivery workflow.
@@ -373,4 +392,3 @@ namespace _Project.Scripts.Systems.Units
         }
     }
 }
-

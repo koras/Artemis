@@ -23,6 +23,7 @@ namespace _Project.Scripts.Systems.Units
         private readonly System.Func<int, int, bool> _isTaskOnCooldown;
         private readonly System.Action<UnitTaskState, int> _startTaskVisitTracking;
         private readonly List<BuildingManager.StorageDeliveryPoint> _storageDeliveryPointsBuffer = new List<BuildingManager.StorageDeliveryPoint>();
+        private readonly List<Vector2Int> _storageDeliveryCellsBuffer = new List<Vector2Int>();
         /// <summary>
         /// Creates the task acquisition service and stores all collaborators used during reservation and filtering.
         /// Создаёт сервис подбора задач и сохраняет зависимости, используемые для фильтрации и резервирования.
@@ -459,17 +460,17 @@ namespace _Project.Scripts.Systems.Units
         private bool CanDeliverDroppedResourceFromWorkCell(int unitId, Vector2Int workCell)
         {
             _buildingManager.FillActiveStorageDeliveryPoints(_storageDeliveryPointsBuffer);
+            _storageDeliveryCellsBuffer.Clear();
             for (int i = 0; i < _storageDeliveryPointsBuffer.Count; i++)
             {
-                BuildingManager.StorageDeliveryPoint candidatePoint = _storageDeliveryPointsBuffer[i];
-                if (_workCellResolver.TryFindNearestReachableCell(unitId, workCell, candidatePoint.DeliveryCell, out Vector2Int reachableCell)
-                    && reachableCell == candidatePoint.DeliveryCell)
-                {
-                    return true;
-                }
+                _storageDeliveryCellsBuffer.Add(_storageDeliveryPointsBuffer[i].DeliveryCell);
             }
 
-            return false;
+            return _workCellResolver.TryFindNearestReachableExactCell(
+                unitId,
+                workCell,
+                _storageDeliveryCellsBuffer,
+                out _);
         }
         /// <summary>
         /// Logs diagnostics when a non-build task wins while an eligible build task was also available.

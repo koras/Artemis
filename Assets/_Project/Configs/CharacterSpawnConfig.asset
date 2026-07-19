@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b932f71881746a2ab4d963b4b07a0e9, type: 3}
   m_Name: CharacterSpawnConfig
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Character.CharacterSpawnConfig
-  _spawnCount: 4
+  _spawnCount: 10
   _definitions:
   - {fileID: 11400000, guid: 2e3525d6d62a8224182252ed81ba3613, type: 2}
   _minWorldPosition: {x: -5, y: 0}

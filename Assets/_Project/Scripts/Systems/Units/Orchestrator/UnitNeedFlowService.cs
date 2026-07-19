@@ -32,6 +32,7 @@ namespace _Project.Scripts.Systems.Units
         private readonly ResourceInventoryService _resourceInventoryService;
         private readonly List<string> _foodResourceIds;
         private readonly List<BuildingManager.StorageDeliveryPoint> _storageDeliveryPointsBuffer = new List<BuildingManager.StorageDeliveryPoint>();
+        private readonly List<Vector2Int> _storageDeliveryCellsBuffer = new List<Vector2Int>();
         private readonly List<BuildingRuntimeEntity> _activeBuildingsBuffer = new List<BuildingRuntimeEntity>();
         private const string BEER_RESOURCE_ID = "Beer";
 
@@ -321,11 +322,21 @@ namespace _Project.Scripts.Systems.Units
 
         private bool EnsureEatStorageRoute(UnitTaskState state)
         {
-            if (state.HasResourceStorageTarget
-                && state.CurrentCell == state.CurrentGoalCell)
+            if (state.HasResourceStorageTarget)
             {
-                state.HasLoggedMissingEatRoute = false;
-                return true;
+                bool hasActiveTarget = _buildingManager.IsActiveStorageDeliveryPoint(
+                    state.CurrentStorageTargetCell,
+                    state.CurrentGoalCell);
+                if (hasActiveTarget)
+                {
+                    state.HasLoggedMissingEatRoute = false;
+                    return true;
+                }
+
+                state.HasResourceStorageTarget = false;
+                state.CurrentStorageTargetCell = state.CurrentCell;
+                state.CurrentGoalCell = state.CurrentCell;
+                _context.Navigation.ClearPath(state.UnitId);
             }
 
             if (TryFindNearestStorageCell(state.UnitId, state.CurrentCell, out Vector2Int storageCell, out Vector2Int deliveryCell))
@@ -450,9 +461,23 @@ namespace _Project.Scripts.Systems.Units
         {
             storageCell = unitCell;
             deliveryCell = unitCell;
-            float bestDistance = float.PositiveInfinity;
             _buildingManager.FillActiveStorageDeliveryPoints(_storageDeliveryPointsBuffer);
             if (_storageDeliveryPointsBuffer.Count == 0)
+            {
+                return false;
+            }
+
+            _storageDeliveryCellsBuffer.Clear();
+            for (int i = 0; i < _storageDeliveryPointsBuffer.Count; i++)
+            {
+                _storageDeliveryCellsBuffer.Add(_storageDeliveryPointsBuffer[i].DeliveryCell);
+            }
+
+            if (!_context.WorkCellResolver.TryFindNearestReachableExactCell(
+                    unitId,
+                    unitCell,
+                    _storageDeliveryCellsBuffer,
+                    out deliveryCell))
             {
                 return false;
             }
@@ -460,25 +485,13 @@ namespace _Project.Scripts.Systems.Units
             for (int i = 0; i < _storageDeliveryPointsBuffer.Count; i++)
             {
                 BuildingManager.StorageDeliveryPoint candidatePoint = _storageDeliveryPointsBuffer[i];
-                if (!_context.WorkCellResolver.TryFindNearestReachableCell(unitId, unitCell, candidatePoint.DeliveryCell, out Vector2Int reachableCell)
-                    || reachableCell != candidatePoint.DeliveryCell)
-                {
-                    continue;
-                }
+                if (candidatePoint.DeliveryCell != deliveryCell) continue;
 
-                float distance = Mathf.Abs(candidatePoint.DeliveryCell.x - unitCell.x)
-                                 + Mathf.Abs(candidatePoint.DeliveryCell.y - unitCell.y);
-                if (distance >= bestDistance)
-                {
-                    continue;
-                }
-
-                bestDistance = distance;
                 storageCell = candidatePoint.StorageCell;
-                deliveryCell = candidatePoint.DeliveryCell;
+                return true;
             }
 
-            return !float.IsInfinity(bestDistance) && !float.IsNaN(bestDistance);
+            return false;
         }
 
         private bool TrySleepAtNearestModule(UnitTaskState state, float tickMinutes)
