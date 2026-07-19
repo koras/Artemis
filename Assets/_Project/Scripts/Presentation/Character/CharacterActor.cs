@@ -54,6 +54,7 @@ namespace _Project.Scripts.Presentation.Character
         [SerializeField] [Range(0, 100)] private int _mood = 60;
         // Runtime-only food preference weights for this spawned character instance.
         private readonly Dictionary<string, int> _foodPreferenceByResourceId = new Dictionary<string, int>();
+        private int _foodPreferencesVersion;
         private string _lastProcessedRuntimeSkinOverride = string.Empty;
 
         public int Hunger => _hunger;
@@ -62,6 +63,7 @@ namespace _Project.Scripts.Presentation.Character
         public SkeletonAnimation SkeletonAnimation => _skeletonAnimation;
         public CharacterWorkAimRig WorkAimRig => _workAimRig;
         public IReadOnlyDictionary<string, int> FoodPreferences => _foodPreferenceByResourceId;
+        public int FoodPreferencesVersion => _foodPreferencesVersion;
         public IReadOnlyList<string> AvailableSkinNames => _availableSkinNames;
         public string CurrentSkinName => _currentSkinName;
         public string RuntimeSkinOverride => _runtimeSkinOverride;
@@ -152,6 +154,7 @@ namespace _Project.Scripts.Presentation.Character
         public void SetFoodPreferences(IReadOnlyDictionary<string, int> foodPreferences)
         {
             _foodPreferenceByResourceId.Clear();
+            _foodPreferencesVersion++;
             if (foodPreferences == null)
             {
                 return;

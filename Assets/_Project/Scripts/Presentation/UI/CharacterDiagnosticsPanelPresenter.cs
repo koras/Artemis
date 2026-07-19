@@ -14,6 +14,27 @@ namespace _Project.Scripts.Presentation.UI
 
         private const string PANEL_TEMPLATE_PATH = "UI/CharacterDiagnosticsPanel";
 
+        private static readonly List<int> MissingUnitIdsBuffer = new List<int>(16);
+        private static readonly Dictionary<string, string> DisplayInitialByName = new Dictionary<string, string>();
+        private static readonly Dictionary<int, string> UnitIdTextByUnitId = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> RosterButtonNameByUnitId = new Dictionary<int, string>();
+        private static readonly Dictionary<string, string> NameKeyTextByNameKey = new Dictionary<string, string>();
+        private static readonly Dictionary<UnitExecutionState, string> StateTextByState = new Dictionary<UnitExecutionState, string>();
+        private static readonly Dictionary<UnitLocalNeedState, string> LocalStateTextByState = new Dictionary<UnitLocalNeedState, string>();
+        private static readonly Dictionary<WorkDecisionTextKey, string> WorkDecisionTextByKey = new Dictionary<WorkDecisionTextKey, string>();
+        private static readonly Dictionary<string, string> WorkDecisionLabelTextByDecision = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> TaskBlockReasonTextByReason = new Dictionary<string, string>();
+        private static readonly Dictionary<FoodPreferencesTextKey, string> FoodPreferencesTextByKey = new Dictionary<FoodPreferencesTextKey, string>();
+        private static readonly Dictionary<IntPairKey, string> HungerTextByValue = new Dictionary<IntPairKey, string>();
+        private static readonly Dictionary<IntPairKey, string> SleepTextByValue = new Dictionary<IntPairKey, string>();
+        private static readonly Dictionary<int, string> MoodTextByValue = new Dictionary<int, string>();
+        private static readonly Dictionary<IntTripleKey, string> SleepCycleTextByValue = new Dictionary<IntTripleKey, string>();
+        private static readonly Dictionary<IntTripleKey, string> EatCycleTextByValue = new Dictionary<IntTripleKey, string>();
+        private static readonly Dictionary<IntTripleKey, string> WorkCycleTextByValue = new Dictionary<IntTripleKey, string>();
+        private static readonly Dictionary<IntTripleKey, string> RestCycleTextByValue = new Dictionary<IntTripleKey, string>();
+        private static readonly Dictionary<IntPairKey, string> ProgressTitleByValue = new Dictionary<IntPairKey, string>();
+        private static readonly Dictionary<IntPairKey, string> NeedBarTitleByValue = new Dictionary<IntPairKey, string>();
+
         private readonly VisualElement _rosterPanel;
         private readonly VisualElement _rosterListRoot;
         private readonly Dictionary<int, Button> _rosterButtons = new Dictionary<int, Button>();
@@ -139,9 +160,7 @@ namespace _Project.Scripts.Presentation.UI
                 Label icon = button.Q<Label>();
                 if (icon != null)
                 {
-                    icon.text = !string.IsNullOrWhiteSpace(item.DisplayName)
-                        ? item.DisplayName.Substring(0, 1).ToUpperInvariant()
-                        : item.UnitId.ToString();
+                    icon.text = GetRosterIconText(item);
                 }
 
                 // Preserve button instances between HUD refreshes so pointer down/up is not lost mid-click.
@@ -171,26 +190,62 @@ namespace _Project.Scripts.Presentation.UI
         private void BindSelected(UnitDiagnosticsSnapshot item)
         {
             if (_titleLabel != null) _titleLabel.text = item.DisplayName;
-            if (_nameKeyLabel != null) _nameKeyLabel.text = $"NameKey: {item.CharacterNameKey}";
-            if (_stateLabel != null) _stateLabel.text = $"State: {item.ExecutionState}";
-            if (_localStateLabel != null) _localStateLabel.text = $"Local: {item.LocalNeedState}";
-            if (_workDecisionLabel != null) _workDecisionLabel.text = $"Work decision: {BuildWorkDecisionText(item)}";
-            if (_taskBlockReasonLabel != null) _taskBlockReasonLabel.text = $"Task block reason: {item.GlobalTaskBlockReason}";
+            if (_nameKeyLabel != null)
+            {
+                _nameKeyLabel.text = GetCachedText(NameKeyTextByNameKey, item.CharacterNameKey ?? string.Empty, "NameKey: ");
+            }
+
+            if (_stateLabel != null) _stateLabel.text = GetCachedText(StateTextByState, item.ExecutionState, "State: ");
+            if (_localStateLabel != null)
+            {
+                _localStateLabel.text = GetCachedText(LocalStateTextByState, item.LocalNeedState, "Local: ");
+            }
+
+            if (_workDecisionLabel != null)
+            {
+                _workDecisionLabel.text = GetCachedText(
+                    WorkDecisionLabelTextByDecision,
+                    GetWorkDecisionText(item),
+                    "Work decision: ");
+            }
+
+            if (_taskBlockReasonLabel != null)
+            {
+                _taskBlockReasonLabel.text = GetCachedText(
+                    TaskBlockReasonTextByReason,
+                    item.GlobalTaskBlockReason ?? string.Empty,
+                    "Task block reason: ");
+            }
+
             if (_foodPreferencesLabel != null)
             {
-                _foodPreferencesLabel.text =
-                    $"Food preferences: {item.FoodPreferencesSummary}\n" +
-                    $"Movement: current {item.CurrentMoveSpeed:0.00}, max {item.EffectiveMoveSpeed:0.00}, lerp {item.MoveLerpSpeed:0.00}\n" +
-                    $"Animation: sim x{item.SimulationSpeedMultiplier:0.##}, anim x{item.MovementAnimationSpeedMultiplier:0.##}, playback x{item.MovementAnimationPlaybackSpeed:0.##}";
+                _foodPreferencesLabel.text = GetFoodPreferencesText(item);
             }
 
             int hungerToCrit = Mathf.Max(0, _criticalHunger - item.Hunger);
             int sleepToCrit = Mathf.Max(0, _criticalSleep - item.SleepDesire);
 
-            if (_hungerLabel != null) _hungerLabel.text = $"Hunger: {item.Hunger}/300 | To critical: {hungerToCrit}";
-            if (_sleepLabel != null) _sleepLabel.text = $"Sleep desire: {item.SleepDesire}/300 | To critical: {sleepToCrit}";
-            if (_moodLabel != null) _moodLabel.text = $"Mood: {item.Mood}/100";
-            if (_workQuotaLabel != null) _workQuotaLabel.text = $"Work (24h): {item.WorkedMinutesWindow:0}/{item.WorkQuotaMinutes:0} min";
+            if (_hungerLabel != null)
+            {
+                _hungerLabel.text = GetCachedPairText(
+                    HungerTextByValue,
+                    new IntPairKey(item.Hunger, hungerToCrit),
+                    "Hunger: ",
+                    "/300 | To critical: ",
+                    "");
+            }
+
+            if (_sleepLabel != null)
+            {
+                _sleepLabel.text = GetCachedPairText(
+                    SleepTextByValue,
+                    new IntPairKey(item.SleepDesire, sleepToCrit),
+                    "Sleep desire: ",
+                    "/300 | To critical: ",
+                    "");
+            }
+
+            if (_moodLabel != null) _moodLabel.text = GetCachedIntText(MoodTextByValue, item.Mood, "Mood: ", "/100");
             BindSleepCycle(item);
             BindEatCycle(item);
             BindWorkCycle(item);
@@ -201,7 +256,12 @@ namespace _Project.Scripts.Presentation.UI
                 _hungerBar.lowValue = 0;
                 _hungerBar.highValue = 300;
                 _hungerBar.value = item.Hunger;
-                _hungerBar.title = $"{item.Hunger}/300";
+                _hungerBar.title = GetCachedPairText(
+                    NeedBarTitleByValue,
+                    new IntPairKey(item.Hunger, 300),
+                    "",
+                    "/",
+                    "");
             }
 
             if (_sleepBar != null)
@@ -209,7 +269,12 @@ namespace _Project.Scripts.Presentation.UI
                 _sleepBar.lowValue = 0;
                 _sleepBar.highValue = 300;
                 _sleepBar.value = item.SleepDesire;
-                _sleepBar.title = $"{item.SleepDesire}/300";
+                _sleepBar.title = GetCachedPairText(
+                    NeedBarTitleByValue,
+                    new IntPairKey(item.SleepDesire, 300),
+                    "",
+                    "/",
+                    "");
             }
         }
 
@@ -244,10 +309,16 @@ namespace _Project.Scripts.Presentation.UI
             float done = Mathf.Max(0f, total - remaining);
             if (_sleepCycleLabel != null)
             {
-                _sleepCycleLabel.text = $"Sleep cycle: {done:0}/{remaining:0}/{total:0} min (done/left/total)";
+                _sleepCycleLabel.text = GetCachedTripleText(
+                    SleepCycleTextByValue,
+                    BuildIntTripleKey(done, remaining, total),
+                    "Sleep cycle: ",
+                    "/",
+                    "/",
+                    " min (done/left/total)");
             }
 
-            SetProgress(_sleepCycleBar, done, Mathf.Max(1f, total), $"{done:0}/{total:0}");
+            SetProgress(_sleepCycleBar, done, Mathf.Max(1f, total), GetProgressTitleText(done, total));
         }
 
         private void BindEatCycle(UnitDiagnosticsSnapshot item)
@@ -264,10 +335,16 @@ namespace _Project.Scripts.Presentation.UI
 
             if (_eatCycleLabel != null)
             {
-                _eatCycleLabel.text = $"Eat cycle: {done:0}/{remaining:0}/{total:0} min (done/left/current eat)";
+                _eatCycleLabel.text = GetCachedTripleText(
+                    EatCycleTextByValue,
+                    BuildIntTripleKey(done, remaining, total),
+                    "Eat cycle: ",
+                    "/",
+                    "/",
+                    " min (done/left/current eat)");
             }
 
-            SetProgress(_eatCycleBar, done, Mathf.Max(1f, total), $"{done:0}/{total:0}");
+            SetProgress(_eatCycleBar, done, Mathf.Max(1f, total), GetProgressTitleText(done, total));
         }
 
         private void BindWorkCycle(UnitDiagnosticsSnapshot item)
@@ -277,10 +354,16 @@ namespace _Project.Scripts.Presentation.UI
             float remaining = Mathf.Max(0f, total - done);
             if (_workQuotaLabel != null)
             {
-                _workQuotaLabel.text = $"Work (24h): {done:0}/{remaining:0}/{total:0} min (done/left/total)";
+                _workQuotaLabel.text = GetCachedTripleText(
+                    WorkCycleTextByValue,
+                    BuildIntTripleKey(done, remaining, total),
+                    "Work (24h): ",
+                    "/",
+                    "/",
+                    " min (done/left/total)");
             }
 
-            SetProgress(_workBar, done, total, $"{done:0}/{total:0}");
+            SetProgress(_workBar, done, total, GetProgressTitleText(done, total));
         }
 
         private void BindRestCycle(UnitDiagnosticsSnapshot item)
@@ -290,10 +373,16 @@ namespace _Project.Scripts.Presentation.UI
             float remaining = Mathf.Max(0f, total - done);
             if (_restCycleLabel != null)
             {
-                _restCycleLabel.text = $"Rest cycle: {done:0}/{remaining:0}/{total:0} min (done/left/target)";
+                _restCycleLabel.text = GetCachedTripleText(
+                    RestCycleTextByValue,
+                    BuildIntTripleKey(done, remaining, total),
+                    "Rest cycle: ",
+                    "/",
+                    "/",
+                    " min (done/left/target)");
             }
 
-            SetProgress(_restCycleBar, done, total, $"{done:0}/{total:0}");
+            SetProgress(_restCycleBar, done, total, GetProgressTitleText(done, total));
         }
 
         private static void ResetProgress(ProgressBar progressBar)
@@ -322,6 +411,142 @@ namespace _Project.Scripts.Presentation.UI
             }
 
             return false;
+        }
+
+        private static string GetRosterIconText(UnitDiagnosticsSnapshot item)
+        {
+            if (string.IsNullOrWhiteSpace(item.DisplayName))
+            {
+                if (UnitIdTextByUnitId.TryGetValue(item.UnitId, out string unitIdText))
+                {
+                    return unitIdText;
+                }
+
+                unitIdText = item.UnitId.ToString();
+                UnitIdTextByUnitId[item.UnitId] = unitIdText;
+                return unitIdText;
+            }
+
+            if (DisplayInitialByName.TryGetValue(item.DisplayName, out string initial))
+            {
+                return initial;
+            }
+
+            initial = char.ToUpperInvariant(item.DisplayName[0]).ToString();
+            DisplayInitialByName[item.DisplayName] = initial;
+            return initial;
+        }
+
+        private static string GetCachedText<TKey>(Dictionary<TKey, string> cache, TKey key, string prefix)
+        {
+            if (cache.TryGetValue(key, out string text))
+            {
+                return text;
+            }
+
+            text = prefix + key;
+            cache[key] = text;
+            return text;
+        }
+
+        private static string GetCachedIntText(Dictionary<int, string> cache, int value, string prefix, string suffix)
+        {
+            if (cache.TryGetValue(value, out string text))
+            {
+                return text;
+            }
+
+            text = prefix + value + suffix;
+            cache[value] = text;
+            return text;
+        }
+
+        private static string GetCachedPairText(
+            Dictionary<IntPairKey, string> cache,
+            IntPairKey key,
+            string prefix,
+            string separator,
+            string suffix)
+        {
+            if (cache.TryGetValue(key, out string text))
+            {
+                return text;
+            }
+
+            text = prefix + key.First + separator + key.Second + suffix;
+            cache[key] = text;
+            return text;
+        }
+
+        private static string GetCachedTripleText(
+            Dictionary<IntTripleKey, string> cache,
+            IntTripleKey key,
+            string prefix,
+            string firstSeparator,
+            string secondSeparator,
+            string suffix)
+        {
+            if (cache.TryGetValue(key, out string text))
+            {
+                return text;
+            }
+
+            text = prefix + key.First + firstSeparator + key.Second + secondSeparator + key.Third + suffix;
+            cache[key] = text;
+            return text;
+        }
+
+        private static string GetWorkDecisionText(UnitDiagnosticsSnapshot item)
+        {
+            var key = new WorkDecisionTextKey(
+                item.ExecutionState,
+                item.LocalNeedState,
+                item.WorkedMinutesWindow + 0.001f >= item.WorkQuotaMinutes);
+            if (WorkDecisionTextByKey.TryGetValue(key, out string text))
+            {
+                return text;
+            }
+
+            text = BuildWorkDecisionText(item);
+            WorkDecisionTextByKey[key] = text;
+            return text;
+        }
+
+        private static string GetFoodPreferencesText(UnitDiagnosticsSnapshot item)
+        {
+            var key = new FoodPreferencesTextKey(
+                item.FoodPreferencesSummary,
+                Mathf.RoundToInt(item.CurrentMoveSpeed * 100f),
+                Mathf.RoundToInt(item.EffectiveMoveSpeed * 100f),
+                Mathf.RoundToInt(item.MoveLerpSpeed * 100f),
+                Mathf.RoundToInt(item.SimulationSpeedMultiplier * 100f),
+                Mathf.RoundToInt(item.MovementAnimationSpeedMultiplier * 100f),
+                Mathf.RoundToInt(item.MovementAnimationPlaybackSpeed * 100f));
+            if (FoodPreferencesTextByKey.TryGetValue(key, out string text))
+            {
+                return text;
+            }
+
+            text =
+                $"Food preferences: {item.FoodPreferencesSummary}\n" +
+                $"Movement: current {item.CurrentMoveSpeed:0.00}, max {item.EffectiveMoveSpeed:0.00}, lerp {item.MoveLerpSpeed:0.00}\n" +
+                $"Animation: sim x{item.SimulationSpeedMultiplier:0.##}, anim x{item.MovementAnimationSpeedMultiplier:0.##}, playback x{item.MovementAnimationPlaybackSpeed:0.##}";
+            FoodPreferencesTextByKey[key] = text;
+            return text;
+        }
+
+        private static string GetProgressTitleText(float done, float total)
+        {
+            var key = new IntPairKey(Mathf.RoundToInt(done), Mathf.RoundToInt(total));
+            return GetCachedPairText(ProgressTitleByValue, key, "", "/", "");
+        }
+
+        private static IntTripleKey BuildIntTripleKey(float first, float second, float third)
+        {
+            return new IntTripleKey(
+                Mathf.RoundToInt(first),
+                Mathf.RoundToInt(second),
+                Mathf.RoundToInt(third));
         }
 
         private static string BuildWorkDecisionText(UnitDiagnosticsSnapshot item)
@@ -355,7 +580,7 @@ namespace _Project.Scripts.Presentation.UI
 
             var button = new Button(() => OnRosterButtonClicked(unitId))
             {
-                name = $"character-item-{unitId}"
+                name = GetRosterButtonName(unitId)
             };
             button.AddToClassList("character-diagnostics-item");
 
@@ -367,6 +592,18 @@ namespace _Project.Scripts.Presentation.UI
             return button;
         }
 
+        private static string GetRosterButtonName(int unitId)
+        {
+            if (RosterButtonNameByUnitId.TryGetValue(unitId, out string name))
+            {
+                return name;
+            }
+
+            name = $"character-item-{unitId}";
+            RosterButtonNameByUnitId[unitId] = name;
+            return name;
+        }
+
         private void OnRosterButtonClicked(int unitId)
         {
             _selectedUnitId = unitId;
@@ -376,7 +613,9 @@ namespace _Project.Scripts.Presentation.UI
 
         private void RemoveMissingRosterButtons(IReadOnlyList<UnitDiagnosticsSnapshot> items)
         {
-            var missingUnitIds = new List<int>();
+            List<int> missingUnitIds = MissingUnitIdsBuffer;
+            missingUnitIds.Clear();
+
             foreach (KeyValuePair<int, Button> pair in _rosterButtons)
             {
                 if (!ContainsUnit(items, pair.Key))
@@ -390,6 +629,8 @@ namespace _Project.Scripts.Presentation.UI
             {
                 _rosterButtons.Remove(missingUnitIds[i]);
             }
+
+            missingUnitIds.Clear();
         }
 
         private void ClearRosterButtons()
@@ -427,6 +668,174 @@ namespace _Project.Scripts.Presentation.UI
             panel.RemoveFromHierarchy();
             root.Add(panel);
             return panel;
+        }
+
+        private readonly struct WorkDecisionTextKey : System.IEquatable<WorkDecisionTextKey>
+        {
+            private readonly UnitExecutionState _executionState;
+            private readonly UnitLocalNeedState _localNeedState;
+            private readonly bool _isWorkQuotaReached;
+
+            public WorkDecisionTextKey(
+                UnitExecutionState executionState,
+                UnitLocalNeedState localNeedState,
+                bool isWorkQuotaReached)
+            {
+                _executionState = executionState;
+                _localNeedState = localNeedState;
+                _isWorkQuotaReached = isWorkQuotaReached;
+            }
+
+            public bool Equals(WorkDecisionTextKey other)
+            {
+                return _executionState == other._executionState
+                    && _localNeedState == other._localNeedState
+                    && _isWorkQuotaReached == other._isWorkQuotaReached;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is WorkDecisionTextKey other && Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    int hash = 17;
+                    hash = hash * 31 + (int)_executionState;
+                    hash = hash * 31 + (int)_localNeedState;
+                    hash = hash * 31 + (_isWorkQuotaReached ? 1 : 0);
+                    return hash;
+                }
+            }
+        }
+
+        private readonly struct FoodPreferencesTextKey : System.IEquatable<FoodPreferencesTextKey>
+        {
+            private readonly string _foodPreferencesSummary;
+            private readonly int _currentMoveSpeed;
+            private readonly int _effectiveMoveSpeed;
+            private readonly int _moveLerpSpeed;
+            private readonly int _simulationSpeedMultiplier;
+            private readonly int _movementAnimationSpeedMultiplier;
+            private readonly int _movementAnimationPlaybackSpeed;
+
+            public FoodPreferencesTextKey(
+                string foodPreferencesSummary,
+                int currentMoveSpeed,
+                int effectiveMoveSpeed,
+                int moveLerpSpeed,
+                int simulationSpeedMultiplier,
+                int movementAnimationSpeedMultiplier,
+                int movementAnimationPlaybackSpeed)
+            {
+                _foodPreferencesSummary = foodPreferencesSummary ?? string.Empty;
+                _currentMoveSpeed = currentMoveSpeed;
+                _effectiveMoveSpeed = effectiveMoveSpeed;
+                _moveLerpSpeed = moveLerpSpeed;
+                _simulationSpeedMultiplier = simulationSpeedMultiplier;
+                _movementAnimationSpeedMultiplier = movementAnimationSpeedMultiplier;
+                _movementAnimationPlaybackSpeed = movementAnimationPlaybackSpeed;
+            }
+
+            public bool Equals(FoodPreferencesTextKey other)
+            {
+                return _foodPreferencesSummary == other._foodPreferencesSummary
+                    && _currentMoveSpeed == other._currentMoveSpeed
+                    && _effectiveMoveSpeed == other._effectiveMoveSpeed
+                    && _moveLerpSpeed == other._moveLerpSpeed
+                    && _simulationSpeedMultiplier == other._simulationSpeedMultiplier
+                    && _movementAnimationSpeedMultiplier == other._movementAnimationSpeedMultiplier
+                    && _movementAnimationPlaybackSpeed == other._movementAnimationPlaybackSpeed;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is FoodPreferencesTextKey other && Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    int hash = 17;
+                    hash = hash * 31 + _foodPreferencesSummary.GetHashCode();
+                    hash = hash * 31 + _currentMoveSpeed;
+                    hash = hash * 31 + _effectiveMoveSpeed;
+                    hash = hash * 31 + _moveLerpSpeed;
+                    hash = hash * 31 + _simulationSpeedMultiplier;
+                    hash = hash * 31 + _movementAnimationSpeedMultiplier;
+                    hash = hash * 31 + _movementAnimationPlaybackSpeed;
+                    return hash;
+                }
+            }
+        }
+
+        private readonly struct IntPairKey : System.IEquatable<IntPairKey>
+        {
+            public readonly int First;
+            public readonly int Second;
+
+            public IntPairKey(int first, int second)
+            {
+                First = first;
+                Second = second;
+            }
+
+            public bool Equals(IntPairKey other)
+            {
+                return First == other.First && Second == other.Second;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is IntPairKey other && Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    return (First * 397) ^ Second;
+                }
+            }
+        }
+
+        private readonly struct IntTripleKey : System.IEquatable<IntTripleKey>
+        {
+            public readonly int First;
+            public readonly int Second;
+            public readonly int Third;
+
+            public IntTripleKey(int first, int second, int third)
+            {
+                First = first;
+                Second = second;
+                Third = third;
+            }
+
+            public bool Equals(IntTripleKey other)
+            {
+                return First == other.First && Second == other.Second && Third == other.Third;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is IntTripleKey other && Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    int hash = 17;
+                    hash = hash * 31 + First;
+                    hash = hash * 31 + Second;
+                    hash = hash * 31 + Third;
+                    return hash;
+                }
+            }
         }
 
         private static VisualElement EnsureRosterPanelCreated(VisualElement root)

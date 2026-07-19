@@ -13,7 +13,9 @@ namespace _Project.Scripts.Systems.Units
         private static readonly List<Vector2Int> UnitCellsSnapshotBuffer = new List<Vector2Int>(16);
         private static readonly List<UnitDiagnosticsSnapshot> UnitDiagnosticsSnapshotBuffer = new List<UnitDiagnosticsSnapshot>(16);
         private static readonly List<KeyValuePair<string, int>> FoodPreferenceEntriesBuffer = new List<KeyValuePair<string, int>>(16);
-        private static readonly List<string> FoodPreferencePartsBuffer = new List<string>(16);
+        private static readonly Comparison<KeyValuePair<string, int>> FoodPreferenceEntryComparison = CompareFoodPreferenceEntries;
+        private static readonly Dictionary<CharacterActor, FoodPreferenceSummaryCache> FoodPreferenceSummaryByActor = new Dictionary<CharacterActor, FoodPreferenceSummaryCache>(16);
+        private static readonly System.Text.StringBuilder FoodPreferenceSummaryBuilder = new System.Text.StringBuilder(128);
         private static readonly List<string> TaskEligibilityPartsBuffer = new List<string>(16);
 
         private readonly UnitOrchestratorContext _context;
@@ -141,6 +143,12 @@ namespace _Project.Scripts.Systems.Units
                 return "-";
             }
 
+            if (FoodPreferenceSummaryByActor.TryGetValue(actor, out FoodPreferenceSummaryCache cached)
+                && cached.Version == actor.FoodPreferencesVersion)
+            {
+                return cached.Summary;
+            }
+
             List<KeyValuePair<string, int>> entries = FoodPreferenceEntriesBuffer;
             entries.Clear();
             if (entries.Capacity < actor.FoodPreferences.Count)
@@ -153,34 +161,56 @@ namespace _Project.Scripts.Systems.Units
                 entries.Add(preference);
             }
 
-            entries.Sort((left, right) =>
-            {
-                int scoreCompare = right.Value.CompareTo(left.Value);
-                if (scoreCompare != 0)
-                {
-                    return scoreCompare;
-                }
+            entries.Sort(FoodPreferenceEntryComparison);
 
-                return string.CompareOrdinal(left.Key, right.Key);
-            });
-
-            List<string> parts = FoodPreferencePartsBuffer;
-            parts.Clear();
-            if (parts.Capacity < entries.Count)
-            {
-                parts.Capacity = entries.Count;
-            }
-
+            System.Text.StringBuilder builder = FoodPreferenceSummaryBuilder;
+            builder.Length = 0;
             for (int i = 0; i < entries.Count; i++)
             {
+                if (i > 0)
+                {
+                    builder.Append(", ");
+                }
+
                 KeyValuePair<string, int> entry = entries[i];
-                parts.Add($"{i + 1}. {entry.Key} ({entry.Value})");
+                builder.Append(i + 1);
+                builder.Append(". ");
+                builder.Append(entry.Key);
+                builder.Append(" (");
+                builder.Append(entry.Value);
+                builder.Append(')');
             }
 
-            string result = string.Join(", ", parts);
+            string result = builder.ToString();
+            FoodPreferenceSummaryByActor[actor] = new FoodPreferenceSummaryCache(actor.FoodPreferencesVersion, result);
             entries.Clear();
-            parts.Clear();
+            builder.Length = 0;
             return result;
+        }
+
+        private static int CompareFoodPreferenceEntries(
+            KeyValuePair<string, int> left,
+            KeyValuePair<string, int> right)
+        {
+            int scoreCompare = right.Value.CompareTo(left.Value);
+            if (scoreCompare != 0)
+            {
+                return scoreCompare;
+            }
+
+            return string.CompareOrdinal(left.Key, right.Key);
+        }
+
+        private readonly struct FoodPreferenceSummaryCache
+        {
+            public readonly int Version;
+            public readonly string Summary;
+
+            public FoodPreferenceSummaryCache(int version, string summary)
+            {
+                Version = version;
+                Summary = summary;
+            }
         }
 
         private static string ExplainWhyUnitCannotTakeTask(

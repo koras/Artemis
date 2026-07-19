@@ -15,6 +15,12 @@ namespace _Project.Scripts.Systems.Units
         private const int MAX_SKIPPED_ATTEMPTS_PER_TASK = 5;
         private const float GLOBAL_TASK_RETRY_BREAK_SECONDS = 10f;
 
+        private static readonly Dictionary<int, string> GlobalTaskBreakReasonByTenths = new Dictionary<int, string>(16);
+        private static readonly Dictionary<int, string> WaitingDeferredBuildReasonByTaskId = new Dictionary<int, string>(16);
+        private static readonly Dictionary<long, string> SkippedTaskReasonByKey = new Dictionary<long, string>(64);
+        private static readonly Dictionary<int, string> SkippedTaskBreakReasonByTaskId = new Dictionary<int, string>(16);
+        private static readonly Dictionary<ReservedUnreachableReasonKey, string> ReservedUnreachableReasonByKey = new Dictionary<ReservedUnreachableReasonKey, string>(32);
+
         private readonly GlobalTaskBoardService _taskBoard;
         private readonly BuildingManager _buildingManager;
         private readonly LifeModulePlacementService _lifeModulePlacementService;
@@ -24,6 +30,13 @@ namespace _Project.Scripts.Systems.Units
         private readonly System.Action<UnitTaskState, int> _startTaskVisitTracking;
         private readonly List<BuildingManager.StorageDeliveryPoint> _storageDeliveryPointsBuffer = new List<BuildingManager.StorageDeliveryPoint>();
         private readonly List<Vector2Int> _storageDeliveryCellsBuffer = new List<Vector2Int>();
+        private readonly System.Func<UnitTaskRecord, bool> _currentTaskAllowedPredicate;
+        private readonly System.Func<UnitTaskRecord, bool> _currentTaskReachablePredicate;
+        private readonly System.Func<UnitTaskRecord, bool> _currentDeferredClearAllowedPredicate;
+
+        private UnitTaskState _predicateState;
+        private int _predicateDeferredBuildTaskId;
+
         /// <summary>
         /// Creates the task acquisition service and stores all collaborators used during reservation and filtering.
         /// Создаёт сервис подбора задач и сохраняет зависимости, используемые для фильтрации и резервирования.
@@ -44,6 +57,9 @@ namespace _Project.Scripts.Systems.Units
             _enableLogs = enableLogs;
             _isTaskOnCooldown = isTaskOnCooldown;
             _startTaskVisitTracking = startTaskVisitTracking;
+            _currentTaskAllowedPredicate = IsCurrentTaskAllowed;
+            _currentTaskReachablePredicate = IsCurrentTaskReachable;
+            _currentDeferredClearAllowedPredicate = IsCurrentDeferredClearAllowed;
         }
         /// <summary>
         /// Attempts to reserve a valid task for the unit and switch it into movement toward the selected work cell.
@@ -53,10 +69,11 @@ namespace _Project.Scripts.Systems.Units
         /// </summary>
         public bool TryAcquireTask(UnitTaskState state, int currentTick, out string blockReason)
         {
+            SetPredicateContext(state);
             blockReason = "none";
             if (state.GlobalTaskRetryBreakRemainingSeconds > 0f)
             {
-                blockReason = $"global task break {state.GlobalTaskRetryBreakRemainingSeconds:0.0}s";
+                blockReason = GetGlobalTaskBreakReason(state.GlobalTaskRetryBreakRemainingSeconds);
                 return false;
             }
 
@@ -82,14 +99,13 @@ namespace _Project.Scripts.Systems.Units
 
             if (state.DeferredBuildTaskId != 0)
             {
+                _predicateDeferredBuildTaskId = state.DeferredBuildTaskId;
                 bool reservedDeferredClear = _taskBoard.TryReserveBestTaskForUnit(
                     state.UnitId,
                     state.CurrentCell,
                     currentTick,
-                    candidateTask => IsTaskAllowedForUnit(state, candidateTask)
-                                     && candidateTask.TaskType == UnitTaskType.ClearBuildCell
-                                     && candidateTask.ParentBuildTaskId == state.DeferredBuildTaskId,
-                    candidateTask => IsTaskReachableWithDebug(state, candidateTask),
+                    _currentDeferredClearAllowedPredicate,
+                    _currentTaskReachablePredicate,
                     out UnitTaskRecord deferredClearTask);
 
                 if (reservedDeferredClear
@@ -115,8 +131,8 @@ namespace _Project.Scripts.Systems.Units
                     state.DeferredBuildTaskId,
                     state.UnitId,
                     currentTick,
-                    candidateTask => IsTaskAllowedForUnit(state, candidateTask),
-                    candidateTask => IsTaskReachableWithDebug(state, candidateTask),
+                    _currentTaskAllowedPredicate,
+                    _currentTaskReachablePredicate,
                     out UnitTaskRecord deferredBuildTaskById);
 
                 if (reservedDeferredBuild
@@ -143,7 +159,7 @@ namespace _Project.Scripts.Systems.Units
             // Debug.Log($"[Task AI] unit {state.UnitId}: waiting on deferred build {state.DeferredBuildTaskId} - no reachable clear/build subtask yet.");
                 }
 
-                blockReason = $"waiting deferred build {state.DeferredBuildTaskId}: no reachable clear/build subtask";
+                blockReason = GetWaitingDeferredBuildReason(state.DeferredBuildTaskId);
                 return false;
             }
 
@@ -185,8 +201,8 @@ namespace _Project.Scripts.Systems.Units
                     candidateTask.TaskId,
                     state.UnitId,
                     currentTick,
-                    allowedTask => IsTaskAllowedForUnit(state, allowedTask),
-                    reachableTask => IsTaskReachableWithDebug(state, reachableTask),
+                    _currentTaskAllowedPredicate,
+                    _currentTaskReachablePredicate,
                     out UnitTaskRecord reservedTask);
 
                 if (!reserved)
@@ -197,13 +213,13 @@ namespace _Project.Scripts.Systems.Units
                 if (!_workCellResolver.TryFindWorkCell(state.UnitId, state.CurrentCell, reservedTask, out Vector2Int workCell))
                 {
                     _taskBoard.ReleaseTaskReservation(reservedTask.TaskId, state.UnitId, "unreachable");
-                    string reason = _workCellResolver.ExplainWhyNoWorkCell(state.UnitId, state.CurrentCell, reservedTask);
                     if (RegisterSkippedTaskAttempt(state, reservedTask.TaskId, out blockReason))
                     {
                         return false;
                     }
 
-                    blockReason = $"task {reservedTask.TaskId} reserved but unreachable: {reason}";
+                    string reason = _workCellResolver.ExplainWhyNoWorkCell(state.UnitId, state.CurrentCell, reservedTask);
+                    blockReason = GetReservedUnreachableReason(reservedTask.TaskId, reason);
                     continue;
                 }
 
@@ -228,6 +244,123 @@ namespace _Project.Scripts.Systems.Units
             blockReason = "no reservable task after full global task pass";
             return false;
         }
+
+        private void SetPredicateContext(UnitTaskState state)
+        {
+            _predicateState = state;
+            _predicateDeferredBuildTaskId = state.DeferredBuildTaskId;
+        }
+
+        private bool IsCurrentTaskAllowed(UnitTaskRecord candidateTask)
+        {
+            return IsTaskAllowedForUnit(_predicateState, candidateTask);
+        }
+
+        private bool IsCurrentTaskReachable(UnitTaskRecord candidateTask)
+        {
+            return IsTaskReachableWithDebug(_predicateState, candidateTask);
+        }
+
+        private bool IsCurrentDeferredClearAllowed(UnitTaskRecord candidateTask)
+        {
+            return IsTaskAllowedForUnit(_predicateState, candidateTask)
+                && candidateTask.TaskType == UnitTaskType.ClearBuildCell
+                && candidateTask.ParentBuildTaskId == _predicateDeferredBuildTaskId;
+        }
+
+        private static string GetGlobalTaskBreakReason(float remainingSeconds)
+        {
+            int tenths = Mathf.RoundToInt(remainingSeconds * 10f);
+            if (GlobalTaskBreakReasonByTenths.TryGetValue(tenths, out string reason))
+            {
+                return reason;
+            }
+
+            reason = $"global task break {tenths / 10f:0.0}s";
+            GlobalTaskBreakReasonByTenths[tenths] = reason;
+            return reason;
+        }
+
+        private static string GetWaitingDeferredBuildReason(int taskId)
+        {
+            if (WaitingDeferredBuildReasonByTaskId.TryGetValue(taskId, out string reason))
+            {
+                return reason;
+            }
+
+            reason = $"waiting deferred build {taskId}: no reachable clear/build subtask";
+            WaitingDeferredBuildReasonByTaskId[taskId] = reason;
+            return reason;
+        }
+
+        private static string GetSkippedTaskReason(int taskId, int attemptCount)
+        {
+            long key = ((long)taskId << 32) ^ (uint)attemptCount;
+            if (SkippedTaskReasonByKey.TryGetValue(key, out string reason))
+            {
+                return reason;
+            }
+
+            reason = $"task {taskId} skipped {attemptCount}/{MAX_SKIPPED_ATTEMPTS_PER_TASK}";
+            SkippedTaskReasonByKey[key] = reason;
+            return reason;
+        }
+
+        private static string GetSkippedTaskBreakReason(int taskId)
+        {
+            if (SkippedTaskBreakReasonByTaskId.TryGetValue(taskId, out string reason))
+            {
+                return reason;
+            }
+
+            reason = $"task {taskId} skipped {MAX_SKIPPED_ATTEMPTS_PER_TASK}/{MAX_SKIPPED_ATTEMPTS_PER_TASK}; break for {GLOBAL_TASK_RETRY_BREAK_SECONDS:0}s";
+            SkippedTaskBreakReasonByTaskId[taskId] = reason;
+            return reason;
+        }
+
+        private static string GetReservedUnreachableReason(int taskId, string workCellReason)
+        {
+            var key = new ReservedUnreachableReasonKey(taskId, workCellReason);
+            if (ReservedUnreachableReasonByKey.TryGetValue(key, out string reason))
+            {
+                return reason;
+            }
+
+            reason = $"task {taskId} reserved but unreachable: {workCellReason}";
+            ReservedUnreachableReasonByKey[key] = reason;
+            return reason;
+        }
+
+        private readonly struct ReservedUnreachableReasonKey : System.IEquatable<ReservedUnreachableReasonKey>
+        {
+            private readonly int _taskId;
+            private readonly string _workCellReason;
+
+            public ReservedUnreachableReasonKey(int taskId, string workCellReason)
+            {
+                _taskId = taskId;
+                _workCellReason = workCellReason ?? string.Empty;
+            }
+
+            public bool Equals(ReservedUnreachableReasonKey other)
+            {
+                return _taskId == other._taskId && _workCellReason == other._workCellReason;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is ReservedUnreachableReasonKey other && Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    return (_taskId * 397) ^ _workCellReason.GetHashCode();
+                }
+            }
+        }
+
         /// <summary>
         /// Prioritizes pending dig/clear subtasks inside build footprints so blocked build tasks can progress.
         /// Приоритизирует ожидающие задачи копки/очистки внутри зоны стройки, чтобы заблокированная стройка могла продвигаться.
@@ -277,8 +410,8 @@ namespace _Project.Scripts.Systems.Units
                         digOrClearTask.TaskId,
                         state.UnitId,
                         currentTick,
-                        candidateTask => IsTaskAllowedForUnit(state, candidateTask),
-                        candidateTask => IsTaskReachableWithDebug(state, candidateTask),
+                        _currentTaskAllowedPredicate,
+                        _currentTaskReachablePredicate,
                         out UnitTaskRecord reservedTask);
 
                     if (!reserved)
@@ -293,11 +426,6 @@ namespace _Project.Scripts.Systems.Units
                     if (!_workCellResolver.TryFindWorkCell(state.UnitId, state.CurrentCell, reservedTask, out Vector2Int workCell))
                     {
                         _taskBoard.ReleaseTaskReservation(reservedTask.TaskId, state.UnitId, "pending_clear_unreachable");
-                        if (_enableLogs)
-                        {
-                            string reason = _workCellResolver.ExplainWhyNoWorkCell(state.UnitId, state.CurrentCell, reservedTask);
-            // Debug.Log($"[Task AI] unit {state.UnitId}: reserved pending clear task {reservedTask.TaskId} but cannot reach work cell. Reason: {reason}.");
-                        }
                         continue;
                     }
 
@@ -393,39 +521,6 @@ namespace _Project.Scripts.Systems.Units
 
             if (pendingClearSubtasks > 0)
             {
-                if (_enableLogs)
-                {
-                    var pendingCells = _taskBoard.GetPendingDigCellsInBuildFootprint(candidateTask.BuildPayload);
-                    string pendingCellsText = pendingCells.Count == 0
-                        ? "none"
-                        : string.Join(", ", pendingCells.ConvertAll(cell => $"({cell.x},{cell.y})"));
-
-                    string pendingTaskStatesText;
-                    if (pendingCells.Count == 0)
-                    {
-                        pendingTaskStatesText = "no pending cell tasks found";
-                    }
-                    else
-                    {
-                        var states = new System.Collections.Generic.List<string>(pendingCells.Count);
-                        for (int i = 0; i < pendingCells.Count; i++)
-                        {
-                            Vector2Int cell = pendingCells[i];
-                            if (!_taskBoard.TryGetTaskByCell(cell, out UnitTaskRecord pendingTask) || pendingTask == null)
-                            {
-                                states.Add($"({cell.x},{cell.y}) -> no task");
-                                continue;
-                            }
-
-                            states.Add(
-                                $"({cell.x},{cell.y}) -> id={pendingTask.TaskId}, type={pendingTask.TaskType}, status={pendingTask.Status}, reservedBy={pendingTask.ReservedByUnitId}");
-                        }
-
-                        pendingTaskStatesText = string.Join("; ", states);
-                    }
-
-            // Debug.Log($"[Task AI] unit {state.UnitId}: skip build {candidateTask.TaskId} - clear required ({candidateTask.BuildPayload.RemainingClearSubtasks} left). Pending cells: {pendingCellsText}. Pending task states: {pendingTaskStatesText}.");
-                }
                 return false;
             }
 
@@ -446,8 +541,6 @@ namespace _Project.Scripts.Systems.Units
             }
             if (!reachable && _enableLogs && candidateTask != null && candidateTask.TaskType == UnitTaskType.BuildObject)
             {
-                string reason = _workCellResolver.ExplainWhyNoWorkCell(state.UnitId, state.CurrentCell, candidateTask);
-                string neighbors = _workCellResolver.GetBuildNeighborDiagnostics(state.UnitId, state.CurrentCell, candidateTask.TargetCell);
             // Debug.Log($"[Task AI] unit {state.UnitId}: build task {candidateTask.TaskId} unreachable. Reason: {reason}. Neighbors around target: {neighbors}.");
             }
 
@@ -510,13 +603,13 @@ namespace _Project.Scripts.Systems.Units
             state.SkippedGlobalTaskAttemptsByTaskId[taskId] = attemptCount;
             if (attemptCount < MAX_SKIPPED_ATTEMPTS_PER_TASK)
             {
-                blockReason = $"task {taskId} skipped {attemptCount}/{MAX_SKIPPED_ATTEMPTS_PER_TASK}";
+                blockReason = GetSkippedTaskReason(taskId, attemptCount);
                 return false;
             }
 
             state.SkippedGlobalTaskAttemptsByTaskId.Clear();
             state.GlobalTaskRetryBreakRemainingSeconds = GLOBAL_TASK_RETRY_BREAK_SECONDS;
-            blockReason = $"task {taskId} skipped {MAX_SKIPPED_ATTEMPTS_PER_TASK}/{MAX_SKIPPED_ATTEMPTS_PER_TASK}; break for {GLOBAL_TASK_RETRY_BREAK_SECONDS:0}s";
+            blockReason = GetSkippedTaskBreakReason(taskId);
             return true;
         }
 
