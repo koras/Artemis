@@ -109,7 +109,11 @@ namespace _Project.Scripts.Systems.Units
                     out UnitTaskRecord deferredClearTask);
 
                 if (reservedDeferredClear
-                    && _workCellResolver.TryFindWorkCell(state.UnitId, state.CurrentCell, deferredClearTask, out Vector2Int deferredClearWorkCell))
+                    && _workCellResolver.TryFindWorkCellAndBuildPath(
+                        state.UnitId,
+                        state.CurrentCell,
+                        deferredClearTask,
+                        out Vector2Int deferredClearWorkCell))
                 {
                     state.CurrentTaskId = deferredClearTask.TaskId;
                     state.CurrentTaskTargetCell = deferredClearTask.TargetCell;
@@ -122,9 +126,13 @@ namespace _Project.Scripts.Systems.Units
                     }
                     return true;
                 }
-                else if (reservedDeferredClear && _enableLogs)
+                else if (reservedDeferredClear)
                 {
+                    _taskBoard.ReleaseTaskReservation(deferredClearTask.TaskId, state.UnitId, "unreachable");
+                    if (_enableLogs)
+                    {
             // Debug.Log($"[Task AI] unit {state.UnitId}: cannot start clear task {deferredClearTask.TaskId} - no reachable work cell.");
+                    }
                 }
 
                 bool reservedDeferredBuild = _taskBoard.TryReserveTaskByIdForUnit(
@@ -136,7 +144,11 @@ namespace _Project.Scripts.Systems.Units
                     out UnitTaskRecord deferredBuildTaskById);
 
                 if (reservedDeferredBuild
-                    && _workCellResolver.TryFindWorkCell(state.UnitId, state.CurrentCell, deferredBuildTaskById, out Vector2Int deferredBuildWorkCell))
+                    && _workCellResolver.TryFindWorkCellAndBuildPath(
+                        state.UnitId,
+                        state.CurrentCell,
+                        deferredBuildTaskById,
+                        out Vector2Int deferredBuildWorkCell))
                 {
                     state.CurrentTaskId = deferredBuildTaskById.TaskId;
                     state.CurrentTaskTargetCell = deferredBuildTaskById.TargetCell;
@@ -149,9 +161,13 @@ namespace _Project.Scripts.Systems.Units
                     }
                     return true;
                 }
-                else if (reservedDeferredBuild && _enableLogs)
+                else if (reservedDeferredBuild)
                 {
+                    _taskBoard.ReleaseTaskReservation(deferredBuildTaskById.TaskId, state.UnitId, "unreachable");
+                    if (_enableLogs)
+                    {
             // Debug.Log($"[Task AI] unit {state.UnitId}: cannot start build task {deferredBuildTaskById.TaskId} - no reachable work cell.");
+                    }
                 }
 
                 if (_enableLogs)
@@ -210,7 +226,11 @@ namespace _Project.Scripts.Systems.Units
                     continue;
                 }
 
-                if (!_workCellResolver.TryFindWorkCell(state.UnitId, state.CurrentCell, reservedTask, out Vector2Int workCell))
+                if (!_workCellResolver.TryFindWorkCellAndBuildPath(
+                        state.UnitId,
+                        state.CurrentCell,
+                        reservedTask,
+                        out Vector2Int workCell))
                 {
                     _taskBoard.ReleaseTaskReservation(reservedTask.TaskId, state.UnitId, "unreachable");
                     if (RegisterSkippedTaskAttempt(state, reservedTask.TaskId, out blockReason))
@@ -423,7 +443,11 @@ namespace _Project.Scripts.Systems.Units
                         continue;
                     }
 
-                    if (!_workCellResolver.TryFindWorkCell(state.UnitId, state.CurrentCell, reservedTask, out Vector2Int workCell))
+                    if (!_workCellResolver.TryFindWorkCellAndBuildPath(
+                            state.UnitId,
+                            state.CurrentCell,
+                            reservedTask,
+                            out Vector2Int workCell))
                     {
                         _taskBoard.ReleaseTaskReservation(reservedTask.TaskId, state.UnitId, "pending_clear_unreachable");
                         continue;

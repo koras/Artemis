@@ -224,6 +224,29 @@ namespace _Project.Scripts.Systems.Units
         }
 
         /// <summary>
+        /// Selects the same best work cell as TryFindWorkCell and builds the single path used for movement.
+        /// </summary>
+        public bool TryFindWorkCellAndBuildPath(
+            int unitId,
+            Vector2Int unitCell,
+            UnitTaskRecord task,
+            out Vector2Int workCell)
+        {
+            if (!TryFindWorkCell(unitId, unitCell, task, out workCell))
+            {
+                return false;
+            }
+
+            if (workCell == unitCell)
+            {
+                _navigation.ClearPath(unitId);
+                return true;
+            }
+
+            return _navigation.TryBuildPath(unitId, unitCell, workCell, out _);
+        }
+
+        /// <summary>
         /// Возвращает человеко-понятную причину, почему для задачи не нашлась рабочая клетка.
         /// </summary>
         // Method ExplainWhyNoWorkCell: executes the ExplainWhyNoWorkCell workflow.
@@ -648,14 +671,15 @@ namespace _Project.Scripts.Systems.Units
             ref Vector2Int workCell)
         {
             if (!_grid.IsInside(candidate.x, candidate.y)) return false;
-            if (candidate != unitCell)
-            {
-                if (!IsWorkCellWalkable(candidate)) return false;
-                if (!_navigation.TryBuildPath(unitId, unitCell, candidate, out _)) return false;
-            }
 
             float distance = Mathf.Abs(candidate.x - unitCell.x) + Mathf.Abs(candidate.y - unitCell.y);
             if (distance >= bestDistance) return false;
+
+            if (candidate != unitCell)
+            {
+                if (!IsWorkCellWalkable(candidate)) return false;
+                if (!_navigation.CanReachCell(unitId, unitCell, candidate)) return false;
+            }
 
             bestDistance = distance;
             workCell = candidate;

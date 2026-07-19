@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Data.Grid;
 using _Project.Scripts.Data.Pathfinding;
@@ -14,17 +16,20 @@ namespace _Project.Scripts.Systems.Navigation
     {
         private readonly GridState _grid;
         private readonly AStarPathfinder _pathfinder;
+        private readonly NavigationReachabilityMapBuilder _reachabilityMapBuilder;
 
         private static readonly List<NavigationPathDebugSnapshot> _debugPathSnapshotsBuffered = new List<NavigationPathDebugSnapshot>();
         private static readonly Dictionary<int, List<MovementActionEdge>> _debugPathEdgesByUnitIdBuffered = new Dictionary<int, List<MovementActionEdge>>();
 
         // Кэш текущего пути на юнита, чтобы не пересчитывать без необходимости.
         private readonly Dictionary<int, CachedPath> _pathsByUnitId = new Dictionary<int, CachedPath>();
+        private readonly Dictionary<int, CachedReachabilityMap> _reachabilityMapsByUnitId = new Dictionary<int, CachedReachabilityMap>(128);
 
         public CharacterNavigationService(GridState grid)
         {
             _grid = grid;
             _pathfinder = new AStarPathfinder();
+            _reachabilityMapBuilder = new NavigationReachabilityMapBuilder(grid.Width, grid.Height);
         }
 
         public bool TryBuildPath(int unitId, Vector2Int from, Vector2Int to, out PathResult path)
@@ -50,6 +55,40 @@ namespace _Project.Scripts.Systems.Navigation
                 out reachableCell);
             _pathsByUnitId[unitId] = new CachedPath(from, reachableCell, path, 0);
             return path.Success;
+        }
+
+        /// <summary>
+        /// Checks reachability through a cached traversal from the unit's current cell without building a path.
+        /// </summary>
+        public bool CanReachCell(int unitId, Vector2Int from, Vector2Int to)
+        {
+            if (!_grid.IsInside(from.x, from.y) || !_grid.IsInside(to.x, to.y))
+            {
+                return false;
+            }
+
+            if (from == to)
+            {
+                return true;
+            }
+
+            if (!_reachabilityMapsByUnitId.TryGetValue(unitId, out CachedReachabilityMap cached))
+            {
+                cached = new CachedReachabilityMap(_grid.Width * _grid.Height);
+                _reachabilityMapsByUnitId[unitId] = cached;
+            }
+
+            if (!cached.IsValid
+                || cached.StartCell != from
+                || cached.NavigationRevision != _grid.NavigationRevision)
+            {
+                _reachabilityMapBuilder.FillReachableCells(_grid, unitId, from, cached.ReachableCells);
+                cached.StartCell = from;
+                cached.NavigationRevision = _grid.NavigationRevision;
+                cached.IsValid = true;
+            }
+
+            return cached.ReachableCells[_grid.GetIndex(to.x, to.y)];
         }
 
         public void ClearPath(int unitId)
@@ -171,6 +210,19 @@ namespace _Project.Scripts.Systems.Navigation
                 EdgeIndex = edgeIndex;
             }
         }
+
+        private sealed class CachedReachabilityMap
+        {
+            public readonly BitArray ReachableCells;
+            public Vector2Int StartCell;
+            public int NavigationRevision;
+            public bool IsValid;
+
+            public CachedReachabilityMap(int cellCount)
+            {
+                ReachableCells = new BitArray(cellCount);
+            }
+        }
     }
 
     /// <summary>
@@ -203,6 +255,69 @@ namespace _Project.Scripts.Systems.Navigation
             GoalCell = goalCell;
             EdgeIndex = edgeIndex;
             Edges = edges;
+        }
+    }
+
+    internal sealed class NavigationReachabilityMapBuilder
+    {
+        private readonly ActionGraphProvider _graphProvider = new ActionGraphProvider();
+        private readonly int[] _frontierCellIndices;
+        private readonly int _gridWidth;
+
+        public NavigationReachabilityMapBuilder(int gridWidth, int gridHeight)
+        {
+            if (gridWidth <= 0) throw new ArgumentOutOfRangeException(nameof(gridWidth));
+            if (gridHeight <= 0) throw new ArgumentOutOfRangeException(nameof(gridHeight));
+
+            _gridWidth = gridWidth;
+            _frontierCellIndices = new int[gridWidth * gridHeight];
+        }
+
+        public void FillReachableCells(GridState grid, int unitId, Vector2Int start, BitArray reachableCells)
+        {
+            if (grid == null) throw new ArgumentNullException(nameof(grid));
+            if (reachableCells == null) throw new ArgumentNullException(nameof(reachableCells));
+            if (reachableCells.Length != _frontierCellIndices.Length)
+            {
+                throw new ArgumentException("Reachability map size must match the grid size.", nameof(reachableCells));
+            }
+
+            reachableCells.SetAll(false);
+            if (!grid.IsInside(start.x, start.y))
+            {
+                return;
+            }
+
+            int frontierHead = 0;
+            int frontierTail = 0;
+            int startIndex = grid.GetIndex(start.x, start.y);
+            reachableCells[startIndex] = true;
+            _frontierCellIndices[frontierTail++] = startIndex;
+
+            while (frontierHead < frontierTail)
+            {
+                int currentIndex = _frontierCellIndices[frontierHead++];
+                var current = new Vector2Int(currentIndex % _gridWidth, currentIndex / _gridWidth);
+                List<MovementActionEdge> edges = _graphProvider.BuildEdges(grid, current, unitId);
+
+                for (int i = 0; i < edges.Count; i++)
+                {
+                    Vector2Int destination = edges[i].To;
+                    if (destination == current || !grid.IsInside(destination.x, destination.y))
+                    {
+                        continue;
+                    }
+
+                    int destinationIndex = grid.GetIndex(destination.x, destination.y);
+                    if (reachableCells[destinationIndex])
+                    {
+                        continue;
+                    }
+
+                    reachableCells[destinationIndex] = true;
+                    _frontierCellIndices[frontierTail++] = destinationIndex;
+                }
+            }
         }
     }
 }

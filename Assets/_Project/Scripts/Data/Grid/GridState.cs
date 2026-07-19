@@ -13,6 +13,11 @@ namespace _Project.Scripts.Data.Grid
         public int Width { get; }
         public int Height { get; }
 
+        /// <summary>
+        /// Changes only when cell data used by movement graph generation changes.
+        /// </summary>
+        public int NavigationRevision { get; private set; }
+
         public  int CellSize { get; } // размер одной ячейки (например 1f)
         
         
@@ -60,6 +65,11 @@ namespace _Project.Scripts.Data.Grid
             int index = GetIndex(x, y);
             Cell previousCell = _cells[index];
             _cells[index] = cell;
+
+            if (!AreNavigationCellsEqual(previousCell, cell))
+            {
+                NavigationRevision++;
+            }
 
             if (!AreCellsEqual(previousCell, cell))
             {
@@ -127,6 +137,17 @@ namespace _Project.Scripts.Data.Grid
                    && left.LifeModulePartWidth == right.LifeModulePartWidth
                    && left.LifeModulePartOrder == right.LifeModulePartOrder
                    && left.IsLifeModulePartAnchor == right.IsLifeModulePartAnchor;
+        }
+
+        private static bool AreNavigationCellsEqual(Cell left, Cell right)
+        {
+            return left.Type == right.Type
+                   && left.BuildObjectType == right.BuildObjectType
+                   && left.IsOccupiedByBuilding == right.IsOccupiedByBuilding
+                   && left.IgnoreObstacleForPathfinding == right.IgnoreObstacleForPathfinding
+                   && left.GravityVector == right.GravityVector
+                   && left.LifeModuleType == right.LifeModuleType
+                   && left.LifeModuleGroupId == right.LifeModuleGroupId;
         }
     }
 }

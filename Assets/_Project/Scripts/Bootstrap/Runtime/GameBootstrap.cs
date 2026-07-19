@@ -50,6 +50,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
     public sealed class GameBootstrap : MonoBehaviour
     {
         private const int LocalRefreshRadius = 3;
+        private const int MAX_SIMULATION_TICKS_PER_FRAME = 2;
 
         // World grid width (in cells).
         [Header("Grid")]
@@ -1244,29 +1245,28 @@ namespace _Project.Scripts.Bootstrap.Runtime
                 return;
             }
 
-            // Интервал тика зависит от множителя скорости:
-            // чем выше скорость, тем чаще вызывается RunTick().
+            // Симуляция работает фиксированными логическими тиками. _tickIntervalSeconds = 3 означает,
+            // что каждый RunTick() продвигает системы ровно на один трёхсекундный логический шаг.
+            // Множитель скорости меняет только реальную частоту запуска, но не размер логического тика.
+            // Например, на x20 новый тик нужен каждые 3 / 20 = 0.15 секунды, то есть около 6.7 тика/с.
             float tickInterval = _tickIntervalSeconds / Mathf.Max(1f, _simulationSpeedMultiplier);
 
-            // Накапливаем реальное время кадра, а не сразу тикаем каждый Update,
-            // чтобы симуляция жила в собственном ритме, независимом от FPS.
-            _simulationTickTimerSeconds += deltaTime;
+            // Два тика на кадр покрывают x20 при FPS выше примерно 3.4. Третий тик почти не улучшает
+            // работоспособность, но увеличивает максимально возможный CPU-скачок ещё на 50%.
+            // При очень низком FPS намеренно замедляем симуляцию ради сохранения отзывчивости игры:
+            // накопленное сверх двух интервалов время отбрасывается и не переносится в следующие кадры.
+            float maxAccumulatedTickTime = tickInterval * MAX_SIMULATION_TICKS_PER_FRAME;
+            _simulationTickTimerSeconds = Mathf.Min(
+                _simulationTickTimerSeconds + deltaTime,
+                maxAccumulatedTickTime);
 
-            // Prevent a single long frame from producing an unbounded catch-up burst.
-            int safetyTicksRemaining = 8;
-            while (_simulationTickTimerSeconds >= tickInterval && safetyTicksRemaining > 0)
+            int processedTicks = 0;
+            while (_simulationTickTimerSeconds >= tickInterval
+                   && processedTicks < MAX_SIMULATION_TICKS_PER_FRAME)
             {
-                // Вычитаем один интервал и исполняем ровно один полноценный симуляционный тик.
                 _simulationTickTimerSeconds -= tickInterval;
                 RunTick();
-                safetyTicksRemaining--;
-            }
-
-            if (safetyTicksRemaining == 0)
-            {
-                // Если кадр был слишком длинным, обрезаем хвост догоняющих тиков,
-                // иначе игра может провалиться в бесконечное "догоняние" и ещё сильнее лагать.
-                _simulationTickTimerSeconds = 0f;
+                processedTicks++;
             }
         }
 
