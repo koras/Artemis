@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.coplaydev.unity-mcp": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main",
-    "com.esotericsoftware.spine.spine-csharp": "https://github.com/EsotericSoftware/spine-runtimes.git?path=spine-csharp/src#4.3",
     "com.unity.2d.animation": "15.0.3",
     "com.unity.2d.aseprite": "5.0.2",
     "com.unity.2d.common": "14.0.1",

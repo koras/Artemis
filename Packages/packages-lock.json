@@ -10,13 +10,6 @@
       },
       "hash": "b92c05a25820cfc9f59ce4094eb46aaec8632ea2"
     },
-    "com.esotericsoftware.spine.spine-csharp": {
-      "version": "https://github.com/EsotericSoftware/spine-runtimes.git?path=spine-csharp/src#4.3",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "388db5cd3f317a06ff34a7dddeee5e3029241981"
-    },
     "com.unity.2d.animation": {
       "version": "15.0.3",
       "depth": 0,
