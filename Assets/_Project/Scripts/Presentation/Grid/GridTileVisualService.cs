@@ -23,11 +23,7 @@ namespace _Project.Scripts.Presentation.Grid
         public GridTileVisualService(GridTilemapRenderSettings settings)
         {
             _gridTilemapRenderer = new GridTilemapRenderer(
-                settings.IronTilemap,
-                settings.TitanTilemap,
-                settings.AluminiumTilemap,
-                settings.RogaliteTilemap,
-                settings.AtmosphereTilemap,
+                settings.ResourceTilemap,
                 settings.DefaultTilemap,
                 settings.IronTilesByRepeatIndex,
                 settings.TitanTilesByRepeatIndex,

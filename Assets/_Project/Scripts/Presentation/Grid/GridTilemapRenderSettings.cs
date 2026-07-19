@@ -8,17 +8,9 @@ namespace _Project.Scripts.Presentation.Grid
     /// </summary>
     public sealed class GridTilemapRenderSettings : MonoBehaviour
     {
-        [Header("Ground Tilemaps By Natural Type")]
-        // Dedicated tilemap for Iron cells.
-        [SerializeField] private Tilemap _ironTilemap;
-        // Dedicated tilemap for Titan cells.
-        [SerializeField] private Tilemap _titanTilemap;
-        // Dedicated tilemap for aluminium cells.
-        [SerializeField] private Tilemap _aluminiumTilemap;
-        // Dedicated tilemap for Rogalite cells.
-        [SerializeField] private Tilemap _rogaliteTilemap;
-        // Dedicated tilemap for Atmosphere cells.
-        [SerializeField] private Tilemap _atmosphereTilemap;
+        [Header("Ground Tilemaps")]
+        // Shared tilemap for all natural resource cells.
+        [SerializeField] private Tilemap _resourceTilemap;
         // Dedicated tilemap for default repeating base layer.
         [SerializeField] private Tilemap _defaultTilemap;
 
@@ -124,11 +116,7 @@ namespace _Project.Scripts.Presentation.Grid
         [SerializeField] private Tilemap _materialTransitionTilemap;
         [SerializeField] private TileBase[] _transitionTilesByOpenMask = new TileBase[47];
 
-        public Tilemap IronTilemap => _ironTilemap;
-        public Tilemap TitanTilemap => _titanTilemap;
-        public Tilemap AluminiumTilemap => _aluminiumTilemap;
-        public Tilemap RogaliteTilemap => _rogaliteTilemap;
-        public Tilemap AtmosphereTilemap => _atmosphereTilemap;
+        public Tilemap ResourceTilemap => _resourceTilemap;
         public Tilemap DefaultTilemap => _defaultTilemap;
 
         public TileBase[] IronTilesByRepeatIndex => _ironTilesByRepeatIndex;

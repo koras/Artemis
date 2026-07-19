@@ -13,11 +13,13 @@ namespace _Project.Scripts.Presentation.Grid
         private static readonly Color32 CableBuildModeColor = new Color32(0x74, 0x74, 0x74, 0xFF);
         private static readonly HashSet<string> SharedTilemapNames = new HashSet<string>
         {
-            "TilemapRogalite",
-            "TilemapAluminium",
+            "ResourceTilemap",
             "TilemapDefault",
             "TilemapFerrum",
             "TilemapTitan",
+            "TilemapAluminium",
+            "TilemapRogalite",
+            "TilemapAtmosphere",
             "TilemapHg3",
             "DigMarkersTilemap",
             "DigPreviewTilemap",
@@ -116,12 +118,8 @@ namespace _Project.Scripts.Presentation.Grid
         {
             if (gridTilemapRenderSettings != null)
             {
-                RegisterTilemap(gridTilemapRenderSettings.RogaliteTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
-                RegisterTilemap(gridTilemapRenderSettings.AluminiumTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
+                RegisterTilemap(gridTilemapRenderSettings.ResourceTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
                 RegisterTilemap(gridTilemapRenderSettings.DefaultTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
-                RegisterTilemap(gridTilemapRenderSettings.IronTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
-                RegisterTilemap(gridTilemapRenderSettings.TitanTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
-                RegisterTilemap(gridTilemapRenderSettings.AtmosphereTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
                 RegisterTilemap(gridTilemapRenderSettings.DigMarkerTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
                 RegisterTilemap(gridTilemapRenderSettings.DigPreviewTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
                 RegisterTilemap(gridTilemapRenderSettings.ReservedTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);

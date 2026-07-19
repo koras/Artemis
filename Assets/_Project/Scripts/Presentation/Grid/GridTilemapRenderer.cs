@@ -16,11 +16,7 @@ namespace _Project.Scripts.Presentation.Grid
         private static readonly Color DigPreviewColor = new Color32(0xFF, 0xC8, 0x5A, 0xFF);
         private static readonly Color DigPreviewBlockedColor = new Color(1f, 0.3f, 0.3f, 0.95f);
 
-        private readonly Tilemap _ironTilemap;
-        private readonly Tilemap _titanTilemap;
-        private readonly Tilemap _aluminiumTilemap;
-        private readonly Tilemap _rogaliteTilemap;
-        private readonly Tilemap _atmosphereTilemap;
+        private readonly Tilemap _resourceTilemap;
         private readonly Tilemap _defaultTilemap;
 
         private readonly TileBase[] _ironTilesByRepeatIndex;
@@ -75,11 +71,7 @@ namespace _Project.Scripts.Presentation.Grid
         private readonly Transform _pipeMaskDebugRoot;
 
         public GridTilemapRenderer(
-            Tilemap ironTilemap,
-            Tilemap titanTilemap,
-            Tilemap aluminiumTilemap,
-            Tilemap rogaliteTilemap,
-            Tilemap atmosphereTilemap,
+            Tilemap resourceTilemap,
             Tilemap defaultTilemap,
             TileBase[] ironTilesByRepeatIndex,
             TileBase[] titanTilesByRepeatIndex,
@@ -122,11 +114,7 @@ namespace _Project.Scripts.Presentation.Grid
             Tilemap materialTransitionTilemap,
             TileBase[] transitionTilesByOpenMask)
         {
-            _ironTilemap = ironTilemap;
-            _titanTilemap = titanTilemap;
-            _aluminiumTilemap = aluminiumTilemap;
-            _rogaliteTilemap = rogaliteTilemap;
-            _atmosphereTilemap = atmosphereTilemap;
+            _resourceTilemap = resourceTilemap;
             _defaultTilemap = defaultTilemap;
 
             _ironTilesByRepeatIndex = EnsureTileArray(ironTilesByRepeatIndex);
@@ -373,14 +361,12 @@ namespace _Project.Scripts.Presentation.Grid
         public void SetGroundCell(int x, int y, CellType type)
         {
             Vector3Int position = new Vector3Int(x, y, 0);
-            ClearNaturalCell(position);
             SetDefaultCell(position, x, y);
 
             TileBase tile = GetNaturalTileForCell(type, x, y);
-            Tilemap targetTilemap = GetNaturalTilemap(type);
-            if (targetTilemap != null && tile != null)
+            if (_resourceTilemap != null)
             {
-                targetTilemap.SetTile(position, tile);
+                _resourceTilemap.SetTile(position, tile);
             }
         }
 
@@ -410,11 +396,7 @@ namespace _Project.Scripts.Presentation.Grid
 
         public void RenderFull(GridState grid)
         {
-            _ironTilemap?.ClearAllTiles();
-            _titanTilemap?.ClearAllTiles();
-            _aluminiumTilemap?.ClearAllTiles();
-            _rogaliteTilemap?.ClearAllTiles();
-            _atmosphereTilemap?.ClearAllTiles();
+            _resourceTilemap?.ClearAllTiles();
             _defaultTilemap?.ClearAllTiles();
             _protectedResourceOverlayTilemap?.ClearAllTiles();
 
@@ -425,14 +407,13 @@ namespace _Project.Scripts.Presentation.Grid
                     SetDefaultCell(new Vector3Int(x, y, 0), x, y);
 
                     CellType type = grid.GetCell(x, y).Type;
-                    Tilemap tilemap = GetNaturalTilemap(type);
                     TileBase tile = GetNaturalTileForCell(type, x, y);
-                    if (tilemap == null || tile == null)
+                    if (_resourceTilemap == null || tile == null)
                     {
                         continue;
                     }
 
-                    tilemap.SetTile(new Vector3Int(x, y, 0), tile);
+                    _resourceTilemap.SetTile(new Vector3Int(x, y, 0), tile);
                 }
             }
 
@@ -931,28 +912,6 @@ namespace _Project.Scripts.Presentation.Grid
         public bool TryGetMaterialTransitionIndex(int x, int y, out int transitionIndex)
         {
             return _materialTransitionIndexByCell.TryGetValue(new Vector2Int(x, y), out transitionIndex);
-        }
-
-        private void ClearNaturalCell(Vector3Int position)
-        {
-            _ironTilemap?.SetTile(position, null);
-            _titanTilemap?.SetTile(position, null);
-            _aluminiumTilemap?.SetTile(position, null);
-            _rogaliteTilemap?.SetTile(position, null);
-            _atmosphereTilemap?.SetTile(position, null);
-        }
-
-        private Tilemap GetNaturalTilemap(CellType type)
-        {
-            return type switch
-            {
-                CellType.Iron => _ironTilemap,
-                CellType.Titan => _titanTilemap,
-                CellType.Aluminium => _aluminiumTilemap != null ? _aluminiumTilemap : _titanTilemap,
-                CellType.Rogalite => _rogaliteTilemap,
-                CellType.Atmosphere => _atmosphereTilemap,
-                _ => null
-            };
         }
 
         private TileBase GetNaturalTileForCell(CellType type, int x, int y)

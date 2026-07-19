@@ -1370,7 +1370,7 @@ GameObject:
   - component: {fileID: 744938346}
   - component: {fileID: 744938345}
   m_Layer: 0
-  m_Name: TilemapFerrum
+  m_Name: ResourceTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3203,11 +3203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b3802b69f443b80cee5ad6de2378c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Presentation.Grid.GridTilemapRenderSettings
-  _ironTilemap: {fileID: 744938346}
-  _titanTilemap: {fileID: 858996931}
-  _aluminiumTilemap: {fileID: 787030559}
-  _rogaliteTilemap: {fileID: 2024922544}
-  _atmosphereTilemap: {fileID: 955923606}
+  _resourceTilemap: {fileID: 744938346}
   _defaultTilemap: {fileID: 2108101320}
   _ironTilesByRepeatIndex:
   - {fileID: 11400000, guid: 1b63634e5e90c9e4988d88fe6789e631, type: 2}
