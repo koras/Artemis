@@ -10,6 +10,12 @@ namespace _Project.Scripts.Systems.Units
 {
     public sealed class UnitDiagnosticsService
     {
+        private static readonly List<Vector2Int> UnitCellsSnapshotBuffer = new List<Vector2Int>(16);
+        private static readonly List<UnitDiagnosticsSnapshot> UnitDiagnosticsSnapshotBuffer = new List<UnitDiagnosticsSnapshot>(16);
+        private static readonly List<KeyValuePair<string, int>> FoodPreferenceEntriesBuffer = new List<KeyValuePair<string, int>>(16);
+        private static readonly List<string> FoodPreferencePartsBuffer = new List<string>(16);
+        private static readonly List<string> TaskEligibilityPartsBuffer = new List<string>(16);
+
         private readonly UnitOrchestratorContext _context;
 
         public UnitDiagnosticsService(UnitOrchestratorContext context)
@@ -19,7 +25,12 @@ namespace _Project.Scripts.Systems.Units
 
         public List<Vector2Int> GetUnitCellsSnapshot(List<int> unitOrder, Dictionary<int, UnitTaskState> statesByUnitId)
         {
-            var result = new List<Vector2Int>(unitOrder.Count);
+            List<Vector2Int> result = UnitCellsSnapshotBuffer;
+            result.Clear();
+            if (result.Capacity < unitOrder.Count)
+            {
+                result.Capacity = unitOrder.Count;
+            }
 
             for (int i = 0; i < unitOrder.Count; i++)
             {
@@ -33,7 +44,12 @@ namespace _Project.Scripts.Systems.Units
 
         public List<UnitDiagnosticsSnapshot> GetUnitDiagnosticsSnapshot(List<int> unitOrder, Dictionary<int, UnitTaskState> statesByUnitId)
         {
-            var result = new List<UnitDiagnosticsSnapshot>(unitOrder.Count);
+            List<UnitDiagnosticsSnapshot> result = UnitDiagnosticsSnapshotBuffer;
+            result.Clear();
+            if (result.Capacity < unitOrder.Count)
+            {
+                result.Capacity = unitOrder.Count;
+            }
 
             for (int i = 0; i < unitOrder.Count; i++)
             {
@@ -93,7 +109,13 @@ namespace _Project.Scripts.Systems.Units
                 return "task not found";
             }
 
-            var parts = new List<string>(unitOrder.Count);
+            List<string> parts = TaskEligibilityPartsBuffer;
+            parts.Clear();
+            if (parts.Capacity < unitOrder.Count)
+            {
+                parts.Capacity = unitOrder.Count;
+            }
+
             for (int i = 0; i < unitOrder.Count; i++)
             {
                 int unitId = unitOrder[i];
@@ -107,7 +129,9 @@ namespace _Project.Scripts.Systems.Units
                 parts.Add($"{displayName}({state.UnitId}): {reason}");
             }
 
-            return parts.Count == 0 ? "no units" : string.Join(" | ", parts);
+            string result = parts.Count == 0 ? "no units" : string.Join(" | ", parts);
+            parts.Clear();
+            return result;
         }
 
         private static string BuildFoodPreferencesSummary(CharacterActor actor)
@@ -117,7 +141,18 @@ namespace _Project.Scripts.Systems.Units
                 return "-";
             }
 
-            var entries = new List<KeyValuePair<string, int>>(actor.FoodPreferences);
+            List<KeyValuePair<string, int>> entries = FoodPreferenceEntriesBuffer;
+            entries.Clear();
+            if (entries.Capacity < actor.FoodPreferences.Count)
+            {
+                entries.Capacity = actor.FoodPreferences.Count;
+            }
+
+            foreach (KeyValuePair<string, int> preference in actor.FoodPreferences)
+            {
+                entries.Add(preference);
+            }
+
             entries.Sort((left, right) =>
             {
                 int scoreCompare = right.Value.CompareTo(left.Value);
@@ -129,14 +164,23 @@ namespace _Project.Scripts.Systems.Units
                 return string.CompareOrdinal(left.Key, right.Key);
             });
 
-            var parts = new List<string>(entries.Count);
+            List<string> parts = FoodPreferencePartsBuffer;
+            parts.Clear();
+            if (parts.Capacity < entries.Count)
+            {
+                parts.Capacity = entries.Count;
+            }
+
             for (int i = 0; i < entries.Count; i++)
             {
                 KeyValuePair<string, int> entry = entries[i];
                 parts.Add($"{i + 1}. {entry.Key} ({entry.Value})");
             }
 
-            return string.Join(", ", parts);
+            string result = string.Join(", ", parts);
+            entries.Clear();
+            parts.Clear();
+            return result;
         }
 
         private static string ExplainWhyUnitCannotTakeTask(

@@ -19,6 +19,10 @@ namespace _Project.Scripts.Systems.Animals
         private const float GAME_MINUTES_PER_REAL_SECOND = 2f;
         private const int MaxEggsPerGrowthBasedAnimal = 2;
 
+        private static readonly List<AnimalBirthRequest> BirthRequestsBuffer = new List<AnimalBirthRequest>();
+        private static readonly Dictionary<string, int> PopulationBySpeciesIdBuffer = new Dictionary<string, int>(System.StringComparer.Ordinal);
+        private static readonly HashSet<Vector2Int> OccupiedCellsBuffer = new HashSet<Vector2Int>();
+
         private readonly GridState _gridState;
         private readonly GridCoordinateConverter _gridCoordinateConverter;
         private readonly CharacterNavigationService _navigationService;
@@ -339,9 +343,9 @@ namespace _Project.Scripts.Systems.Animals
             }
 
             int stateCount = _states.Count;
-            Dictionary<string, int> populationBySpeciesId = BuildPopulationBySpeciesId();
-            HashSet<Vector2Int> occupiedCells = BuildOccupiedCells();
-            var birthRequests = new List<AnimalBirthRequest>();
+            Dictionary<string, int> populationBySpeciesId = BuildPopulationBySpeciesIdBuffer();
+            HashSet<Vector2Int> occupiedCells = BuildOccupiedCellsBuffer();
+            BirthRequestsBuffer.Clear();
 
             for (int i = 0; i < stateCount; i++)
             {
@@ -375,14 +379,14 @@ namespace _Project.Scripts.Systems.Animals
                     continue;
                 }
 
-                birthRequests.Add(birthRequest);
+                BirthRequestsBuffer.Add(birthRequest);
                 populationBySpeciesId[state.Definition.SpeciesId]++;
                 occupiedCells.Add(birthRequest.BirthCell);
             }
 
-            for (int i = 0; i < birthRequests.Count; i++)
+            for (int i = 0; i < BirthRequestsBuffer.Count; i++)
             {
-                AnimalBirthRequest request = birthRequests[i];
+                AnimalBirthRequest request = BirthRequestsBuffer[i];
                 System.Random random = GetSpeciesRandom(request.Definition.SpeciesId, 0);
                 SpawnAnimal(request.Definition, request.BirthCell, random);
             }
@@ -637,9 +641,9 @@ namespace _Project.Scripts.Systems.Animals
             return false;
         }
 
-        private Dictionary<string, int> BuildPopulationBySpeciesId()
+        private Dictionary<string, int> BuildPopulationBySpeciesIdBuffer()
         {
-            var populationBySpeciesId = new Dictionary<string, int>(System.StringComparer.Ordinal);
+            PopulationBySpeciesIdBuffer.Clear();
 
             for (int i = 0; i < _states.Count; i++)
             {
@@ -650,23 +654,23 @@ namespace _Project.Scripts.Systems.Animals
                 }
 
                 string speciesId = state.Definition.SpeciesId;
-                populationBySpeciesId.TryGetValue(speciesId, out int currentPopulation);
-                populationBySpeciesId[speciesId] = currentPopulation + 1;
+                PopulationBySpeciesIdBuffer.TryGetValue(speciesId, out int currentPopulation);
+                PopulationBySpeciesIdBuffer[speciesId] = currentPopulation + 1;
             }
 
-            return populationBySpeciesId;
+            return PopulationBySpeciesIdBuffer;
         }
 
-        private HashSet<Vector2Int> BuildOccupiedCells()
+        private HashSet<Vector2Int> BuildOccupiedCellsBuffer()
         {
-            var occupiedCells = new HashSet<Vector2Int>();
+            OccupiedCellsBuffer.Clear();
 
             for (int i = 0; i < _states.Count; i++)
             {
-                occupiedCells.Add(_states[i].CurrentCell);
+                OccupiedCellsBuffer.Add(_states[i].CurrentCell);
             }
 
-            return occupiedCells;
+            return OccupiedCellsBuffer;
         }
 
         private System.Random GetSpeciesRandom(string speciesId, int fallbackSeed)

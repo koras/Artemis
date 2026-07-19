@@ -70,6 +70,25 @@ namespace _Project.Scripts.Systems.Units
         }
 
         /// <summary>
+        /// Одним ограниченным обходом находит достижимую клетку, ближайшую к requestedCell.
+        /// </summary>
+        public bool TryFindClosestReachableCellWithinRadius(
+            int unitId,
+            Vector2Int unitCell,
+            Vector2Int requestedCell,
+            int maxDistanceFromUnit,
+            out Vector2Int reachableCell)
+        {
+            return _navigation.TryBuildPathToClosestReachableCell(
+                unitId,
+                unitCell,
+                requestedCell,
+                maxDistanceFromUnit,
+                out reachableCell,
+                out _);
+        }
+
+        /// <summary>
         /// Проверяет путь строго до указанной клетки, не подменяя её соседней достижимой клеткой.
         /// </summary>
         public bool CanReachExactCell(int unitId, Vector2Int unitCell, Vector2Int targetCell)

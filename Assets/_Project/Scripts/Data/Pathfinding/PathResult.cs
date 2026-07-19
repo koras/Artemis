@@ -13,6 +13,6 @@ namespace _Project.Scripts.Data.Pathfinding
             Edges = edges;
         }
 
-        public static PathResult Failed => new PathResult(false, new List<MovementActionEdge>());
+        public static PathResult Failed { get; } = new PathResult(false, new List<MovementActionEdge>());
     }
 }

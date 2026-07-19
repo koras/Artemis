@@ -17,6 +17,8 @@ namespace _Project.Scripts.Systems.Animals
         private const float MinRotationZDegrees = -15f;
         private const float MaxRotationZDegrees = 15f;
 
+        private static readonly List<AnimalEggRuntimeState> EggsSnapshotBuffer = new List<AnimalEggRuntimeState>();
+
         private readonly GridState _gridState;
         private readonly GridCoordinateConverter _gridCoordinateConverter;
         private readonly Dictionary<int, AnimalEggRuntimeState> _eggsById = new Dictionary<int, AnimalEggRuntimeState>();
@@ -84,13 +86,13 @@ namespace _Project.Scripts.Systems.Animals
 
         public List<AnimalEggRuntimeState> GetEggsSnapshot()
         {
-            var result = new List<AnimalEggRuntimeState>(_eggsById.Count);
+            EggsSnapshotBuffer.Clear();
             foreach (KeyValuePair<int, AnimalEggRuntimeState> pair in _eggsById)
             {
-                result.Add(pair.Value);
+                EggsSnapshotBuffer.Add(pair.Value);
             }
 
-            return result;
+            return EggsSnapshotBuffer;
         }
 
         public void TickAll(float gameHoursDelta, System.Action<AnimalDefinition, Vector2Int> onEggHatched)

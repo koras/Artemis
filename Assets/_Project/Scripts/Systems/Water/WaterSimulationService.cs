@@ -14,6 +14,15 @@ namespace _Project.Scripts.Systems.Water
     {
         private const string RogaliteResourceId = "Rogalite";
 
+        private static readonly HashSet<Vector2Int> AliveAnchorsBuffer = new HashSet<Vector2Int>();
+        private static readonly List<Vector2Int> AnchorsToRemoveBuffer = new List<Vector2Int>(16);
+        private static readonly Dictionary<int, List<BuildingRuntimeEntity>> BuildingsByNetworkIdBuffer = new Dictionary<int, List<BuildingRuntimeEntity>>(16);
+        private static readonly List<List<BuildingRuntimeEntity>> ActiveBuildingGroupsBuffer = new List<List<BuildingRuntimeEntity>>(16);
+        private static readonly Stack<List<BuildingRuntimeEntity>> BuildingGroupListPool = new Stack<List<BuildingRuntimeEntity>>(16);
+        private static readonly List<BuildingRuntimeEntity> ConsumersBuffer = new List<BuildingRuntimeEntity>(16);
+        private static readonly List<BuildingRuntimeEntity> StoragesBuffer = new List<BuildingRuntimeEntity>(16);
+        private static readonly Dictionary<Vector2Int, float> ConsumerDeficitsBuffer = new Dictionary<Vector2Int, float>(16);
+
         private readonly GridState _gridState;
         private readonly ResourceInventoryService _resourceInventoryService;
 
@@ -34,7 +43,11 @@ namespace _Project.Scripts.Systems.Water
         /// </summary>
         public void SyncActiveBuildings(List<BuildingRuntimeEntity> activeBuildings)
         {
-            var aliveAnchors = new HashSet<Vector2Int>();
+            HashSet<Vector2Int> aliveAnchors = AliveAnchorsBuffer;
+            List<Vector2Int> toRemove = AnchorsToRemoveBuffer;
+            aliveAnchors.Clear();
+            toRemove.Clear();
+
             for (int i = 0; i < activeBuildings.Count; i++)
             {
                 BuildingRuntimeEntity entity = activeBuildings[i];
@@ -66,7 +79,6 @@ namespace _Project.Scripts.Systems.Water
                 _statesByAnchor[entity.AnchorCell] = state;
             }
 
-            List<Vector2Int> toRemove = null;
             foreach (Vector2Int anchor in _buildingsByAnchor.Keys)
             {
                 if (aliveAnchors.Contains(anchor))
@@ -74,16 +86,12 @@ namespace _Project.Scripts.Systems.Water
                     continue;
                 }
 
-                if (toRemove == null)
-                {
-                    toRemove = new List<Vector2Int>();
-                }
-
                 toRemove.Add(anchor);
             }
 
-            if (toRemove == null)
+            if (toRemove.Count == 0)
             {
+                aliveAnchors.Clear();
                 return;
             }
 
@@ -93,6 +101,9 @@ namespace _Project.Scripts.Systems.Water
                 _buildingsByAnchor.Remove(anchor);
                 _statesByAnchor.Remove(anchor);
             }
+
+            aliveAnchors.Clear();
+            toRemove.Clear();
         }
 
         /// <summary>
@@ -103,7 +114,8 @@ namespace _Project.Scripts.Systems.Water
             float tickHours = Mathf.Max(0.0001f, tickDurationSeconds / 3600f);
             float totalProducedLiters = 0f;
 
-            var buildingsByNetworkId = new Dictionary<int, List<BuildingRuntimeEntity>>();
+            Dictionary<int, List<BuildingRuntimeEntity>> buildingsByNetworkId = BuildingsByNetworkIdBuffer;
+            ClearBuildingNetworkBuffers();
             foreach (KeyValuePair<Vector2Int, BuildingRuntimeEntity> pair in _buildingsByAnchor)
             {
                 BuildingRuntimeEntity entity = pair.Value;
@@ -115,7 +127,8 @@ namespace _Project.Scripts.Systems.Water
                 int networkId = ResolveBuildingNetworkId(entity);
                 if (!buildingsByNetworkId.TryGetValue(networkId, out List<BuildingRuntimeEntity> list))
                 {
-                    list = new List<BuildingRuntimeEntity>();
+                    list = TakeBuildingGroupList();
+                    ActiveBuildingGroupsBuffer.Add(list);
                     buildingsByNetworkId[networkId] = list;
                 }
 
@@ -127,6 +140,7 @@ namespace _Project.Scripts.Systems.Water
                 float producedLitersInNetwork = ProcessNetwork(group.Key, group.Value, tickHours);
                 totalProducedLiters += producedLitersInNetwork;
             }
+            ClearBuildingNetworkBuffers();
 
             float totalConsumedLiters = 0f;
             foreach (BuildingWaterRuntimeState state in _statesByAnchor.Values)
@@ -138,6 +152,26 @@ namespace _Project.Scripts.Systems.Water
                 new Dictionary<Vector2Int, BuildingWaterRuntimeState>(_statesByAnchor),
                 totalProducedLiters,
                 totalConsumedLiters);
+        }
+
+        private static void ClearBuildingNetworkBuffers()
+        {
+            for (int i = 0; i < ActiveBuildingGroupsBuffer.Count; i++)
+            {
+                List<BuildingRuntimeEntity> list = ActiveBuildingGroupsBuffer[i];
+                list.Clear();
+                BuildingGroupListPool.Push(list);
+            }
+
+            ActiveBuildingGroupsBuffer.Clear();
+            BuildingsByNetworkIdBuffer.Clear();
+        }
+
+        private static List<BuildingRuntimeEntity> TakeBuildingGroupList()
+        {
+            return BuildingGroupListPool.Count > 0
+                ? BuildingGroupListPool.Pop()
+                : new List<BuildingRuntimeEntity>(16);
         }
 
         /// <summary>
@@ -309,8 +343,12 @@ namespace _Project.Scripts.Systems.Water
         {
             float producedLiters = 0f;
             float networkAvailableLiters = 0f;
-            var consumers = new List<BuildingRuntimeEntity>();
-            var storages = new List<BuildingRuntimeEntity>();
+            List<BuildingRuntimeEntity> consumers = ConsumersBuffer;
+            List<BuildingRuntimeEntity> storages = StoragesBuffer;
+            Dictionary<Vector2Int, float> deficits = ConsumerDeficitsBuffer;
+            consumers.Clear();
+            storages.Clear();
+            deficits.Clear();
 
             for (int i = 0; i < buildings.Count; i++)
             {
@@ -385,10 +423,10 @@ namespace _Project.Scripts.Systems.Water
 
             if (networkAvailableLiters <= 0f || consumers.Count == 0)
             {
+                ClearProcessNetworkBuffers();
                 return producedLiters;
             }
 
-            var deficits = new Dictionary<Vector2Int, float>(consumers.Count);
             float totalDeficit = 0f;
             for (int i = 0; i < consumers.Count; i++)
             {
@@ -415,6 +453,7 @@ namespace _Project.Scripts.Systems.Water
 
             if (totalDeficit <= 0f)
             {
+                ClearProcessNetworkBuffers();
                 return producedLiters;
             }
 
@@ -432,7 +471,15 @@ namespace _Project.Scripts.Systems.Water
                 _statesByAnchor[pair.Key] = state;
             }
 
+            ClearProcessNetworkBuffers();
             return producedLiters;
+        }
+
+        private static void ClearProcessNetworkBuffers()
+        {
+            ConsumersBuffer.Clear();
+            StoragesBuffer.Clear();
+            ConsumerDeficitsBuffer.Clear();
         }
 
         private float FillStorages(List<BuildingRuntimeEntity> storages, float availableLiters, float tickHours)

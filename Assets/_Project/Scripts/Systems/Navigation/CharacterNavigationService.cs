@@ -35,6 +35,23 @@ namespace _Project.Scripts.Systems.Navigation
             return path.Success;
         }
 
+        public bool TryBuildPathToClosestReachableCell(
+            int unitId,
+            Vector2Int from,
+            Vector2Int requestedCell,
+            int maxDistanceFromStart,
+            out Vector2Int reachableCell,
+            out PathResult path)
+        {
+            path = _pathfinder.FindPathToClosestReachable(
+                _grid,
+                new PathRequest(unitId, from, requestedCell),
+                maxDistanceFromStart,
+                out reachableCell);
+            _pathsByUnitId[unitId] = new CachedPath(from, reachableCell, path, 0);
+            return path.Success;
+        }
+
         public void ClearPath(int unitId)
         {
             _pathsByUnitId.Remove(unitId);

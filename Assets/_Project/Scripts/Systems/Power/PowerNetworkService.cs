@@ -12,6 +12,27 @@ namespace _Project.Scripts.Systems.Power
     /// </summary>
     public sealed class PowerNetworkService
     {
+        private static readonly Vector2Int[] NeighborOffsets =
+        {
+            Vector2Int.up,
+            Vector2Int.right,
+            Vector2Int.down,
+            Vector2Int.left
+        };
+
+        private static readonly HashSet<Vector2Int> AliveAnchorsBuffer = new HashSet<Vector2Int>();
+        private static readonly List<Vector2Int> AnchorsToRemoveBuffer = new List<Vector2Int>(16);
+        private static readonly Dictionary<Vector2Int, int> ComponentByCellBuffer = new Dictionary<Vector2Int, int>(128);
+        private static readonly Queue<Vector2Int> CableComponentQueueBuffer = new Queue<Vector2Int>(128);
+        private static readonly Dictionary<int, List<BuildingRuntimeEntity>> BuildingsByComponentBuffer = new Dictionary<int, List<BuildingRuntimeEntity>>(16);
+        private static readonly List<List<BuildingRuntimeEntity>> ActiveBuildingComponentGroupsBuffer = new List<List<BuildingRuntimeEntity>>(16);
+        private static readonly Stack<List<BuildingRuntimeEntity>> BuildingComponentGroupListPool = new Stack<List<BuildingRuntimeEntity>>(16);
+        private static readonly Dictionary<Vector2Int, BuildingPowerRuntimeState> NextStatesBuffer = new Dictionary<Vector2Int, BuildingPowerRuntimeState>(32);
+        private static readonly List<BuildingRuntimeEntity> ConsumersBuffer = new List<BuildingRuntimeEntity>(16);
+        private static readonly List<BuildingRuntimeEntity> BatteriesBuffer = new List<BuildingRuntimeEntity>(16);
+        private static readonly Dictionary<Vector2Int, PowerNode> NodesByCellBuffer = new Dictionary<Vector2Int, PowerNode>(128);
+        private static readonly List<PowerEdge> PowerEdgesBuffer = new List<PowerEdge>(128);
+
         private readonly GridState _gridState;
         private readonly SolarPowerProductionService _solarService;
         private readonly BatteryStorageService _batteryStorageService;
@@ -40,7 +61,11 @@ namespace _Project.Scripts.Systems.Power
         /// </summary>
         public void SyncActiveBuildings(List<BuildingRuntimeEntity> activeBuildings)
         {
-            var aliveAnchors = new HashSet<Vector2Int>();
+            HashSet<Vector2Int> aliveAnchors = AliveAnchorsBuffer;
+            List<Vector2Int> toRemove = AnchorsToRemoveBuffer;
+            aliveAnchors.Clear();
+            toRemove.Clear();
+
             for (int i = 0; i < activeBuildings.Count; i++)
             {
                 BuildingRuntimeEntity entity = activeBuildings[i];
@@ -59,15 +84,18 @@ namespace _Project.Scripts.Systems.Power
                 }
             }
 
-            List<Vector2Int> toRemove = null;
             foreach (Vector2Int anchor in _buildingsByAnchor.Keys)
             {
                 if (aliveAnchors.Contains(anchor)) continue;
-                if (toRemove == null) toRemove = new List<Vector2Int>();
                 toRemove.Add(anchor);
             }
 
-            if (toRemove == null) return;
+            if (toRemove.Count == 0)
+            {
+                aliveAnchors.Clear();
+                return;
+            }
+
             for (int i = 0; i < toRemove.Count; i++)
             {
                 Vector2Int anchor = toRemove[i];
@@ -75,6 +103,9 @@ namespace _Project.Scripts.Systems.Power
                 _buildingStates.Remove(anchor);
                 _batteryStorageService.RemoveBattery(anchor);
             }
+
+            aliveAnchors.Clear();
+            toRemove.Clear();
         }
 
         /// <summary>
@@ -82,11 +113,16 @@ namespace _Project.Scripts.Systems.Power
         /// </summary>
         public void Recalculate(GameTimeService gameTimeService, float tickDurationSeconds)
         {
+            return;
+
             float tickHours = Mathf.Max(0.0001f, tickDurationSeconds / 3600f);
             Dictionary<Vector2Int, int> componentByCell = BuildCableComponents();
 
-            var buildingByComponent = new Dictionary<int, List<BuildingRuntimeEntity>>();
-            var nextStates = new Dictionary<Vector2Int, BuildingPowerRuntimeState>(_buildingStates.Count);
+            Dictionary<int, List<BuildingRuntimeEntity>> buildingByComponent = BuildingsByComponentBuffer;
+            Dictionary<Vector2Int, BuildingPowerRuntimeState> nextStates = NextStatesBuffer;
+            ClearBuildingComponentBuffers();
+            nextStates.Clear();
+
             foreach (KeyValuePair<Vector2Int, BuildingRuntimeEntity> pair in _buildingsByAnchor)
             {
                 BuildingRuntimeEntity entity = pair.Value;
@@ -115,7 +151,8 @@ namespace _Project.Scripts.Systems.Power
 
                 if (!buildingByComponent.TryGetValue(componentId, out List<BuildingRuntimeEntity> list))
                 {
-                    list = new List<BuildingRuntimeEntity>();
+                    list = TakeBuildingComponentGroupList();
+                    ActiveBuildingComponentGroupsBuffer.Add(list);
                     buildingByComponent[componentId] = list;
                 }
                 list.Add(entity);
@@ -128,6 +165,7 @@ namespace _Project.Scripts.Systems.Power
             {
                 ProcessComponent(group.Value, gameTimeService, tickHours, nextStates, ref totalGeneration, ref totalDemand);
             }
+            ClearBuildingComponentBuffers();
 
             _buildingStates.Clear();
             foreach (KeyValuePair<Vector2Int, BuildingPowerRuntimeState> pair in nextStates)
@@ -137,6 +175,8 @@ namespace _Project.Scripts.Systems.Power
 
             LastSnapshot = new PowerNetworkSnapshot(new Dictionary<Vector2Int, BuildingPowerRuntimeState>(_buildingStates), totalGeneration, totalDemand);
             BuildGraphSnapshot(componentByCell);
+            componentByCell.Clear();
+            nextStates.Clear();
         }
 
         /// <summary>
@@ -174,7 +214,10 @@ namespace _Project.Scripts.Systems.Power
 
         private Dictionary<Vector2Int, int> BuildCableComponents()
         {
-            var componentByCell = new Dictionary<Vector2Int, int>();
+            Dictionary<Vector2Int, int> componentByCell = ComponentByCellBuffer;
+            Queue<Vector2Int> queue = CableComponentQueueBuffer;
+            componentByCell.Clear();
+            queue.Clear();
             int componentId = 1;
 
             for (int y = 0; y < _gridState.Height; y++)
@@ -185,15 +228,15 @@ namespace _Project.Scripts.Systems.Power
                     Cell cell = _gridState.GetCell(x, y);
                     if (!cell.HasCable || componentByCell.ContainsKey(cellPos)) continue;
 
-                    var queue = new Queue<Vector2Int>();
                     queue.Enqueue(cellPos);
                     componentByCell[cellPos] = componentId;
 
                     while (queue.Count > 0)
                     {
                         Vector2Int current = queue.Dequeue();
-                        foreach (Vector2Int neighbor in EnumerateNeighbors4(current))
+                        for (int i = 0; i < NeighborOffsets.Length; i++)
                         {
+                            Vector2Int neighbor = current + NeighborOffsets[i];
                             if (!_gridState.IsInside(neighbor.x, neighbor.y)) continue;
                             if (componentByCell.ContainsKey(neighbor)) continue;
 
@@ -236,8 +279,10 @@ namespace _Project.Scripts.Systems.Power
             ref float totalDemandKw)
         {
             float availableKw = 0f;
-            var consumers = new List<BuildingRuntimeEntity>();
-            var batteries = new List<BuildingRuntimeEntity>();
+            List<BuildingRuntimeEntity> consumers = ConsumersBuffer;
+            List<BuildingRuntimeEntity> batteries = BatteriesBuffer;
+            consumers.Clear();
+            batteries.Clear();
 
             for (int i = 0; i < buildings.Count; i++)
             {
@@ -337,6 +382,8 @@ namespace _Project.Scripts.Systems.Power
                     SuppliedPowerKw = 0f
                 };
             }
+
+            ClearProcessComponentBuffers();
         }
 
         private Vector2Int GetInputPortCell(BuildingRuntimeEntity entity)
@@ -345,20 +392,14 @@ namespace _Project.Scripts.Systems.Power
             return entity.AnchorCell + offset;
         }
 
-        private IEnumerable<Vector2Int> EnumerateNeighbors4(Vector2Int cell)
-        {
-            yield return cell + Vector2Int.up;
-            yield return cell + Vector2Int.right;
-            yield return cell + Vector2Int.down;
-            yield return cell + Vector2Int.left;
-        }
-
         private void BuildGraphSnapshot(Dictionary<Vector2Int, int> componentByCell)
         {
             // Создаём узлы/рёбра для отладочного снапшота топологии сети.
             _nodeCounter = 0;
-            var nodesByCell = new Dictionary<Vector2Int, PowerNode>();
-            var edges = new List<PowerEdge>();
+            Dictionary<Vector2Int, PowerNode> nodesByCell = NodesByCellBuffer;
+            List<PowerEdge> edges = PowerEdgesBuffer;
+            nodesByCell.Clear();
+            edges.Clear();
 
             foreach (Vector2Int cell in componentByCell.Keys)
             {
@@ -370,13 +411,43 @@ namespace _Project.Scripts.Systems.Power
             {
                 Vector2Int cell = pair.Key;
                 int fromId = pair.Value.Id;
-                foreach (Vector2Int neighbor in EnumerateNeighbors4(cell))
+                for (int i = 0; i < NeighborOffsets.Length; i++)
                 {
+                    Vector2Int neighbor = cell + NeighborOffsets[i];
                     if (!nodesByCell.TryGetValue(neighbor, out PowerNode neighborNode)) continue;
                     if (neighborNode.Id <= fromId) continue;
                     edges.Add(new PowerEdge(fromId, neighborNode.Id));
                 }
             }
+
+            nodesByCell.Clear();
+            edges.Clear();
+        }
+
+        private static void ClearBuildingComponentBuffers()
+        {
+            for (int i = 0; i < ActiveBuildingComponentGroupsBuffer.Count; i++)
+            {
+                List<BuildingRuntimeEntity> list = ActiveBuildingComponentGroupsBuffer[i];
+                list.Clear();
+                BuildingComponentGroupListPool.Push(list);
+            }
+
+            ActiveBuildingComponentGroupsBuffer.Clear();
+            BuildingsByComponentBuffer.Clear();
+        }
+
+        private static List<BuildingRuntimeEntity> TakeBuildingComponentGroupList()
+        {
+            return BuildingComponentGroupListPool.Count > 0
+                ? BuildingComponentGroupListPool.Pop()
+                : new List<BuildingRuntimeEntity>(16);
+        }
+
+        private static void ClearProcessComponentBuffers()
+        {
+            ConsumersBuffer.Clear();
+            BatteriesBuffer.Clear();
         }
     }
 }

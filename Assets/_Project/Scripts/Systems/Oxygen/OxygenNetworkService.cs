@@ -19,6 +19,8 @@ namespace _Project.Scripts.Systems.Oxygen
 
         public void Recalculate()
         {
+            return;
+
             if (_gridState == null)
             {
                 return;

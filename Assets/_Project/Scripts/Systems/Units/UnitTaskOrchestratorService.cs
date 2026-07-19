@@ -63,7 +63,6 @@ namespace _Project.Scripts.Systems.Units
         private const float IDLE_WANDER_MIN_START_DELAY_SECONDS = 20f;
         private const float IDLE_WANDER_MAX_START_DELAY_SECONDS = 45f;
         private const int IDLE_WANDER_RADIUS_CELLS = 8;
-        private const int IDLE_WANDER_TARGET_SELECTION_ATTEMPTS = 10;
         private const float TASK_LOOP_COOLDOWN_SECONDS = 10f;
         private const int TASK_WORK_MAX_DISTANCE = 3;
         private const float GAME_MINUTES_PER_REAL_SECOND = 2f;
@@ -965,43 +964,30 @@ namespace _Project.Scripts.Systems.Units
 
         private bool TryStartIdleWander(UnitTaskState state)
         {
-            int primaryHorizontalSign = _idleWanderRandom.Next(0, 2) == 0 ? -1 : 1;
-
-            for (int attempt = 0; attempt < IDLE_WANDER_TARGET_SELECTION_ATTEMPTS; attempt++)
+            int horizontalSign = _idleWanderRandom.Next(0, 2) == 0 ? -1 : 1;
+            Vector2Int candidateCell = BuildIdleWanderCandidateCell(state.CurrentCell, horizontalSign);
+            if (!_workCellResolver.TryFindClosestReachableCellWithinRadius(
+                    state.UnitId,
+                    state.CurrentCell,
+                    candidateCell,
+                    IDLE_WANDER_RADIUS_CELLS,
+                    out Vector2Int reachableCell)
+                || reachableCell == state.CurrentCell)
             {
-                int horizontalSign = attempt < IDLE_WANDER_TARGET_SELECTION_ATTEMPTS / 2
-                    ? primaryHorizontalSign
-                    : -primaryHorizontalSign;
-                Vector2Int candidateCell = BuildIdleWanderCandidateCell(state.CurrentCell, horizontalSign);
-                if (candidateCell == state.CurrentCell)
-                {
-                    continue;
-                }
-
-                if (!_workCellResolver.TryFindNearestReachableCell(state.UnitId, state.CurrentCell, candidateCell, out Vector2Int reachableCell))
-                {
-                    continue;
-                }
-
-                if (reachableCell == state.CurrentCell)
-                {
-                    continue;
-                }
-
-                // Idle wandering stays local to the unit and must not reserve global tasks.
-                state.HasIdleWanderOrder = true;
-                state.IdleWanderTargetCell = reachableCell;
-                state.IdleWanderPauseRemainingSeconds = 0f;
-                state.IdleNoTaskSeconds = 0f;
-                state.CurrentGoalCell = reachableCell;
-                state.CurrentTaskTargetCell = candidateCell;
-                state.MoveNoProgressSeconds = 0f;
-                state.NoProgressTicks = 0;
-                state.SetMoving(reachableCell);
-                return true;
+                return false;
             }
 
-            return false;
+            // Idle wandering stays local to the unit and must not reserve global tasks.
+            state.HasIdleWanderOrder = true;
+            state.IdleWanderTargetCell = reachableCell;
+            state.IdleWanderPauseRemainingSeconds = 0f;
+            state.IdleNoTaskSeconds = 0f;
+            state.CurrentGoalCell = reachableCell;
+            state.CurrentTaskTargetCell = candidateCell;
+            state.MoveNoProgressSeconds = 0f;
+            state.NoProgressTicks = 0;
+            state.SetMoving(reachableCell);
+            return true;
         }
 
         private void CompleteIdleWander(UnitTaskState state)

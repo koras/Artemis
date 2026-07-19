@@ -17,7 +17,7 @@ namespace _Project.Scripts.Systems.Simulation
             // Demo rule: temperature in each cell converges to 18.
             for (int i = 0; i < cells.Length; i++)
             {
-                var cell = cells[i];
+                ref Cell cell = ref cells[i];
 
                 if (cell.Temperature > 18f)
                 {
@@ -27,8 +27,6 @@ namespace _Project.Scripts.Systems.Simulation
                 {
                     cell.Temperature += 0.1f;
                 }
-
-                cells[i] = cell;
             }
 
             TickNumber++;

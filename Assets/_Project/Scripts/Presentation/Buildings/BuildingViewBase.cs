@@ -115,11 +115,8 @@ namespace _Project.Scripts.Presentation.Buildings
         /// </summary>
         private void ApplyBuiltSprite()
         {
-                Debug.Log($"[Build] VisualSpriteRenderer .");
             if (_buildingDef == null) return;
-            Debug.Log($"[Build] VisualSpriteRenderer 2.");
             if (_buildingDef.BuiltSprite == null) return;
-            Debug.Log($"[Build] VisualSpriteRenderer 3.");
 
             if (_visualSpriteRenderer == null)
             {
@@ -127,7 +124,6 @@ namespace _Project.Scripts.Presentation.Buildings
                 return;
             }
 
-            Debug.Log($"[Build] VisualSpriteRenderer 4.");
             _visualSpriteRenderer.sprite = _buildingDef.BuiltSprite;
         }
 

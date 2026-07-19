@@ -17,17 +17,10 @@ namespace _Project.Scripts.Systems.Pathfinding
 
         public PathResult FindPath(GridState grid, PathRequest request)
         {
-            FrontierNodesBuffer.Clear();
-            PreviousEdgeByNodeBuffer.Clear();
-            CostFromStartByNodeBuffer.Clear();
-            EstimatedTotalCostByNodeBuffer.Clear();
-
-            // open: список клеток, которые нужно исследовать (frontier).
-            FrontierNodesBuffer.Add(request.Start);
+            ResetSearchBuffers(request.Start);
             // cameFrom: для каждой достигнутой клетки храним "ребро-предок",
             // чтобы потом восстановить полный путь от Goal к Start.
             // gScore: фактическая накопленная стоимость пути от Start до клетки.
-            CostFromStartByNodeBuffer[request.Start] = 0f;
             // fScore: оценка "насколько выгодно исследовать клетку дальше":
             // f = g + h, где h — эвристика до цели.
             EstimatedTotalCostByNodeBuffer[request.Start] = Heuristic(request.Start, request.Goal);
@@ -75,6 +68,85 @@ namespace _Project.Scripts.Systems.Pathfinding
 
             // Если frontier опустела, но цель не достигнута — пути нет.
             return PathResult.Failed;
+        }
+
+        public PathResult FindPathToClosestReachable(
+            GridState grid,
+            PathRequest request,
+            int maxDistanceFromStart,
+            out Vector2Int reachableGoal)
+        {
+            reachableGoal = request.Start;
+            if (maxDistanceFromStart <= 0) return PathResult.Failed;
+
+            ResetSearchBuffers(request.Start);
+            float bestDistanceToRequestedGoal = float.PositiveInfinity;
+            float bestPathCost = float.PositiveInfinity;
+
+            while (FrontierNodesBuffer.Count > 0)
+            {
+                Vector2Int current = ExtractBest(FrontierNodesBuffer, CostFromStartByNodeBuffer);
+                float currentPathCost = CostFromStartByNodeBuffer[current];
+
+                if (current != request.Start)
+                {
+                    float distanceToRequestedGoal = Heuristic(current, request.Goal);
+                    if (distanceToRequestedGoal < bestDistanceToRequestedGoal
+                        || (distanceToRequestedGoal == bestDistanceToRequestedGoal && currentPathCost < bestPathCost))
+                    {
+                        reachableGoal = current;
+                        bestDistanceToRequestedGoal = distanceToRequestedGoal;
+                        bestPathCost = currentPathCost;
+
+                        if (distanceToRequestedGoal == 0)
+                        {
+                            return BuildResult(PreviousEdgeByNodeBuffer, current, request.Start);
+                        }
+                    }
+                }
+
+                List<MovementActionEdge> edges = _graphProvider.BuildEdges(grid, current, request.UnitId);
+                for (int i = 0; i < edges.Count; i++)
+                {
+                    MovementActionEdge edge = edges[i];
+                    if (edge.To == current) continue;
+                    if (!IsWithinSearchRadius(request.Start, edge.To, maxDistanceFromStart)) continue;
+
+                    float tentative = currentPathCost + edge.Cost;
+                    if (CostFromStartByNodeBuffer.TryGetValue(edge.To, out float oldCost) && tentative >= oldCost)
+                    {
+                        continue;
+                    }
+
+                    PreviousEdgeByNodeBuffer[edge.To] = edge;
+                    CostFromStartByNodeBuffer[edge.To] = tentative;
+                    if (!FrontierNodesBuffer.Contains(edge.To))
+                    {
+                        FrontierNodesBuffer.Add(edge.To);
+                    }
+                }
+            }
+
+            return reachableGoal == request.Start
+                ? PathResult.Failed
+                : BuildResult(PreviousEdgeByNodeBuffer, reachableGoal, request.Start);
+        }
+
+        private static void ResetSearchBuffers(Vector2Int start)
+        {
+            FrontierNodesBuffer.Clear();
+            PreviousEdgeByNodeBuffer.Clear();
+            CostFromStartByNodeBuffer.Clear();
+            EstimatedTotalCostByNodeBuffer.Clear();
+            FrontierNodesBuffer.Add(start);
+            CostFromStartByNodeBuffer[start] = 0f;
+        }
+
+        private static bool IsWithinSearchRadius(Vector2Int start, Vector2Int candidate, int maxDistance)
+        {
+            int dx = Mathf.Abs(candidate.x - start.x);
+            int dy = Mathf.Abs(candidate.y - start.y);
+            return Mathf.Max(dx, dy) <= maxDistance;
         }
 
         private static Vector2Int ExtractBest(List<Vector2Int> open, Dictionary<Vector2Int, float> fScore)
