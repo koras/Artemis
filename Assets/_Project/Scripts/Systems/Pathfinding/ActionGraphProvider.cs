@@ -11,6 +11,8 @@ namespace _Project.Scripts.Systems.Pathfinding
     /// </summary>
     public sealed class ActionGraphProvider
     {
+        private static readonly List<MovementActionEdge> _movementActionEdgesBuffer = new(16);
+
         private const float WalkCost = 1f;
         private const float JumpGapCost = 1.15f;
         private const float FallCost = 1.1f;
@@ -20,31 +22,32 @@ namespace _Project.Scripts.Systems.Pathfinding
 
         public List<MovementActionEdge> BuildEdges(GridState grid, Vector2Int from, int unitId)
         {
-            var result = new List<MovementActionEdge>(16);
+            _movementActionEdgesBuffer.Clear();
+
             if (!grid.IsInside(from.x, from.y))
             {
-                return result;
+                return _movementActionEdgesBuffer;
             }
 
             GetLocalAxes(grid.GetCell(from.x, from.y), out var up, out var down, out var right, out var left);
 
-            TryWalk(grid, from, right, down, result);
-            TryWalk(grid, from, left, down, result);
-            TryJumpGap(grid, from, right, down, result);
-            TryJumpGap(grid, from, left, down, result);
+            TryWalk(grid, from, right, down, _movementActionEdgesBuffer);
+            TryWalk(grid, from, left, down, _movementActionEdgesBuffer);
+            TryJumpGap(grid, from, right, down, _movementActionEdgesBuffer);
+            TryJumpGap(grid, from, left, down, _movementActionEdgesBuffer);
 
-            TryClimb(grid, from, right, left, up, down, result);
-            TryStepUpOntoSupport(grid, from, up, right, down, result);
-            TryStepUpOntoSupport(grid, from, up, left, down, result);
-            TryStepDownFromSupport(grid, from, right, down, result);
-            TryStepDownFromSupport(grid, from, left, down, result);
+            TryClimb(grid, from, right, left, up, down, _movementActionEdgesBuffer);
+            TryStepUpOntoSupport(grid, from, up, right, down, _movementActionEdgesBuffer);
+            TryStepUpOntoSupport(grid, from, up, left, down, _movementActionEdgesBuffer);
+            TryStepDownFromSupport(grid, from, right, down, _movementActionEdgesBuffer);
+            TryStepDownFromSupport(grid, from, left, down, _movementActionEdgesBuffer);
 
-            TryFall(grid, from, down, result);
+            TryFall(grid, from, down, _movementActionEdgesBuffer);
 
-            TryDig(grid, from, down, unitId, result);
-            TryBuildLadder(grid, from, down, unitId, result);
+            TryDig(grid, from, down, unitId, _movementActionEdgesBuffer);
+            TryBuildLadder(grid, from, down, unitId, _movementActionEdgesBuffer);
 
-            return result;
+            return _movementActionEdgesBuffer;
         }
 
         /// <summary>
@@ -62,7 +65,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             return MovementSupportRules.IsCellStandableForMovement(grid, cellPos, down);
         }
 
-        private static void TryWalk(GridState grid, Vector2Int from, Vector2Int side, Vector2Int down, List<MovementActionEdge> outEdges)
+        private static void TryWalk(GridState grid, Vector2Int from, Vector2Int side, Vector2Int down,
+            List<MovementActionEdge> outEdges)
         {
             Vector2Int to = from + side;
             if (!grid.IsInside(to.x, to.y))
@@ -78,7 +82,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             outEdges.Add(new MovementActionEdge(from, to, MovementActionType.Walk, WalkCost));
         }
 
-        private static void TryJumpGap(GridState grid, Vector2Int from, Vector2Int side, Vector2Int down, List<MovementActionEdge> outEdges)
+        private static void TryJumpGap(GridState grid, Vector2Int from, Vector2Int side, Vector2Int down,
+            List<MovementActionEdge> outEdges)
         {
             Vector2Int middlePos = from + side;
             Vector2Int targetPos = from + side + side;
@@ -142,7 +147,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             outEdges.Add(new MovementActionEdge(from, to, MovementActionType.Fall, FallCost));
         }
 
-        private static void TryClimb(GridState grid, Vector2Int from, Vector2Int right, Vector2Int left, Vector2Int up, Vector2Int down, List<MovementActionEdge> outEdges)
+        private static void TryClimb(GridState grid, Vector2Int from, Vector2Int right, Vector2Int left, Vector2Int up,
+            Vector2Int down, List<MovementActionEdge> outEdges)
         {
             Cell fromCell = grid.GetCell(from.x, from.y);
             Vector2Int upPos = from + up;
@@ -150,7 +156,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             if (grid.IsInside(upPos.x, upPos.y))
             {
                 Cell upCell = grid.GetCell(upPos.x, upPos.y);
-                bool blocksLifeModuleVerticalTransition = IsBuiltLifeModuleCell(fromCell) || IsBuiltLifeModuleCell(upCell);
+                bool blocksLifeModuleVerticalTransition =
+                    IsBuiltLifeModuleCell(fromCell) || IsBuiltLifeModuleCell(upCell);
                 if (!blocksLifeModuleVerticalTransition && IsLadderCell(upCell))
                 {
                     outEdges.Add(new MovementActionEdge(from, upPos, MovementActionType.ClimbLadder, ClimbCost));
@@ -180,7 +187,6 @@ namespace _Project.Scripts.Systems.Pathfinding
                     }
                 }
             }
-
         }
 
         private static void TryStepUpOntoSupport(
@@ -195,7 +201,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             Vector2Int sidePos = from + side;
             Vector2Int targetPos = from + up + side;
 
-            if (!grid.IsInside(upPos.x, upPos.y) || !grid.IsInside(sidePos.x, sidePos.y) || !grid.IsInside(targetPos.x, targetPos.y))
+            if (!grid.IsInside(upPos.x, upPos.y) || !grid.IsInside(sidePos.x, sidePos.y) ||
+                !grid.IsInside(targetPos.x, targetPos.y))
             {
                 return;
             }
@@ -286,7 +293,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             outEdges.Add(new MovementActionEdge(from, targetPos, MovementActionType.Fall, FallCost));
         }
 
-        private static void TryDig(GridState grid, Vector2Int from, Vector2Int down, int unitId, List<MovementActionEdge> outEdges)
+        private static void TryDig(GridState grid, Vector2Int from, Vector2Int down, int unitId,
+            List<MovementActionEdge> outEdges)
         {
             Vector2Int target = from + down;
             if (!grid.IsInside(target.x, target.y))
@@ -308,7 +316,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             outEdges.Add(new MovementActionEdge(from, from, MovementActionType.Dig, DigCost));
         }
 
-        private static void TryBuildLadder(GridState grid, Vector2Int from, Vector2Int down, int unitId, List<MovementActionEdge> outEdges)
+        private static void TryBuildLadder(GridState grid, Vector2Int from, Vector2Int down, int unitId,
+            List<MovementActionEdge> outEdges)
         {
             Vector2Int target = from + down;
             if (!grid.IsInside(target.x, target.y))
@@ -330,7 +339,8 @@ namespace _Project.Scripts.Systems.Pathfinding
             outEdges.Add(new MovementActionEdge(from, from, MovementActionType.BuildLadder, BuildLadderCost));
         }
 
-        private static void GetLocalAxes(Cell cell, out Vector2Int up, out Vector2Int down, out Vector2Int right, out Vector2Int left)
+        private static void GetLocalAxes(Cell cell, out Vector2Int up, out Vector2Int down, out Vector2Int right,
+            out Vector2Int left)
         {
             down = MovementSupportRules.GetDownDirection(cell);
             up = -down;
@@ -360,6 +370,5 @@ namespace _Project.Scripts.Systems.Pathfinding
         {
             return cell.LifeModuleType == LifeModuleType.Built;
         }
-
     }
 }

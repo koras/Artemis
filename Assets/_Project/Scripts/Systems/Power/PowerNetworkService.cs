@@ -97,7 +97,7 @@ namespace _Project.Scripts.Systems.Power
 
                 if (!entity.BuildingDef.UsesPowerNetwork)
                 {
-                    // Объекты вне электросети не участвуют в графе кабелей и всегда считаются энерго-нейтральными.
+                    // РћР±СЉРµРєС‚С‹ РІРЅРµ СЌР»РµРєС‚СЂРѕСЃРµС‚Рё РЅРµ СѓС‡Р°СЃС‚РІСѓСЋС‚ РІ РіСЂР°С„Рµ РєР°Р±РµР»РµР№ Рё РІСЃРµРіРґР° СЃС‡РёС‚Р°СЋС‚СЃСЏ СЌРЅРµСЂРіРѕ-РЅРµР№С‚СЂР°Р»СЊРЅС‹РјРё.
                     nextStates[pair.Key] = new BuildingPowerRuntimeState
                     {
                         IsPowered = true,

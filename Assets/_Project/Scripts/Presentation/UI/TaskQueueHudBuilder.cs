@@ -7,18 +7,18 @@ using UnityEngine;
 namespace _Project.Scripts.Presentation.UI
 {
     /// <summary>
-    /// РЎС‚СЂРѕРёС‚ ViewModel-СЃРїРёСЃРѕРє РґР»СЏ РїР°РЅРµР»Рё РѕС‡РµСЂРµРґРё Р·Р°РґР°С‡ HUD.
+    /// Строит ViewModel-список для панели очереди задач HUD.
     /// </summary>
     public sealed class TaskQueueHudBuilder
     {
-        // РСЃС‚РѕС‡РЅРёРє Р·Р°РґР°С‡ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.
+        // Источник задач для отображения.
         private readonly GlobalTaskBoardService _globalTaskBoardService;
 
-        // РСЃС‚РѕС‡РЅРёРє РїРѕР·РёС†РёР№ СЋРЅРёС‚РѕРІ РґР»СЏ СЂР°СЃС‡С‘С‚Р° РґРёСЃС‚Р°РЅС†РёРё.
+        // Источник позиций юнитов для расчёта дистанции.
         private readonly UnitTaskOrchestratorService _unitTaskOrchestratorService;
 
         /// <summary>
-        /// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ builder Р·Р°РІРёСЃРёРјРѕСЃС‚СЏРјРё РґРѕРјРµРЅРЅРѕРіРѕ СЃР»РѕСЏ Р·Р°РґР°С‡.
+        /// Инициализирует builder зависимостями доменного слоя задач.
         /// </summary>
         public TaskQueueHudBuilder(
             GlobalTaskBoardService globalTaskBoardService,
@@ -29,29 +29,30 @@ namespace _Project.Scripts.Presentation.UI
         }
 
         /// <summary>
-        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РіРѕС‚РѕРІС‹Рµ СЌР»РµРјРµРЅС‚С‹ РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё РїР°РЅРµР»Рё РѕС‡РµСЂРµРґРё Р·Р°РґР°С‡.
+        /// Возвращает готовые элементы для отрисовки панели очереди задач.
         /// </summary>
         public List<TaskQueueItemViewModel> BuildItems()
         {
-            List<UnitTaskRecord> openTasks = _globalTaskBoardService.GetActiveTasksSnapshot();
+            var openTasks = _globalTaskBoardService.GetActiveTasksSnapshot();
             List<Vector2Int> unitCells = _unitTaskOrchestratorService.GetUnitCellsSnapshot();
             return BuildItemsFromSnapshots(openTasks, unitCells);
         }
 
         /// <summary>
-        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ hash С‚РµРєСѓС‰РµРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃРїРёСЃРєР° Р·Р°РґР°С‡ РґР»СЏ РґРµС€С‘РІРѕР№ РїСЂРѕРІРµСЂРєРё "РёР·РјРµРЅРёР»РѕСЃСЊ / РЅРµ РёР·РјРµРЅРёР»РѕСЃСЊ".
+        /// Возвращает hash текущего состояния списка задач для дешёвой проверки "изменилось / не изменилось".
         /// </summary>
         public int BuildStateHash()
         {
-            List<UnitTaskRecord> openTasks = _globalTaskBoardService.GetActiveTasksSnapshot();
+            var openTasks = _globalTaskBoardService.GetActiveTasksSnapshot();
             List<Vector2Int> unitCells = _unitTaskOrchestratorService.GetUnitCellsSnapshot();
             return ComputeStateHash(openTasks, unitCells);
         }
 
         private List<TaskQueueItemViewModel> BuildItemsFromSnapshots(
-            List<UnitTaskRecord> openTasks,
+            IReadOnlyList<UnitTaskRecord> openTasks,
             List<Vector2Int> unitCells)
         {
+            //todo
             var items = new List<TaskQueueItemViewModel>(openTasks.Count);
 
             for (int i = 0; i < openTasks.Count; i++)
@@ -81,7 +82,7 @@ namespace _Project.Scripts.Presentation.UI
             return items;
         }
 
-        private static int ComputeStateHash(List<UnitTaskRecord> openTasks, List<Vector2Int> unitCells)
+        private static int ComputeStateHash(IReadOnlyList<UnitTaskRecord> openTasks, List<Vector2Int> unitCells)
         {
             unchecked
             {
@@ -109,7 +110,7 @@ namespace _Project.Scripts.Presentation.UI
         }
 
         /// <summary>
-        /// РЎС‡РёС‚Р°РµС‚ Manhattan-РґРёСЃС‚Р°РЅС†РёСЋ РѕС‚ Р·Р°РґР°С‡Рё РґРѕ Р±Р»РёР¶Р°Р№С€РµРіРѕ СЋРЅРёС‚Р°.
+        /// Считает Manhattan-дистанцию от задачи до ближайшего юнита.
         /// </summary>
         private static int CalculateDistanceToNearestUnit(Vector2Int taskCell, List<Vector2Int> unitCells)
         {
@@ -132,7 +133,7 @@ namespace _Project.Scripts.Presentation.UI
         }
 
         /// <summary>
-        /// Р¤РѕСЂРјРёСЂСѓРµС‚ С‡РµР»РѕРІРµРєРѕ-РїРѕРЅСЏС‚РЅРѕРµ РёРјСЏ Р·Р°РґР°С‡Рё РґР»СЏ UI.
+        /// Формирует человеко-понятное имя задачи для UI.
         /// </summary>
         private static string BuildTaskTitle(UnitTaskRecord task)
         {

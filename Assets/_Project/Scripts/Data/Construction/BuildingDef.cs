@@ -83,7 +83,7 @@ namespace _Project.Scripts.Data.Construction
 
         [Header("Simulation")]
         public bool RequiresPower;
-        // ��������� �� ������ � ����������� (���� �����������, ��������� ����, ������ ���������/�����������).
+        // Ограничения на клетки под строительство (тип основания, допустимый грунт, наличие препятствий).
         public bool UsesPowerNetwork = true;
         public float PowerConsumptionKw;
         public float PowerGenerationKwDay;

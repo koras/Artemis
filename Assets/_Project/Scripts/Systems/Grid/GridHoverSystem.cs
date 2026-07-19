@@ -6,7 +6,7 @@ using UnityEngine;
 namespace _Project.Scripts.Systems.Grid
 {
     /// <summary>
-    /// Отслеживает клетку под курсором и шлёт события только при изменении.
+    /// РћС‚СЃР»РµР¶РёРІР°РµС‚ РєР»РµС‚РєСѓ РїРѕРґ РєСѓСЂСЃРѕСЂРѕРј Рё С€Р»С‘С‚ СЃРѕР±С‹С‚РёСЏ С‚РѕР»СЊРєРѕ РїСЂРё РёР·РјРµРЅРµРЅРёРё.
     /// </summary>
     public sealed class GridHoverSystem
     {
@@ -58,7 +58,7 @@ namespace _Project.Scripts.Systems.Grid
                 return;
             }
 
-            // Событие только если клетка реально изменилась.
+            // РЎРѕР±С‹С‚РёРµ С‚РѕР»СЊРєРѕ РµСЃР»Рё РєР»РµС‚РєР° СЂРµР°Р»СЊРЅРѕ РёР·РјРµРЅРёР»Р°СЃСЊ.
             if (!_hasHoveredCell || cell != _currentCell)
             {
                 _hasHoveredCell = true;

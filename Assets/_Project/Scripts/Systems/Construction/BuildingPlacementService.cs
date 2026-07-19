@@ -20,7 +20,7 @@ namespace _Project.Scripts.Systems.Construction
 
         // Extended logs switch for build flow.
         private readonly bool _enableAiLogs;
-        // Runtime-кэш tile, собранных из preview-спрайтов.
+        // Runtime-РєСЌС€ tile, СЃРѕР±СЂР°РЅРЅС‹С… РёР· preview-СЃРїСЂР°Р№С‚РѕРІ.
         private readonly Dictionary<BuildingDef, TileBase> _previewTilesByDef = new Dictionary<BuildingDef, TileBase>();
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace _Project.Scripts.Systems.Construction
         }
 
         /// <summary>
-        /// Возвращает true, если клетка входит в planned-область стройки.
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РєР»РµС‚РєР° РІС…РѕРґРёС‚ РІ planned-РѕР±Р»Р°СЃС‚СЊ СЃС‚СЂРѕР№РєРё.
         /// </summary>
         public int GetAvailableBuildPlanCount(BuildingDef buildingDef)
         {
@@ -158,7 +158,7 @@ namespace _Project.Scripts.Systems.Construction
         }
 
         /// <summary>
-        /// Возвращает активную постройку, если клетка входит в её footprint.
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ Р°РєС‚РёРІРЅСѓСЋ РїРѕСЃС‚СЂРѕР№РєСѓ, РµСЃР»Рё РєР»РµС‚РєР° РІС…РѕРґРёС‚ РІ РµС‘ footprint.
         /// </summary>
         public bool TryGetActiveBuildingByCell(Vector2Int cell, out BuildingRuntimeEntity entity)
         {

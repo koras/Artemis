@@ -31,6 +31,11 @@ namespace _Project.Scripts.Systems.Tasks
         private const int WATER_BUILD_RESOURCE_AMOUNT = 1;
         private const int DEFAULT_WATER_BUILD_TICKS = 1;
 
+        private static readonly List<UnitTaskRecord> OpenTasksSnapshotBuffer = new List<UnitTaskRecord>(16);
+        private static readonly List<UnitTaskRecord> OpenTasksOrderedForUnitBuffer = new List<UnitTaskRecord>(16);
+        private static readonly List<UnitTaskRecord> ActiveTasksSnapshotBuffer = new List<UnitTaskRecord>(16);
+        private static readonly List<Vector2Int> PendingBuildFootprintDigCellsBuffer = new List<Vector2Int>(16);
+
         private readonly Dictionary<int, UnitTaskRecord> _tasksById = new Dictionary<int, UnitTaskRecord>();
         private readonly Dictionary<Vector2Int, int> _taskIdByCell = new Dictionary<Vector2Int, int>();
         private readonly Dictionary<Vector2Int, int> _digTaskIdByCell = new Dictionary<Vector2Int, int>();
@@ -458,9 +463,9 @@ namespace _Project.Scripts.Systems.Tasks
         /// <summary>
         /// Возвращает снимок открытых задач (только те, что ещё в очереди).
         /// </summary>
-        public List<UnitTaskRecord> GetOpenTasksSnapshot()
+        public IReadOnlyList<UnitTaskRecord> GetOpenTasksSnapshot()
         {
-            var result = new List<UnitTaskRecord>();
+            OpenTasksSnapshotBuffer.Clear();
 
             for (int i = 0; i < _taskIds.Count; i++)
             {
@@ -468,19 +473,19 @@ namespace _Project.Scripts.Systems.Tasks
                 UnitTaskRecord task = _tasksById[id];
                 if (task.Status != UnitTaskStatus.Open) continue;
 
-                result.Add(task);
+                OpenTasksSnapshotBuffer.Add(task);
             }
 
-            return result;
+            return OpenTasksSnapshotBuffer;
         }
 
         /// <summary>
         /// Returns open tasks sorted by board score for the specified unit position.
         /// Unit-specific refusal logic stays in the acquisition service.
         /// </summary>
-        public List<UnitTaskRecord> GetOpenTasksOrderedForUnit(Vector2Int unitCell, int currentTick)
+        public IReadOnlyList<UnitTaskRecord> GetOpenTasksOrderedForUnit(Vector2Int unitCell, int currentTick)
         {
-            var result = new List<UnitTaskRecord>();
+            OpenTasksOrderedForUnitBuffer.Clear();
 
             for (int i = 0; i < _taskIds.Count; i++)
             {
@@ -490,35 +495,35 @@ namespace _Project.Scripts.Systems.Tasks
                 if (!_scoring.IsVisible(unitCell, candidate.TargetCell)) continue;
                 if (!IsTaskStillValid(candidate)) continue;
 
-                result.Add(candidate);
+                OpenTasksOrderedForUnitBuffer.Add(candidate);
             }
 
-            result.Sort((left, right) =>
+            OpenTasksOrderedForUnitBuffer.Sort((left, right) =>
             {
                 float rightScore = _scoring.CalculateScore(right, unitCell, currentTick);
                 float leftScore = _scoring.CalculateScore(left, unitCell, currentTick);
                 return rightScore.CompareTo(leftScore);
             });
 
-            return result;
+            return OpenTasksOrderedForUnitBuffer;
         }
 
         /// <summary>
         /// Возвращает снимок всех задач, кроме завершённых и проваленных.
         /// </summary>
-        public List<UnitTaskRecord> GetActiveTasksSnapshot()
+        public IReadOnlyList<UnitTaskRecord> GetActiveTasksSnapshot()
         {
-            var result = new List<UnitTaskRecord>();
+            ActiveTasksSnapshotBuffer.Clear();
 
             for (int i = 0; i < _taskIds.Count; i++)
             {
                 int id = _taskIds[i];
                 UnitTaskRecord task = _tasksById[id];
                 if (task.Status == UnitTaskStatus.Completed || task.Status == UnitTaskStatus.Failed) continue;
-                result.Add(task);
+                ActiveTasksSnapshotBuffer.Add(task);
             }
 
-            return result;
+            return ActiveTasksSnapshotBuffer;
         }
         /// <summary>
         /// Ищет лучшую доступную задачу для юнита, резервирует ее за ним и возвращает наружу.
@@ -737,7 +742,7 @@ namespace _Project.Scripts.Systems.Tasks
         }
 
         /// <summary>
-        /// ������ ������ ��������� ������ � ������� ������.
+        /// Создаёт задачу прокладки кабеля в указанной клетке.
         /// </summary>
         public bool TryCreateBuildCableTask(Vector2Int targetCell, int currentTick, int buildTicks)
         {
@@ -757,10 +762,10 @@ namespace _Project.Scripts.Systems.Tasks
             return Mathf.Max(0, _resourceInventoryService.GetAmount(CABLE_BUILD_RESOURCE_ID) / CABLE_BUILD_RESOURCE_AMOUNT);
         }
         /// <summary>
-        /// ������ ������ ��������� ��� ������������ ������ � ������� ������.
+        /// Возвращает количество дополнительных ячеек кабеля, которые можно запланировать из общего хранилища.
         /// </summary>
         /// <summary>
-        /// ������ ������ �������� ����������� ���������� ������� �� storage � ������ �����������.
+        /// Пытается создать задачу доставки выпавшего ресурса из storage к точке назначения.
         /// </summary>
         public bool TryCreateDroppedResourceDeliveryTask(
             Vector2Int targetCell,
@@ -1082,8 +1087,8 @@ public bool TryEnsureDroppedResourceDeliveryTask(
         /// </summary>
         public List<Vector2Int> GetPendingDigCellsInBuildFootprint(BuildTaskPayload payload)
         {
-            var result = new List<Vector2Int>();
-            if (payload == null || payload.BuildingDef == null) return result;
+            PendingBuildFootprintDigCellsBuffer.Clear();
+            if (payload == null || payload.BuildingDef == null) return PendingBuildFootprintDigCellsBuffer;
 
             int width = payload.IsRotated ? payload.BuildingDef.Height : payload.BuildingDef.Width;
             int height = payload.IsRotated ? payload.BuildingDef.Width : payload.BuildingDef.Height;
@@ -1100,11 +1105,11 @@ public bool TryEnsureDroppedResourceDeliveryTask(
                         CleanupInvalidDigLikeTask(task);
                         continue;
                     }
-                    result.Add(cellPos);
+                    PendingBuildFootprintDigCellsBuffer.Add(cellPos);
                 }
             }
 
-            return result;
+            return PendingBuildFootprintDigCellsBuffer;
         }
 
         public int CountPendingDigTasksInLifeModuleFootprint(LifeModuleTaskPayload payload)
@@ -1423,8 +1428,8 @@ public bool TryEnsureDroppedResourceDeliveryTask(
         /// Возвращает задачу по id, если она присутствует в задачнике.
         /// </summary>
         /// <summary>
-        /// ��������� ������ ������ dropped-resource ��� ������� �������.
-        /// ��������� ������ ��� Open-�����, ����� �� ������ ��� ������ ��������.
+        /// Проверяет задачу dropped-resource для указанной клетки.
+        /// Проверяет задачу для Open-клетки, чтобы не создать её повторно.
         /// </summary>
         public bool TryMoveDroppedResourceTaskCell(Vector2Int fromCell, Vector2Int toCell)
         {

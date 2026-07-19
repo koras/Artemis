@@ -1567,7 +1567,7 @@ namespace _Project.Scripts.Input
 
         private void RefreshAllPlannedBuildPreviews()
         {
-            List<UnitTaskRecord> activeTasks = _globalTaskBoardService.GetActiveTasksSnapshot();
+            var activeTasks = _globalTaskBoardService.GetActiveTasksSnapshot();
             for (int i = 0; i < activeTasks.Count; i++)
             {
                 UnitTaskRecord task = activeTasks[i];
@@ -2281,5 +2281,3 @@ namespace _Project.Scripts.Input
         }
     }
 }
-
-

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace _Project.Scripts.Data.Character
 {
     /// <summary>
-    /// Конфиг спауна: сколько, какие персонажи и зона появления.
+    /// РљРѕРЅС„РёРі СЃРїР°СѓРЅР°: СЃРєРѕР»СЊРєРѕ, РєР°РєРёРµ РїРµСЂСЃРѕРЅР°Р¶Рё Рё Р·РѕРЅР° РїРѕСЏРІР»РµРЅРёСЏ.
     /// </summary>
     [CreateAssetMenu(
         fileName = "CharacterSpawnConfig",

@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 namespace _Project.Scripts.Presentation.UI.Offers
 {
     /// <summary>
-    /// UI РѕС„С„РµСЂРѕРІ: С‚Р°Р±Р»РёС†С‹, СѓРІРµРґРѕРјР»РµРЅРёРµ Рѕ РЅРѕРІС‹С… РѕС„С„РµСЂР°С… Рё РєР°СЂС‚РѕС‡РєР° РґРµС‚Р°Р»РµР№.
+    /// UI офферов: таблицы, уведомление о новых офферах и карточка деталей.
     /// </summary>
     public sealed class OfferPanelPresenter : IDisposable
     {

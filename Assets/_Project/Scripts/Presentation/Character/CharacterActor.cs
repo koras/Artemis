@@ -13,13 +13,15 @@ namespace _Project.Scripts.Presentation.Character
     public sealed class CharacterActor : MonoBehaviour
     {
         private static readonly HashSet<CharacterActor> INSTANCES = new HashSet<CharacterActor>();
+        private static readonly List<string> RandomSkinCandidatesBuffer = new List<string>(16);
+
         private static float _globalMovementSpeedMultiplier = 1f;
         private static bool _isGlobalPaused;
 
         [Header("Animation")]
         [SerializeField] private SkeletonAnimation _skeletonAnimation;
         [SerializeField] private CharacterWorkAimRig _workAimRig;
-        [SerializeField] private string[] _availableSkinNames = Array.Empty<string>();
+        [SerializeField] private List<string> _availableSkinNames = new List<string>();
         [SerializeField] private string _currentSkinName = string.Empty;
         [SerializeField] private string _runtimeSkinOverride = string.Empty;
         [SerializeField] private CharacterAnimationState _currentAnimationState = CharacterAnimationState.Idle;
@@ -297,14 +299,14 @@ namespace _Project.Scripts.Presentation.Character
         {
             InitializeSpinePresentation();
 
-            if (_availableSkinNames == null || _availableSkinNames.Length == 0)
+            if (_availableSkinNames == null || _availableSkinNames.Count == 0)
             {
                 return;
             }
 
-            string[] randomSkinCandidates = BuildRandomSkinCandidates();
+            IReadOnlyList<string> randomSkinCandidates = BuildRandomSkinCandidates();
             int skinIndex = random != null
-                ? random.Next(0, randomSkinCandidates.Length)
+                ? random.Next(0, randomSkinCandidates.Count)
                 : 0;
             string selectedSkinName = randomSkinCandidates[skinIndex];
             if (!SetSkin(selectedSkinName))
@@ -449,9 +451,10 @@ namespace _Project.Scripts.Presentation.Character
 
         private void CacheAvailableSkinNames()
         {
+            _availableSkinNames.Clear();
+
             if (_skeletonAnimation == null)
             {
-                _availableSkinNames = Array.Empty<string>();
                 return;
             }
 
@@ -460,11 +463,9 @@ namespace _Project.Scripts.Presentation.Character
                 : null;
             if (skeletonData == null)
             {
-                _availableSkinNames = Array.Empty<string>();
                 return;
             }
 
-            var skinNames = new List<string>();
             ExposedList<Skin> skins = skeletonData.Skins;
             for (int i = 0; i < skins.Count; i++)
             {
@@ -474,26 +475,26 @@ namespace _Project.Scripts.Presentation.Character
                     continue;
                 }
 
-                skinNames.Add(skin.Name);
+                _availableSkinNames.Add(skin.Name);
             }
 
-            if (skinNames.Count == 0)
+            if (_availableSkinNames.Count == 0)
             {
-                skinNames.Add("default");
+                _availableSkinNames.Add("default");
             }
-
-            _availableSkinNames = skinNames.ToArray();
         }
 
-        private string[] BuildRandomSkinCandidates()
+        private IReadOnlyList<string> BuildRandomSkinCandidates()
         {
-            if (_availableSkinNames == null || _availableSkinNames.Length == 0)
+            RandomSkinCandidatesBuffer.Clear();
+
+            if (_availableSkinNames == null || _availableSkinNames.Count == 0)
             {
-                return new[] { "default" };
+                RandomSkinCandidatesBuffer.Add("default");
+                return RandomSkinCandidatesBuffer;
             }
 
-            var nonDefaultSkinNames = new List<string>(_availableSkinNames.Length);
-            for (int i = 0; i < _availableSkinNames.Length; i++)
+            for (int i = 0; i < _availableSkinNames.Count; i++)
             {
                 string skinName = _availableSkinNames[i];
                 if (string.IsNullOrWhiteSpace(skinName))
@@ -507,11 +508,11 @@ namespace _Project.Scripts.Presentation.Character
                     continue;
                 }
 
-                nonDefaultSkinNames.Add(skinName);
+                RandomSkinCandidatesBuffer.Add(skinName);
             }
 
-            return nonDefaultSkinNames.Count > 0
-                ? nonDefaultSkinNames.ToArray()
+            return RandomSkinCandidatesBuffer.Count > 0
+                ? RandomSkinCandidatesBuffer
                 : _availableSkinNames;
         }
 
@@ -542,12 +543,12 @@ namespace _Project.Scripts.Presentation.Character
 
         private string GetFallbackSkinName()
         {
-            if (_availableSkinNames == null || _availableSkinNames.Length == 0)
+            if (_availableSkinNames == null || _availableSkinNames.Count == 0)
             {
                 return "default";
             }
 
-            for (int i = 0; i < _availableSkinNames.Length; i++)
+            for (int i = 0; i < _availableSkinNames.Count; i++)
             {
                 if (string.Equals(_availableSkinNames[i], "default", StringComparison.Ordinal))
                 {

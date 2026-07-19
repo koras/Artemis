@@ -56,6 +56,8 @@ namespace _Project.Scripts.Systems.Units
         private readonly System.Action<Vector2Int> _onOxygenBuildCompletedVisual;
         private readonly System.Action<Vector2Int> _onOxygenDestroyCompletedVisual;
         private readonly System.Action<LifeModuleTaskPayload> _onLifeModuleBuildCompletedVisual;
+        private readonly Action<UnitTaskState> _syncActorPositionBuffered;
+        private readonly Action<UnitTaskState, Vector2Int, Vector2Int, MovementActionType> _syncActorStepPositionBuffered;
         // Timeout for manual move when the unit makes no progress.
         private const float MANUAL_MOVE_NO_PROGRESS_TIMEOUT_SECONDS = 1f;
         private const float IDLE_WANDER_MIN_START_DELAY_SECONDS = 20f;
@@ -131,6 +133,8 @@ namespace _Project.Scripts.Systems.Units
             _onLifeModuleBuildCompletedVisual = onLifeModuleBuildCompletedVisual;
             _onUnitCellChanged = onUnitCellChanged;
             _enableLogs = enableLogs;
+            _syncActorPositionBuffered = SyncActorPosition;
+            _syncActorStepPositionBuffered = SyncActorStepPosition;
             _stateStore = new UnitOrchestratorStateStore();
             _workCellResolver = new UnitWorkCellResolver(_grid, _navigation, TASK_WORK_MAX_DISTANCE);
             _manualMoveService = new UnitManualMoveService(
@@ -140,7 +144,7 @@ namespace _Project.Scripts.Systems.Units
                 MANUAL_MOVE_NO_PROGRESS_TIMEOUT_SECONDS,
                 ResetUnitTask,
                 ClearManualMoveOrder,
-                SyncActorStepPosition,
+                _syncActorStepPositionBuffered,
                 _onUnitCellChanged);
             _taskAcquisitionService = new UnitTaskAcquisitionService(
                 _taskBoard,
@@ -198,7 +202,7 @@ namespace _Project.Scripts.Systems.Units
                 _stateStore.UnitOrder,
                 _stateStore.StatesByUnitId,
                 state => ResetUnitTask(state),
-                SyncActorStepPosition,
+                _syncActorStepPositionBuffered,
                 WORK_WINDOW_DURATION_MINUTES,
                 GAME_MINUTES_PER_REAL_SECOND,
                 BASE_SLEEP_MINUTES,
@@ -763,7 +767,7 @@ namespace _Project.Scripts.Systems.Units
         /// </summary>
         private void ProcessTaskMoveFrame(UnitTaskState state, float deltaTime)
         {
-            _movementRuntimeService.ProcessTaskMoveFrame(state, deltaTime, SyncActorStepPosition);
+            _movementRuntimeService.ProcessTaskMoveFrame(state, deltaTime, _syncActorStepPositionBuffered);
         }
 
         /// <summary>
@@ -814,7 +818,7 @@ namespace _Project.Scripts.Systems.Units
         /// </summary>
         private void ProcessDeliveryMoveFrame(UnitTaskState state, float deltaTime)
         {
-            _movementRuntimeService.ProcessDeliveryMoveFrame(state, deltaTime, SyncActorStepPosition);
+            _movementRuntimeService.ProcessDeliveryMoveFrame(state, deltaTime, _syncActorStepPositionBuffered);
         }
 
         /// <summary>
@@ -946,7 +950,7 @@ namespace _Project.Scripts.Systems.Units
         /// </summary>
         private bool TryApplyGravityFall(UnitTaskState state)
         {
-            return _movementRuntimeService.TryApplyGravityFall(state, SyncActorPosition);
+            return _movementRuntimeService.TryApplyGravityFall(state, _syncActorPositionBuffered);
         }
 
         /// <summary>

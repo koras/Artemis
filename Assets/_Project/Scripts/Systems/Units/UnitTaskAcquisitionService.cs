@@ -146,7 +146,7 @@ namespace _Project.Scripts.Systems.Units
                 return false;
             }
 
-            List<UnitTaskRecord> orderedTasks = _taskBoard.GetOpenTasksOrderedForUnit(state.CurrentCell, currentTick);
+            var orderedTasks = _taskBoard.GetOpenTasksOrderedForUnit(state.CurrentCell, currentTick);
             if (orderedTasks.Count == 0)
             {
                 if (_enableLogs)

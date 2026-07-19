@@ -3,6 +3,7 @@ using _Project.Scripts.Data.Grid;
 using _Project.Scripts.Data.Pathfinding;
 using _Project.Scripts.Systems.Pathfinding;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace _Project.Scripts.Systems.Navigation
 {
@@ -13,6 +14,9 @@ namespace _Project.Scripts.Systems.Navigation
     {
         private readonly GridState _grid;
         private readonly AStarPathfinder _pathfinder;
+
+        private static readonly List<NavigationPathDebugSnapshot> _debugPathSnapshotsBuffered = new List<NavigationPathDebugSnapshot>();
+        private static readonly Dictionary<int, List<MovementActionEdge>> _debugPathEdgesByUnitIdBuffered = new Dictionary<int, List<MovementActionEdge>>();
 
         // Кэш текущего пути на юнита, чтобы не пересчитывать без необходимости.
         private readonly Dictionary<int, CachedPath> _pathsByUnitId = new Dictionary<int, CachedPath>();
@@ -34,24 +38,35 @@ namespace _Project.Scripts.Systems.Navigation
         public void ClearPath(int unitId)
         {
             _pathsByUnitId.Remove(unitId);
+            if (_debugPathEdgesByUnitIdBuffered.TryGetValue(unitId, out List<MovementActionEdge> edges))
+            {
+                _debugPathEdgesByUnitIdBuffered.Remove(unitId);
+                ListPool<MovementActionEdge>.Release(edges);
+            }
         }
 
         public List<NavigationPathDebugSnapshot> GetDebugPathSnapshots()
         {
-            var result = new List<NavigationPathDebugSnapshot>(_pathsByUnitId.Count);
+            _debugPathSnapshotsBuffered.Clear();
 
             foreach (KeyValuePair<int, CachedPath> pair in _pathsByUnitId)
             {
                 CachedPath cached = pair.Value;
                 if (!cached.Path.Success) continue;
 
-                var edges = new List<MovementActionEdge>(cached.Path.Edges.Count);
+                if (!_debugPathEdgesByUnitIdBuffered.TryGetValue(pair.Key, out List<MovementActionEdge> edges))
+                {
+                    edges = ListPool<MovementActionEdge>.Get();
+                    _debugPathEdgesByUnitIdBuffered[pair.Key] = edges;
+                }
+
+                edges.Clear();
                 for (int i = 0; i < cached.Path.Edges.Count; i++)
                 {
                     edges.Add(cached.Path.Edges[i]);
                 }
 
-                result.Add(new NavigationPathDebugSnapshot(
+                _debugPathSnapshotsBuffered.Add(new NavigationPathDebugSnapshot(
                     pair.Key,
                     cached.StartCell,
                     cached.GoalCell,
@@ -59,7 +74,7 @@ namespace _Project.Scripts.Systems.Navigation
                     edges));
             }
 
-            return result;
+            return _debugPathSnapshotsBuffered;
         }
 
 

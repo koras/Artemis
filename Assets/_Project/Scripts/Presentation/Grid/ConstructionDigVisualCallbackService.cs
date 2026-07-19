@@ -16,7 +16,7 @@ using UnityEngine;
 namespace _Project.Scripts.Presentation.Grid
 {
     /// <summary>
-    /// РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚ РІРёР·СѓР°Р»СЊРЅС‹Рµ РєРѕР»Р»Р±РµРєРё РїРѕСЃР»Рµ Р·Р°РІРµСЂС€РµРЅРёСЏ РєРѕРїРєРё Рё СЃС‚СЂРѕРёС‚РµР»СЊСЃС‚РІР°.
+    /// Обрабатывает визуальные коллбеки после завершения копки и строительства.
     /// </summary>
     public sealed class ConstructionDigVisualCallbackService
     {
@@ -72,7 +72,7 @@ namespace _Project.Scripts.Presentation.Grid
         }
 
         /// <summary>
-        /// Р’С‹Р·С‹РІР°РµС‚СЃСЏ РїРѕСЃР»Рµ Р·Р°РІРµСЂС€РµРЅРёСЏ РєРѕРїРєРё РєР»РµС‚РєРё.
+        /// Вызывается после завершения копки клетки.
         /// </summary>
         public void OnDigCompleted(Vector2Int cellPos)
         {
@@ -83,7 +83,7 @@ namespace _Project.Scripts.Presentation.Grid
         }
 
         /// <summary>
-        /// Р’С‹Р·С‹РІР°РµС‚СЃСЏ РїРѕСЃР»Рµ Р·Р°РІРµСЂС€РµРЅРёСЏ СЃС‚СЂРѕРёС‚РµР»СЊСЃС‚РІР° РѕР±СЉРµРєС‚Р°.
+        /// Вызывается после завершения строительства объекта.
         /// </summary>
         public void OnBuildCompleted(BuildTaskPayload payload)
         {
@@ -123,7 +123,7 @@ namespace _Project.Scripts.Presentation.Grid
         }
 
         /// <summary>
-        /// Р’С‹Р·С‹РІР°РµС‚СЃСЏ РїРѕСЃР»Рµ Р·Р°РІРµСЂС€РµРЅРёСЏ РґРµРјРѕРЅС‚Р°Р¶Р° РїРѕСЃС‚СЂРѕРµРЅРЅРѕРіРѕ РѕР±СЉРµРєС‚Р°.
+        /// Вызывается после завершения демонтажа построенного объекта.
         /// </summary>
         public void OnDestroyCompleted(BuildTaskPayload payload)
         {
@@ -156,7 +156,7 @@ namespace _Project.Scripts.Presentation.Grid
         }
 
         /// <summary>
-        /// РЎРЅРёРјР°РµС‚ preview РїСЂРѕРєР»Р°РґРєРё РєР°Р±РµР»СЏ СЃ РєР»РµС‚РєРё РїРѕСЃР»Рµ Р·Р°РІРµСЂС€РµРЅРёСЏ/РѕС‚РјРµРЅС‹ Р·Р°РґР°С‡Рё.
+        /// Снимает preview прокладки кабеля с клетки после завершения/отмены задачи.
         /// </summary>
         public void OnCablePreviewCleared(Vector2Int cellPos)
         {
@@ -174,36 +174,36 @@ namespace _Project.Scripts.Presentation.Grid
         }
 
         /// <summary>
-        /// Р¤РёРЅР°Р»РёР·РёСЂСѓРµС‚ РїСЂРѕРєР»Р°РґРєСѓ РєР°Р±РµР»СЏ РІ РєР»РµС‚РєРµ Рё РѕР±РЅРѕРІР»СЏРµС‚ СЃРѕСЃРµРґРЅРёРµ РІРёР·СѓР°Р»С‹.
+        /// Финализирует прокладку кабеля в клетке и обновляет соседние визуалы.
         /// </summary>
         public void OnCableBuildCompleted(Vector2Int cellPos)
         {
             LogCableCrossState("BeforePlace", cellPos);
-            // Р•СЃР»Рё СЃРµСЂРІРёСЃ РїСЂРѕРєР»Р°РґРєРё РєР°Р±РµР»СЏ РЅРµ РїРµСЂРµРґР°РЅ, Р·Р°РІРµСЂС€РёС‚СЊ РјРµС‚РѕРґ Р±РµР· РґРµР№СЃС‚РІРёР№.
+            // Если сервис прокладки кабеля не передан, завершить метод без действий.
             if (_cablePlacementService == null) return;
-            // РџС‹С‚Р°РµРјСЃСЏ Р·Р°С„РёРєСЃРёСЂРѕРІР°С‚СЊ РєР°Р±РµР»СЊ РІ grid-СЃРѕСЃС‚РѕСЏРЅРёРё; РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ, РІС‹С…РѕРґРёРј.
+            // Пытаемся зафиксировать кабель в grid-состоянии; если не удалось, выходим.
             if (!_cablePlacementService.TryPlaceCable(_gridState, cellPos)) return;
-            // Р“Р»РѕР±Р°Р»СЊРЅРѕ РІР°Р»РёРґРёСЂСѓРµРј РјР°СЃРєРё РІСЃРµС… РїРѕСЃС‚СЂРѕРµРЅРЅС‹С… РєР°Р±РµР»РµР№ РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёСЏ С‚РѕРїРѕР»РѕРіРёРё СЃРµС‚Рё.
+            // Глобально валидируем маски всех построенных кабелей после изменения топологии сети.
             _cablePlacementService.RecalculateAllCableMasks(_gridState);
             LogCableCrossState("AfterPlace", cellPos);
 
-            // РџРѕСЃР»Рµ РїРѕСЃС‚СЂРѕР№РєРё СЃРЅРёРјР°РµРј preview С‚РѕР»СЊРєРѕ РІ С‚РµРєСѓС‰РµР№ РєР»РµС‚РєРµ.
-            // РЎРѕСЃРµРґРЅРёРµ preview-РєР»РµС‚РєРё СЃРѕС…СЂР°РЅСЏРµРј, С‡С‚РѕР±С‹ РїР»Р°РЅС‹ РїСЂРѕРєР»Р°РґРєРё РЅРµ РёСЃС‡РµР·Р°Р»Рё.
-            // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ С†РµР»РµРІР°СЏ РєР»РµС‚РєР° СЃСѓС‰РµСЃС‚РІСѓРµС‚ РІРЅСѓС‚СЂРё РіСЂР°РЅРёС† СЃРµС‚РєРё.
+            // После постройки снимаем preview только в текущей клетке.
+            // Соседние preview-клетки сохраняем, чтобы планы прокладки не исчезали.
+            // Проверяем, что целевая клетка существует внутри границ сетки.
             if (_gridState.IsInside(cellPos.x, cellPos.y))
             {
-                // Р§РёС‚Р°РµРј С‚РµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РєР»РµС‚РєРё РґР»СЏ С‚РѕС‡РµС‡РЅРѕР№ РїСЂР°РІРєРё preview-РїРѕР»РµР№.
+                // Читаем текущее состояние клетки для точечной правки preview-полей.
                 Cell cell = _gridState.GetCell(cellPos.x, cellPos.y);
-                // РЎР±СЂР°СЃС‹РІР°РµРј С„Р»Р°Рі РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ preview-РєР°Р±РµР»СЏ РІ СЌС‚РѕР№ РєР»РµС‚РєРµ.
+                // Сбрасываем флаг отображения preview-кабеля в этой клетке.
                 cell.IsCablePreviewVisible = false;
-                // РћР±РЅСѓР»СЏРµРј id С„РѕСЂРјС‹ preview, С‚Р°Рє РєР°Рє РїР»Р°РЅ РґР»СЏ РєР»РµС‚РєРё Р·Р°РІРµСЂС€С‘РЅ.
+                // Обнуляем id формы preview, так как план для клетки завершён.
                 cell.CablePreviewShapeId = 0;
-                // РћР±РЅСѓР»СЏРµРј СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р° preview-С‚Р°Р№Р»Р° РІ debug-СЃРѕСЃС‚РѕСЏРЅРёРё РєР»РµС‚РєРё.
+                // Обнуляем угол поворота preview-тайла в debug-состоянии клетки.
                 cell.CablePreviewRotationZ = 0f;
-                // Р—Р°РїРёСЃС‹РІР°РµРј РѕР±РЅРѕРІР»С‘РЅРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РєР»РµС‚РєРё РѕР±СЂР°С‚РЅРѕ РІ grid.
+                // Записываем обновлённое состояние клетки обратно в grid.
                 _gridState.SetCell(cellPos.x, cellPos.y, cell);
             }
-            // РЈРґР°Р»СЏРµРј preview-С‚Р°Р№Р» РёР· tilemap РІ С†РµР»РµРІРѕР№ РєР»РµС‚РєРµ.
+            // Удаляем preview-тайл из tilemap в целевой клетке.
             _gridTileVisualService.SetCablePreview(cellPos, false, 0);
             _cablePreviewRefreshService.RefreshBuiltAround(cellPos);
             _cablePreviewRefreshService.ReconcileAllBuilt();
@@ -625,7 +625,7 @@ namespace _Project.Scripts.Presentation.Grid
         }
 
         /// <summary>
-        /// РЎРїР°РІРЅРёС‚ runtime view-РїСЂРµС„Р°Р± РѕР±СЉРµРєС‚Р° РїРѕ anchor Рё СЂР°Р·РјРµСЂСѓ footprint.
+        /// Спавнит runtime view-префаб объекта по anchor и размеру footprint.
         /// </summary>
         private void SpawnBuildingView(BuildingViewBase buildingViewPrefab, Vector2Int anchorCell, Vector2Int size)
         {
@@ -648,9 +648,9 @@ namespace _Project.Scripts.Presentation.Grid
                 view.SetModeTint(_cableBuildTintColor);
             }
 
-            // РџСЂРѕСЃС‚Р°РІР»СЏРµРј Р»РѕРєР°Р»СЊРЅС‹Р№ override РїСЂРѕС…РѕРґРёРјРѕСЃС‚Рё РїРѕ footprint СЌС‚РѕРіРѕ building view.
-            // Р”Р»СЏ LadderBuildingView РЅРµ РІРєР»СЋС‡Р°РµРј override РІ Empty:
-            // Р»РµСЃС‚РЅРёС†Р° РґРѕР»Р¶РЅР° РѕСЃС‚Р°РІР°С‚СЊСЃСЏ Р»РµСЃС‚РЅРёС†РµР№ РґР»СЏ Р»РѕРіРёРєРё РґРІРёР¶РµРЅРёСЏ.
+            // Проставляем локальный override проходимости по footprint этого building view.
+            // Для LadderBuildingView не включаем override в Empty:
+            // лестница должна оставаться лестницей для логики движения.
             if (view.IgnoreAsObstacleForPathfinding && !(view is LadderBuildingView))
             {
                 for (int y = 0; y < size.y; y++)

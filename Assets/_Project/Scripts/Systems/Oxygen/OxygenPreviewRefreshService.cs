@@ -112,7 +112,7 @@ namespace _Project.Scripts.Systems.Oxygen
                 }
             }
 
-            List<UnitTaskRecord> tasks = _globalTaskBoardService.GetActiveTasksSnapshot();
+            var tasks = _globalTaskBoardService.GetActiveTasksSnapshot();
             for (int i = 0; i < tasks.Count; i++)
             {
                 UnitTaskRecord task = tasks[i];

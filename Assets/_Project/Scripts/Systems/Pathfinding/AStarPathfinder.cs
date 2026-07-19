@@ -7,63 +7,73 @@ namespace _Project.Scripts.Systems.Pathfinding
 {
  public sealed class AStarPathfinder
     {
+        private static readonly List<Vector2Int> FrontierNodesBuffer = new(64);
+        private static readonly Dictionary<Vector2Int, MovementActionEdge> PreviousEdgeByNodeBuffer = new(128);
+        private static readonly Dictionary<Vector2Int, float> CostFromStartByNodeBuffer = new(128);
+        private static readonly Dictionary<Vector2Int, float> EstimatedTotalCostByNodeBuffer = new(128);
+        private static readonly List<MovementActionEdge> ResultPathEdgesBuffer = new(64);
+
         private readonly ActionGraphProvider _graphProvider = new ActionGraphProvider();
 
         public PathResult FindPath(GridState grid, PathRequest request)
         {
-            // open: список клеток, которые нужно исследовать (frontier).
-            var open = new List<Vector2Int> { request.Start };
-            // cameFrom: для каждой достигнутой клетки храним "ребро-предок",
-            // чтобы потом восстановить полный путь от Goal к Start.
-            var cameFrom = new Dictionary<Vector2Int, MovementActionEdge>();
-            // gScore: фактическая накопленная стоимость пути от Start до клетки.
-            var gScore = new Dictionary<Vector2Int, float> { [request.Start] = 0f };
-            // fScore: оценка "насколько выгодно исследовать клетку дальше":
-            // f = g + h, где h — эвристика до цели.
-            var fScore = new Dictionary<Vector2Int, float> { [request.Start] = Heuristic(request.Start, request.Goal) };
+            FrontierNodesBuffer.Clear();
+            PreviousEdgeByNodeBuffer.Clear();
+            CostFromStartByNodeBuffer.Clear();
+            EstimatedTotalCostByNodeBuffer.Clear();
 
-            while (open.Count > 0)
+            // open: СЃРїРёСЃРѕРє РєР»РµС‚РѕРє, РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ РёСЃСЃР»РµРґРѕРІР°С‚СЊ (frontier).
+            FrontierNodesBuffer.Add(request.Start);
+            // cameFrom: РґР»СЏ РєР°Р¶РґРѕР№ РґРѕСЃС‚РёРіРЅСѓС‚РѕР№ РєР»РµС‚РєРё С…СЂР°РЅРёРј "СЂРµР±СЂРѕ-РїСЂРµРґРѕРє",
+            // С‡С‚РѕР±С‹ РїРѕС‚РѕРј РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР»РЅС‹Р№ РїСѓС‚СЊ РѕС‚ Goal Рє Start.
+            // gScore: С„Р°РєС‚РёС‡РµСЃРєР°СЏ РЅР°РєРѕРїР»РµРЅРЅР°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ РїСѓС‚Рё РѕС‚ Start РґРѕ РєР»РµС‚РєРё.
+            CostFromStartByNodeBuffer[request.Start] = 0f;
+            // fScore: РѕС†РµРЅРєР° "РЅР°СЃРєРѕР»СЊРєРѕ РІС‹РіРѕРґРЅРѕ РёСЃСЃР»РµРґРѕРІР°С‚СЊ РєР»РµС‚РєСѓ РґР°Р»СЊС€Рµ":
+            // f = g + h, РіРґРµ h вЂ” СЌРІСЂРёСЃС‚РёРєР° РґРѕ С†РµР»Рё.
+            EstimatedTotalCostByNodeBuffer[request.Start] = Heuristic(request.Start, request.Goal);
+
+            while (FrontierNodesBuffer.Count > 0)
             {
-                // Берём из open клетку с минимальным fScore.
-                var current = ExtractBest(open, fScore);
+                // Р‘РµСЂС‘Рј РёР· open РєР»РµС‚РєСѓ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј fScore.
+                var current = ExtractBest(FrontierNodesBuffer, EstimatedTotalCostByNodeBuffer);
                 if (current == request.Goal)
                 {
-                    // Цель достигнута — восстанавливаем путь по cameFrom.
-                    return BuildResult(cameFrom, current, request.Start);
+                    // Р¦РµР»СЊ РґРѕСЃС‚РёРіРЅСѓС‚Р° вЂ” РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїСѓС‚СЊ РїРѕ cameFrom.
+                    return BuildResult(PreviousEdgeByNodeBuffer, current, request.Start);
                 }
 
-                // Генерируем все допустимые действия из текущей клетки:
-                // walk/fall/climb/dig/build ladder и т.п.
+                // Р“РµРЅРµСЂРёСЂСѓРµРј РІСЃРµ РґРѕРїСѓСЃС‚РёРјС‹Рµ РґРµР№СЃС‚РІРёСЏ РёР· С‚РµРєСѓС‰РµР№ РєР»РµС‚РєРё:
+                // walk/fall/climb/dig/build ladder Рё С‚.Рї.
                 var edges = _graphProvider.BuildEdges(grid, current, request.UnitId);
                 for (int i = 0; i < edges.Count; i++)
                 {
                     var edge = edges[i];
                     if (edge.To == current && (edge.ActionType == MovementActionType.Dig || edge.ActionType == MovementActionType.BuildLadder))
                     {
-                        // Действия "на месте" не продвигают узел в A*.
+                        // Р”РµР№СЃС‚РІРёСЏ "РЅР° РјРµСЃС‚Рµ" РЅРµ РїСЂРѕРґРІРёРіР°СЋС‚ СѓР·РµР» РІ A*.
                         continue;
                     }
 
-                    float currentG = gScore.TryGetValue(current, out var g) ? g : float.PositiveInfinity;
-                    // tentative — стоимость пути через current до edge.To.
+                    float currentG = CostFromStartByNodeBuffer.TryGetValue(current, out var g) ? g : float.PositiveInfinity;
+                    // tentative вЂ” СЃС‚РѕРёРјРѕСЃС‚СЊ РїСѓС‚Рё С‡РµСЂРµР· current РґРѕ edge.To.
                     float tentative = currentG + edge.Cost;
 
-                    // Релаксация ребра: принимаем новый путь, если он дешевле старого.
-                    if (!gScore.TryGetValue(edge.To, out var old) || tentative < old)
+                    // Р РµР»Р°РєСЃР°С†РёСЏ СЂРµР±СЂР°: РїСЂРёРЅРёРјР°РµРј РЅРѕРІС‹Р№ РїСѓС‚СЊ, РµСЃР»Рё РѕРЅ РґРµС€РµРІР»Рµ СЃС‚Р°СЂРѕРіРѕ.
+                    if (!CostFromStartByNodeBuffer.TryGetValue(edge.To, out var old) || tentative < old)
                     {
-                        cameFrom[edge.To] = edge;
-                        gScore[edge.To] = tentative;
-                        fScore[edge.To] = tentative + Heuristic(edge.To, request.Goal);
+                        PreviousEdgeByNodeBuffer[edge.To] = edge;
+                        CostFromStartByNodeBuffer[edge.To] = tentative;
+                        EstimatedTotalCostByNodeBuffer[edge.To] = tentative + Heuristic(edge.To, request.Goal);
 
-                        if (!open.Contains(edge.To))
+                        if (!FrontierNodesBuffer.Contains(edge.To))
                         {
-                            open.Add(edge.To);
+                            FrontierNodesBuffer.Add(edge.To);
                         }
                     }
                 }
             }
 
-            // Если frontier опустела, но цель не достигнута — пути нет.
+            // Р•СЃР»Рё frontier РѕРїСѓСЃС‚РµР»Р°, РЅРѕ С†РµР»СЊ РЅРµ РґРѕСЃС‚РёРіРЅСѓС‚Р° вЂ” РїСѓС‚Рё РЅРµС‚.
             return PathResult.Failed;
         }
 
@@ -94,24 +104,24 @@ namespace _Project.Scripts.Systems.Pathfinding
 
         private static float Heuristic(Vector2Int a, Vector2Int b)
         {
-            // Манхэттен для клеточного мира.
+            // РњР°РЅС…СЌС‚С‚РµРЅ РґР»СЏ РєР»РµС‚РѕС‡РЅРѕРіРѕ РјРёСЂР°.
             return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
         }
 
         private static PathResult BuildResult(Dictionary<Vector2Int, MovementActionEdge> cameFrom, Vector2Int current, Vector2Int start)
         {
-            var edges = new List<MovementActionEdge>();
-            // Идём от Goal назад к Start по "родителям".
+            ResultPathEdgesBuffer.Clear();
+            // РРґС‘Рј РѕС‚ Goal РЅР°Р·Р°Рґ Рє Start РїРѕ "СЂРѕРґРёС‚РµР»СЏРј".
             while (current != start)
             {
                 if (!cameFrom.TryGetValue(current, out var edge)) return PathResult.Failed;
-                edges.Add(edge);
+                ResultPathEdgesBuffer.Add(edge);
                 current = edge.From;
             }
 
-            // Развернули "назад", превращаем в порядок Start -> Goal.
-            edges.Reverse();
-            return new PathResult(true, edges);
+            // Р Р°Р·РІРµСЂРЅСѓР»Рё "РЅР°Р·Р°Рґ", РїСЂРµРІСЂР°С‰Р°РµРј РІ РїРѕСЂСЏРґРѕРє Start -> Goal.
+            ResultPathEdgesBuffer.Reverse();
+            return new PathResult(true, ResultPathEdgesBuffer.ToArray());
         }
     }
 }

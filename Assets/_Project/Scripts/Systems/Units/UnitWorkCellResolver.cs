@@ -281,7 +281,7 @@ namespace _Project.Scripts.Systems.Units
         }
 
         /// <summary>
-        /// ���������� ��������-�������� �������, ������ ������ storage �� ������� delivery-������ � ����.
+        /// Возвращает клетку-источник ресурса, склад которой подходит для delivery-задачи к цели.
         /// </summary>
         // Method ExplainWhyNoDeliveryCellForStorage: executes the ExplainWhyNoDeliveryCellForStorage workflow.
         public string ExplainWhyNoDeliveryCellForStorage(int unitId, Vector2Int unitCell, Vector2Int storageCell)
@@ -441,13 +441,13 @@ namespace _Project.Scripts.Systems.Units
             Vector2Int down = MovementSupportRules.GetDownDirection(cell);
             return MovementSupportRules.IsCellStandableForMovement(_grid, cellPos, down);
 #if false
-            // Bridge ��� ���������� ��������� ����������� ������ ��� ������� �������.
+            // Bridge для получения временно зарезервированных ресурсов для текущей задачи.
             return IsBridgeCell(supportCell) || !IsAirCell(supportCell);
 #endif
         }
 
         /// <summary>
-        /// ���������� ������-����������� �� 8 ������� ������ targetCell ��� build-������.
+        /// Возвращает клетку-поставщик из 8 соседей вокруг targetCell для build-задачи.
         /// </summary>
         // Method GetBuildNeighborDiagnostics: executes the GetBuildNeighborDiagnostics workflow.
         public string GetBuildNeighborDiagnostics(int unitId, Vector2Int unitCell, Vector2Int targetCell)
@@ -617,12 +617,12 @@ namespace _Project.Scripts.Systems.Units
 
             bool cornerAFree = cornerCellA.Type == CellType.Empty || cornerCellA.Type == CellType.Atmosphere;
             bool cornerBFree = cornerCellB.Type == CellType.Empty || cornerCellB.Type == CellType.Atmosphere;
-            // ��� ������� �� ��������� ���������� ������ "��������� �����" ����.
+            // Для стройки из доступных ресурсов ищем "ближайший склад".
             return cornerAFree || cornerBFree;
         }
 
         /// <summary>
-        /// ���������, ��� targetCell ��������� ������ �� ���� ������ ���� ��� ���� unitCell.
+        /// Проверяет, что targetCell находится рядом с одной из клеток пути для unitCell.
         /// </summary>
         // Method IsDirectVerticalNeighbor: executes the IsDirectVerticalNeighbor workflow.
         private static bool IsDirectVerticalNeighbor(Vector2Int unitCell, Vector2Int targetCell)

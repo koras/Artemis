@@ -4,16 +4,16 @@ using UnityEngine;
 namespace _Project.Scripts.Data.Construction
 {
     /// <summary>
-    /// Допданные задачи строительства.
+    /// Р”РѕРїРґР°РЅРЅС‹Рµ Р·Р°РґР°С‡Рё СЃС‚СЂРѕРёС‚РµР»СЊСЃС‚РІР°.
     /// </summary>
     public sealed class BuildTaskPayload
     {
-        public BuildingDef BuildingDef;   // Что именно строим.
-        public Vector2Int AnchorCell;     // Якорная клетка объекта (левый-нижний угол).
-        public bool IsRotated;            // Повернут ли объект.
-        public bool IsExcavatingBeforeBuild; // Флаг ожидания подзадач очистки footprint перед строительством.
-        public int RemainingClearSubtasks; // Сколько дочерних задач очистки еще не завершено.
-        public bool IsBuildCostPaid;     // Стоимость уже списана со склада перед началом работы.
-        public int RemainingBuildTicks;   // Оставшийся прогресс задачи.
+        public BuildingDef BuildingDef;   // Р§С‚Рѕ РёРјРµРЅРЅРѕ СЃС‚СЂРѕРёРј.
+        public Vector2Int AnchorCell;     // РЇРєРѕСЂРЅР°СЏ РєР»РµС‚РєР° РѕР±СЉРµРєС‚Р° (Р»РµРІС‹Р№-РЅРёР¶РЅРёР№ СѓРіРѕР»).
+        public bool IsRotated;            // РџРѕРІРµСЂРЅСѓС‚ Р»Рё РѕР±СЉРµРєС‚.
+        public bool IsExcavatingBeforeBuild; // Р¤Р»Р°Рі РѕР¶РёРґР°РЅРёСЏ РїРѕРґР·Р°РґР°С‡ РѕС‡РёСЃС‚РєРё footprint РїРµСЂРµРґ СЃС‚СЂРѕРёС‚РµР»СЊСЃС‚РІРѕРј.
+        public int RemainingClearSubtasks; // РЎРєРѕР»СЊРєРѕ РґРѕС‡РµСЂРЅРёС… Р·Р°РґР°С‡ РѕС‡РёСЃС‚РєРё РµС‰Рµ РЅРµ Р·Р°РІРµСЂС€РµРЅРѕ.
+        public bool IsBuildCostPaid;     // РЎС‚РѕРёРјРѕСЃС‚СЊ СѓР¶Рµ СЃРїРёСЃР°РЅР° СЃРѕ СЃРєР»Р°РґР° РїРµСЂРµРґ РЅР°С‡Р°Р»РѕРј СЂР°Р±РѕС‚С‹.
+        public int RemainingBuildTicks;   // РћСЃС‚Р°РІС€РёР№СЃСЏ РїСЂРѕРіСЂРµСЃСЃ Р·Р°РґР°С‡Рё.
     }
 }

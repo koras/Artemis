@@ -3,7 +3,7 @@ using UnityEngine;
 namespace _Project.Scripts.Systems.Grid
 {
     /// <summary>
-    /// ����������� ��������� ����� world � grid.
+    /// Конвертирует координаты точки world в координаты клетки grid.
     /// </summary>
     public sealed class GridCoordinateConverter
     {
@@ -26,7 +26,7 @@ namespace _Project.Scripts.Systems.Grid
         }
 
         /// <summary>
-        /// ����� ������ � world-����������� (������ ��� ���������).
+        /// Возвращает центр клетки в world-координатах (удобно для размещения).
         /// </summary>
         public Vector2 CellToWorldCenter(Vector2Int cell)
         {

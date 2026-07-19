@@ -5,7 +5,7 @@ using UnityEngine;
 namespace _Project.Scripts.Presentation.Buildings
 {
     /// <summary>
-    /// Runtime-РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РїРѕСЃС‚СЂРѕРµРЅРЅРѕР№ СЃРѕР»РЅРµС‡РЅРѕР№ РїР°РЅРµР»Рё.
+    /// Runtime-представление построенной солнечной панели.
     /// </summary>
     public sealed class SolarPanelBuildingView : BuildingViewBase
     {

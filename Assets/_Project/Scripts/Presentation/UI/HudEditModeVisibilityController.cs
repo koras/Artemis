@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace _Project.Scripts.Presentation.UI
 {
     /// <summary>
-    /// Скрывает HUD в Edit Mode и автоматически включает его в Play Mode.
+    /// РЎРєСЂС‹РІР°РµС‚ HUD РІ Edit Mode Рё Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІРєР»СЋС‡Р°РµС‚ РµРіРѕ РІ Play Mode.
     /// </summary>
     [ExecuteAlways]
     public sealed class HudEditModeVisibilityController : MonoBehaviour
