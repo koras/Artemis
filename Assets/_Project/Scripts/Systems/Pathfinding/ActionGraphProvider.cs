@@ -41,7 +41,6 @@ namespace _Project.Scripts.Systems.Pathfinding
             TryStepUpOntoSupport(grid, from, up, left, down, _movementActionEdgesBuffer);
             TryStepDownFromSupport(grid, from, right, down, _movementActionEdgesBuffer);
             TryStepDownFromSupport(grid, from, left, down, _movementActionEdgesBuffer);
-
             TryFall(grid, from, down, _movementActionEdgesBuffer);
 
             TryDig(grid, from, down, unitId, _movementActionEdgesBuffer);
@@ -219,8 +218,9 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            // This edge is the narrow "climb out of a one-cell pit / onto one-cell ledge" case.
-            // It keeps the old escape behavior without reintroducing free diagonal walking or diagonal falling.
+            // Разрешаем только короткий подъём на уступ высотой в одну клетку.
+            // Это не свободное диагональное перемещение: сбоку должна быть опора,
+            // а клетки над юнитом и в точке приземления должны быть пустыми.
             if (!IsAirCell(upCell) || !IsAirCell(targetCell))
             {
                 return;
@@ -268,8 +268,9 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            // This is the narrow "step off a ledge into the first lower corridor cell" case.
-            // It restores pathing into multi-cell trenches without reopening free diagonal routing.
+            // Разрешаем только короткий спуск на одну клетку вниз с края опоры.
+            // Это не обычное диагональное движение: из текущей клетки нужна опора,
+            // а соседняя боковая клетка должна быть свободна для схода вниз.
             if (IsLadderCell(fromCell) || IsLadderCell(sideCell) || IsLadderCell(targetCell))
             {
                 return;

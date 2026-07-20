@@ -262,15 +262,18 @@ namespace _Project.Scripts.Presentation.Character
         public void SetWorkPresentation(Vector2 targetWorld)
         {
             Vector2 originWorld = GetWorkOriginWorldPosition();
-            Vector2 direction = targetWorld - originWorld;
+            Vector2 beamDirection = targetWorld - originWorld;
+            Vector2 actorDirection = targetWorld - (Vector2)transform.position;
+            Vector2 presentationDirection = ResolveWorkPresentationDirection(actorDirection);
+            ApplyWorkFacing(presentationDirection);
 
             // Work aim rig remains optional for prefabs that only need the beam presentation.
             if (_workAimRig != null)
             {
-                _workAimRig.SetWorkAim(direction);
+                _workAimRig.SetWorkAim(beamDirection);
             }
 
-            PlayWorkAnimation(direction);
+            PlayWorkAnimation(presentationDirection);
             UpdateWorkBeam(originWorld, targetWorld);
         }
 
@@ -570,6 +573,17 @@ namespace _Project.Scripts.Presentation.Character
             return new Vector2(fallbackWorldPosition.x, fallbackWorldPosition.y);
         }
 
+        private void ApplyWorkFacing(Vector2 direction)
+        {
+            if (Mathf.Abs(direction.x) <= 0.05f)
+            {
+                return;
+            }
+
+            int horizontalSign = direction.x > 0f ? 1 : -1;
+            SetFacing(new Vector2Int(horizontalSign, 0));
+        }
+
         private void PlayWorkAnimation(Vector2 direction)
         {
             InitializeSpinePresentation();
@@ -621,6 +635,17 @@ namespace _Project.Scripts.Presentation.Character
             }
 
             return WORK_ANIMATION_NAMES[4];
+        }
+
+        private static Vector2 ResolveWorkPresentationDirection(Vector2 actorDirection)
+        {
+            if (actorDirection.sqrMagnitude <= 0.0001f)
+            {
+                // Working on the same cell should use the downward work animation instead of the horizontal fallback.
+                return Vector2.down;
+            }
+
+            return actorDirection;
         }
 
         private void InitializeSpinePresentation()
