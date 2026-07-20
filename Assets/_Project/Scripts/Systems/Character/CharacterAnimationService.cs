@@ -42,17 +42,16 @@ namespace _Project.Scripts.Systems.Character
             bool isEating = state.State == UnitExecutionState.Eating;
             UnitTaskRecord task;
             bool isWorkActive = TryGetCurrentTask(state, out task) && IsWorkTask(task.TaskType);
-            actor.SetAnimationState(ResolveAnimationState(actor, isMoving, isEating));
 
             if (!isWorkActive)
             {
-                actor.DisableWorkAim();
+                actor.ClearWorkPresentation();
+                actor.SetAnimationState(ResolveAnimationState(actor, isMoving, isEating));
                 return;
             }
 
             Vector2 targetWorld = _gridCoordinateConverter.CellToWorldCenter(task.TargetCell);
-            Vector2 direction = targetWorld - (Vector2)actor.transform.position;
-            actor.SetWorkAim(direction, targetWorld);
+            actor.SetWorkPresentation(targetWorld);
         }
 
         private bool TryGetCurrentTask(UnitTaskState state, out UnitTaskRecord task)

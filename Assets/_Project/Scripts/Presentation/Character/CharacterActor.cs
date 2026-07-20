@@ -14,6 +14,18 @@ namespace _Project.Scripts.Presentation.Character
     {
         private static readonly HashSet<CharacterActor> INSTANCES = new HashSet<CharacterActor>();
         private static readonly List<string> RandomSkinCandidatesBuffer = new List<string>(16);
+        private const string WORK_BEAM_START_NAME = "SphereStart";
+        private const string WORK_BEAM_END_NAME = "SphereEnd";
+        private const string WORK_POINT_BONE_NAME = "POINT_LASER";
+        private const string WORK_WEAPON_SLOT_NAME = "pistol";
+        private static readonly string[] WORK_ANIMATION_NAMES =
+        {
+            "laser_01",
+            "laser_02",
+            "laser_03",
+            "laser_04",
+            "laser_05"
+        };
 
         private static float _globalMovementSpeedMultiplier = 1f;
         private static bool _isGlobalPaused;
@@ -46,6 +58,8 @@ namespace _Project.Scripts.Presentation.Character
         private Transform _workBeamStart;
         private Transform _workBeamEnd;
         private LineRenderer _workBeamLineRenderer;
+        private Bone _workOriginBone;
+        private string _currentWorkAnimationName = string.Empty;
         // Tracks whether the visual movement target has been initialized.
         private bool _hasTargetWorldPosition;
         private bool _hasQueuedWorldPosition;
@@ -63,8 +77,6 @@ namespace _Project.Scripts.Presentation.Character
         private readonly Dictionary<string, int> _foodPreferenceByResourceId = new Dictionary<string, int>();
         private int _foodPreferencesVersion;
         private string _lastProcessedRuntimeSkinOverride = string.Empty;
-        private const string WORK_BEAM_START_NAME = "SphereStart";
-        private const string WORK_BEAM_END_NAME = "SphereEnd";
 
         public int Hunger => _hunger;
         public int SleepDesire => _sleepDesire;
@@ -247,21 +259,25 @@ namespace _Project.Scripts.Presentation.Character
         /// <summary>
         /// Routes work-direction updates to the prefab-owned aim rig.
         /// </summary>
-        public void SetWorkAim(Vector2 direction, Vector2 targetWorld)
+        public void SetWorkPresentation(Vector2 targetWorld)
         {
+            Vector2 originWorld = GetWorkOriginWorldPosition();
+            Vector2 direction = targetWorld - originWorld;
+
             // Work aim rig remains optional for prefabs that only need the beam presentation.
             if (_workAimRig != null)
             {
                 _workAimRig.SetWorkAim(direction);
             }
 
-            UpdateWorkBeam(targetWorld);
+            PlayWorkAnimation(direction);
+            UpdateWorkBeam(originWorld, targetWorld);
         }
 
         /// <summary>
         /// Stops work-direction aiming when the unit leaves a work action.
         /// </summary>
-        public void DisableWorkAim()
+        public void ClearWorkPresentation()
         {
             // Work aim rig remains optional for prefabs that only need the beam presentation.
             if (_workAimRig != null)
@@ -269,6 +285,7 @@ namespace _Project.Scripts.Presentation.Character
                 _workAimRig.DisableWorkAim();
             }
 
+            _currentWorkAnimationName = string.Empty;
             SetWorkBeamActive(false);
         }
 
@@ -457,7 +474,7 @@ namespace _Project.Scripts.Presentation.Character
             _workBeamLineRenderer = _workBeamInstance.GetComponentInChildren<LineRenderer>(true);
         }
 
-        private void UpdateWorkBeam(Vector2 targetWorld)
+        private void UpdateWorkBeam(Vector2 originWorld, Vector2 targetWorld)
         {
             if (_workBeamPrefab == null)
             {
@@ -473,13 +490,12 @@ namespace _Project.Scripts.Presentation.Character
                 }
             }
 
-            Transform workBeamOrigin = _workBeamOrigin != null ? _workBeamOrigin : transform;
-            Vector3 originWorld = workBeamOrigin.position;
-            Vector3 targetWorldPosition = new Vector3(targetWorld.x, targetWorld.y, originWorld.z);
+            Vector3 beamOriginWorldPosition = new Vector3(originWorld.x, originWorld.y, transform.position.z);
+            Vector3 targetWorldPosition = new Vector3(targetWorld.x, targetWorld.y, beamOriginWorldPosition.z);
 
             if (_workBeamStart != null)
             {
-                _workBeamStart.position = originWorld;
+                _workBeamStart.position = beamOriginWorldPosition;
             }
 
             if (_workBeamEnd != null)
@@ -490,7 +506,7 @@ namespace _Project.Scripts.Presentation.Character
             if (_workBeamLineRenderer != null)
             {
                 _workBeamLineRenderer.positionCount = 2;
-                _workBeamLineRenderer.SetPosition(0, originWorld);
+                _workBeamLineRenderer.SetPosition(0, beamOriginWorldPosition);
                 _workBeamLineRenderer.SetPosition(1, targetWorldPosition);
             }
 
@@ -512,6 +528,101 @@ namespace _Project.Scripts.Presentation.Character
             _workBeamInstance.SetActive(isActive);
         }
 
+        private void CacheWorkOriginBone()
+        {
+            _workOriginBone = null;
+            if (_skeletonAnimation == null || !_skeletonAnimation.IsValid)
+            {
+                return;
+            }
+
+            Skeleton skeleton = _skeletonAnimation.Skeleton;
+            _workOriginBone = skeleton.FindBone(WORK_POINT_BONE_NAME);
+            if (_workOriginBone != null)
+            {
+                return;
+            }
+
+            Slot weaponSlot = skeleton.FindSlot(WORK_WEAPON_SLOT_NAME);
+            _workOriginBone = weaponSlot?.Bone;
+        }
+
+        private Vector2 GetWorkOriginWorldPosition()
+        {
+            if (_skeletonAnimation != null && _skeletonAnimation.IsValid)
+            {
+                if (_workOriginBone == null)
+                {
+                    CacheWorkOriginBone();
+                }
+
+                if (_workOriginBone != null)
+                {
+                    BonePose workOriginPose = _workOriginBone.AppliedPose;
+                    Vector3 worldPosition = _skeletonAnimation.transform.TransformPoint(
+                        new Vector3(workOriginPose.WorldX, workOriginPose.WorldY, 0f));
+                    return new Vector2(worldPosition.x, worldPosition.y);
+                }
+            }
+
+            Transform workBeamOrigin = _workBeamOrigin != null ? _workBeamOrigin : transform;
+            Vector3 fallbackWorldPosition = workBeamOrigin.position;
+            return new Vector2(fallbackWorldPosition.x, fallbackWorldPosition.y);
+        }
+
+        private void PlayWorkAnimation(Vector2 direction)
+        {
+            InitializeSpinePresentation();
+
+            if (_skeletonAnimation == null || !_skeletonAnimation.IsValid)
+            {
+                return;
+            }
+
+            string animationName = ResolveWorkAnimationName(direction);
+            if (string.Equals(_currentWorkAnimationName, animationName, StringComparison.Ordinal))
+            {
+                return;
+            }
+
+            _currentWorkAnimationName = animationName;
+            _skeletonAnimation.AnimationState.SetAnimation(0, animationName, true);
+        }
+
+        private static string ResolveWorkAnimationName(Vector2 direction)
+        {
+            if (direction.sqrMagnitude <= 0.0001f)
+            {
+                return WORK_ANIMATION_NAMES[2];
+            }
+
+            Vector2 normalizedDirection = direction.normalized;
+            float mirroredX = Mathf.Abs(normalizedDirection.x);
+            float angle = Mathf.Atan2(normalizedDirection.y, mirroredX) * Mathf.Rad2Deg;
+
+            if (angle >= 67.5f)
+            {
+                return WORK_ANIMATION_NAMES[0];
+            }
+
+            if (angle >= 22.5f)
+            {
+                return WORK_ANIMATION_NAMES[1];
+            }
+
+            if (angle > -22.5f)
+            {
+                return WORK_ANIMATION_NAMES[2];
+            }
+
+            if (angle > -67.5f)
+            {
+                return WORK_ANIMATION_NAMES[3];
+            }
+
+            return WORK_ANIMATION_NAMES[4];
+        }
+
         private void InitializeSpinePresentation()
         {
             if (_skeletonAnimation == null)
@@ -521,6 +632,7 @@ namespace _Project.Scripts.Presentation.Character
 
             _skeletonAnimation.Initialize(false);
             CacheAvailableSkinNames();
+            CacheWorkOriginBone();
             EnsureFallbackSkinApplied();
 
             if (string.IsNullOrWhiteSpace(_currentSkinName) && _skeletonAnimation.IsValid)

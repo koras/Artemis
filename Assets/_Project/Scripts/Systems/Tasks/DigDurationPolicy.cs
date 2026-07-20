@@ -11,11 +11,11 @@ namespace _Project.Scripts.Systems.Tasks
         {
             switch (cellType)
             {
-                case CellType.Iron: return 1.1f;
-                case CellType.Titan: return 1.1f;
-                case CellType.Aluminium: return 1.1f;
-                case CellType.Rogalite: return 1.1f;
-                default: return 1.1f;
+                case CellType.Iron: return 3.1f;
+                case CellType.Titan: return 3.1f;
+                case CellType.Aluminium: return 3.1f;
+                case CellType.Rogalite: return 3.1f;
+                default: return 4.1f;
             }
         }
     }
