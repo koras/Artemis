@@ -52,7 +52,7 @@ namespace _Project.Scripts.Systems.Character
 
             Vector2 targetWorld = _gridCoordinateConverter.CellToWorldCenter(task.TargetCell);
             Vector2 direction = targetWorld - (Vector2)actor.transform.position;
-            actor.SetWorkAim(direction);
+            actor.SetWorkAim(direction, targetWorld);
         }
 
         private bool TryGetCurrentTask(UnitTaskState state, out UnitTaskRecord task)

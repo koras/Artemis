@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Presentation.Character.CharacterActor
   _skeletonAnimation: {fileID: 4111111111111111115}
   _workAimRig: {fileID: 0}
+  _workBeamPrefab: {fileID: 10152350559324181, guid: 80eb9ccaa8dd0bf61bca286605600b78, type: 3}
+  _workBeamOrigin: {fileID: 6773676903308163093}
   _availableSkinNames: []
   _currentSkinName: 
   _runtimeSkinOverride: 

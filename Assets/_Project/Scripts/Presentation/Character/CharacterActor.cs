@@ -21,6 +21,8 @@ namespace _Project.Scripts.Presentation.Character
         [Header("Animation")]
         [SerializeField] private SkeletonAnimation _skeletonAnimation;
         [SerializeField] private CharacterWorkAimRig _workAimRig;
+        [SerializeField] private GameObject _workBeamPrefab;
+        [SerializeField] private Transform _workBeamOrigin;
         [SerializeField] private List<string> _availableSkinNames = new List<string>();
         [SerializeField] private string _currentSkinName = string.Empty;
         [SerializeField] private string _runtimeSkinOverride = string.Empty;
@@ -39,6 +41,11 @@ namespace _Project.Scripts.Presentation.Character
         private Vector3 _queuedWorldPosition;
         private MovementActionType _queuedMovementAnimationAction;
         private bool _queuedShouldUseDownAnimationForCurrentMove;
+        // Runtime instance of the beam VFX that is shown only while the unit is working.
+        private GameObject _workBeamInstance;
+        private Transform _workBeamStart;
+        private Transform _workBeamEnd;
+        private LineRenderer _workBeamLineRenderer;
         // Tracks whether the visual movement target has been initialized.
         private bool _hasTargetWorldPosition;
         private bool _hasQueuedWorldPosition;
@@ -56,6 +63,8 @@ namespace _Project.Scripts.Presentation.Character
         private readonly Dictionary<string, int> _foodPreferenceByResourceId = new Dictionary<string, int>();
         private int _foodPreferencesVersion;
         private string _lastProcessedRuntimeSkinOverride = string.Empty;
+        private const string WORK_BEAM_START_NAME = "SphereStart";
+        private const string WORK_BEAM_END_NAME = "SphereEnd";
 
         public int Hunger => _hunger;
         public int SleepDesire => _sleepDesire;
@@ -80,6 +89,7 @@ namespace _Project.Scripts.Presentation.Character
         private void Awake()
         {
             INSTANCES.Add(this);
+            InitializeWorkBeam();
             InitializeSpinePresentation();
             ApplyPauseState();
         }
@@ -237,15 +247,15 @@ namespace _Project.Scripts.Presentation.Character
         /// <summary>
         /// Routes work-direction updates to the prefab-owned aim rig.
         /// </summary>
-        public void SetWorkAim(Vector2 direction)
+        public void SetWorkAim(Vector2 direction, Vector2 targetWorld)
         {
-            // Work aim is optional while the Astro Spine integration does not use the old weapon/bone rig.
-            if (_workAimRig == null)
+            // Work aim rig remains optional for prefabs that only need the beam presentation.
+            if (_workAimRig != null)
             {
-                return;
+                _workAimRig.SetWorkAim(direction);
             }
 
-            _workAimRig.SetWorkAim(direction);
+            UpdateWorkBeam(targetWorld);
         }
 
         /// <summary>
@@ -253,13 +263,13 @@ namespace _Project.Scripts.Presentation.Character
         /// </summary>
         public void DisableWorkAim()
         {
-            // Work aim is optional while the Astro Spine integration does not use the old weapon/bone rig.
-            if (_workAimRig == null)
+            // Work aim rig remains optional for prefabs that only need the beam presentation.
+            if (_workAimRig != null)
             {
-                return;
+                _workAimRig.DisableWorkAim();
             }
 
-            _workAimRig.DisableWorkAim();
+            SetWorkBeamActive(false);
         }
 
         /// <summary>
@@ -427,6 +437,79 @@ namespace _Project.Scripts.Presentation.Character
 
             // Pause must freeze the full authored Spine playback, while speed presets scale all character clips.
             _skeletonAnimation.timeScale = _isGlobalPaused ? 0f : MovementAnimationPlaybackSpeed;
+        }
+
+        private void InitializeWorkBeam()
+        {
+            if (_workBeamPrefab == null)
+            {
+                return;
+            }
+
+            // Instantiate the authored beam prefab once and keep it disabled until work begins.
+            _workBeamInstance = Instantiate(_workBeamPrefab, transform);
+            _workBeamInstance.name = _workBeamPrefab.name;
+            _workBeamInstance.SetActive(false);
+
+            Transform workBeamRoot = _workBeamInstance.transform;
+            _workBeamStart = workBeamRoot.Find(WORK_BEAM_START_NAME);
+            _workBeamEnd = workBeamRoot.Find(WORK_BEAM_END_NAME);
+            _workBeamLineRenderer = _workBeamInstance.GetComponentInChildren<LineRenderer>(true);
+        }
+
+        private void UpdateWorkBeam(Vector2 targetWorld)
+        {
+            if (_workBeamPrefab == null)
+            {
+                return;
+            }
+
+            if (_workBeamInstance == null)
+            {
+                InitializeWorkBeam();
+                if (_workBeamInstance == null)
+                {
+                    return;
+                }
+            }
+
+            Transform workBeamOrigin = _workBeamOrigin != null ? _workBeamOrigin : transform;
+            Vector3 originWorld = workBeamOrigin.position;
+            Vector3 targetWorldPosition = new Vector3(targetWorld.x, targetWorld.y, originWorld.z);
+
+            if (_workBeamStart != null)
+            {
+                _workBeamStart.position = originWorld;
+            }
+
+            if (_workBeamEnd != null)
+            {
+                _workBeamEnd.position = targetWorldPosition;
+            }
+
+            if (_workBeamLineRenderer != null)
+            {
+                _workBeamLineRenderer.positionCount = 2;
+                _workBeamLineRenderer.SetPosition(0, originWorld);
+                _workBeamLineRenderer.SetPosition(1, targetWorldPosition);
+            }
+
+            SetWorkBeamActive(true);
+        }
+
+        private void SetWorkBeamActive(bool isActive)
+        {
+            if (_workBeamInstance == null)
+            {
+                return;
+            }
+
+            if (_workBeamInstance.activeSelf == isActive)
+            {
+                return;
+            }
+
+            _workBeamInstance.SetActive(isActive);
         }
 
         private void InitializeSpinePresentation()

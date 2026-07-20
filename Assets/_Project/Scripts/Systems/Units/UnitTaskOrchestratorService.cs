@@ -665,31 +665,31 @@ namespace _Project.Scripts.Systems.Units
 
                         task.BuildPayload.IsExcavatingBeforeBuild = false;
                         _buildingManager.MarkBuildInProgress(task.BuildPayload);
-                        state.State = UnitExecutionState.Working;
+                        EnterWorkingState(state);
                         return;
                     }
 
                     if (task.TaskType == UnitTaskType.BuildCable)
                     {
-                        state.State = UnitExecutionState.Working;
+                        EnterWorkingState(state);
                         return;
                     }
 
                     if (task.TaskType == UnitTaskType.DestroyCable)
                     {
-                        state.State = UnitExecutionState.Working;
+                        EnterWorkingState(state);
                         return;
                     }
 
                     if (task.TaskType == UnitTaskType.BuildWater)
                     {
-                        state.State = UnitExecutionState.Working;
+                        EnterWorkingState(state);
                         return;
                     }
 
                     if (task.TaskType == UnitTaskType.DestroyWater)
                     {
-                        state.State = UnitExecutionState.Working;
+                        EnterWorkingState(state);
                         return;
                     }
 
@@ -702,7 +702,7 @@ namespace _Project.Scripts.Systems.Units
                             return;
                         }
 
-                        state.State = UnitExecutionState.Working;
+                        EnterWorkingState(state);
                         return;
                     }
 
@@ -727,7 +727,7 @@ namespace _Project.Scripts.Systems.Units
                     if (task.TaskType == UnitTaskType.DestroyObject)
                     {
                         _buildingManager.MarkDestroyInProgress(task.BuildPayload);
-                        state.State = UnitExecutionState.Working;
+                        EnterWorkingState(state);
                         return;
                     }
 
@@ -738,6 +738,7 @@ namespace _Project.Scripts.Systems.Units
                         ? targetCell.ResourceAmount
                         : UnitResourceDeliveryService.GetMinedAmount(state.StartedDigCellType);
                     _taskExecution.TryStartDig(ref state, targetCell.Type);
+                    SnapActorToCurrentCell(state);
                     return;
                 }
 
@@ -1054,6 +1055,30 @@ namespace _Project.Scripts.Systems.Units
 
             // Movement target is updated so actor smoothly moves to the new cell center.
             state.Actor.SetMoveTarget(targetWorld);
+        }
+
+        /// <summary>
+        /// Snaps the actor to the current work cell and switches the unit into working state.
+        /// </summary>
+        private void EnterWorkingState(UnitTaskState state)
+        {
+            SnapActorToCurrentCell(state);
+            state.State = UnitExecutionState.Working;
+        }
+
+        /// <summary>
+        /// Stops any pending interpolation so the actor stays fixed while working.
+        /// </summary>
+        private void SnapActorToCurrentCell(UnitTaskState state)
+        {
+            if (state.Actor == null)
+            {
+                return;
+            }
+
+            Vector2 world = _gridCoordinateConverter.CellToWorldCenter(state.CurrentCell);
+            Vector3 snappedWorld = new Vector3(world.x, world.y, state.Actor.transform.position.z);
+            state.Actor.SnapToWorldPosition(snappedWorld);
         }
 
         private void SyncActorStepPosition(
