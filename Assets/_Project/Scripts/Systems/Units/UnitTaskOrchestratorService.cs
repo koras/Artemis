@@ -641,6 +641,14 @@ namespace _Project.Scripts.Systems.Units
 
                 // 7) If unit reached a valid work cell, start Working state.
                 // Also refresh task status to InProgress and reset movement counters.
+                // CurrentCell is updated when a navigation step is issued, while the actor
+                // reaches that cell asynchronously. Do not start work before the visual step
+                // has finished, otherwise EnterWorkingState can snap the actor over the last edge.
+                if (!state.Actor.IsAtMoveTarget())
+                {
+                    return;
+                }
+
                 if (CanStartWorkFromCell(state.CurrentCell, task))
                 {
                     // Branch rule: if (task.TaskType == UnitTaskType.BuildObject && TryDeferBuildForExcavation(state, task)) we take this path; otherwise flow continues.
