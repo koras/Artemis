@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: IndiaHabitatOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-india-02
+  Customer: {fileID: 11400000, guid: 25c88a3a458474041a03a7c451c7c696, type: 2}
+  Title: "Delegation Habitat"
+  Description: "The next phase is social as much as technical: create a larger, calmer habitat for a civilian delegation."
+  Archetype: 2
+  Category: 3
+  OfferAffinityTag: IndustryIndia
+  IntroMessage: "A civilian delegation needs more than a miner bunk."
+  AcceptMessage: "Expand the habitat and keep the daily support loop visible."
+  CompleteMessage: "The habitat is ready for a formal delegation."
+  FailMessage: "The delegation wing never felt stable enough."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 960
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 1
+  MinCustomerReputationToAppear: 55
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: india-civic
+  ChainStep: 2
+  ExclusiveGroupId: india-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: india-habitat-build
+    Title: "Delegation Quarters"
+    Description: "Widen the habitat and add sleeping capacity for official guests."
+    Objectives:
+    - ObjectiveId: india-habitat-life
+      ObjectiveType: 5
+      Description: "Reach life-module width 12."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 12
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: india-habitat-sleep
+      ObjectiveType: 3
+      Description: "Build 2 Sleep Modules."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 9
+      RequiredCount: 2
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: india-habitat-utilities
+    Title: "Civil Utilities"
+    Description: "Support the new quarters with food and oxygen stability."
+    Objectives:
+    - ObjectiveId: india-habitat-dinner
+      ObjectiveType: 3
+      Description: "Build 1 Dinner Station."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 12
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: india-habitat-oxy
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 13
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 265
+  ReputationReward: 14
+  ReputationPenaltyOnFail: 14
+  ReputationPenaltyOnReject: 10
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 5

@@ -635,6 +635,37 @@ namespace _Project.Scripts.Systems.Construction
         }
 
         /// <summary>
+        /// Resolves the footprint affected by the destroy tool.
+        /// For active buildings this means demolition, for planned buildings this means plan cancellation.
+        /// </summary>
+        public bool TryGetDestroyToolFootprint(Vector2Int selectedCell, List<Vector2Int> result, out Vector2Int commandCell)
+        {
+            result.Clear();
+            commandCell = default;
+
+            if (TryGetActiveBuildingByCell(selectedCell, out BuildingRuntimeEntity activeEntity))
+            {
+                if (activeEntity.Status != BuildingRuntimeStatus.Active)
+                {
+                    return false;
+                }
+
+                result.AddRange(GetFootprintCells(activeEntity.BuildingDef, activeEntity.AnchorCell, activeEntity.IsRotated));
+                commandCell = activeEntity.AnchorCell;
+                return true;
+            }
+
+            if (!TryGetPlannedBuildingByCell(selectedCell, out BuildingRuntimeEntity plannedEntity))
+            {
+                return false;
+            }
+
+            result.AddRange(GetFootprintCells(plannedEntity.BuildingDef, plannedEntity.AnchorCell, plannedEntity.IsRotated));
+            commandCell = plannedEntity.AnchorCell;
+            return true;
+        }
+
+        /// <summary>
         /// Возвращает true, если клетка входит в planned-область активной стройки.
         /// </summary>
         public bool IsPlannedCell(Vector2Int cell)
@@ -828,6 +859,51 @@ namespace _Project.Scripts.Systems.Construction
             return _activeBuildingsByCell.TryGetValue(cell, out entity)
                    && entity != null
                    && entity.IsActive;
+        }
+
+        /// <summary>
+        /// Finds a not-yet-built runtime building entity by any cell in its planned footprint.
+        /// </summary>
+        private bool TryGetPlannedBuildingByCell(Vector2Int cell, out BuildingRuntimeEntity entity)
+        {
+            foreach (KeyValuePair<Vector2Int, BuildingRuntimeEntity> pair in _buildingsByAnchor)
+            {
+                entity = pair.Value;
+                if (entity == null || entity.BuildingDef == null)
+                {
+                    continue;
+                }
+
+                if (entity.IsActive
+                    || entity.Status == BuildingRuntimeStatus.Cancelled
+                    || entity.Status == BuildingRuntimeStatus.DestructionPlanned
+                    || entity.Status == BuildingRuntimeStatus.Destroying
+                    || entity.Status == BuildingRuntimeStatus.Destroyed)
+                {
+                    continue;
+                }
+
+                if (!IsCellInsideBuildingBounds(entity, cell))
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            entity = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Uses runtime bounds instead of grid state so planned buildings can be resolved before finalize build.
+        /// </summary>
+        private static bool IsCellInsideBuildingBounds(BuildingRuntimeEntity entity, Vector2Int cell)
+        {
+            return cell.x >= entity.AnchorCell.x
+                   && cell.x < entity.AnchorCell.x + entity.Size.x
+                   && cell.y >= entity.AnchorCell.y
+                   && cell.y < entity.AnchorCell.y + entity.Size.y;
         }
 
         /// <summary>

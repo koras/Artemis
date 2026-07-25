@@ -10,7 +10,7 @@ namespace _Project.Scripts.Input
     public sealed class CameraInputController
     {
         private const float MIN_ORTHOGRAPHIC_SIZE = 5f;
-        private const float MAX_ORTHOGRAPHIC_SIZE = 8f;
+        private const float MAX_ORTHOGRAPHIC_SIZE = 13f;
         private const float ZOOM_SPEED = 0.5f;
 
         private readonly Camera _camera;

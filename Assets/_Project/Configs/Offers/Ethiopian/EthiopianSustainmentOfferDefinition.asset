@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: EthiopianSustainmentOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-ethiopian-01
+  Customer: {fileID: 11400000, guid: 7b8257436399d8b48ac40aa8083e5bd3, type: 2}
+  Title: "Sustainment Goods"
+  Description: "The first Ethiopian request focuses on dependable sustainment cargo for a colony that still feels exposed."
+  Archetype: 2
+  Category: 1
+  OfferAffinityTag: IndustryEthiopian
+  IntroMessage: "The cargo is modest, but the promise behind it matters."
+  AcceptMessage: "Prepare the sustainment batch and deliver it on schedule."
+  CompleteMessage: "The sustainment goods arrived and opened a broader stability program."
+  FailMessage: "The sustainment program stumbled before it started."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 120
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 1.1
+  MinCustomerReputationToAppear: 0
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: ethiopian-stability
+  ChainStep: 1
+  ExclusiveGroupId: ethiopian-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: ethiopian-stock
+    Title: "Relief Stock"
+    Description: "Gather aluminium for the sustainment package."
+    Objectives:
+    - ObjectiveId: ethiopian-stock-al
+      ObjectiveType: 2
+      Description: "Accumulate 10 aluminium."
+      ResourceId: aluminium
+      RequiredAmount: 10
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 15
+    BonusReputation: 0  - StageId: ethiopian-ship
+    Title: "Supply Transfer"
+    Description: "Reserve the package and wait for the next mission arrival."
+    Objectives:
+    - ObjectiveId: ethiopian-ship-al
+      ObjectiveType: 1
+      Description: "Reserve 10 aluminium for shipment."
+      ResourceId: aluminium
+      RequiredAmount: 10
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: ethiopian-ship-mission
+      ObjectiveType: 8
+      Description: "Wait for the next mission arrival."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 165
+  ReputationReward: 12
+  ReputationPenaltyOnFail: 12
+  ReputationPenaltyOnReject: 8
+  FastReserveBonusGold: 20
+  FastReserveWindowHours: 8
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 4

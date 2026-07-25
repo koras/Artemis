@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: IndiaSupplyBridgeOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-india-01
+  Customer: {fileID: 11400000, guid: 25c88a3a458474041a03a7c451c7c696, type: 2}
+  Title: "Civil Supply Bridge"
+  Description: "India wants a dependable civil supply bridge first: practical materials, predictable timing, no heroic improvisation."
+  Archetype: 2
+  Category: 1
+  OfferAffinityTag: IndustryIndia
+  IntroMessage: "The first request is about trust, not spectacle."
+  AcceptMessage: "Prepare the base materials package and send it on time."
+  CompleteMessage: "The bridge held and the delegation planners moved forward."
+  FailMessage: "The materials package slipped before the first delegation even launched."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 120
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 1.15
+  MinCustomerReputationToAppear: 0
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: india-civic
+  ChainStep: 1
+  ExclusiveGroupId: india-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: india-stock
+    Title: "Common Stock"
+    Description: "Gather aluminium for the civil supply package."
+    Objectives:
+    - ObjectiveId: india-stock-al
+      ObjectiveType: 2
+      Description: "Accumulate 14 aluminium."
+      ResourceId: aluminium
+      RequiredAmount: 14
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: india-ship
+    Title: "Base Materials Shipment"
+    Description: "Reserve the aluminium and wait for the next mission arrival."
+    Objectives:
+    - ObjectiveId: india-ship-al
+      ObjectiveType: 1
+      Description: "Reserve 14 aluminium for shipment."
+      ResourceId: aluminium
+      RequiredAmount: 14
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: india-ship-mission
+      ObjectiveType: 8
+      Description: "Wait for the next mission arrival."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 175
+  ReputationReward: 12
+  ReputationPenaltyOnFail: 12
+  ReputationPenaltyOnReject: 8
+  FastReserveBonusGold: 25
+  FastReserveWindowHours: 8
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 4

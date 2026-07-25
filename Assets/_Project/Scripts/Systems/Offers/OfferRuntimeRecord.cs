@@ -22,7 +22,11 @@ namespace _Project.Scripts.Systems.Offers
             int createdAtSol,
             int createdAtGameMinutes,
             int? deadlineSol,
-            OfferTriggerSource source)
+            OfferTriggerSource source,
+            int acceptedAtGameMinutes = -1,
+            int reservedAtGameMinutes = -1,
+            bool fastReserveBonusGranted = false,
+            OfferStageRuntimeState stageState = null)
         {
             RuntimeId = runtimeId;
             Definition = definition;
@@ -31,9 +35,13 @@ namespace _Project.Scripts.Systems.Offers
             CreatedAtGameMinutes = createdAtGameMinutes;
             DeadlineSol = deadlineSol;
             Source = source;
+            AcceptedAtGameMinutes = acceptedAtGameMinutes;
+            ReservedAtGameMinutes = reservedAtGameMinutes;
+            FastReserveBonusGranted = fastReserveBonusGranted;
             IsReservedForShipment = false;
             ShipmentMissionTarget = 0;
             ResolutionState = OfferResolutionState.Active;
+            StageState = stageState ?? CreateInitialStageState(definition);
         }
 
         public OfferRuntimeRecord(
@@ -54,8 +62,31 @@ namespace _Project.Scripts.Systems.Offers
         public int CreatedAtGameMinutes { get; }
         public int? DeadlineSol { get; }
         public OfferTriggerSource Source { get; }
+        public int AcceptedAtGameMinutes { get; set; }
+        public int ReservedAtGameMinutes { get; set; }
+        public bool FastReserveBonusGranted { get; set; }
         public bool IsReservedForShipment { get; set; }
         public int ShipmentMissionTarget { get; set; }
         public OfferResolutionState ResolutionState { get; set; }
+        public OfferStageRuntimeState StageState { get; }
+        public int MissionArrivalCountAtAccept { get; set; }
+        public int MissionArrivalCount { get; set; }
+
+        private static OfferStageRuntimeState CreateInitialStageState(OfferDefinition definition)
+        {
+            var result = new OfferStageRuntimeState
+            {
+                CurrentStageIndex = 0
+            };
+
+            if (definition != null
+                && definition.HasStages
+                && definition.Stages[0] != null)
+            {
+                result.IsInspectionScheduled = definition.Stages[0].ScheduleInspection;
+            }
+
+            return result;
+        }
     }
 }

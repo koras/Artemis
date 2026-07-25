@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: SpaceXTourismOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-spacex-03
+  Customer: {fileID: 11400000, guid: 3702a689729f2424c804cfb01113b103, type: 2}
+  Title: "First Tourist Wave"
+  Description: "The final SpaceX test is simple to say and hard to fake: host the first paying tourists without the base feeling fragile."
+  Archetype: 2
+  Category: 3
+  OfferAffinityTag: Aerospace
+  IntroMessage: "A tourism pilot is pencilled into the launch board."
+  AcceptMessage: "Build the guest experience, keep support online, and pass the final welcome inspection."
+  CompleteMessage: "The first tourist wave left glowing reports and opened a new market."
+  FailMessage: "The guests saw too much mining camp and not enough colony."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 1680
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 0.9
+  MinCustomerReputationToAppear: 68
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: spacex-tourism
+  ChainStep: 3
+  ExclusiveGroupId: spacex-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: spacex-tourism-guest
+    Title: "Guest Experience"
+    Description: "Add hospitality and keep oxygen stable for a full sol."
+    Objectives:
+    - ObjectiveId: spacex-tourism-dinner
+      ObjectiveType: 3
+      Description: "Build 1 Dinner Station."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 12
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: spacex-tourism-oxy
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 13
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 25
+    BonusReputation: 0  - StageId: spacex-tourism-pass
+    Title: "Tourist Arrival"
+    Description: "Hold cash for premium support and pass the tourism inspection."
+    Objectives:
+    - ObjectiveId: spacex-tourism-gold
+      ObjectiveType: 7
+      Description: "Reach 300 stored Gold."
+      ResourceId: ''
+      RequiredAmount: 300
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: spacex-tourism-pass
+      ObjectiveType: 10
+      Description: "Pass the tourism inspection."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 0
+      RequireOperational: 1    ScheduleInspection: 1
+    BonusGold: 0
+    BonusReputation: 8  FailureConditions: []
+  GoldReward: 380
+  ReputationReward: 20
+  ReputationPenaltyOnFail: 18
+  ReputationPenaltyOnReject: 12
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 6

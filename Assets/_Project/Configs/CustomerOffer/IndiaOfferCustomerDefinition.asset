@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b829fb78073e4dd19595dd7b60f15bfc, type: 3}
+  m_Name: IndiaOfferCustomerDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferCustomerDefinition
+  FirstName: Arjun
+  LastName: Patel
+  CompanyName: Lotus Bridge Exports
+  CompanyDescription: Growth-oriented commercial partner interested in bulk orders, flexible pricing, and expansion into new market segments.
+  OfferAffinityTag: IndustryIndia
+  KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  VeryAngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}

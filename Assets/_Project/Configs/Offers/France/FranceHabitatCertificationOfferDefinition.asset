@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: FranceHabitatCertificationOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-france-02
+  Customer: {fileID: 11400000, guid: 89fc6c8f2735d3742a69ebd167d403ee, type: 2}
+  Title: "Habitat Certification Wing"
+  Description: "With samples secured, the bureau now wants a proper scientific habitat with reliable life support."
+  Archetype: 2
+  Category: 2
+  OfferAffinityTag: Science
+  IntroMessage: "Engineers from Europe drafted a certification checklist."
+  AcceptMessage: "Extend the habitat and keep the utility line stable long enough for sign-off."
+  CompleteMessage: "The wing passed structural certification."
+  FailMessage: "Certification failed before the observers arrived."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 840
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 1
+  MinCustomerReputationToAppear: 55
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: france-certification
+  ChainStep: 2
+  ExclusiveGroupId: france-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: france-habitat
+    Title: "Research Habitat"
+    Description: "Expand the living band and add sleeping capacity for the visiting team."
+    Objectives:
+    - ObjectiveId: france-hab-life
+      ObjectiveType: 5
+      Description: "Reach life-module width 10."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 10
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: france-hab-sleep
+      ObjectiveType: 3
+      Description: "Build 1 Sleep Module."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 9
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0    ScheduleInspection: 0
+    BonusGold: 25
+    BonusReputation: 0  - StageId: france-utilities
+    Title: "Utility Norms"
+    Description: "Keep oxygen and water recovery online while the bureau runs its checklist."
+    Objectives:
+    - ObjectiveId: france-hab-oxy
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 13
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: france-hab-water
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Water Reclamation unit for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 11
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 260
+  ReputationReward: 14
+  ReputationPenaltyOnFail: 14
+  ReputationPenaltyOnReject: 10
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 5

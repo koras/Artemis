@@ -9,28 +9,29 @@ namespace _Project.Scripts.Systems.Offers.Runtime
     /// <summary>
     /// Generates offers from time/resource triggers and validates appearance eligibility.
     /// </summary>
-    internal sealed class OfferGenerationService
+    public sealed class OfferGenerationService
     {
         private readonly OfferSystemContext _context;
         private readonly OfferReservationService _reservationService;
+        private readonly OfferObjectiveEvaluationService _objectiveEvaluationService;
         private readonly Action _stateChanged;
 
-        /// <summary>
-        /// Creates generation service over shared context and state-change callback.
-        /// </summary>
-        public OfferGenerationService(OfferSystemContext context, OfferReservationService reservationService, Action stateChanged)
+        public OfferGenerationService(
+            OfferSystemContext context,
+            OfferReservationService reservationService,
+            OfferObjectiveEvaluationService objectiveEvaluationService,
+            Action stateChanged)
         {
             _context = context;
             _reservationService = reservationService;
+            _objectiveEvaluationService = objectiveEvaluationService;
             _stateChanged = stateChanged;
         }
 
-        /// <summary>
-        /// Processes hourly time-triggered offer generation.
-        /// </summary>
         public void ProcessTimeOffers()
         {
             var eligible = new List<OfferDefinition>();
+            var weights = new List<float>();
             for (int i = 0; i < _context.Catalog.Count; i++)
             {
                 OfferDefinition definition = _context.Catalog[i];
@@ -45,6 +46,7 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 }
 
                 eligible.Add(definition);
+                weights.Add(GetGenerationWeight(definition));
             }
 
             if (eligible.Count == 0)
@@ -52,13 +54,10 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 return;
             }
 
-            OfferDefinition selected = eligible[UnityEngine.Random.Range(0, eligible.Count)];
+            OfferDefinition selected = SelectWeightedDefinition(eligible, weights);
             TryCreateOffer(selected, OfferTriggerSource.Time, false, null);
         }
 
-        /// <summary>
-        /// Handles inventory change events and tries to generate matching resource-triggered offers.
-        /// </summary>
         public void OnResourceAmountChanged(ResourceAmountChangedEvent changedEvent)
         {
             for (int i = 0; i < _context.Catalog.Count; i++)
@@ -78,9 +77,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             }
         }
 
-        /// <summary>
-        /// Tries to create a new runtime offer record for a trigger source.
-        /// </summary>
         public bool TryCreateOffer(OfferDefinition definition, OfferTriggerSource source, bool ignoreCooldown, ResourceAmountChangedEvent? changedEvent)
         {
             if (!IsEligible(definition, source, ignoreCooldown))
@@ -126,9 +122,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             return true;
         }
 
-        /// <summary>
-        /// Checks full eligibility pipeline before offer creation.
-        /// </summary>
         public bool IsEligible(OfferDefinition definition, OfferTriggerSource source, bool ignoreCooldown)
         {
             if (definition == null || definition.Customer == null || string.IsNullOrWhiteSpace(definition.OfferId))
@@ -147,13 +140,39 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 return false;
             }
 
-            if (source == OfferTriggerSource.Time && _context.GameTimeService.TotalGameMinutes < Mathf.Max(0, definition.MinGameMinutesToAppear))
+            if (_context.GameTimeService.TotalGameMinutes < Mathf.Max(0, definition.MinGameMinutesToAppear))
+            {
+                return false;
+            }
+
+            if (_context.GameTimeService.TotalGameMinutes < GetCustomerPenaltyUntilMinutes(definition.Customer))
+            {
+                return false;
+            }
+
+            if (!_objectiveEvaluationService.PassesUnlockConditions(definition))
             {
                 return false;
             }
 
             string definitionId = definition.OfferId.Trim();
             if (ContainsDefinitionId(_context.AvailableOffers, definitionId) || ContainsDefinitionId(_context.ActiveOffers, definitionId))
+            {
+                return false;
+            }
+
+            if (ContainsExclusiveGroupInActiveOffers(definition.ExclusiveGroupId))
+            {
+                return false;
+            }
+
+            if (!PassesChainProgress(definition))
+            {
+                return false;
+            }
+
+            int customerReputation = GetCustomerReputation(definition);
+            if (customerReputation < Mathf.Clamp(definition.MinCustomerReputationToAppear, 0, 100))
             {
                 return false;
             }
@@ -178,9 +197,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             return true;
         }
 
-        /// <summary>
-        /// Returns remaining cooldown in game minutes for repeatable definition.
-        /// </summary>
         public int GetCooldownRemainingMinutes(OfferDefinition definition)
         {
             if (definition == null || string.IsNullOrWhiteSpace(definition.OfferId) || !definition.IsRepeatable)
@@ -198,9 +214,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             return Mathf.Max(0, cooldown - elapsed);
         }
 
-        /// <summary>
-        /// Validates whether changed resource payload satisfies any resource-event condition.
-        /// </summary>
         public static bool MatchesResourceEvent(OfferDefinition definition, ResourceAmountChangedEvent? changedEvent)
         {
             if (!changedEvent.HasValue)
@@ -239,9 +252,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             return false;
         }
 
-        /// <summary>
-        /// Maps runtime trigger source to definition trigger type mask.
-        /// </summary>
         private static OfferTriggerType ToTriggerType(OfferTriggerSource source)
         {
             if (source == OfferTriggerSource.Time)
@@ -257,17 +267,11 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             return OfferTriggerType.Manual;
         }
 
-        /// <summary>
-        /// Checks if definition contains required trigger flag.
-        /// </summary>
         private static bool HasTrigger(OfferDefinition definition, OfferTriggerType trigger)
         {
             return (definition.TriggerTypes & trigger) == trigger;
         }
 
-        /// <summary>
-        /// Checks whether list already contains an offer instance with same definition id.
-        /// </summary>
         private static bool ContainsDefinitionId(List<OfferRuntimeRecord> list, string definitionId)
         {
             for (int i = 0; i < list.Count; i++)
@@ -279,6 +283,183 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             }
 
             return false;
+        }
+
+        private float GetGenerationWeight(OfferDefinition definition)
+        {
+            float weight = Mathf.Max(0.05f, definition.BaseGenerationWeight);
+
+            switch (definition.Archetype)
+            {
+                case OfferArchetype.BulkExport:
+                    weight *= 1f + GetAverageRequirementSurplus(definition.CompletionRequirements, 80);
+                    if (_context.ActiveOffers.Count >= 2)
+                    {
+                        weight *= 0.65f;
+                    }
+                    break;
+                case OfferArchetype.EmergencyRequest:
+                    weight *= _context.ResourceInventoryService.GetAmount(ResourceInventoryService.GOLD_RESOURCE_ID) < 250
+                        ? 1.75f
+                        : 0.95f;
+                    break;
+                case OfferArchetype.ProgressiveContract:
+                    weight *= 1f + (GetCustomerReputation(definition) / 200f);
+                    break;
+                case OfferArchetype.OpportunisticDeal:
+                    weight *= 1.15f + GetAverageRequirementSurplus(definition.CompletionRequirements, 100);
+                    if (_context.ActiveOffers.Count >= 2)
+                    {
+                        weight *= 1.35f;
+                    }
+                    break;
+            }
+
+            if (definition.Category != OfferCategory.Economic)
+            {
+                weight *= 0.9f;
+            }
+
+            if (!string.IsNullOrWhiteSpace(definition.OfferAffinityTag)
+                && string.Equals(definition.OfferAffinityTag, definition.Customer.OfferAffinityTag, StringComparison.OrdinalIgnoreCase))
+            {
+                weight *= 1.2f;
+            }
+
+            int penaltyUntil = GetCustomerPenaltyUntilMinutes(definition.Customer);
+            if (_context.GameTimeService.TotalGameMinutes < penaltyUntil)
+            {
+                weight *= 0.35f;
+            }
+
+            return Mathf.Max(0.05f, weight);
+        }
+
+        private float GetAverageRequirementSurplus(OfferResourceAmount[] requirements, int baselineAmount)
+        {
+            if (requirements == null || requirements.Length == 0 || _context.ResourceInventoryService == null)
+            {
+                return 0f;
+            }
+
+            float total = 0f;
+            int count = 0;
+            for (int i = 0; i < requirements.Length; i++)
+            {
+                OfferResourceAmount requirement = requirements[i];
+                if (string.IsNullOrWhiteSpace(requirement.ResourceId))
+                {
+                    continue;
+                }
+
+                int amount = _context.ResourceInventoryService.GetAmount(requirement.ResourceId);
+                float surplus = Mathf.Clamp01((amount - baselineAmount) / (float)Mathf.Max(1, baselineAmount));
+                total += surplus;
+                count++;
+            }
+
+            return count > 0 ? total / count : 0f;
+        }
+
+        private OfferDefinition SelectWeightedDefinition(List<OfferDefinition> eligible, List<float> weights)
+        {
+            if (eligible == null || eligible.Count == 0)
+            {
+                return null;
+            }
+
+            float totalWeight = 0f;
+            for (int i = 0; i < weights.Count; i++)
+            {
+                totalWeight += Mathf.Max(0f, weights[i]);
+            }
+
+            if (totalWeight <= 0f)
+            {
+                return eligible[UnityEngine.Random.Range(0, eligible.Count)];
+            }
+
+            float roll = UnityEngine.Random.Range(0f, totalWeight);
+            for (int i = 0; i < eligible.Count; i++)
+            {
+                roll -= Mathf.Max(0f, weights[i]);
+                if (roll <= 0f)
+                {
+                    return eligible[i];
+                }
+            }
+
+            return eligible[eligible.Count - 1];
+        }
+
+        private bool PassesChainProgress(OfferDefinition definition)
+        {
+            if (definition == null || definition.ChainStep <= 1 || string.IsNullOrWhiteSpace(definition.ChainId))
+            {
+                return true;
+            }
+
+            if (!_context.CompletedChainStepByChainId.TryGetValue(definition.ChainId, out int completedStep))
+            {
+                return false;
+            }
+
+            return completedStep >= definition.ChainStep - 1;
+        }
+
+        private bool ContainsExclusiveGroupInActiveOffers(string exclusiveGroupId)
+        {
+            if (string.IsNullOrWhiteSpace(exclusiveGroupId))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < _context.ActiveOffers.Count; i++)
+            {
+                OfferRuntimeRecord record = _context.ActiveOffers[i];
+                if (record?.Definition == null)
+                {
+                    continue;
+                }
+
+                if (string.Equals(record.Definition.ExclusiveGroupId, exclusiveGroupId, StringComparison.Ordinal))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private int GetCustomerReputation(OfferDefinition definition)
+        {
+            if (definition == null || definition.Customer == null)
+            {
+                return 50;
+            }
+
+            if (_context.ReputationByCustomer.TryGetValue(definition.Customer, out int reputation))
+            {
+                return reputation;
+            }
+
+            return 50;
+        }
+
+        private int GetCustomerPenaltyUntilMinutes(OfferCustomerDefinition customer)
+        {
+            string customerKey = OfferReputationService.GetCustomerKey(customer);
+            if (string.IsNullOrWhiteSpace(customerKey))
+            {
+                return 0;
+            }
+
+            if (_context.GenerationPenaltyUntilMinutesByCustomerKey.TryGetValue(customerKey, out int untilMinutes))
+            {
+                return untilMinutes;
+            }
+
+            return 0;
         }
     }
 }

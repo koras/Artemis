@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 51cc1c1b4b6c55f4d9519ca5e01b1f03
+guid: 49703f54dcb0d964a8e39c82955017e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3642928886028572869
-    second: DTramp_0
+      213: 1639928310117132956
+    second: India_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,33 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -152,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DTramp_0
+      name: India_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 256
-        height: 255
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b37e14eaa77b17dc0800000000000000
-      internalID: -3642928886028572869
+      spriteID: c9a63adfb1232c610800000000000000
+      internalID: 1639928310117132956
       vertices: []
       indices: 
       edges: []
@@ -177,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2307aa52c7293dd4d9ee117bff7c2530
+    spriteID: 8a220588f7a407b43b6c2937229f9020
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DTramp_0: -3642928886028572869
+      India_0: 1639928310117132956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

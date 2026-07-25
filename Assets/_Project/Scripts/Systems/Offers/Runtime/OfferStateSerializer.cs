@@ -9,23 +9,17 @@ namespace _Project.Scripts.Systems.Offers.Runtime
     /// <summary>
     /// Serializes and restores Offer runtime state snapshot used by save/load flows.
     /// </summary>
-    internal sealed class OfferStateSerializer
+    public sealed class OfferStateSerializer
     {
         private readonly OfferSystemContext _context;
         private readonly OfferReputationService _reputationService;
 
-        /// <summary>
-        /// Creates serializer bound to shared context and reputation helpers.
-        /// </summary>
         public OfferStateSerializer(OfferSystemContext context, OfferReputationService reputationService)
         {
             _context = context;
             _reputationService = reputationService;
         }
 
-        /// <summary>
-        /// Captures full runtime state into transferable DTO snapshot.
-        /// </summary>
         public OfferSystemState CaptureState()
         {
             var state = new OfferSystemState
@@ -33,7 +27,8 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 Gold = _context.ResourceInventoryService != null
                     ? _context.ResourceInventoryService.GetAmount(ResourceInventoryService.GOLD_RESOURCE_ID)
                     : 0,
-                LastProcessedHour = _context.LastProcessedHour
+                LastProcessedHour = _context.LastProcessedHour,
+                MissionArrivalCount = _context.MissionArrivalCount
             };
 
             for (int i = 0; i < _context.AvailableOffers.Count; i++)
@@ -107,12 +102,27 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 });
             }
 
+            foreach (KeyValuePair<string, int> pair in _context.CompletedChainStepByChainId)
+            {
+                state.ChainProgress.Add(new OfferChainProgressState
+                {
+                    ChainId = pair.Key,
+                    CompletedStep = pair.Value
+                });
+            }
+
+            foreach (KeyValuePair<string, int> pair in _context.GenerationPenaltyUntilMinutesByCustomerKey)
+            {
+                state.GenerationPenalties.Add(new OfferGenerationPenaltyState
+                {
+                    CustomerKey = pair.Key,
+                    UntilGameMinutes = pair.Value
+                });
+            }
+
             return state;
         }
 
-        /// <summary>
-        /// Restores runtime state from snapshot and rebuilds all runtime collections.
-        /// </summary>
         public void RestoreState(OfferSystemState state)
         {
             if (state == null)
@@ -126,12 +136,15 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             }
 
             _context.LastProcessedHour = state.LastProcessedHour;
+            _context.MissionArrivalCount = Mathf.Max(0, state.MissionArrivalCount);
             _context.AvailableOffers.Clear();
             _context.ActiveOffers.Clear();
             _context.ReputationByCustomer.Clear();
             _context.LastGeneratedAtMinutesByDefinition.Clear();
             _context.GeneratedCountByDefinition.Clear();
             _context.ReservedByRuntimeId.Clear();
+            _context.CompletedChainStepByChainId.Clear();
+            _context.GenerationPenaltyUntilMinutesByCustomerKey.Clear();
 
             Dictionary<string, OfferCustomerDefinition> customerByKey = _reputationService.BuildCustomerByKey();
             RestoreReputation(state, customerByKey);
@@ -140,11 +153,10 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             RestoreCooldowns(state.Cooldowns);
             RestoreGeneratedCounts(state.GeneratedCounts);
             RestoreReservedResources(state.ReservedResources);
+            RestoreChainProgress(state.ChainProgress);
+            RestoreGenerationPenalties(state.GenerationPenalties);
         }
 
-        /// <summary>
-        /// Converts runtime record into serializable record DTO.
-        /// </summary>
         private static OfferRuntimeRecordState ToState(OfferRuntimeRecord record)
         {
             return new OfferRuntimeRecordState
@@ -153,18 +165,28 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 DefinitionId = record.DefinitionId,
                 CreatedAtSol = record.CreatedAtSol,
                 CreatedAtGameMinutes = record.CreatedAtGameMinutes,
+                AcceptedAtGameMinutes = record.AcceptedAtGameMinutes,
+                ReservedAtGameMinutes = record.ReservedAtGameMinutes,
+                FastReserveBonusGranted = record.FastReserveBonusGranted,
                 DeadlineSol = record.DeadlineSol.GetValueOrDefault(),
                 HasDeadline = record.DeadlineSol.HasValue,
                 Source = record.Source,
                 IsReservedForShipment = record.IsReservedForShipment,
                 ShipmentMissionTarget = record.ShipmentMissionTarget,
-                ResolutionState = record.ResolutionState
+                ResolutionState = record.ResolutionState,
+                MissionArrivalCountAtAccept = record.MissionArrivalCountAtAccept,
+                MissionArrivalCount = record.MissionArrivalCount,
+                StageState = new OfferStageRuntimeStateState
+                {
+                    CurrentStageIndex = record.StageState?.CurrentStageIndex ?? 0,
+                    StageStartedMissionCount = record.StageState?.StageStartedMissionCount ?? 0,
+                    StageSatisfiedSinceSol = record.StageState?.StageSatisfiedSinceSol ?? -1,
+                    IsInspectionScheduled = record.StageState?.IsInspectionScheduled ?? false,
+                    CompletedObjectiveCount = record.StageState?.CompletedObjectiveCount ?? 0
+                }
             };
         }
 
-        /// <summary>
-        /// Restores persisted customer reputation values.
-        /// </summary>
         private void RestoreReputation(OfferSystemState state, Dictionary<string, OfferCustomerDefinition> customerByKey)
         {
             if (state.Reputation == null)
@@ -189,9 +211,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             }
         }
 
-        /// <summary>
-        /// Restores runtime offer records into target list.
-        /// </summary>
         private void RestoreRuntimeOffers(List<OfferRuntimeRecordState> states, List<OfferRuntimeRecord> target)
         {
             if (states == null)
@@ -221,19 +240,22 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                     runtimeState.CreatedAtSol,
                     runtimeState.CreatedAtGameMinutes,
                     deadline,
-                    runtimeState.Source)
+                    runtimeState.Source,
+                    runtimeState.AcceptedAtGameMinutes,
+                    runtimeState.ReservedAtGameMinutes,
+                    runtimeState.FastReserveBonusGranted,
+                    ToStageState(runtimeState.StageState))
                 {
                     IsReservedForShipment = runtimeState.IsReservedForShipment,
                     ShipmentMissionTarget = Mathf.Max(0, runtimeState.ShipmentMissionTarget),
-                    ResolutionState = runtimeState.ResolutionState
+                    ResolutionState = runtimeState.ResolutionState,
+                    MissionArrivalCountAtAccept = Mathf.Max(0, runtimeState.MissionArrivalCountAtAccept),
+                    MissionArrivalCount = Mathf.Max(0, runtimeState.MissionArrivalCount)
                 };
                 target.Add(record);
             }
         }
 
-        /// <summary>
-        /// Restores per-definition cooldown timestamps.
-        /// </summary>
         private void RestoreCooldowns(List<OfferCooldownState> states)
         {
             if (states == null)
@@ -253,9 +275,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             }
         }
 
-        /// <summary>
-        /// Restores per-definition generated counters.
-        /// </summary>
         private void RestoreGeneratedCounts(List<OfferGeneratedCountState> states)
         {
             if (states == null)
@@ -275,9 +294,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             }
         }
 
-        /// <summary>
-        /// Restores reserved resource map grouped by runtime offer id.
-        /// </summary>
         private void RestoreReservedResources(List<OfferReservedResourceState> states)
         {
             if (states == null)
@@ -308,6 +324,56 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 map.TryGetValue(reservedState.ResourceId, out int currentAmount);
                 map[reservedState.ResourceId] = currentAmount + amount;
             }
+        }
+
+        private void RestoreChainProgress(List<OfferChainProgressState> states)
+        {
+            if (states == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < states.Count; i++)
+            {
+                OfferChainProgressState chainState = states[i];
+                if (chainState == null || string.IsNullOrWhiteSpace(chainState.ChainId))
+                {
+                    continue;
+                }
+
+                _context.CompletedChainStepByChainId[chainState.ChainId] = Mathf.Max(0, chainState.CompletedStep);
+            }
+        }
+
+        private void RestoreGenerationPenalties(List<OfferGenerationPenaltyState> states)
+        {
+            if (states == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < states.Count; i++)
+            {
+                OfferGenerationPenaltyState penaltyState = states[i];
+                if (penaltyState == null || string.IsNullOrWhiteSpace(penaltyState.CustomerKey))
+                {
+                    continue;
+                }
+
+                _context.GenerationPenaltyUntilMinutesByCustomerKey[penaltyState.CustomerKey] = penaltyState.UntilGameMinutes;
+            }
+        }
+
+        private static OfferStageRuntimeState ToStageState(OfferStageRuntimeStateState state)
+        {
+            return new OfferStageRuntimeState
+            {
+                CurrentStageIndex = state?.CurrentStageIndex ?? 0,
+                StageStartedMissionCount = state?.StageStartedMissionCount ?? 0,
+                StageSatisfiedSinceSol = state?.StageSatisfiedSinceSol ?? -1,
+                IsInspectionScheduled = state?.IsInspectionScheduled ?? false,
+                CompletedObjectiveCount = state?.CompletedObjectiveCount ?? 0
+            };
         }
     }
 }

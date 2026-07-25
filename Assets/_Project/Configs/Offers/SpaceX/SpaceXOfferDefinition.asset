@@ -14,36 +14,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-spacex-01
   Customer: {fileID: 11400000, guid: 3702a689729f2424c804cfb01113b103, type: 2}
-  Title: " \u041A\u043E\u043D\u0442\u0440\u0430\u043A\u0442 \u043D\u0430 \u0434\u043E\u0431\u044B\u0447\u0443
-    \u0442\u0438\u0442\u0430\u043D\u0430"
-  Description: "\u041D\u0430\u043C \u043D\u0443\u0436\u0435\u043D \u0442\u0438\u0442\u0430\u043D
-    \u0434\u043B\u044F \u043D\u043E\u0432\u043E\u0433\u043E \u043A\u043E\u0440\u043F\u0443\u0441\u0430
-    \u043E\u0440\u0431\u0438\u0442\u0430\u043B\u044C\u043D\u043E\u0433\u043E \u043C\u043E\u0434\u0443\u043B\u044F.
-    \u041A\u043E\u043C\u043F\u0430\u043D\u0438\u044F \u0436\u0434\u0451\u0442 \u043F\u043E\u0441\u0442\u0430\u0432\u043A\u0443
-    \u0431\u0435\u0437 \u0437\u0430\u0434\u0435\u0440\u0436\u0435\u043A, \u0430 \u0438\u043D\u0436\u0435\u043D\u0435\u0440\u044B
-    \u0443\u0436\u0435 \u0441\u043F\u043E\u0440\u044F\u0442, \u0447\u0442\u043E \u043A\u0440\u0435\u043F\u0447\u0435:
-    \u043C\u0435\u0442\u0430\u043B\u043B \u0438\u043B\u0438 \u0438\u0445 \u0434\u0435\u0434\u043B\u0430\u0439\u043D\u044B.\r\n\u0414\u043E\u0431\u0443\u0434\u044C\u0442\u0435
-    \u0438 \u0434\u043E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 30 \u0435\u0434\u0438\u043D\u0438\u0446
-    \u0442\u0438\u0442\u0430\u043D\u0430 \u043D\u0430 \u0431\u0430\u0437\u043E\u0432\u044B\u0439
-    \u0441\u043A\u043B\u0430\u0434.\r\n\u0421\u0434\u0435\u043B\u0430\u0435\u0442\u0435
-    \u0431\u044B\u0441\u0442\u0440\u043E \u2014 \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u0435
-    \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442
-    \u0441 \u043F\u043E\u0432\u044B\u0448\u0435\u043D\u043D\u043E\u0439 \u043D\u0430\u0433\u0440\u0430\u0434\u043E\u0439."
+  Title: "Dock Ring Metals"
+  Description: "SpaceX wants a clean, fast metals route before committing to a permanent orbital exchange hub."
+  Archetype: 2
+  Category: 1
+  OfferAffinityTag: Aerospace
+  IntroMessage: "A launch slot is open, but only for a team that can move metal fast."
+  AcceptMessage: "Stock the ring metals and push them out on the next mission."
+  CompleteMessage: "The first hub shipment reached orbit intact."
+  FailMessage: "The launch window closed before the ring shipment moved."
   TriggerTypes: 5
   AppearanceRequirements: []
-  MinGameMinutesToAppear: 0
+  MinGameMinutesToAppear: 120
   HourlySpawnChance: 1
   ResourceEventConditions: []
-  IsRepeatable: 1
-  CooldownGameMinutes: 120
-  CompletionRequirements:
-  - ResourceId: Titan
-    Amount: 0
-  - ResourceId: aluminium
-    Amount: 30
-  GoldReward: 250
-  ReputationReward: 10
-  ReputationPenaltyOnFail: 15
-  ReputationPenaltyOnReject: -15
+  BaseGenerationWeight: 1.35
+  MinCustomerReputationToAppear: 45
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: spacex-tourism
+  ChainStep: 1
+  ExclusiveGroupId: spacex-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: spacex-metal-stock
+    Title: "Metal Stockpile"
+    Description: "Gather titan and aluminium for the docking ring package."
+    Objectives:
+    - ObjectiveId: spacex-metal-titan
+      ObjectiveType: 2
+      Description: "Accumulate 18 Titan."
+      ResourceId: Titan
+      RequiredAmount: 18
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: spacex-metal-al
+      ObjectiveType: 2
+      Description: "Accumulate 12 aluminium."
+      ResourceId: aluminium
+      RequiredAmount: 12
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 25
+    BonusReputation: 0  - StageId: spacex-metal-launch
+    Title: "Launch Window"
+    Description: "Reserve the full package and wait for the next mission arrival."
+    Objectives:
+    - ObjectiveId: spacex-metal-ship-titan
+      ObjectiveType: 1
+      Description: "Reserve 18 Titan for shipment."
+      ResourceId: Titan
+      RequiredAmount: 18
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: spacex-metal-ship-al
+      ObjectiveType: 1
+      Description: "Reserve 12 aluminium for shipment."
+      ResourceId: aluminium
+      RequiredAmount: 12
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: spacex-metal-mission
+      ObjectiveType: 8
+      Description: "Wait for the next mission arrival."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 220
+  ReputationReward: 12
+  ReputationPenaltyOnFail: 12
+  ReputationPenaltyOnReject: 8
+  FastReserveBonusGold: 45
+  FastReserveWindowHours: 6
+  Outcomes: []
   UseDeadline: 1
-  DeadlineDays: 7
+  DeadlineDays: 4

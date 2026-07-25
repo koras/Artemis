@@ -16,6 +16,7 @@ MonoBehaviour:
   LastName: Donald
   CompanyName: American businessman
   CompanyDescription: The Company That Ended 50 Wars
+  OfferAffinityTag: Industry
   KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
   NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
   AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}

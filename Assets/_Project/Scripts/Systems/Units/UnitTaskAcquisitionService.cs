@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _Project.Scripts.Data.Construction;
 using _Project.Scripts.Data.Tasks;
 using _Project.Scripts.Systems.Construction;
 using _Project.Scripts.Systems.Tasks;
@@ -205,6 +206,12 @@ namespace _Project.Scripts.Systems.Units
 
                 if (!IsTaskReachableWithDebug(state, candidateTask))
                 {
+                    if (TryAcquireNearestLadderFallback(state, currentTick, candidateTask.TaskId))
+                    {
+                        blockReason = "task acquired";
+                        return true;
+                    }
+
                     if (RegisterSkippedTaskAttempt(state, candidateTask.TaskId, out blockReason))
                     {
                         return false;
@@ -233,6 +240,12 @@ namespace _Project.Scripts.Systems.Units
                         out Vector2Int workCell))
                 {
                     _taskBoard.ReleaseTaskReservation(reservedTask.TaskId, state.UnitId, "unreachable");
+                    if (TryAcquireNearestLadderFallback(state, currentTick, reservedTask.TaskId))
+                    {
+                        blockReason = "task acquired";
+                        return true;
+                    }
+
                     if (RegisterSkippedTaskAttempt(state, reservedTask.TaskId, out blockReason))
                     {
                         return false;
@@ -262,6 +275,52 @@ namespace _Project.Scripts.Systems.Units
             }
 
             blockReason = "no reservable task after full global task pass";
+            return false;
+        }
+
+        /// <summary>
+        /// When a normal global task is blocked by route/work-cell availability, try the nearest reachable ladder build.
+        /// </summary>
+        private bool TryAcquireNearestLadderFallback(UnitTaskState state, int currentTick, int blockedTaskId)
+        {
+            if (TryFindNearestReachableLadderTask(state, out UnitTaskRecord ladderTask))
+            {
+                bool reserved = _taskBoard.TryReserveTaskByIdForUnit(
+                    ladderTask.TaskId,
+                    state.UnitId,
+                    currentTick,
+                    _currentTaskAllowedPredicate,
+                    _currentTaskReachablePredicate,
+                    out UnitTaskRecord reservedLadderTask);
+
+                if (reserved
+                    && _workCellResolver.TryFindWorkCellAndBuildPath(
+                        state.UnitId,
+                        state.CurrentCell,
+                        reservedLadderTask,
+                        out Vector2Int ladderWorkCell))
+                {
+                    state.CurrentTaskId = reservedLadderTask.TaskId;
+                    state.CurrentTaskTargetCell = reservedLadderTask.TargetCell;
+                    state.SetMoving(ladderWorkCell);
+                    state.NoProgressTicks = 0;
+                    _startTaskVisitTracking(state, reservedLadderTask.TaskId);
+                    ClearSkippedTaskAttempt(state, reservedLadderTask.TaskId);
+
+                    if (_enableLogs)
+                    {
+            // Debug.Log($"[Task AI] unit {state.UnitId}: task {blockedTaskId} is blocked, fallback to ladder task {reservedLadderTask.TaskId}.");
+                    }
+
+                    return true;
+                }
+
+                if (reserved)
+                {
+                    _taskBoard.ReleaseTaskReservation(ladderTask.TaskId, state.UnitId, "ladder_fallback_unreachable");
+                }
+            }
+
             return false;
         }
 
@@ -412,7 +471,7 @@ namespace _Project.Scripts.Systems.Units
                 for (int j = 0; j < pendingCells.Count; j++)
                 {
                     Vector2Int pendingCell = pendingCells[j];
-                    if (!_taskBoard.TryGetTaskByCell(pendingCell, out UnitTaskRecord digOrClearTask) || digOrClearTask == null)
+                    if (!_taskBoard.TryGetDigLikeTaskByCell(pendingCell, out UnitTaskRecord digOrClearTask) || digOrClearTask == null)
                     {
                         if (_enableLogs)
                         {
@@ -569,6 +628,43 @@ namespace _Project.Scripts.Systems.Units
             }
 
             return reachable;
+        }
+
+        /// <summary>
+        /// Picks the nearest reachable ladder build task by Manhattan distance.
+        /// </summary>
+        private bool TryFindNearestReachableLadderTask(UnitTaskState state, out UnitTaskRecord nearestTask)
+        {
+            nearestTask = null;
+            int bestDistance = int.MaxValue;
+            var ladderTasks = _taskBoard.GetOpenLadderTasksSnapshot();
+
+            for (int i = 0; i < ladderTasks.Count; i++)
+            {
+                UnitTaskRecord candidateTask = ladderTasks[i];
+                if (!IsLadderBuildTask(candidateTask)) continue;
+                if (!IsTaskAllowedForUnit(state, candidateTask)) continue;
+                if (!IsTaskReachableWithDebug(state, candidateTask)) continue;
+
+                int distance = TaskScoringService.Manhattan(state.CurrentCell, candidateTask.TargetCell);
+                if (distance >= bestDistance) continue;
+
+                bestDistance = distance;
+                nearestTask = candidateTask;
+            }
+
+            return nearestTask != null;
+        }
+
+        /// <summary>
+        /// Keeps ladder fallback filtering explicit and local to acquisition logic.
+        /// </summary>
+        private static bool IsLadderBuildTask(UnitTaskRecord task)
+        {
+            return task != null
+                   && task.TaskType == UnitTaskType.BuildObject
+                   && task.BuildPayload?.BuildingDef != null
+                   && task.BuildPayload.BuildingDef.ObjectType == BuildObjectType.Ladder;
         }
         /// <summary>
         /// Checks whether at least one storage cell can be served from the selected work cell after pickup.

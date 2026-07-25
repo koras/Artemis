@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: NavajoMemorialOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-navajo-02
+  Customer: {fileID: 11400000, guid: 8c3ff65201b60d848aeb871837c9b828, type: 2}
+  Title: "Cultural Habitat"
+  Description: "The next request asks for space, not cargo: a visible cultural and memorial wing inside the colony."
+  Archetype: 2
+  Category: 3
+  OfferAffinityTag: IndustryNavajo
+  IntroMessage: "A colony without memory looks temporary, no matter how rich it becomes."
+  AcceptMessage: "Build the cultural wing and keep the essentials stable."
+  CompleteMessage: "The memorial wing gave the colony a sense of continuity."
+  FailMessage: "The space felt too thin to carry the meaning it needed."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 900
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 0.95
+  MinCustomerReputationToAppear: 55
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: navajo-stewardship
+  ChainStep: 2
+  ExclusiveGroupId: navajo-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: navajo-memorial-build
+    Title: "Cultural Space"
+    Description: "Expand the habitat and add a visible landmark path."
+    Objectives:
+    - ObjectiveId: navajo-memorial-life
+      ObjectiveType: 5
+      Description: "Reach life-module width 8."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 8
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: navajo-memorial-bridge
+      ObjectiveType: 3
+      Description: "Build 1 Bridge section."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 14
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0    ScheduleInspection: 0
+    BonusGold: 15
+    BonusReputation: 0  - StageId: navajo-memorial-stable
+    Title: "Quiet Utility"
+    Description: "Keep oxygen stable while the cooperative reviews the new space."
+    Objectives:
+    - ObjectiveId: navajo-memorial-oxy
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 13
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 235
+  ReputationReward: 14
+  ReputationPenaltyOnFail: 14
+  ReputationPenaltyOnReject: 10
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 5

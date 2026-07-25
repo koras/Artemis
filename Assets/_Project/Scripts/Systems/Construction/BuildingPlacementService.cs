@@ -145,6 +145,14 @@ namespace _Project.Scripts.Systems.Construction
         }
 
         /// <summary>
+        /// Returns the footprint and anchor command cell used by the destroy tool.
+        /// </summary>
+        public bool TryGetDestroyToolFootprint(Vector2Int selectedCell, List<Vector2Int> result, out Vector2Int commandCell)
+        {
+            return _buildingManager.TryGetDestroyToolFootprint(selectedCell, result, out commandCell);
+        }
+
+        /// <summary>
         /// Возвращает true, если клетка входит в planned-область стройки.
         /// </summary>
         public int GetAvailableBuildPlanCount(BuildingDef buildingDef)

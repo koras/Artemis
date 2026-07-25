@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: NavajoFairTradeOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-navajo-01
+  Customer: {fileID: 11400000, guid: 8c3ff65201b60d848aeb871837c9b828, type: 2}
+  Title: "Fair Trade Sample"
+  Description: "The cooperative wants proof that your extraction can respect limits and still keep a promise."
+  Archetype: 2
+  Category: 1
+  OfferAffinityTag: IndustryNavajo
+  IntroMessage: "This contract is small by design. Trust matters more than volume."
+  AcceptMessage: "Prepare the fair-trade sample and send it without diluting its value."
+  CompleteMessage: "The sample shipment built trust with the cooperative."
+  FailMessage: "The sample never made it through the trust test."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 120
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 1.05
+  MinCustomerReputationToAppear: 0
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: navajo-stewardship
+  ChainStep: 1
+  ExclusiveGroupId: navajo-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: navajo-stock
+    Title: "Careful Reserve"
+    Description: "Gather a modest regolith sample without turning the request into bulk mining."
+    Objectives:
+    - ObjectiveId: navajo-stock-reg
+      ObjectiveType: 2
+      Description: "Accumulate 8 Rogalite."
+      ResourceId: Rogalite
+      RequiredAmount: 8
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 15
+    BonusReputation: 0  - StageId: navajo-ship
+    Title: "Fair Trade Shipment"
+    Description: "Reserve the sample and wait for the next mission arrival."
+    Objectives:
+    - ObjectiveId: navajo-ship-reg
+      ObjectiveType: 1
+      Description: "Reserve 8 Rogalite for shipment."
+      ResourceId: Rogalite
+      RequiredAmount: 8
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: navajo-ship-mission
+      ObjectiveType: 8
+      Description: "Wait for the next mission arrival."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 160
+  ReputationReward: 12
+  ReputationPenaltyOnFail: 12
+  ReputationPenaltyOnReject: 8
+  FastReserveBonusGold: 20
+  FastReserveWindowHours: 8
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 4

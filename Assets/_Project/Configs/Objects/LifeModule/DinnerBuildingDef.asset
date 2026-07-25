@@ -17,7 +17,7 @@ MonoBehaviour:
   UiDescription: A functional food service point for daily meals and short breaks
   PreviewSprite: {fileID: 21300000, guid: 9ac010994fe89804d8e9e41b5a87346a, type: 3}
   BuiltSprite: {fileID: 21300000, guid: 08e4917960ea2454e83c40a4147c7a89, type: 3}
-  Width: 2
+  Width: 3
   Height: 2
   CanRotate: 0
   IsWalkableAfterBuild: 0
@@ -27,6 +27,7 @@ MonoBehaviour:
   AllowedPlacementCellTypes: 00000000
   RequiredBelowAnyCellTypes: 0200000003000000010000000b000000
   RequiredBelowAnyBuildObjectTypes: 
+  ResourceDeliveryTargetOffset: {x: 0, y: 0}
   BuildTicks: 3
   CostItems: []
   RequiresPower: 1

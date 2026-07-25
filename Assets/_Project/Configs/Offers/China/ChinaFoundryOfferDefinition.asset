@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: ChinaFoundryOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-china-02
+  Customer: {fileID: 11400000, guid: c1b1597e98231e44784c5c43d272e33b, type: 2}
+  Title: "Second Production Line"
+  Description: "With bulk extraction proven, the next demand is a tougher one: add a second processing backbone and keep it stable under load."
+  Archetype: 2
+  Category: 1
+  OfferAffinityTag: IndustryChina
+  IntroMessage: "This is the point where scale turns into systems engineering."
+  AcceptMessage: "Build the line, store the output, and hold power steady."
+  CompleteMessage: "The second line held and moved the program into audit phase."
+  FailMessage: "The line buckled before it could be trusted."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 960
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 1
+  MinCustomerReputationToAppear: 55
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: china-scale
+  ChainStep: 2
+  ExclusiveGroupId: china-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: china-line-build
+    Title: "Second Line"
+    Description: "Add a new regolith processor and enough storage to feed it."
+    Objectives:
+    - ObjectiveId: china-line-proc
+      ObjectiveType: 3
+      Description: "Build 1 Regolith Processing Unit."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 7
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: china-line-storage
+      ObjectiveType: 3
+      Description: "Build 2 Storage buildings."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 5
+      RequiredCount: 2
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: china-line-stable
+    Title: "Stable Throughput"
+    Description: "Hold both power and production in an operational state for 1 sol."
+    Objectives:
+    - ObjectiveId: china-line-battery
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Electric Battery for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 8
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: china-line-oper
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Regolith Processing Unit for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 7
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 280
+  ReputationReward: 14
+  ReputationPenaltyOnFail: 14
+  ReputationPenaltyOnReject: 10
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 5

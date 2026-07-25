@@ -192,15 +192,21 @@ namespace _Project.Scripts.Presentation.UI.Offers
         {
             OfferDefinition definition = record.Definition;
             bool isReservedForShipment = record.IsReservedForShipment;
+            int goldReward = _offerSystemService != null ? _offerSystemService.GetGoldReward(record) : definition.GoldReward;
 
             var row = new VisualElement();
             row.AddToClassList("offer-table-row");
 
-            row.Add(BuildTableCell(definition.Title, "offer-col-title"));
+            OfferStageProgressSnapshot stageProgress = _offerSystemService.GetStageProgress(record);
+            string stagePrefix = stageProgress != null
+                ? $"S{stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}"
+                : "S1/1";
+
+            row.Add(BuildTableCell($"{definition.Title} [{definition.Category}] {stagePrefix}", "offer-col-title"));
             row.Add(BuildTableCell(definition.Customer.FullName, "offer-col-customer"));
-            row.Add(BuildTableCell(definition.GoldReward.ToString(), "offer-col-gold"));
+            row.Add(BuildTableCell(goldReward.ToString(), "offer-col-gold"));
             row.Add(BuildTableCell($"+{definition.ReputationReward}", "offer-col-reputation"));
-            row.Add(BuildTableCell(BuildRequirementsText(definition.CompletionRequirements), "offer-col-requirements"));
+            row.Add(BuildTableCell(BuildStageSummary(stageProgress, definition), "offer-col-requirements"));
             string deadlineText = record.DeadlineSol.HasValue ? $"{record.DeadlineSol.Value} sol" : "-";
             if (isActive && record.ShipmentMissionTarget > 0)
             {
@@ -217,13 +223,16 @@ namespace _Project.Scripts.Presentation.UI.Offers
             actions.Add(new Button(() => OpenTooltip(record)) { text = "Details" });
             if (isActive)
             {
-                if (isReservedForShipment)
+                if (_offerSystemService.CurrentStageHasDeliverObjectives(record))
                 {
-                    actions.Add(new Button(() => _offerSystemService.CancelOfferReservation(record.RuntimeId)) { text = "Unreserve" });
-                }
-                else
-                {
-                    actions.Add(new Button(() => _offerSystemService.TryReserveOfferForNextMission(record.RuntimeId, 0)) { text = "Reserve" });
+                    if (isReservedForShipment)
+                    {
+                        actions.Add(new Button(() => _offerSystemService.CancelOfferReservation(record.RuntimeId)) { text = "Unreserve" });
+                    }
+                    else
+                    {
+                        actions.Add(new Button(() => _offerSystemService.TryReserveOfferForNextMission(record.RuntimeId, 0)) { text = "Reserve" });
+                    }
                 }
             }
             else
@@ -288,8 +297,20 @@ namespace _Project.Scripts.Presentation.UI.Offers
             _tooltipCompanyDescription.text = definition.Customer.CompanyDescription;
             _tooltipTitle.text = definition.Title;
             _tooltipDescription.text = definition.Description;
-            string shipmentRuleText = "Shipment rule: only 100% reserve counts. Partial reserve fails the contract.";
-            _tooltipRequirements.text = $"Resources: {BuildRequirementsText(definition.CompletionRequirements)}\n{shipmentRuleText}";
+            OfferStageProgressSnapshot stageProgress = _offerSystemService.GetStageProgress(_selectedOffer);
+            bool hasDeliverObjectives = _offerSystemService.CurrentStageHasDeliverObjectives(_selectedOffer);
+            string shipmentRuleText = hasDeliverObjectives
+                ? "Shipment rule: only 100% reserve counts. Partial reserve fails the contract."
+                : "Stage rule: this step resolves from base state and story progression.";
+            string chainText = BuildChainText(definition);
+            string fastBonusText = BuildFastBonusText(_selectedOffer);
+            _tooltipRequirements.text =
+                $"Category: {definition.Category}\n" +
+                $"Type: {definition.Archetype}\n" +
+                $"{BuildStageTooltip(stageProgress, definition)}\n" +
+                $"{chainText}\n" +
+                $"{fastBonusText}\n" +
+                $"{shipmentRuleText}";
             int cooldownRemainingMinutes = _offerSystemService.GetCooldownRemainingMinutes(definition);
             string cooldownText = cooldownRemainingMinutes > 0
                 ? $"{cooldownRemainingMinutes} min"
@@ -300,11 +321,18 @@ namespace _Project.Scripts.Presentation.UI.Offers
             bool isActive = ContainsRuntimeId(_offerSystemService.ActiveOffers, _selectedOffer.RuntimeId);
 
             _tooltipAcceptButton.style.display = isAvailable ? DisplayStyle.Flex : DisplayStyle.None;
-            _tooltipRejectButton.style.display = DisplayStyle.None;
+            _tooltipRejectButton.style.display = isAvailable ? DisplayStyle.Flex : DisplayStyle.None;
             if (isActive)
             {
-                _tooltipAcceptButton.text = _selectedOffer.IsReservedForShipment ? "Unreserve" : "Reserve";
-                _tooltipAcceptButton.style.display = DisplayStyle.Flex;
+                if (hasDeliverObjectives)
+                {
+                    _tooltipAcceptButton.text = _selectedOffer.IsReservedForShipment ? "Unreserve" : "Reserve";
+                    _tooltipAcceptButton.style.display = DisplayStyle.Flex;
+                }
+                else
+                {
+                    _tooltipAcceptButton.style.display = DisplayStyle.None;
+                }
                 _tooltipRejectButton.style.display = DisplayStyle.None;
             }
             else
@@ -368,6 +396,25 @@ namespace _Project.Scripts.Presentation.UI.Offers
             return result;
         }
 
+        private static string BuildStageSummary(OfferStageProgressSnapshot stageProgress, OfferDefinition definition)
+        {
+            if (stageProgress == null || stageProgress.Objectives == null || stageProgress.Objectives.Length == 0)
+            {
+                return BuildRequirementsText(definition?.CompletionRequirements);
+            }
+
+            int completed = 0;
+            for (int i = 0; i < stageProgress.Objectives.Length; i++)
+            {
+                if (stageProgress.Objectives[i] != null && stageProgress.Objectives[i].IsCompleted)
+                {
+                    completed++;
+                }
+            }
+
+            return $"{stageProgress.Stage?.Title ?? "Stage"} {completed}/{stageProgress.Objectives.Length}";
+        }
+
         private string BuildCooldownCellText(OfferDefinition definition)
         {
             if (definition == null)
@@ -408,7 +455,88 @@ namespace _Project.Scripts.Presentation.UI.Offers
             string deadlineText = record.DeadlineSol.HasValue
                 ? $"Mining deadline: until sol {record.DeadlineSol.Value}"
                 : "Mining deadline: unlimited";
-            return $"{deadlineText}\nSource: {record.Source}\nCooldown: {cooldownText}";
+            string fastReserveState = record.FastReserveBonusGranted ? "claimed" : "pending";
+            return $"{deadlineText}\nSource: {record.Source}\nCooldown: {cooldownText}\nFast reserve: {fastReserveState}";
+        }
+
+        private static string BuildChainText(OfferDefinition definition)
+        {
+            if (definition == null || string.IsNullOrWhiteSpace(definition.ChainId) || definition.ChainStep <= 0)
+            {
+                return "Chain: standalone";
+            }
+
+            return $"Chain: {definition.ChainId} step {definition.ChainStep}";
+        }
+
+        private string BuildFastBonusText(OfferRuntimeRecord record)
+        {
+            if (record?.Definition == null || record.Definition.FastReserveBonusGold <= 0)
+            {
+                return "Fast bonus: none";
+            }
+
+            if (record.FastReserveBonusGranted)
+            {
+                return $"Fast bonus: +{record.Definition.FastReserveBonusGold} gold secured";
+            }
+
+            bool isWindowOpen = _offerSystemService != null && _offerSystemService.IsFastReserveWindowOpen(record);
+            return isWindowOpen
+                ? $"Fast bonus: +{record.Definition.FastReserveBonusGold} gold if accepted now"
+                : "Fast bonus: expired";
+        }
+
+        private static string BuildStageTooltip(OfferStageProgressSnapshot stageProgress, OfferDefinition definition)
+        {
+            if (stageProgress == null)
+            {
+                return $"Resources: {BuildRequirementsText(definition?.CompletionRequirements)}";
+            }
+
+            string title = stageProgress.Stage != null
+                ? $"Stage {stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}: {stageProgress.Stage.Title}"
+                : $"Stage {stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}";
+            string description = stageProgress.Stage != null && !string.IsNullOrWhiteSpace(stageProgress.Stage.Description)
+                ? stageProgress.Stage.Description
+                : string.Empty;
+            string objectives = BuildObjectiveLines(stageProgress.Objectives);
+
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                return $"{title}\n{objectives}";
+            }
+
+            return $"{title}\n{description}\n{objectives}";
+        }
+
+        private static string BuildObjectiveLines(OfferObjectiveProgressSnapshot[] objectives)
+        {
+            if (objectives == null || objectives.Length == 0)
+            {
+                return "No objectives.";
+            }
+
+            string result = "Objectives:";
+            for (int i = 0; i < objectives.Length; i++)
+            {
+                OfferObjectiveProgressSnapshot objective = objectives[i];
+                if (objective?.Objective == null)
+                {
+                    continue;
+                }
+
+                string description = !string.IsNullOrWhiteSpace(objective.Objective.Description)
+                    ? objective.Objective.Description
+                    : objective.Objective.ObjectiveType.ToString();
+                string progress = objective.TargetValue > 0
+                    ? $"{objective.CurrentValue}/{objective.TargetValue}"
+                    : (objective.IsCompleted ? "done" : "pending");
+                string marker = objective.IsCompleted ? "[x]" : "[ ]";
+                result += $"\n{marker} {description} ({progress})";
+            }
+
+            return result;
         }
 
         private void OnOpenClicked(ClickEvent _)

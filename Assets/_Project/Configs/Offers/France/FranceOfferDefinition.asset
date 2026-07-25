@@ -12,43 +12,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
   m_Name: FranceOfferDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
-  OfferId: offer-id_12
+  OfferId: offer-france-01
   Customer: {fileID: 11400000, guid: 89fc6c8f2735d3742a69ebd167d403ee, type: 2}
-  Title: "\u0420\u0435\u043A\u043E\u043B\u0438\u0442 \u0434\u043B\u044F \u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u0438\u0439"
-  Description: "\u0417\u0434\u0440\u0430\u0432\u0441\u0442\u0432\u0443\u0439\u0442\u0435,
-    \u0434\u043E\u0431\u0443\u0434\u044C\u0442\u0435 \u043D\u0430\u043C \u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430
-    10 \u0440\u0435\u0433\u043E\u043B\u0438\u0442\u0430 \u0434\u043B\u044F \u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u0438\u0439
-    \u043D\u0430\u0448\u0435\u0439 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438.
-    \u041C\u044B \u0445\u043E\u0442\u0438\u043C \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u044C
-    \u043B\u0435\u043A\u0430\u0440\u0441\u0442\u0432\u0430 \u0434\u043B\u044F \u0435\u0432\u0440\u043E\u043F\u0435\u0439\u0441\u043A\u0438\u0445
-    \u043F\u0430\u0440\u0442\u043D\u0451\u0440\u043E\u0432 \u0438 \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435
-    \u043F\u043E\u043C\u043E\u0447\u044C \u043D\u0430\u043C \u0434\u043B\u044F \u0440\u0435\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u0438.\n\n\u0412\u0437\u0430\u043C\u0435\u043D
-    Compagnie Lunaire Fran\xE7aise \u0433\u0430\u0440\u0430\u043D\u0442\u0438\u0440\u0443\u0435\u0442:\n\n120
-    \u0437\u043E\u043B\u043E\u0442\u0430 \u043F\u043E\u0441\u043B\u0435 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438,\n\u0434\u043E\u043B\u0433\u043E\u0441\u0440\u043E\u0447\u043D\u044B\u0439
-    \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442 \u043D\u0430 \u043F\u043E\u0441\u0442\u0430\u0432\u043A\u0443
-    \u0440\u0435\u0434\u043A\u043E\u0437\u0435\u043C\u0435\u043B\u044C\u043D\u044B\u0445
-    \u043C\u0438\u043D\u0435\u0440\u0430\u043B\u043E\u0432,\n\u0434\u043E\u0441\u0442\u0443\u043F
-    \u043A \u0435\u0432\u0440\u043E\u043F\u0435\u0439\u0441\u043A\u0438\u043C \u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u043C
-    \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u044F\u043C.\n\n\u0421\u0440\u043E\u043A
-    \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442\u0430
-    \u2014 14 \u043B\u0443\u043D\u043D\u044B\u0445 \u0441\u0443\u0442\u043E\u043A.\n\n\u0411\u0443\u0434\u044C\u0442\u0435
-    \u043E\u0441\u0442\u043E\u0440\u043E\u0436\u043D\u044B: \u0432 \u0441\u0435\u043A\u0442\u043E\u0440\u0435
-    Mare Serenitatis \u0432 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u0435
-    \u0432\u0440\u0435\u043C\u044F \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0435\u0442\u0441\u044F
-    \u043F\u043E\u0432\u044B\u0448\u0435\u043D\u043D\u0430\u044F \u0441\u043E\u043B\u043D\u0435\u0447\u043D\u0430\u044F
-    \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C, \u0447\u0442\u043E
-    \u043C\u043E\u0436\u0435\u0442 \u043F\u043E\u0432\u043B\u0438\u044F\u0442\u044C
-    \u043D\u0430 \u0440\u0430\u0431\u043E\u0442\u0443 \u0431\u0443\u0440\u043E\u0432\u044B\u0445
-    \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A."
+  Title: "Regolith for Research"
+  Description: "French labs want clean regolith shipments to justify a larger scientific station on the moon."
+  Archetype: 2
+  Category: 1
+  OfferAffinityTag: Science
+  IntroMessage: "The first batch is meant for a fragile research window."
+  AcceptMessage: "Secure the regolith and send it before the science slot expires."
+  CompleteMessage: "The laboratory shipment impressed the bureau."
+  FailMessage: "The regolith never reached the scientists in time."
+  TriggerTypes: 5
   AppearanceRequirements: []
-  MinGameMinutesToAppear: 0
+  MinGameMinutesToAppear: 90
   HourlySpawnChance: 1
-  CompletionRequirements:
-  - ResourceId: Rogalite
-    Amount: 10
-  GoldReward: 25
-  ReputationReward: 10
-  ReputationPenaltyOnFail: 10
-  ReputationPenaltyOnReject: 0
+  ResourceEventConditions: []
+  BaseGenerationWeight: 1.2
+  MinCustomerReputationToAppear: 0
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: france-certification
+  ChainStep: 1
+  ExclusiveGroupId: france-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: france-stock
+    Title: "Research Stockpile"
+    Description: "Gather regolith fit for laboratory use."
+    Objectives:
+    - ObjectiveId: france-stock-reg
+      ObjectiveType: 2
+      Description: "Accumulate 12 Rogalite."
+      ResourceId: Rogalite
+      RequiredAmount: 12
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: france-send
+    Title: "Laboratory Shipment"
+    Description: "Reserve the sample and wait for the next mission to return."
+    Objectives:
+    - ObjectiveId: france-send-reg
+      ObjectiveType: 1
+      Description: "Reserve 12 Rogalite for shipment."
+      ResourceId: Rogalite
+      RequiredAmount: 12
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: france-send-mission
+      ObjectiveType: 8
+      Description: "Wait for the next mission arrival."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 170
+  ReputationReward: 12
+  ReputationPenaltyOnFail: 12
+  ReputationPenaltyOnReject: 8
+  FastReserveBonusGold: 30
+  FastReserveWindowHours: 8
+  Outcomes: []
   UseDeadline: 1
-  DeadlineDays: 7
+  DeadlineDays: 4

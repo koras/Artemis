@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: AfricanSouthAfricaContainmentOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-southafrica-03
+  Customer: {fileID: 11400000, guid: 6e1ad63ad32f613458b418f88e2c5359, type: 2}
+  Title: "Security Isolator"
+  Description: "The final step adds discipline to stone and steel: an isolated support wing for incidents, contraband, and hard labour disputes."
+  Archetype: 2
+  Category: 3
+  OfferAffinityTag: IndustryAfricanSouthAfrica
+  IntroMessage: "The buyers want a base that can absorb conflict without falling apart."
+  AcceptMessage: "Build the isolator wing and pass the final security review."
+  CompleteMessage: "The isolator review closed out the discipline program."
+  FailMessage: "The review found the isolator too weak for real incidents."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 1740
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 0.88
+  MinCustomerReputationToAppear: 66
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: southafrica-discipline
+  ChainStep: 3
+  ExclusiveGroupId: southafrica-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: south-isolator-prep
+    Title: "Isolator Prep"
+    Description: "Expand the habitat and add sleeping capacity for the containment wing."
+    Objectives:
+    - ObjectiveId: south-isolator-life
+      ObjectiveType: 5
+      Description: "Reach life-module width 10."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 10
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: south-isolator-sleep
+      ObjectiveType: 3
+      Description: "Build 2 Sleep Modules."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 9
+      RequiredCount: 2
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: south-isolator-pass
+    Title: "Security Review"
+    Description: "Receive the review and pass the final security inspection."
+    Objectives:
+    - ObjectiveId: south-isolator-pass
+      ObjectiveType: 10
+      Description: "Pass the containment inspection."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 0
+      RequireOperational: 1    ScheduleInspection: 1
+    BonusGold: 0
+    BonusReputation: 6  FailureConditions: []
+  GoldReward: 350
+  ReputationReward: 18
+  ReputationPenaltyOnFail: 16
+  ReputationPenaltyOnReject: 12
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 6

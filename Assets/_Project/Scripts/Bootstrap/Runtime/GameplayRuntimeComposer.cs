@@ -99,7 +99,6 @@ namespace _Project.Scripts.Bootstrap.Runtime
                 resourceFallSupportBuildObjectTypes,
                 resourceFallStepDurationSeconds);
             context.ResourceInventoryService.AddDefaultStartingResources();
-            context.OfferSystemService = new OfferSystemService(offerCatalog, context.ResourceInventoryService, world.GameTimeService);
             context.IronRocketArrivalService = new IronRocketArrivalService(
                 world.GameTimeService,
                 world.GridCoordinateConverter,
@@ -114,14 +113,6 @@ namespace _Project.Scripts.Bootstrap.Runtime
                 rocketDescendDurationSeconds,
                 rocketAscendDurationSeconds,
                 rocketStayDurationGameHours);
-            context.ShopSystemService = new ShopSystemService(
-                shopCatalog,
-                context.ResourceInventoryService,
-                context.OfferSystemService,
-                world.GameTimeService,
-                context.IronRocketArrivalService);
-            context.IronRocketArrivalService.MissionResolved += onRocketMissionResolved;
-
             context.CharacterNavigationService = new CharacterNavigationService(world.GridState);
             context.AnimalDebugSpawnConfigs = animalDebugSpawnConfigs;
             context.AnimalEggService = new AnimalEggService(
@@ -174,6 +165,19 @@ namespace _Project.Scripts.Bootstrap.Runtime
                 context.BuildingPlacementService,
                 context.ResourceInventoryService,
                 lifeModuleConstructionConfig);
+            context.OfferSystemService = new OfferSystemService(
+                offerCatalog,
+                world.GridState,
+                context.BuildingManager,
+                context.ResourceInventoryService,
+                world.GameTimeService);
+            context.ShopSystemService = new ShopSystemService(
+                shopCatalog,
+                context.ResourceInventoryService,
+                context.OfferSystemService,
+                world.GameTimeService,
+                context.IronRocketArrivalService);
+            context.IronRocketArrivalService.MissionResolved += onRocketMissionResolved;
             context.LifeModulePreviewRefreshService = new LifeModulePreviewRefreshService(
                 world.GridState,
                 world.GridTileVisualService,

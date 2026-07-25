@@ -12,54 +12,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
   m_Name: USAOfferDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
-  OfferId: offer-tramp
+  OfferId: offer-usa-01
   Customer: {fileID: 11400000, guid: 8458ebd819267f146bcd4c46790fc19b, type: 2}
-  Title: Extract and deliver 10 tons of regolith
-  Description: 'Listen. Everybody wants regolith now. Everybody. The Chinese, the
-    Europeans, all of them. But nobody has better energy deals than us.
-
-
-    The
-    United States Lunar Energy Reserve is offering a strategic partnership. Deliver
-    25 units of high-quality lunar regolith to our extraction facilities and in return
-    you will receive:
-
-
-    access to premium Earth oil reserves,
-
-    discounted
-    fuel shipments for your lunar fleet,
-
-    protection contracts for your mining
-    operations.
-
-
-    People said lunar mining would never work. We proved them wrong.
-
-
-    Make
-    the Moon profitable again.
-
-
-
-    United States Lunar Energy Reserve'
+  Title: "Lunar Logistics Rush"
+  Description: "A pressure test for American logistics. Build a reliable first shipment lane before regulators start asking questions."
+  Archetype: 2
+  Category: 1
+  OfferAffinityTag: Industry
+  IntroMessage: "Washington wants proof that your moon base can move freight on schedule."
+  AcceptMessage: "A fast launch slot has been reserved. Do not waste it."
+  CompleteMessage: "The shipment landed cleanly and the logistics desk wants more."
+  FailMessage: "The lane broke down before the first audit even began."
   TriggerTypes: 5
-  AppearanceRequirements:
-  - ResourceId: Titan
-    Amount: 1
-  MinGameMinutesToAppear: 0
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 60
   HourlySpawnChance: 1
   ResourceEventConditions: []
-  IsRepeatable: 1
-  CooldownGameMinutes: 120
-  CompletionRequirements:
-  - ResourceId: Titan
-    Amount: 10
-  - ResourceId: aluminium
-    Amount: 1
-  GoldReward: 25
-  ReputationReward: 10
-  ReputationPenaltyOnFail: 10
-  ReputationPenaltyOnReject: 0
+  BaseGenerationWeight: 1.25
+  MinCustomerReputationToAppear: 0
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: usa-control
+  ChainStep: 1
+  ExclusiveGroupId: usa-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: usa-log-brief
+    Title: "Logistics Stockpile"
+    Description: "Pull enough titan into storage so the launch team can assemble the first rush convoy."
+    Objectives:
+    - ObjectiveId: usa-log-1-stock
+      ObjectiveType: 2
+      Description: "Accumulate 10 Titan in storage."
+      ResourceId: Titan
+      RequiredAmount: 10
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: usa-log-launch
+    Title: "Priority Shipment"
+    Description: "Reserve the titan and send it on the next mission before the contract window closes."
+    Objectives:
+    - ObjectiveId: usa-log-1-deliver
+      ObjectiveType: 1
+      Description: "Reserve 10 Titan for shipment."
+      ResourceId: Titan
+      RequiredAmount: 10
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: usa-log-1-mission
+      ObjectiveType: 8
+      Description: "Wait for the next mission arrival."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 180
+  ReputationReward: 12
+  ReputationPenaltyOnFail: 12
+  ReputationPenaltyOnReject: 8
+  FastReserveBonusGold: 35
+  FastReserveWindowHours: 8
+  Outcomes: []
   UseDeadline: 1
-  DeadlineDays: 7
+  DeadlineDays: 4

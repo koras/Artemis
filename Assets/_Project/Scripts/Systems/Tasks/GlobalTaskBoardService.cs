@@ -480,6 +480,29 @@ namespace _Project.Scripts.Systems.Tasks
         }
 
         /// <summary>
+        /// Returns a read-only snapshot of open BuildObject tasks that build ladders.
+        /// </summary>
+        public IReadOnlyList<UnitTaskRecord> GetOpenLadderTasksSnapshot()
+        {
+            OpenTasksSnapshotBuffer.Clear();
+
+            for (int i = 0; i < _taskIds.Count; i++)
+            {
+                int id = _taskIds[i];
+                UnitTaskRecord task = _tasksById[id];
+                if (task.Status != UnitTaskStatus.Open) continue;
+                if (task.TaskType != UnitTaskType.BuildObject) continue;
+                if (task.BuildPayload?.BuildingDef == null) continue;
+                if (task.BuildPayload.BuildingDef.ObjectType != BuildObjectType.Ladder) continue;
+                if (!IsTaskStillValid(task)) continue;
+
+                OpenTasksSnapshotBuffer.Add(task);
+            }
+
+            return OpenTasksSnapshotBuffer;
+        }
+
+        /// <summary>
         /// Returns open tasks sorted by board score for the specified unit position.
         /// Unit-specific refusal logic stays in the acquisition service.
         /// </summary>
@@ -653,7 +676,7 @@ namespace _Project.Scripts.Systems.Tasks
                 TaskId = _nextTaskId++,
                 TaskType = UnitTaskType.BuildObject,
                 TargetCell = targetCell,
-                BasePriority = TaskPriority.Normal,
+                BasePriority = ResolveBuildTaskPriority(payload),
                 CreatedAtTick = currentTick,
                 ReservedByUnitId = 0,
                 ReserveTick = -1,
@@ -666,6 +689,17 @@ namespace _Project.Scripts.Systems.Tasks
             _taskIdByCell[targetCell] = task.TaskId;
             _taskIds.Add(task.TaskId);
             return task.TaskId;
+        }
+
+        private static TaskPriority ResolveBuildTaskPriority(BuildTaskPayload payload)
+        {
+            if (payload?.BuildingDef?.ObjectType == BuildObjectType.Ladder)
+            {
+                // Ladders unblock vertical access and must be selected before other global tasks.
+                return TaskPriority.Critical;
+            }
+
+            return TaskPriority.Normal;
         }
 
         public void CreateDestroyTask(Vector2Int targetCell, int currentTick, BuildTaskPayload payload)
@@ -1638,6 +1672,15 @@ public bool TryEnsureDroppedResourceDeliveryTask(
         public bool TryGetCableTaskByCell(Vector2Int cell, out UnitTaskRecord task)
         {
             return TryGetLiveTaskFromLookup(_cableTaskIdByCell, cell, out task);
+        }
+
+        /// <summary>
+        /// Returns the active dig or clear task for a cell from the dedicated dig lookup.
+        /// Build tasks can share the same cell in the general lookup, so excavation must query this map directly.
+        /// </summary>
+        public bool TryGetDigLikeTaskByCell(Vector2Int cell, out UnitTaskRecord task)
+        {
+            return TryGetLiveTaskFromLookup(_digTaskIdByCell, cell, out task);
         }
 
         public bool TryGetWaterTaskByCell(Vector2Int cell, out UnitTaskRecord task)

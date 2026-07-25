@@ -17,6 +17,7 @@ MonoBehaviour:
   CompanyName: NASA Chief
   CompanyDescription: Launches rockets ahead of schedule and deadlines ahead of panic.
     Loves when everything follows the plan, even if the plan changes every ten minutes
+  OfferAffinityTag: Aerospace
   KindPortrait: {fileID: 21300000, guid: 22c025ed6d96ffc4799998544ecd6681, type: 3}
   NeutralPortrait: {fileID: 21300000, guid: 22c025ed6d96ffc4799998544ecd6681, type: 3}
   AngryPortrait: {fileID: 21300000, guid: 22c025ed6d96ffc4799998544ecd6681, type: 3}

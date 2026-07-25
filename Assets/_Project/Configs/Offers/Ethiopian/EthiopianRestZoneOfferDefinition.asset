@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: EthiopianRestZoneOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-ethiopian-02
+  Customer: {fileID: 11400000, guid: 7b8257436399d8b48ac40aa8083e5bd3, type: 2}
+  Title: "Rest Zone Program"
+  Description: "The next phase wants the base to feel humane: food, rest, and a recovery loop that can stay calm under pressure."
+  Archetype: 2
+  Category: 3
+  OfferAffinityTag: IndustryEthiopian
+  IntroMessage: "A stable base is measured by how people recover, not just how they mine."
+  AcceptMessage: "Build the rest zone and keep its utilities healthy."
+  CompleteMessage: "The rest zone proved the colony can care for its people."
+  FailMessage: "The support loop never looked steady enough to trust."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 900
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 0.98
+  MinCustomerReputationToAppear: 55
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: ethiopian-stability
+  ChainStep: 2
+  ExclusiveGroupId: ethiopian-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: ethiopian-rest-build
+    Title: "Rest Zone"
+    Description: "Expand the habitat and add a dinner space for the relief program."
+    Objectives:
+    - ObjectiveId: ethiopian-rest-life
+      ObjectiveType: 5
+      Description: "Reach life-module width 8."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 8
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: ethiopian-rest-dinner
+      ObjectiveType: 3
+      Description: "Build 1 Dinner Station."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 12
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: ethiopian-rest-utility
+    Title: "Utility Calm"
+    Description: "Keep water recovery and oxygen online for a full sol."
+    Objectives:
+    - ObjectiveId: ethiopian-rest-water
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Water Reclamation unit for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 11
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1
+    - ObjectiveId: ethiopian-rest-oxy
+      ObjectiveType: 6
+      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 13
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 1    ScheduleInspection: 0
+    BonusGold: 0
+    BonusReputation: 4  FailureConditions: []
+  GoldReward: 245
+  ReputationReward: 14
+  ReputationPenaltyOnFail: 14
+  ReputationPenaltyOnReject: 10
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 5

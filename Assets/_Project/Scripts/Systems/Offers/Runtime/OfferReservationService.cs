@@ -8,7 +8,7 @@ namespace _Project.Scripts.Systems.Offers.Runtime
     /// <summary>
     /// Handles resource checks, reservation consume/release, and reservation integrity validation.
     /// </summary>
-    internal sealed class OfferReservationService
+    public sealed class OfferReservationService
     {
         private readonly OfferSystemContext _context;
 

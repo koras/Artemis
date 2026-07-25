@@ -8,7 +8,7 @@ namespace _Project.Scripts.Systems.Offers.Runtime
     /// <summary>
     /// Encapsulates customer reputation rules and portrait selection by reputation bands.
     /// </summary>
-    internal sealed class OfferReputationService
+    public sealed class OfferReputationService
     {
         private const int DEFAULT_CUSTOMER_REPUTATION = 50;
         private const int MIN_REPUTATION = 0;
@@ -40,6 +40,17 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             }
 
             return DEFAULT_CUSTOMER_REPUTATION;
+        }
+
+        /// <summary>
+        /// Returns reward multiplier where each 10 reputation above baseline adds 10%.
+        /// </summary>
+        public float GetRewardMultiplier(OfferCustomerDefinition customer)
+        {
+            int reputation = GetCustomerReputation(customer);
+            int delta = Mathf.Max(0, reputation - DEFAULT_CUSTOMER_REPUTATION);
+            int steps = delta / 10;
+            return 1f + (steps * 0.1f);
         }
 
         /// <summary>

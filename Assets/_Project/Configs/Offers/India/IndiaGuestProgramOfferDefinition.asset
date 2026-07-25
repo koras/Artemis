@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f4531ec054694b477a68f3d96f9e2, type: 3}
+  m_Name: IndiaGuestProgramOfferDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
+  OfferId: offer-india-03
+  Customer: {fileID: 11400000, guid: 25c88a3a458474041a03a7c451c7c696, type: 2}
+  Title: "Civic Guest Program"
+  Description: "The final Indian request is a public-facing one: open the first civic guest module and prove the colony can welcome non-specialists."
+  Archetype: 2
+  Category: 3
+  OfferAffinityTag: IndustryIndia
+  IntroMessage: "The guest program is meant to humanize the colony, not just fund it."
+  AcceptMessage: "Finish the public-facing module and pass the final visit."
+  CompleteMessage: "The guest program launched and broadened the colony's reputation."
+  FailMessage: "The visit made the colony feel too improvised for civilians."
+  TriggerTypes: 5
+  AppearanceRequirements: []
+  MinGameMinutesToAppear: 1800
+  HourlySpawnChance: 1
+  ResourceEventConditions: []
+  BaseGenerationWeight: 0.9
+  MinCustomerReputationToAppear: 66
+  ExtraUnlockConditions: []
+  IsRepeatable: 0
+  CooldownGameMinutes: 0
+  ChainId: india-civic
+  ChainStep: 3
+  ExclusiveGroupId: india-chain
+  CompletionRequirements: []
+  Stages:
+  - StageId: india-guest-ready
+    Title: "Public Module"
+    Description: "Add water support and keep a visible cash reserve for the public launch."
+    Objectives:
+    - ObjectiveId: india-guest-water
+      ObjectiveType: 3
+      Description: "Build 1 Water Reclamation unit."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 11
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0
+    - ObjectiveId: india-guest-gold
+      ObjectiveType: 7
+      Description: "Reach 220 stored Gold."
+      ResourceId: ''
+      RequiredAmount: 220
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 1
+      RequireOperational: 0    ScheduleInspection: 0
+    BonusGold: 20
+    BonusReputation: 0  - StageId: india-guest-pass
+    Title: "First Civic Visit"
+    Description: "Welcome the first visitors and pass the civic readiness inspection."
+    Objectives:
+    - ObjectiveId: india-guest-pass
+      ObjectiveType: 10
+      Description: "Pass the civic visit inspection."
+      ResourceId: ''
+      RequiredAmount: 1
+      BuildObjectType: 0
+      RequiredCount: 1
+      RequiredWidth: 1
+      RequiredSols: 0
+      RequireOperational: 1    ScheduleInspection: 1
+    BonusGold: 0
+    BonusReputation: 6  FailureConditions: []
+  GoldReward: 345
+  ReputationReward: 18
+  ReputationPenaltyOnFail: 16
+  ReputationPenaltyOnReject: 12
+  FastReserveBonusGold: 0
+  FastReserveWindowHours: 0
+  Outcomes: []
+  UseDeadline: 1
+  DeadlineDays: 6

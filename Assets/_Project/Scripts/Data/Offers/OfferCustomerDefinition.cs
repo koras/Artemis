@@ -13,6 +13,7 @@ namespace _Project.Scripts.Data.Offers
         public string LastName;
         public string CompanyName;
         [TextArea] public string CompanyDescription;
+        public string OfferAffinityTag;
 
         [Header("Portraits By Reputation")]
         public Sprite KindPortrait;

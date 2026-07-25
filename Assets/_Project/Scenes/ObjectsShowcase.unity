@@ -3142,8 +3142,32 @@ MonoBehaviour:
   _colonyEventCatalog: []
   _offerCatalog:
   - {fileID: 11400000, guid: 0565cb83dcd1ada49a9ac4e87199afb1, type: 2}
+  - {fileID: 11400000, guid: 7fdf737c824c487ba7f206f75eb9ddd8, type: 2}
+  - {fileID: 11400000, guid: 8f2f3c198a2241f2bd19cb52c66f76a7, type: 2}
   - {fileID: 11400000, guid: 8324fadfc1badb54bab28204d705fde1, type: 2}
+  - {fileID: 11400000, guid: 29faee0ee5174db593210f25c03ee107, type: 2}
+  - {fileID: 11400000, guid: 0384585824ff4372958ca8f50e10084b, type: 2}
   - {fileID: 11400000, guid: a54413196ddd8854dae76187c6fef066, type: 2}
+  - {fileID: 11400000, guid: 53f1e7bf9fd44f19a4fc87d55cf98ad0, type: 2}
+  - {fileID: 11400000, guid: 95b78003ff2445ad930d0f7670411a50, type: 2}
+  - {fileID: 11400000, guid: 2bde1fca2d1942a6ba83f308892baa38, type: 2}
+  - {fileID: 11400000, guid: 0fffae0dc34a4a84a03e7917940793b8, type: 2}
+  - {fileID: 11400000, guid: dd4081eeee2e4cbbac6282a9bc8b6c1d, type: 2}
+  - {fileID: 11400000, guid: 121511a3085e471fa9cf9da73462713d, type: 2}
+  - {fileID: 11400000, guid: b5516acefabf450eb3d62350862499b4, type: 2}
+  - {fileID: 11400000, guid: 11a9366cbd544b2b9c08a7f892e676b9, type: 2}
+  - {fileID: 11400000, guid: 175b8cd67c694debbf9303264468d0c7, type: 2}
+  - {fileID: 11400000, guid: bee34f1c7e7c4b05bdced55e0ba47b21, type: 2}
+  - {fileID: 11400000, guid: a3efcd74d9354c8e9eb0f0371e724bc4, type: 2}
+  - {fileID: 11400000, guid: 83ab26953ed04f12b5223b42c1e8378d, type: 2}
+  - {fileID: 11400000, guid: b29b8fad41444d7c9987a0a540bb2ce4, type: 2}
+  - {fileID: 11400000, guid: c7b57a587a1c46ae994354a703eec91a, type: 2}
+  - {fileID: 11400000, guid: 2ed337b6b3554a519c43808059de38ef, type: 2}
+  - {fileID: 11400000, guid: d17e4852b8544b88bda07ec3608ee735, type: 2}
+  - {fileID: 11400000, guid: fe1495db9ff4428ab374c8d6f9f3829f, type: 2}
+  - {fileID: 11400000, guid: 9e091c14f17a4d9f96ee48bb70049565, type: 2}
+  - {fileID: 11400000, guid: eba632ab0e7a445891fbc312026c0aa7, type: 2}
+  - {fileID: 11400000, guid: 75b4843b8438474883bdb917c9c3cb34, type: 2}
   _shopCatalog: []
   _buildingsRoot: {fileID: 0}
   _resourceObjectsRoot: {fileID: 0}

@@ -911,7 +911,7 @@ namespace _Project.Scripts.Input
             if (_currentToolMode == ToolMode.DestroyObject)
             {
                 _footprintBuffer.Clear();
-                if (!_buildingPlacementService.TryGetDestroyableFootprint(pos, _footprintBuffer)) return;
+                if (!_buildingPlacementService.TryGetDestroyToolFootprint(pos, _footprintBuffer, out Vector2Int commandCell)) return;
 
                 for (int i = 0; i < _footprintBuffer.Count; i++)
                 {
@@ -920,10 +920,7 @@ namespace _Project.Scripts.Input
                     _gridTileVisualService.SetDestructionMarker(footprintCell, true);
                 }
 
-                if (_footprintBuffer.Count > 0)
-                {
-                    _currentDestructionPreviewAnchors.Add(_footprintBuffer[0]);
-                }
+                _currentDestructionPreviewAnchors.Add(commandCell);
 
                 return;
             }
@@ -1134,6 +1131,13 @@ namespace _Project.Scripts.Input
         {
             foreach (Vector2Int anchorCell in _currentDestructionPreviewAnchors)
             {
+                // Planned constructions are cancelled by the same destroy action before the object becomes active.
+                if (_buildingPlacementService.IsPlannedCell(anchorCell))
+                {
+                    _buildingPlacementService.TryCancelTaskAndReleasePlannedArea(anchorCell);
+                    continue;
+                }
+
                 _buildingPlacementService.TryQueueDestroy(anchorCell, _getTickCounter());
             }
         }
@@ -1836,7 +1840,7 @@ namespace _Project.Scripts.Input
             if (_currentToolMode == ToolMode.DestroyObject)
             {
                 _footprintBuffer.Clear();
-                return _buildingPlacementService.TryGetDestroyableFootprint(pos, _footprintBuffer);
+                return _buildingPlacementService.TryGetDestroyToolFootprint(pos, _footprintBuffer, out _);
             }
 
             if (_currentToolMode == ToolMode.BuildCable)
@@ -2038,7 +2042,7 @@ namespace _Project.Scripts.Input
                 if (_currentToolMode == ToolMode.DestroyObject)
                 {
                     _footprintBuffer.Clear();
-                    if (!_buildingPlacementService.TryGetDestroyableFootprint(_hoverCell, _footprintBuffer)) return;
+                    if (!_buildingPlacementService.TryGetDestroyToolFootprint(_hoverCell, _footprintBuffer, out _)) return;
 
                     for (int i = 0; i < _footprintBuffer.Count; i++)
                     {
