@@ -294,7 +294,7 @@ namespace _Project.Scripts.Systems.Construction
                     int belowY = anchorCell.y - 1;
                     if (!_grid.IsInside(belowX, belowY)) return false;
 
-                    Cell belowCell = _grid.GetCell(belowX, belowY);
+                    ref readonly Cell belowCell = ref _grid.GetCell(belowX, belowY);
                     bool isLadderBelow = belowCell.BuildObjectType.HasValue && belowCell.BuildObjectType.Value == BuildObjectType.Ladder;
                     if (belowCell.Type != CellType.Empty && !isLadderBelow) return false;
                 }
@@ -314,7 +314,7 @@ namespace _Project.Scripts.Systems.Construction
                     if (!_grid.IsInside(gx, gy)) return false;
                     if (ShipLandingZoneRules.IsInsideLandingZone(_grid.Width, _grid.Height, gx, gy)) return false;
 
-                    Cell cell = _grid.GetCell(gx, gy);
+                    ref readonly Cell cell = ref _grid.GetCell(gx, gy);
                     if (cell.IsOccupiedByBuilding) return false;
                     if (!PassesLifeModulePlacementRule(def, cell, gx, gy, size.y)) return false;
                     // Явно запрещаем ставить Bridge поверх уже существующего Bridge.
@@ -343,7 +343,7 @@ namespace _Project.Scripts.Systems.Construction
             {
                 for (int x = 0; x < size.x; x++)
                 {
-                    Cell cell = _grid.GetCell(anchorCell.x + x, anchorCell.y + y);
+                    ref readonly Cell cell = ref _grid.GetCell(anchorCell.x + x, anchorCell.y + y);
                     if (IsLadderExcavationCell(cell.Type)) return true;
                 }
             }
@@ -368,7 +368,7 @@ namespace _Project.Scripts.Systems.Construction
                     int gy = payload.AnchorCell.y + y;
                     if (!_grid.IsInside(gx, gy)) continue;
 
-                    Cell cell = _grid.GetCell(gx, gy);
+                    ref readonly Cell cell = ref _grid.GetCell(gx, gy);
                     if (CellTraversalRules.IsDiggable(cell.Type))
                     {
                         return true;
@@ -424,7 +424,7 @@ namespace _Project.Scripts.Systems.Construction
                 int belowY = anchorCell.y - 1;
                 if (!_grid.IsInside(belowX, belowY)) continue;
 
-                Cell belowCell = _grid.GetCell(belowX, belowY);
+                ref readonly Cell belowCell = ref _grid.GetCell(belowX, belowY);
                 if (hasCellTypeRules && MatchesAnyPlacementType(def.RequiredBelowAnyCellTypes, belowCell.Type))
                 {
                     return true;
@@ -484,7 +484,7 @@ namespace _Project.Scripts.Systems.Construction
             {
                 for (int x = 0; x < _grid.Width; x++)
                 {
-                    Cell groupCell = _grid.GetCell(x, y);
+                    ref readonly Cell groupCell = ref _grid.GetCell(x, y);
                     if (groupCell.LifeModuleType != LifeModuleType.Built || groupCell.LifeModuleGroupId != groupId)
                     {
                         continue;
@@ -941,7 +941,7 @@ namespace _Project.Scripts.Systems.Construction
             if (_externalStorageCells.Contains(storageCell)) return true;
             if (!_grid.IsInside(storageCell.x, storageCell.y)) return false;
 
-            Cell cell = _grid.GetCell(storageCell.x, storageCell.y);
+            ref readonly Cell cell = ref _grid.GetCell(storageCell.x, storageCell.y);
             if (!cell.BuildObjectType.HasValue) return false;
 
             BuildObjectType cellObjectType = cell.BuildObjectType.Value;
@@ -991,7 +991,7 @@ namespace _Project.Scripts.Systems.Construction
             {
                 for (int x = 0; x < _grid.Width; x++)
                 {
-                    Cell cell = _grid.GetCell(x, y);
+                    ref readonly Cell cell = ref _grid.GetCell(x, y);
                     if (!cell.BuildObjectType.HasValue) continue;
 
                     BuildObjectType objectType = cell.BuildObjectType.Value;
@@ -1056,7 +1056,7 @@ namespace _Project.Scripts.Systems.Construction
             {
                 for (int x = 0; x < _grid.Width; x++)
                 {
-                    Cell cell = _grid.GetCell(x, y);
+                    ref readonly Cell cell = ref _grid.GetCell(x, y);
                     if (!cell.BuildObjectType.HasValue) continue;
 
                     BuildObjectType objectType = cell.BuildObjectType.Value;

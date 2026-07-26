@@ -526,7 +526,7 @@ namespace _Project.Scripts.Systems.Resources
                 return false;
             }
 
-            Cell target = _gridState.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell target = ref _gridState.GetCell(targetCell.x, targetCell.y);
             if (_supportCellTypes.Contains(target.Type))
             {
                 return false;

@@ -520,7 +520,7 @@ namespace _Project.Scripts.Systems.Units
                 Vector2Int betweenCellPos = unitCell + step * i;
                 if (!_grid.IsInside(betweenCellPos.x, betweenCellPos.y)) return false;
 
-                Cell betweenCell = _grid.GetCell(betweenCellPos.x, betweenCellPos.y);
+                ref readonly Cell betweenCell = ref _grid.GetCell(betweenCellPos.x, betweenCellPos.y);
                 if (!IsAirCell(betweenCell)) return false;
             }
 
@@ -533,7 +533,7 @@ namespace _Project.Scripts.Systems.Units
         // Method IsWorkCellWalkable: executes the IsWorkCellWalkable workflow.
         public bool IsWorkCellWalkable(Vector2Int cellPos)
         {
-            Cell cell = _grid.GetCell(cellPos.x, cellPos.y);
+            ref readonly Cell cell = ref _grid.GetCell(cellPos.x, cellPos.y);
             Vector2Int down = MovementSupportRules.GetDownDirection(cell);
             return MovementSupportRules.IsCellStandableForMovement(_grid, cellPos, down);
 #if false
@@ -562,7 +562,7 @@ namespace _Project.Scripts.Systems.Units
                         continue;
                     }
 
-                    Cell cell = _grid.GetCell(cellPos.x, cellPos.y);
+                    ref readonly Cell cell = ref _grid.GetCell(cellPos.x, cellPos.y);
                     bool walkable = IsWorkCellWalkable(cellPos);
                     bool canPath = cellPos == unitCell || _navigation.TryBuildPath(unitId, unitCell, cellPos, out _);
                     bool canWorkCardinal = CanWorkWithTargetFromCell(cellPos, targetCell);
@@ -699,8 +699,8 @@ namespace _Project.Scripts.Systems.Units
             if (!_grid.IsInside(unitCell.x, unitCell.y)) return false;
             if (!_grid.IsInside(targetCell.x, targetCell.y)) return false;
 
-            Cell unit = _grid.GetCell(unitCell.x, unitCell.y);
-            Cell target = _grid.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell unit = ref _grid.GetCell(unitCell.x, unitCell.y);
+            ref readonly Cell target = ref _grid.GetCell(targetCell.x, targetCell.y);
             if (!IsAirCell(unit) || unit.IsDigMarked) return false;
             if (!IsAirCell(target) || target.IsDigMarked) return false;
 
@@ -708,8 +708,8 @@ namespace _Project.Scripts.Systems.Units
             Vector2Int cornerB = new Vector2Int(targetCell.x, unitCell.y);
             if (!_grid.IsInside(cornerA.x, cornerA.y) || !_grid.IsInside(cornerB.x, cornerB.y)) return false;
 
-            Cell cornerCellA = _grid.GetCell(cornerA.x, cornerA.y);
-            Cell cornerCellB = _grid.GetCell(cornerB.x, cornerB.y);
+            ref readonly Cell cornerCellA = ref _grid.GetCell(cornerA.x, cornerA.y);
+            ref readonly Cell cornerCellB = ref _grid.GetCell(cornerB.x, cornerB.y);
             if (cornerCellA.IsDigMarked || cornerCellB.IsDigMarked) return false;
 
             bool cornerAFree = cornerCellA.Type == CellType.Empty || cornerCellA.Type == CellType.Atmosphere;
@@ -770,7 +770,7 @@ namespace _Project.Scripts.Systems.Units
             if (!_grid.IsInside(unitCell.x, unitCell.y)) return false;
             if (!_grid.IsInside(targetCell.x, targetCell.y)) return false;
 
-            Cell unit = _grid.GetCell(unitCell.x, unitCell.y);
+            ref readonly Cell unit = ref _grid.GetCell(unitCell.x, unitCell.y);
             if (!IsAirCell(unit) || unit.IsDigMarked) return false;
 
             // Allow only the immediate diagonal work corner-case so units can keep
@@ -785,7 +785,7 @@ namespace _Project.Scripts.Systems.Units
 
                 if (i < diagonalDistance - 1)
                 {
-                    Cell betweenDiagonalCell = _grid.GetCell(next.x, next.y);
+                    ref readonly Cell betweenDiagonalCell = ref _grid.GetCell(next.x, next.y);
                     if (!IsAirCell(betweenDiagonalCell) || betweenDiagonalCell.IsDigMarked) return false;
                 }
 
@@ -802,8 +802,8 @@ namespace _Project.Scripts.Systems.Units
             Vector2Int cornerB = new Vector2Int(toCell.x, fromCell.y);
             if (!_grid.IsInside(cornerA.x, cornerA.y) || !_grid.IsInside(cornerB.x, cornerB.y)) return false;
 
-            Cell cornerCellA = _grid.GetCell(cornerA.x, cornerA.y);
-            Cell cornerCellB = _grid.GetCell(cornerB.x, cornerB.y);
+            ref readonly Cell cornerCellA = ref _grid.GetCell(cornerA.x, cornerA.y);
+            ref readonly Cell cornerCellB = ref _grid.GetCell(cornerB.x, cornerB.y);
             if (cornerCellA.IsDigMarked || cornerCellB.IsDigMarked) return false;
 
             bool cornerAFree = cornerCellA.Type == CellType.Empty || cornerCellA.Type == CellType.Atmosphere;

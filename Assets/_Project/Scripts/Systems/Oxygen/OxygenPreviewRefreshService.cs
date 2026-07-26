@@ -92,7 +92,7 @@ namespace _Project.Scripts.Systems.Oxygen
             foreach (Vector2Int stagedCell in stagedSnapshot)
             {
                 if (!_gridState.IsInside(stagedCell.x, stagedCell.y)) continue;
-                Cell stagedGridCell = _gridState.GetCell(stagedCell.x, stagedCell.y);
+                ref readonly Cell stagedGridCell = ref _gridState.GetCell(stagedCell.x, stagedCell.y);
                 if (stagedGridCell.HasOxygen) continue;
                 stagedPreviewCells.Add(stagedCell);
             }
@@ -102,7 +102,7 @@ namespace _Project.Scripts.Systems.Oxygen
                 for (int x = 0; x < _gridState.Width; x++)
                 {
                     Vector2Int cellPos = new Vector2Int(x, y);
-                    Cell markedCell = _gridState.GetCell(x, y);
+                    ref readonly Cell markedCell = ref _gridState.GetCell(x, y);
                     if (!markedCell.IsOxygenMarked || markedCell.HasOxygen)
                     {
                         continue;
@@ -120,7 +120,7 @@ namespace _Project.Scripts.Systems.Oxygen
 
                 Vector2Int cell = task.TargetCell;
                 if (!_gridState.IsInside(cell.x, cell.y)) continue;
-                Cell taskCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell taskCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (taskCell.HasOxygen) continue;
                 stagedPreviewCells.Add(cell);
             }
@@ -236,7 +236,8 @@ namespace _Project.Scripts.Systems.Oxygen
         private bool HasBuiltOxygenAt(Vector2Int cellPos)
         {
             if (!_gridState.IsInside(cellPos.x, cellPos.y)) return false;
-            return _gridState.GetCell(cellPos.x, cellPos.y).HasOxygen;
+            Cell cell = _gridState.GetCell(cellPos.x, cellPos.y);
+            return cell.HasOxygen;
         }
     }
 }

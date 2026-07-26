@@ -54,7 +54,7 @@ namespace _Project.Scripts.Systems.Oxygen
                                 continue;
                             }
 
-                            Cell neighborCell = _gridState.GetCell(neighbor.x, neighbor.y);
+                            ref readonly Cell neighborCell = ref _gridState.GetCell(neighbor.x, neighbor.y);
                             if (!neighborCell.HasOxygen)
                             {
                                 continue;

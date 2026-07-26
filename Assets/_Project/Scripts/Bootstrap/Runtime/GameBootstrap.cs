@@ -937,19 +937,13 @@ namespace _Project.Scripts.Bootstrap.Runtime
 
         private void RebuildHudContext()
         {
-            if (_runtimeHandles == null || _runtimeHandles.World == null || _runtimeHandles.Gameplay == null)
-            {
-                return;
-            }
+            UiRuntimeContext previousUi = _runtimeHandles.Ui;
+            ConstructionToolPanelController previousConstructionToolPanelController = previousUi.ConstructionToolPanelController;
 
-            ConstructionToolPanelController previousConstructionToolPanelController = _runtimeHandles.Ui != null
-                ? _runtimeHandles.Ui.ConstructionToolPanelController
-                : null;
-            ColonyEventHudPresenter previousColonyEventHudPresenter = _runtimeHandles.Ui != null
-                ? _runtimeHandles.Ui.ColonyEventHudPresenter
-                : null;
-
-            previousColonyEventHudPresenter?.Dispose();
+            previousUi.ResourceInventoryPanelPresenter?.Dispose();
+            previousUi.ColonyEventHudPresenter?.Dispose();
+            previousUi.OfferPanelPresenter?.Dispose();
+            previousUi.ShopPanelPresenter?.Dispose();
 
             _runtimeHandles.Ui = UiRuntimeComposer.Compose(
                 _uiDocument,
@@ -1329,7 +1323,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
         /// </summary>
         private bool IsCellReservedOrBuilt(Vector2Int cell)
         {
-            Cell cellData = _gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell cellData = ref _gridState.GetCell(cell.x, cell.y);
             if (cellData.ReservedByUnitId != 0) return true;
             if (cellData.IsOccupiedByBuilding) return true;
             if (cellData.BuildObjectType.HasValue) return true;
@@ -1382,7 +1376,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
             {
                 for (int x = minX; x <= maxX; x++)
                 {
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (!cell.HasWater && !cell.IsWaterPreviewVisible)
                     {
                         continue;
@@ -1434,7 +1428,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
             {
                 for (int x = minX; x <= maxX; x++)
                 {
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (!cell.HasCable && !cell.IsCablePreviewVisible)
                     {
                         continue;

@@ -57,7 +57,9 @@ namespace _Project.Scripts.Presentation.UI.Offers
         private readonly HashSet<string> _knownAvailableOfferIds = new HashSet<string>();
         private readonly HashSet<string> _unreadOfferIds = new HashSet<string>();
         private IVisualElementScheduledItem _blinkSchedule;
+        private IVisualElementScheduledItem _renderSchedule;
         private bool _blinkOn;
+        private bool _renderQueued;
         private OfferRuntimeRecord _selectedOffer;
         private OfferViewMode _activeViewMode = OfferViewMode.NewOffers;
 
@@ -135,14 +137,17 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             _blinkSchedule?.Pause();
             _blinkSchedule = null;
+            _renderSchedule?.Pause();
+            _renderSchedule = null;
+            _renderQueued = false;
         }
 
         public void Render()
         {
-            if (_goldLabel != null)
-            {
-                _goldLabel.text = $"Gold: {(_offerSystemService != null ? _offerSystemService.Gold : 0)}";
-            }
+            _renderSchedule?.Pause();
+            _renderSchedule = null;
+            _renderQueued = false;
+            _goldLabel.text = $"Gold: {_offerSystemService.Gold}";
 
             DetectNewOffers();
             UpdateOpenButtonBlink();
@@ -154,7 +159,6 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
         private void RenderAvailable()
         {
-            if (_availableList == null) return;
             _availableList.Clear();
             _availableList.Add(BuildTableHeader(false));
 
@@ -172,7 +176,6 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
         private void RenderActive()
         {
-            if (_activeList == null) return;
             _activeList.Clear();
             _activeList.Add(BuildTableHeader(true));
 
@@ -278,11 +281,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
         private void RenderTooltip()
         {
-            if (_tooltipPanel == null || _selectedOffer == null) return;
-            if (_tooltipPortrait == null || _tooltipCustomerName == null || _tooltipCompanyName == null ||
-                _tooltipCompanyDescription == null || _tooltipTitle == null || _tooltipDescription == null ||
-                _tooltipRequirements == null || _tooltipDeadline == null || _tooltipAcceptButton == null ||
-                _tooltipRejectButton == null) return;
+            if (_selectedOffer == null) return;
 
             OfferDefinition definition = _selectedOffer.Definition;
             if (definition == null || definition.Customer == null)
@@ -359,7 +358,6 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
         private void UpdateOpenButtonBlink()
         {
-            if (_openButton == null) return;
             if (_unreadOfferIds.Count <= 0)
             {
                 _blinkSchedule?.Pause();
@@ -552,6 +550,22 @@ namespace _Project.Scripts.Presentation.UI.Offers
             Render();
         }
 
+        private void QueueRender()
+        {
+            if (_renderQueued)
+            {
+                return;
+            }
+
+            _renderQueued = true;
+            _renderSchedule = _root.schedule.Execute(() =>
+            {
+                _renderSchedule = null;
+                _renderQueued = false;
+                Render();
+            });
+        }
+
         private void OnCloseClicked(ClickEvent _)
         {
             CloseAllUi();
@@ -618,7 +632,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
                 }
             }
 
-            Render();
+            QueueRender();
         }
 
         private void EnsurePanelReady()
@@ -735,15 +749,8 @@ namespace _Project.Scripts.Presentation.UI.Offers
         private void UpdateViewStates()
         {
             bool showNewOffers = _activeViewMode == OfferViewMode.NewOffers;
-            if (_availableSection != null)
-            {
-                _availableSection.style.display = showNewOffers ? DisplayStyle.Flex : DisplayStyle.None;
-            }
-
-            if (_activeSection != null)
-            {
-                _activeSection.style.display = showNewOffers ? DisplayStyle.None : DisplayStyle.Flex;
-            }
+            _availableSection.style.display = showNewOffers ? DisplayStyle.Flex : DisplayStyle.None;
+            _activeSection.style.display = showNewOffers ? DisplayStyle.None : DisplayStyle.Flex;
 
             bool hasAcceptedOffers = _offerSystemService != null && _offerSystemService.ActiveOffers.Count > 0;
             SetTabState(_newOffersTabButton, showNewOffers, false, false);
@@ -752,11 +759,6 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
         private static void SetTabState(Button button, bool isActive, bool isAcceptedTab, bool hasAcceptedOffers)
         {
-            if (button == null)
-            {
-                return;
-            }
-
             button.EnableInClassList("offers-tab-btn-active", isActive && (!isAcceptedTab || !hasAcceptedOffers));
 
             // Accepted tab stays green when there are accepted contracts so the player can spot them immediately.

@@ -18,6 +18,11 @@ namespace _Project.Scripts.Data.Grid
         /// </summary>
         public int NavigationRevision { get; private set; }
 
+        /// <summary>
+        /// Changes when any cell data changes, including presentation-only life-module fields.
+        /// </summary>
+        public int CellRevision { get; private set; }
+
         public  int CellSize { get; } // размер одной ячейки (например 1f)
         
         
@@ -45,14 +50,14 @@ namespace _Project.Scripts.Data.Grid
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
 
-        public Cell GetCell(int x, int y)
+        public ref readonly Cell GetCell(int x, int y)
         {
             if (!IsInside(x, y))
             {
                 throw new ArgumentOutOfRangeException($"Cell ({x},{y}) out of bounds.");
             }
 
-            return _cells[GetIndex(x, y)];
+            return ref _cells[GetIndex(x, y)];
         }
 
         public void SetCell(int x, int y, Cell cell)
@@ -73,6 +78,7 @@ namespace _Project.Scripts.Data.Grid
 
             if (!AreCellsEqual(previousCell, cell))
             {
+                CellRevision++;
                 CellChanged?.Invoke(new Vector2Int(x, y), previousCell, cell);
             }
         }

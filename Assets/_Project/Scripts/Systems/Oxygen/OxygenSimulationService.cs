@@ -597,7 +597,7 @@ namespace _Project.Scripts.Systems.Oxygen
                 return 0;
             }
 
-            Cell cell = _gridState.GetCell(portCell.x, portCell.y);
+            ref readonly Cell cell = ref _gridState.GetCell(portCell.x, portCell.y);
             return cell.OxygenNetworkId;
         }
 

@@ -63,7 +63,7 @@ namespace _Project.Scripts.Presentation.UI
                 return;
             }
 
-            Cell hoveredCellData = gridState.GetCell(hoveredCell.x, hoveredCell.y);
+            ref readonly Cell hoveredCellData = ref gridState.GetCell(hoveredCell.x, hoveredCell.y);
             _hoverCellLabel.text = $"Hover: ({hoveredCell.x},{hoveredCell.y})";
             _networkLabel.text = hoveredCellData.HasCable
                 ? $"Network: cable id={hoveredCellData.CableNetworkId}"

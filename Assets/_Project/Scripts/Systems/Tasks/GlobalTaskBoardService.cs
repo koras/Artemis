@@ -72,7 +72,7 @@ namespace _Project.Scripts.Systems.Tasks
             {
                 for (int x = 0; x < grid.Width; x++)
                 {
-                    Cell cell = grid.GetCell(x, y);
+                    ref readonly Cell cell = ref grid.GetCell(x, y);
                     if (!cell.IsDigMarked) continue;
                     if (!CellTraversalRules.IsDiggable(cell.Type)) continue;
 
@@ -264,7 +264,7 @@ namespace _Project.Scripts.Systems.Tasks
                 _waterTaskIdByCell.Remove(targetCell);
             }
 
-            Cell cell = _grid.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell cell = ref _grid.GetCell(targetCell.x, targetCell.y);
             if (!cell.IsWaterMarked || cell.HasWater || !CanBuildPipeOnCellType(cell.Type))
             {
                 return false;
@@ -348,7 +348,7 @@ namespace _Project.Scripts.Systems.Tasks
                 _oxygenTaskIdByCell.Remove(targetCell);
             }
 
-            Cell cell = _grid.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell cell = ref _grid.GetCell(targetCell.x, targetCell.y);
             if (!cell.IsOxygenMarked || cell.HasOxygen || !CanBuildPipeOnCellType(cell.Type))
             {
                 return false;
@@ -428,7 +428,7 @@ namespace _Project.Scripts.Systems.Tasks
                 return false;
             }
 
-            Cell cell = _grid.GetCell(cellPos.x, cellPos.y);
+            ref readonly Cell cell = ref _grid.GetCell(cellPos.x, cellPos.y);
             if (!cell.IsDigMarked) return false;
             if (!CellTraversalRules.IsDiggable(cell.Type)) return false;
             if (_digTaskIdByCell.ContainsKey(cellPos)) return false;
@@ -901,7 +901,7 @@ public bool TryEnsureDroppedResourceDeliveryTask(
                 return false;
             }
 
-            Cell cell = _grid.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell cell = ref _grid.GetCell(targetCell.x, targetCell.y);
             if (!cell.HasCable)
             {
                 return false;
@@ -953,7 +953,7 @@ public bool TryEnsureDroppedResourceDeliveryTask(
                 return false;
             }
 
-            Cell cell = _grid.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell cell = ref _grid.GetCell(targetCell.x, targetCell.y);
             if (!cell.HasWater)
             {
                 return false;
@@ -1005,7 +1005,7 @@ public bool TryEnsureDroppedResourceDeliveryTask(
                 return false;
             }
 
-            Cell cell = _grid.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell cell = ref _grid.GetCell(targetCell.x, targetCell.y);
             if (!cell.HasOxygen)
             {
                 return false;
@@ -1296,14 +1296,14 @@ public bool TryEnsureDroppedResourceDeliveryTask(
 
             if (task.TaskType == UnitTaskType.DestroyCable)
             {
-                Cell cell = _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
+                ref readonly Cell cell = ref _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
                 if (!cell.HasCable) return false;
                 return task.RemainingWorkTicks > 0;
             }
 
             if (task.TaskType == UnitTaskType.BuildCable)
             {
-                Cell cell = _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
+                ref readonly Cell cell = ref _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
                 if (cell.HasCable) return false;
                 if (!cell.IsCableMarked) return false;
                 if (!CanBuildCableOnCellType(cell.Type)) return false;
@@ -1322,7 +1322,7 @@ public bool TryEnsureDroppedResourceDeliveryTask(
 
             if (task.TaskType == UnitTaskType.BuildWater)
             {
-                Cell cell = _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
+                ref readonly Cell cell = ref _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
                 if (cell.HasWater) return false;
                 if (!cell.IsWaterMarked) return false;
                 if (!CanBuildPipeOnCellType(cell.Type)) return false;
@@ -1331,14 +1331,14 @@ public bool TryEnsureDroppedResourceDeliveryTask(
 
             if (task.TaskType == UnitTaskType.DestroyWater)
             {
-                Cell cell = _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
+                ref readonly Cell cell = ref _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
                 if (!cell.HasWater) return false;
                 return task.RemainingWorkTicks > 0;
             }
 
             if (task.TaskType == UnitTaskType.BuildOxygen)
             {
-                Cell cell = _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
+                ref readonly Cell cell = ref _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
                 if (cell.HasOxygen) return false;
                 if (!cell.IsOxygenMarked) return false;
                 if (!CanBuildPipeOnCellType(cell.Type)) return false;
@@ -1347,7 +1347,7 @@ public bool TryEnsureDroppedResourceDeliveryTask(
 
             if (task.TaskType == UnitTaskType.DestroyOxygen)
             {
-                Cell cell = _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
+                ref readonly Cell cell = ref _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
                 if (!cell.HasOxygen) return false;
                 return task.RemainingWorkTicks > 0;
             }
@@ -1589,7 +1589,7 @@ public bool TryEnsureDroppedResourceDeliveryTask(
                 return false;
             }
 
-            Cell cell = _grid.GetCell(targetCell.x, targetCell.y);
+            ref readonly Cell cell = ref _grid.GetCell(targetCell.x, targetCell.y);
             if (!cell.IsOxygenMarked)
             {
                 return false;

@@ -88,7 +88,8 @@ namespace _Project.Scripts.Presentation.Grid
                 return;
             }
 
-            CellType currentType = _gridState.GetCell(cell.x, cell.y).Type;
+            ref readonly Cell currentCell = ref _gridState.GetCell(cell.x, cell.y);
+            CellType currentType = currentCell.Type;
             if (!IsTransitionMaterial(currentType))
             {
                 _gridTileVisualService.ClearMaterialTransition(cell);
@@ -150,7 +151,8 @@ namespace _Project.Scripts.Presentation.Grid
                 return false;
             }
 
-            CellType neighborType = _gridState.GetCell(neighbor.x, neighbor.y).Type;
+            ref readonly Cell neighborCell = ref _gridState.GetCell(neighbor.x, neighbor.y);
+            CellType neighborType = neighborCell.Type;
             return AreSameTransitionMaterial(currentType, neighborType);
         }
 

@@ -20,6 +20,10 @@ namespace _Project.Scripts.Systems.Offers.Runtime
         private readonly ResourceInventoryService _resourceInventoryService;
         private readonly GameTimeService _gameTimeService;
         private readonly OfferReservationService _reservationService;
+        private readonly List<BuildingRuntimeEntity> _buildingSnapshotBuffer = new();
+
+        private int _cachedLifeModuleWidthRevision = -1;
+        private int _cachedMaxBuiltLifeModuleWidth;
 
         public OfferObjectiveEvaluationService(
             GridState gridState,
@@ -523,11 +527,11 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 return 0;
             }
 
-            List<BuildingRuntimeEntity> buildings = _buildingManager.GetActiveBuildingsSnapshot();
+            _buildingManager.FillActiveBuildings(_buildingSnapshotBuffer);
             int count = 0;
-            for (int i = 0; i < buildings.Count; i++)
+            for (int i = 0; i < _buildingSnapshotBuffer.Count; i++)
             {
-                BuildingRuntimeEntity entity = buildings[i];
+                BuildingRuntimeEntity entity = _buildingSnapshotBuffer[i];
                 if (entity?.BuildingDef == null || entity.BuildingDef.ObjectType != buildObjectType)
                 {
                     continue;
@@ -551,24 +555,27 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 return 0;
             }
 
-            var widthByGroupId = new Dictionary<int, int>();
-            for (int y = 0; y < _gridState.Height; y++)
+            if (_cachedLifeModuleWidthRevision == _gridState.CellRevision)
             {
-                for (int x = 0; x < _gridState.Width; x++)
+                return _cachedMaxBuiltLifeModuleWidth;
+            }
+
+            var widthByGroupId = new Dictionary<int, int>();
+            Span<Cell> cells = _gridState.GetRawCells();
+            for (int i = 0; i < cells.Length; i++)
+            {
+                Cell cell = cells[i];
+                if (cell.LifeModuleType != LifeModuleType.Built || !cell.IsLifeModulePartAnchor || cell.LifeModuleGroupId == 0)
                 {
-                    Cell cell = _gridState.GetCell(x, y);
-                    if (cell.LifeModuleType != LifeModuleType.Built || !cell.IsLifeModulePartAnchor || cell.LifeModuleGroupId == 0)
-                    {
-                        continue;
-                    }
-
-                    if (!widthByGroupId.TryGetValue(cell.LifeModuleGroupId, out int width))
-                    {
-                        width = 0;
-                    }
-
-                    widthByGroupId[cell.LifeModuleGroupId] = width + Mathf.Max(1, cell.LifeModulePartWidth);
+                    continue;
                 }
+
+                if (!widthByGroupId.TryGetValue(cell.LifeModuleGroupId, out int width))
+                {
+                    width = 0;
+                }
+
+                widthByGroupId[cell.LifeModuleGroupId] = width + Mathf.Max(1, cell.LifeModulePartWidth);
             }
 
             int maxWidth = 0;
@@ -577,7 +584,9 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 maxWidth = Mathf.Max(maxWidth, pair.Value);
             }
 
-            return maxWidth;
+            _cachedLifeModuleWidthRevision = _gridState.CellRevision;
+            _cachedMaxBuiltLifeModuleWidth = maxWidth;
+            return _cachedMaxBuiltLifeModuleWidth;
         }
 
         private int CountCompletedObjectives(OfferObjectiveProgressSnapshot[] snapshots)

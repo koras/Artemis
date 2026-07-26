@@ -740,7 +740,7 @@ namespace _Project.Scripts.Systems.Units
                     }
 
                     // If no valid work cell can be found, release/reset the task.
-                    Cell targetCell = _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
+                    ref readonly Cell targetCell = ref _grid.GetCell(task.TargetCell.x, task.TargetCell.y);
                     state.StartedDigCellType = targetCell.Type;
                     state.StartedDigResourceAmount = targetCell.ResourceAmount > 0
                         ? targetCell.ResourceAmount

@@ -60,7 +60,7 @@ namespace _Project.Scripts.Systems.Construction
             {
                 for (int x = 0; x < _gridState.Width; x++)
                 {
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (cell.LifeModuleType != LifeModuleType.Built || !cell.IsLifeModulePartAnchor)
                     {
                         continue;

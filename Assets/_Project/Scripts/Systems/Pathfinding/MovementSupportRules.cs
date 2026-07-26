@@ -24,7 +24,7 @@ namespace _Project.Scripts.Systems.Pathfinding
 
         public static bool IsCellStandableForMovement(GridState grid, Vector2Int cellPos, Vector2Int down)
         {
-            Cell cell = grid.GetCell(cellPos.x, cellPos.y);
+            ref readonly Cell cell = ref grid.GetCell(cellPos.x, cellPos.y);
             if (IsBuiltLifeModuleBottomRowCell(grid, cellPos, down))
             {
                 return true;
@@ -64,13 +64,13 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return false;
             }
 
-            Cell supportCell = grid.GetCell(supportPos.x, supportPos.y);
+            ref readonly Cell supportCell = ref grid.GetCell(supportPos.x, supportPos.y);
             return IsLadderCell(supportCell) || IsBridgeCell(supportCell) || !IsAirCell(supportCell);
         }
 
         public static bool IsBuiltLifeModuleBottomRowCell(GridState grid, Vector2Int cellPos, Vector2Int down)
         {
-            Cell cell = grid.GetCell(cellPos.x, cellPos.y);
+            ref readonly Cell cell = ref grid.GetCell(cellPos.x, cellPos.y);
             if (cell.LifeModuleType != LifeModuleType.Built)
             {
                 return false;
@@ -88,7 +88,7 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return true;
             }
 
-            Cell belowModuleCell = grid.GetCell(belowModuleCellPos.x, belowModuleCellPos.y);
+            ref readonly Cell belowModuleCell = ref grid.GetCell(belowModuleCellPos.x, belowModuleCellPos.y);
             return belowModuleCell.LifeModuleType != LifeModuleType.Built
                    || belowModuleCell.LifeModuleGroupId != cell.LifeModuleGroupId;
         }
