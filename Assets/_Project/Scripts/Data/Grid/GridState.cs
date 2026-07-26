@@ -18,6 +18,11 @@ namespace _Project.Scripts.Data.Grid
         /// </summary>
         public int NavigationRevision { get; private set; }
 
+        /// <summary>
+        /// Changes when any cell data changes, including presentation-only life-module fields.
+        /// </summary>
+        public int CellRevision { get; private set; }
+
         public  int CellSize { get; } // размер одной ячейки (например 1f)
         
         
@@ -73,6 +78,7 @@ namespace _Project.Scripts.Data.Grid
 
             if (!AreCellsEqual(previousCell, cell))
             {
+                CellRevision++;
                 CellChanged?.Invoke(new Vector2Int(x, y), previousCell, cell);
             }
         }

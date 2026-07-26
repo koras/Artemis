@@ -160,6 +160,8 @@ namespace _Project.Scripts.Systems.Offers
             {
                 _context.ResourceInventoryService.ResourceAmountChanged -= OnResourceAmountChanged;
             }
+
+            StateChanged = null;
         }
 
         public bool HasGold(int amount)

@@ -937,19 +937,13 @@ namespace _Project.Scripts.Bootstrap.Runtime
 
         private void RebuildHudContext()
         {
-            if (_runtimeHandles == null || _runtimeHandles.World == null || _runtimeHandles.Gameplay == null)
-            {
-                return;
-            }
+            UiRuntimeContext previousUi = _runtimeHandles.Ui;
+            ConstructionToolPanelController previousConstructionToolPanelController = previousUi.ConstructionToolPanelController;
 
-            ConstructionToolPanelController previousConstructionToolPanelController = _runtimeHandles.Ui != null
-                ? _runtimeHandles.Ui.ConstructionToolPanelController
-                : null;
-            ColonyEventHudPresenter previousColonyEventHudPresenter = _runtimeHandles.Ui != null
-                ? _runtimeHandles.Ui.ColonyEventHudPresenter
-                : null;
-
-            previousColonyEventHudPresenter?.Dispose();
+            previousUi.ResourceInventoryPanelPresenter?.Dispose();
+            previousUi.ColonyEventHudPresenter?.Dispose();
+            previousUi.OfferPanelPresenter?.Dispose();
+            previousUi.ShopPanelPresenter?.Dispose();
 
             _runtimeHandles.Ui = UiRuntimeComposer.Compose(
                 _uiDocument,

@@ -321,8 +321,8 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                 return true;
             }
 
-            ApplyCurrentStageCompletionBonus(record);
             CompleteRecord(record);
+            ApplyCurrentStageCompletionBonus(record);
             return true;
         }
 
