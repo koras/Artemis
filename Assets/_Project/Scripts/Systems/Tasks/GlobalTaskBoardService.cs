@@ -1058,10 +1058,16 @@ public bool TryEnsureDroppedResourceDeliveryTask(
                     cell.IsDigMarked = true;
                     _grid.SetCell(gx, gy, cell);
 
+                    // Лестница использует обычную Dig-задачу: персонаж должен сначала
+                    // забрать ресурс из клетки, а затем вернуться к BuildObject-задаче.
+                    UnitTaskType excavationTaskType = payload.BuildingDef.ObjectType == BuildObjectType.Ladder
+                        ? UnitTaskType.DigCell
+                        : UnitTaskType.ClearBuildCell;
+
                     var task = new UnitTaskRecord
                     {
                         TaskId = _nextTaskId++,
-                        TaskType = UnitTaskType.ClearBuildCell,
+                        TaskType = excavationTaskType,
                         TargetCell = cellPos,
                         BasePriority = TaskPriority.High,
                         CreatedAtTick = currentTick,
@@ -2042,7 +2048,7 @@ public bool TryEnsureDroppedResourceDeliveryTask(
             {
                 int taskId = _taskIds[i];
                 UnitTaskRecord task = _tasksById[taskId];
-                if (task.TaskType != UnitTaskType.ClearBuildCell) continue;
+                if (task.TaskType != UnitTaskType.ClearBuildCell && task.TaskType != UnitTaskType.DigCell) continue;
                 if (task.ParentBuildTaskId != parentBuildTaskId) continue;
                 if (task.Status == UnitTaskStatus.Completed || task.Status == UnitTaskStatus.Failed) continue;
 

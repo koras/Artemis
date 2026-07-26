@@ -15,9 +15,10 @@ MonoBehaviour:
   FirstName: Arjun
   LastName: Patel
   CompanyName: Lotus Bridge Exports
-  CompanyDescription: Growth-oriented commercial partner interested in bulk orders, flexible pricing, and expansion into new market segments.
+  CompanyDescription: Growth-oriented commercial partner interested in bulk orders,
+    flexible pricing, and expansion into new market segments.
   OfferAffinityTag: IndustryIndia
-  KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  VeryAngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  KindPortrait: {fileID: 1639928310117132956, guid: 49703f54dcb0d964a8e39c82955017e5, type: 3}
+  NeutralPortrait: {fileID: 1639928310117132956, guid: 49703f54dcb0d964a8e39c82955017e5, type: 3}
+  AngryPortrait: {fileID: 1639928310117132956, guid: 49703f54dcb0d964a8e39c82955017e5, type: 3}
+  VeryAngryPortrait: {fileID: 1639928310117132956, guid: 49703f54dcb0d964a8e39c82955017e5, type: 3}

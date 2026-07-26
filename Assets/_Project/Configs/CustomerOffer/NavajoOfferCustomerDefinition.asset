@@ -15,9 +15,10 @@ MonoBehaviour:
   FirstName: Kai
   LastName: Begay
   CompanyName: Red Mesa Artisan Cooperative
-  CompanyDescription: Community-centered business representative focused on authentic handmade products, fair trade values, and sustainable growth.
+  CompanyDescription: Community-centered business representative focused on authentic
+    handmade products, fair trade values, and sustainable growth.
   OfferAffinityTag: IndustryNavajo
-  KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  VeryAngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  KindPortrait: {fileID: 21300000, guid: ae5f8232b71479e43b200e62573f7a4c, type: 3}
+  NeutralPortrait: {fileID: 21300000, guid: ae5f8232b71479e43b200e62573f7a4c, type: 3}
+  AngryPortrait: {fileID: 21300000, guid: ae5f8232b71479e43b200e62573f7a4c, type: 3}
+  VeryAngryPortrait: {fileID: 21300000, guid: ae5f8232b71479e43b200e62573f7a4c, type: 3}

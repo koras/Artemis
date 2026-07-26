@@ -15,9 +15,10 @@ MonoBehaviour:
   FirstName: Sofia
   LastName: Ramirez
   CompanyName: Sol Norte Distribution
-  CompanyDescription: Distribution-focused buyer serving urban retail channels with strong interest in repeat contracts and fast delivery cycles.
+  CompanyDescription: Distribution-focused buyer serving urban retail channels with
+    strong interest in repeat contracts and fast delivery cycles.
   OfferAffinityTag: IndustryMexico
-  KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  VeryAngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  KindPortrait: {fileID: 21300000, guid: 9e8fbb184298ff347ba2f9da37d6fa30, type: 3}
+  NeutralPortrait: {fileID: 21300000, guid: 9e8fbb184298ff347ba2f9da37d6fa30, type: 3}
+  AngryPortrait: {fileID: 21300000, guid: 9e8fbb184298ff347ba2f9da37d6fa30, type: 3}
+  VeryAngryPortrait: {fileID: 21300000, guid: 9e8fbb184298ff347ba2f9da37d6fa30, type: 3}

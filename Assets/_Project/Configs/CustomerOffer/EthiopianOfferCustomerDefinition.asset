@@ -15,9 +15,10 @@ MonoBehaviour:
   FirstName: Dawit
   LastName: Bekele
   CompanyName: Abyssinia Coffee Partners
-  CompanyDescription: Experienced trade customer working with agricultural goods, packaged products, and dependable regional supplier networks.
+  CompanyDescription: Experienced trade customer working with agricultural goods,
+    packaged products, and dependable regional supplier networks.
   OfferAffinityTag: IndustryEthiopian
-  KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  VeryAngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  KindPortrait: {fileID: 21300000, guid: c05b36f69f9b98545a35833cb39d8d6f, type: 3}
+  NeutralPortrait: {fileID: 21300000, guid: c05b36f69f9b98545a35833cb39d8d6f, type: 3}
+  AngryPortrait: {fileID: 21300000, guid: c05b36f69f9b98545a35833cb39d8d6f, type: 3}
+  VeryAngryPortrait: {fileID: 21300000, guid: c05b36f69f9b98545a35833cb39d8d6f, type: 3}

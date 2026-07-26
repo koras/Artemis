@@ -792,6 +792,7 @@ MonoBehaviour:
   - {fileID: 5889491837288469024, guid: 0938c90d0e9244d45a6c2e451a3c998a, type: 3}
   - {fileID: 5889491837288469024, guid: f3e31c3351e2c9040bc248461a693df5, type: 3}
   - {fileID: 5889491837288469024, guid: 0c759160a6bdf004795758ec0d41ed22, type: 3}
+  - {fileID: 5889491837288469024, guid: e4088f3ca00bb79438fa9d46c78394fc, type: 3}
   - {fileID: 5889491837288469024, guid: 5a4183c044905e245ac75429258c56bf, type: 3}
   - {fileID: 5889491837288469024, guid: cf3f21f48a4c823499d18ec1fb9a06c5, type: 3}
   - {fileID: 5889491837288469024, guid: 0bfc01ad16e534f489d5a03a9747e025, type: 3}
@@ -3211,6 +3212,7 @@ MonoBehaviour:
   _sleepModuleBuildingDef: {fileID: 11400000, guid: 1b6d50f4299ba684999fa656fe141ed5, type: 2}
   _batteryBuildingDef: {fileID: 11400000, guid: 42ac1424b3c051e4f97b36af5c96a91f, type: 2}
   _dinnerBuildingDef: {fileID: 11400000, guid: bd09c1361796a1240a1d3ac39a39fed0, type: 2}
+  _showerBuildingDef: {fileID: 11400000, guid: 612a4eae70beb6444b6c32c25bc64559, type: 2}
   _oxygenStorageBuildingDef: {fileID: 11400000, guid: 8fec0ac85315de24e8bba5e0f857d7d2, type: 2}
   _oxigenProcessingUnitBuildingDef: {fileID: 11400000, guid: 8235b967f0ae9304abb13e7417b2c979, type: 2}
   _waterReclamationBuildingDef: {fileID: 11400000, guid: e51a8b706cbab3f47ace0388704f55f9, type: 2}

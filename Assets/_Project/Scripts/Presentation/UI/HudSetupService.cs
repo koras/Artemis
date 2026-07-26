@@ -67,6 +67,7 @@ namespace _Project.Scripts.Presentation.UI
                 constructionToolDefinitions != null ? constructionToolDefinitions.SleepModuleBuildingDef : null,
                 constructionToolDefinitions != null ? constructionToolDefinitions.BatteryBuildingDef : null,
                 constructionToolDefinitions != null ? constructionToolDefinitions.DinnerBuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.ShowerBuildingDef : null,
                 constructionToolDefinitions != null ? constructionToolDefinitions.OxygenStorageBuildingDef : null,
                 constructionToolDefinitions != null ? constructionToolDefinitions.OxigenProcessingUnitBuildingDef : null,
                 constructionToolDefinitions != null ? constructionToolDefinitions.WaterReclamationBuildingDef : null,
@@ -104,6 +105,7 @@ namespace _Project.Scripts.Presentation.UI
             Button tool5Button = root.Q<Button>("sleep-module-btn");
             Button tool6Button = root.Q<Button>("battery-btn");
             Button tool7Button = root.Q<Button>("dinner-btn");
+            Button showerButton = root.Q<Button>("shower-btn");
             Button tool8Button = root.Q<Button>("oxygen-storage-btn");
             Button tool11Button = root.Q<Button>("oxygen-processing-btn");
             Button tool9Button = root.Q<Button>("water-reclamation-btn");
@@ -121,7 +123,7 @@ namespace _Project.Scripts.Presentation.UI
             Button lifeModuleCancelButton = root.Q<Button>("cancel-life-module-btn");
             Button shovelCancelButton = root.Q<Button>("cancel-shovel-btn");
 
-            panelController.Bind(destructionBtn, shovelButton, tool2Button, tool10Button, tool3Button, solarPanelBtn, tool4Button, tool5Button, tool6Button, tool7Button, tool8Button, tool11Button, tool9Button, tool12Button, cableBuildButton, cableCancelButton, cableExitButton, waterBuildButton, waterCancelButton, waterExitButton, oxygenBuildButton, oxygenCancelButton, oxygenExitButton, lifeModuleBuildButton, lifeModuleCancelButton, shovelCancelButton);
+            panelController.Bind(destructionBtn, shovelButton, tool2Button, tool10Button, tool3Button, solarPanelBtn, tool4Button, tool5Button, tool6Button, tool7Button, showerButton, tool8Button, tool11Button, tool9Button, tool12Button, cableBuildButton, cableCancelButton, cableExitButton, waterBuildButton, waterCancelButton, waterExitButton, oxygenBuildButton, oxygenCancelButton, oxygenExitButton, lifeModuleBuildButton, lifeModuleCancelButton, shovelCancelButton);
 
             return new HudSetupResult(
                 taskQueuePanelPresenter,

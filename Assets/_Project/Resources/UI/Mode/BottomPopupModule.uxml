@@ -9,6 +9,7 @@
         <ui:VisualElement class="bottom-popup-row">
             <ui:Button name="sleep-module-btn" text="Sleep Module" class="menu-icon-btn"/>
             <ui:Button name="dinner-btn" text="Dinner" class="menu-icon-btn"/>
+            <ui:Button name="shower-btn" text="Shower" class="menu-icon-btn"/>
             <ui:Button name="build-life-module-btn" text="Life Module" class="menu-icon-btn"/>
             <ui:Button name="cancel-life-module-btn" text="Cancel Life" class="menu-icon-btn"/>
         </ui:VisualElement>

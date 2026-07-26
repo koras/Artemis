@@ -78,12 +78,6 @@ namespace _Project.Scripts.Systems.Units
                 return false;
             }
 
-            if (TryAcquirePendingBuildExcavation(state, currentTick))
-            {
-                ClearSkippedTaskAttempt(state, state.CurrentTaskId);
-                return true;
-            }
-
             if (state.DeferredBuildTaskId != 0)
             {
                 if (!_taskBoard.TryGetTask(state.DeferredBuildTaskId, out UnitTaskRecord deferredBuildTask)
@@ -270,6 +264,15 @@ namespace _Project.Scripts.Systems.Units
                 // Debug.Log($"[Task AI] unit {state.UnitId}: took task {reservedTask.TaskId} and started moving.");
                 }
 
+                blockReason = "task acquired";
+                return true;
+            }
+
+            // Сначала пробуем обычный список задач. Только если ни одна задача
+            // не была взята, ищем dig/clear-подзадачу для заблокированной стройки.
+            if (TryAcquirePendingBuildExcavation(state, currentTick))
+            {
+                ClearSkippedTaskAttempt(state, state.CurrentTaskId);
                 blockReason = "task acquired";
                 return true;
             }

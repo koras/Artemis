@@ -15,6 +15,7 @@ namespace _Project.Scripts.Presentation.UI
         private readonly BuildingDef _sleepModuleBuildingDef;
         private readonly BuildingDef _batteryBuildingDef;
         private readonly BuildingDef _dinnerBuildingDef;
+        private readonly BuildingDef _showerBuildingDef;
         private readonly BuildingDef _oxygenStorageBuildingDef;
         private readonly BuildingDef _oxigenProcessingUnitBuildingDef;
         private readonly BuildingDef _waterReclamationBuildingDef;
@@ -22,7 +23,7 @@ namespace _Project.Scripts.Presentation.UI
 
         private BuildingDef _activeBuildingDef;
         private Button _shovelButton, _buildLadderButton, _buildBridgeButton, _buildStorageButton, _buildSolarPanelButton, _buildRegolithProcessingUnitButton,
-            _buildSleepModuleButton, _buildBatteryButton, _buildDinnerButton, _buildOxygenStorageButton, _buildOxigenProcessingUnitButton, _buildWaterReclamationButton,
+            _buildSleepModuleButton, _buildBatteryButton, _buildDinnerButton, _buildShowerButton, _buildOxygenStorageButton, _buildOxigenProcessingUnitButton, _buildWaterReclamationButton,
             _buildWaterProcessingUnitButton,
             _buildCableButton, _cancelCablePlanButton, _exitCablePlanButton, _buildWaterButton, _cancelWaterPlanButton, _exitWaterPlanButton,
             _buildOxygenButton, _cancelOxygenPlanButton, _exitOxygenPlanButton, _buildLifeModuleButton, _cancelLifeModulePlanButton, _cancelButton, _destructionButton;
@@ -31,7 +32,7 @@ namespace _Project.Scripts.Presentation.UI
 
         public ConstructionToolPanelController(BuildingDef ladderBuildingDef, BuildingDef bridgeBuildingDef, BuildingDef storageBuildingDef, BuildingDef solarPanelBuildingDef,
             BuildingDef regolithProcessingUnitBuildingDef, BuildingDef sleepModuleBuildingDef, BuildingDef batteryBuildingDef,
-            BuildingDef dinnerBuildingDef, BuildingDef oxygenStorageBuildingDef, BuildingDef oxigenProcessingUnitBuildingDef,
+            BuildingDef dinnerBuildingDef, BuildingDef showerBuildingDef, BuildingDef oxygenStorageBuildingDef, BuildingDef oxigenProcessingUnitBuildingDef,
             BuildingDef waterReclamationBuildingDef, BuildingDef waterProcessingUnitBuildingDef, bool enableLogs)
         {
             _ladderBuildingDef = ladderBuildingDef;
@@ -42,6 +43,7 @@ namespace _Project.Scripts.Presentation.UI
             _sleepModuleBuildingDef = sleepModuleBuildingDef;
             _batteryBuildingDef = batteryBuildingDef;
             _dinnerBuildingDef = dinnerBuildingDef;
+            _showerBuildingDef = showerBuildingDef;
             _oxygenStorageBuildingDef = oxygenStorageBuildingDef;
             _oxigenProcessingUnitBuildingDef = oxigenProcessingUnitBuildingDef;
             _waterReclamationBuildingDef = waterReclamationBuildingDef;
@@ -49,7 +51,7 @@ namespace _Project.Scripts.Presentation.UI
         }
 
         public void Bind(Button destructionButton, Button shovelButton, Button buildLadderButton, Button buildBridgeButton, Button buildStorageButton, Button buildSolarPanelButton,
-            Button buildRegolithProcessingUnitButton, Button buildSleepModuleButton, Button buildBatteryButton, Button buildDinnerButton,
+            Button buildRegolithProcessingUnitButton, Button buildSleepModuleButton, Button buildBatteryButton, Button buildDinnerButton, Button buildShowerButton,
             Button buildOxygenStorageButton, Button buildOxigenProcessingUnitButton, Button buildWaterReclamationButton, Button buildWaterProcessingUnitButton,
             Button buildCableButton, Button cancelCablePlanButton,
             Button exitCablePlanButton, Button buildWaterButton, Button cancelWaterPlanButton, Button exitWaterPlanButton,
@@ -57,7 +59,7 @@ namespace _Project.Scripts.Presentation.UI
         {
             _destructionButton = destructionButton; _shovelButton = shovelButton; _buildLadderButton = buildLadderButton; _buildBridgeButton = buildBridgeButton; _buildStorageButton = buildStorageButton;
             _buildSolarPanelButton = buildSolarPanelButton; _buildRegolithProcessingUnitButton = buildRegolithProcessingUnitButton; _buildSleepModuleButton = buildSleepModuleButton;
-            _buildBatteryButton = buildBatteryButton; _buildDinnerButton = buildDinnerButton; _buildOxygenStorageButton = buildOxygenStorageButton;
+            _buildBatteryButton = buildBatteryButton; _buildDinnerButton = buildDinnerButton; _buildShowerButton = buildShowerButton; _buildOxygenStorageButton = buildOxygenStorageButton;
             _buildOxigenProcessingUnitButton = buildOxigenProcessingUnitButton; _buildWaterReclamationButton = buildWaterReclamationButton; _buildWaterProcessingUnitButton = buildWaterProcessingUnitButton;
             _buildCableButton = buildCableButton; _cancelCablePlanButton = cancelCablePlanButton;
             _exitCablePlanButton = exitCablePlanButton; _buildWaterButton = buildWaterButton; _cancelWaterPlanButton = cancelWaterPlanButton;
@@ -73,6 +75,7 @@ namespace _Project.Scripts.Presentation.UI
             if (_buildSleepModuleButton != null) _buildSleepModuleButton.clicked += OnBuildSleepModuleClicked;
             if (_buildBatteryButton != null) _buildBatteryButton.clicked += OnBuildBatteryClicked;
             if (_buildDinnerButton != null) _buildDinnerButton.clicked += OnBuildDinnerClicked;
+            if (_buildShowerButton != null) _buildShowerButton.clicked += OnBuildShowerClicked;
             if (_buildOxygenStorageButton != null) _buildOxygenStorageButton.clicked += OnBuildOxygenStorageClicked;
             if (_buildOxigenProcessingUnitButton != null) _buildOxigenProcessingUnitButton.clicked += OnBuildOxigenProcessingUnitClicked;
             if (_buildWaterReclamationButton != null) _buildWaterReclamationButton.clicked += OnBuildWaterReclamationClicked;
@@ -107,6 +110,8 @@ namespace _Project.Scripts.Presentation.UI
         private void OnBuildSleepModuleClicked() { if (_sleepModuleBuildingDef == null) return; _activeBuildingDef = _sleepModuleBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildSleepModule, _activeBuildingDef); }
         private void OnBuildBatteryClicked() { if (_batteryBuildingDef == null) return; _activeBuildingDef = _batteryBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildBattery, _activeBuildingDef); }
         private void OnBuildDinnerClicked() { if (_dinnerBuildingDef == null) return; _activeBuildingDef = _dinnerBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildDinner, _activeBuildingDef); }
+        // Shower uses the same placement/build pipeline as Dinner, but keeps its own BuildingDef.
+        private void OnBuildShowerClicked() { if (_showerBuildingDef == null) return; _activeBuildingDef = _showerBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildDinner, _activeBuildingDef); }
         private void OnBuildOxygenStorageClicked() { if (_oxygenStorageBuildingDef == null) return; _activeBuildingDef = _oxygenStorageBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildOxygenStorage, _activeBuildingDef); }
         // Отдельный режим для Oxigen Processing Unit, чтобы объект выбирался как обычная постройка через UI.
         private void OnBuildOxigenProcessingUnitClicked() { if (_oxigenProcessingUnitBuildingDef == null) return; _activeBuildingDef = _oxigenProcessingUnitBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildOxigenProcessingUnit, _activeBuildingDef); }

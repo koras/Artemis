@@ -14,6 +14,7 @@ namespace _Project.Scripts.Presentation.UI
         [SerializeField] private BuildingDef _sleepModuleBuildingDef;
         [SerializeField] private BuildingDef _batteryBuildingDef;
         [SerializeField] private BuildingDef _dinnerBuildingDef;
+        [SerializeField] private BuildingDef _showerBuildingDef;
         [SerializeField] private BuildingDef _oxygenStorageBuildingDef;
         [SerializeField] private BuildingDef _oxigenProcessingUnitBuildingDef;
         [SerializeField] private BuildingDef _waterReclamationBuildingDef;
@@ -27,6 +28,7 @@ namespace _Project.Scripts.Presentation.UI
         public BuildingDef SleepModuleBuildingDef => _sleepModuleBuildingDef;
         public BuildingDef BatteryBuildingDef => _batteryBuildingDef;
         public BuildingDef DinnerBuildingDef => _dinnerBuildingDef;
+        public BuildingDef ShowerBuildingDef => _showerBuildingDef;
         public BuildingDef OxygenStorageBuildingDef => _oxygenStorageBuildingDef;
         public BuildingDef OxigenProcessingUnitBuildingDef => _oxigenProcessingUnitBuildingDef;
         public BuildingDef WaterReclamationBuildingDef => _waterReclamationBuildingDef;

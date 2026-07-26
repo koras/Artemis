@@ -15,9 +15,10 @@ MonoBehaviour:
   FirstName: Thabo
   LastName: Ndlovu
   CompanyName: Cape Horizon Trading
-  CompanyDescription: Regional wholesale buyer focused on retail distribution, household goods, and long-term supply contracts across South Africa.
+  CompanyDescription: Regional wholesale buyer focused on retail distribution, household
+    goods, and long-term supply contracts across South Africa.
   OfferAffinityTag: IndustryAfricanSouthAfrica
-  KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  VeryAngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  KindPortrait: {fileID: 21300000, guid: ea1ea704f778d164ab81215ad4437ce5, type: 3}
+  NeutralPortrait: {fileID: 21300000, guid: ea1ea704f778d164ab81215ad4437ce5, type: 3}
+  AngryPortrait: {fileID: 21300000, guid: ea1ea704f778d164ab81215ad4437ce5, type: 3}
+  VeryAngryPortrait: {fileID: 21300000, guid: ea1ea704f778d164ab81215ad4437ce5, type: 3}

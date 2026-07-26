@@ -15,9 +15,10 @@ MonoBehaviour:
   FirstName: Wei
   LastName: Zhang
   CompanyName: Jade River Imports
-  CompanyDescription: Large-scale import manager specializing in consumer products, fast negotiations, and stable high-volume procurement.
+  CompanyDescription: Large-scale import manager specializing in consumer products,
+    fast negotiations, and stable high-volume procurement.
   OfferAffinityTag: IndustryChina
-  KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
-  VeryAngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
+  KindPortrait: {fileID: 21300000, guid: a7e2ffcda6e04dc47b5c61d3b0f94def, type: 3}
+  NeutralPortrait: {fileID: 21300000, guid: a7e2ffcda6e04dc47b5c61d3b0f94def, type: 3}
+  AngryPortrait: {fileID: 21300000, guid: a7e2ffcda6e04dc47b5c61d3b0f94def, type: 3}
+  VeryAngryPortrait: {fileID: 21300000, guid: a7e2ffcda6e04dc47b5c61d3b0f94def, type: 3}
