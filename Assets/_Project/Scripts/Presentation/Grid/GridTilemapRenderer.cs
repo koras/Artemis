@@ -406,7 +406,8 @@ namespace _Project.Scripts.Presentation.Grid
                 {
                     SetDefaultCell(new Vector3Int(x, y, 0), x, y);
 
-                    CellType type = grid.GetCell(x, y).Type;
+                    ref readonly Cell cell = ref grid.GetCell(x, y);
+                    CellType type = cell.Type;
                     TileBase tile = GetNaturalTileForCell(type, x, y);
                     if (_resourceTilemap == null || tile == null)
                     {
@@ -436,7 +437,8 @@ namespace _Project.Scripts.Presentation.Grid
                     continue;
                 }
 
-                CellType cellType = grid.GetCell(x, minY).Type;
+                ref readonly Cell cell = ref grid.GetCell(x, minY);
+                CellType cellType = cell.Type;
                 if (!IsProtectedResourceCellType(cellType))
                 {
                     continue;

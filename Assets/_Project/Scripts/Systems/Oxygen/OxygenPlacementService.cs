@@ -37,16 +37,16 @@ namespace _Project.Scripts.Systems.Oxygen
             current.HasOxygen = true;
             gridState.SetCell(cell.x, cell.y, current);
             RecalculateMask(gridState, cell);
-            Cell centerAfterMask = gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell centerAfterMask = ref gridState.GetCell(cell.x, cell.y);
             Debug.Log($"[OxygenPlace] Center updated ({cell.x},{cell.y}) hasOxygen={centerAfterMask.HasOxygen} mask={ToMask4(centerAfterMask.OxygenMask4)}");
 
             for (int i = 0; i < Directions.Length; i++)
             {
                 Vector2Int neighbor = cell + Directions[i];
                 if (!gridState.IsInside(neighbor.x, neighbor.y)) continue;
-                Cell neighborBeforeMask = gridState.GetCell(neighbor.x, neighbor.y);
+                ref readonly Cell neighborBeforeMask = ref gridState.GetCell(neighbor.x, neighbor.y);
                 RecalculateMask(gridState, neighbor);
-                Cell neighborAfterMask = gridState.GetCell(neighbor.x, neighbor.y);
+                ref readonly Cell neighborAfterMask = ref gridState.GetCell(neighbor.x, neighbor.y);
                 Debug.Log(
                     $"[OxygenPlace] Neighbor updated ({neighbor.x},{neighbor.y}) " +
                     $"hasOxygen={neighborAfterMask.HasOxygen} " +
@@ -148,7 +148,8 @@ namespace _Project.Scripts.Systems.Oxygen
         private static bool HasOxygen(GridState gridState, Vector2Int cell)
         {
             if (!gridState.IsInside(cell.x, cell.y)) return false;
-            bool hasOxygen = gridState.GetCell(cell.x, cell.y).HasOxygen;
+            ref readonly Cell current = ref gridState.GetCell(cell.x, cell.y);
+            bool hasOxygen = current.HasOxygen;
             if (hasOxygen)
             {
                 Debug.Log($"в такой ячейке {cell.x}*{cell.y} есть Oxygen");

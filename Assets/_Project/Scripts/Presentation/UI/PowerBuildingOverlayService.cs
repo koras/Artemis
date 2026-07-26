@@ -868,7 +868,7 @@ namespace _Project.Scripts.Presentation.UI
                 return int.MinValue;
             }
 
-            Cell port = _gridState.GetCell(portCell.x, portCell.y);
+            ref readonly Cell port = ref _gridState.GetCell(portCell.x, portCell.y);
             return port.CableNetworkId;
         }
     }

@@ -225,7 +225,7 @@ namespace _Project.Scripts.Systems.Power
                 for (int x = 0; x < _gridState.Width; x++)
                 {
                     var cellPos = new Vector2Int(x, y);
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (!cell.HasCable || componentByCell.ContainsKey(cellPos)) continue;
 
                     queue.Enqueue(cellPos);
@@ -240,7 +240,7 @@ namespace _Project.Scripts.Systems.Power
                             if (!_gridState.IsInside(neighbor.x, neighbor.y)) continue;
                             if (componentByCell.ContainsKey(neighbor)) continue;
 
-                            Cell neighborCell = _gridState.GetCell(neighbor.x, neighbor.y);
+                            ref readonly Cell neighborCell = ref _gridState.GetCell(neighbor.x, neighbor.y);
                             if (!neighborCell.HasCable) continue;
 
                             componentByCell[neighbor] = componentId;

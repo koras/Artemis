@@ -143,7 +143,7 @@ namespace _Project.Scripts.Input
             {
                 if (!_gridState.IsInside(cell.x, cell.y)) return;
 
-                Cell clickedCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell clickedCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (clickedCell.HasCable) return;
 
                 if (HasExistingCablePlanAt(cell))
@@ -192,7 +192,7 @@ namespace _Project.Scripts.Input
             {
                 if (!_gridState.IsInside(cell.x, cell.y)) return;
 
-                Cell clickedCableCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell clickedCableCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (!clickedCableCell.HasCable) return;
 
                 bool queuedDestroy = _globalTaskBoardService.TryCreateDestroyCableTask(cell, _getTickCounter(), CABLE_DESTROY_TICKS);
@@ -206,7 +206,7 @@ namespace _Project.Scripts.Input
             {
                 if (!_gridState.IsInside(cell.x, cell.y)) return;
 
-                Cell clickedCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell clickedCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (clickedCell.HasWater) return;
 
                 if (HasExistingWaterPlanAt(cell))
@@ -240,7 +240,7 @@ namespace _Project.Scripts.Input
             {
                 if (!_gridState.IsInside(cell.x, cell.y)) return;
 
-                Cell clickedWaterCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell clickedWaterCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (!clickedWaterCell.HasWater) return;
 
                 bool queuedDestroy = _globalTaskBoardService.TryCreateDestroyWaterTask(cell, _getTickCounter(), WATER_DESTROY_TICKS);
@@ -254,7 +254,7 @@ namespace _Project.Scripts.Input
             {
                 if (!_gridState.IsInside(cell.x, cell.y)) return;
 
-                Cell clickedCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell clickedCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (clickedCell.HasOxygen) return;
 
                 if (HasExistingOxygenPlanAt(cell))
@@ -288,7 +288,7 @@ namespace _Project.Scripts.Input
             {
                 if (!_gridState.IsInside(cell.x, cell.y)) return;
 
-                Cell clickedOxygenCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell clickedOxygenCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (!clickedOxygenCell.HasOxygen) return;
 
                 bool queuedDestroy = _globalTaskBoardService.TryCreateDestroyOxygenTask(cell, _getTickCounter(), OXYGEN_DESTROY_TICKS);
@@ -326,7 +326,7 @@ namespace _Project.Scripts.Input
                 return;
             }
 
-            Cell cellData = _gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell cellData = ref _gridState.GetCell(cell.x, cell.y);
             bool hasUnit = _unitTaskOrchestratorService.TryGetUnitIdAtCell(cell, out int unitIdAtCell);
             bool hasTask = _globalTaskBoardService.TryGetTaskByCell(cell, out UnitTaskRecord taskAtCell);
             bool isPlannedBuildCell = _buildingPlacementService.IsPlannedCell(cell);
@@ -585,7 +585,7 @@ namespace _Project.Scripts.Input
                 for (int x = minX; x <= maxX; x++)
                 {
                     Vector2Int pos = new Vector2Int(x, y);
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     RenderRectanglePreviewCell(pos, cell);
                 }
             }
@@ -689,7 +689,8 @@ namespace _Project.Scripts.Input
         {
             if (!_hasLastCableDragCell)
             {
-                RenderRectanglePreviewCell(target, _gridState.GetCell(target.x, target.y));
+                ref readonly Cell cell = ref _gridState.GetCell(target.x, target.y);
+                RenderRectanglePreviewCell(target, cell);
                 _lastCableDragCell = target;
                 _hasLastCableDragCell = true;
                 return;
@@ -709,7 +710,8 @@ namespace _Project.Scripts.Input
 
                 if (_gridState.IsInside(cursor.x, cursor.y))
                 {
-                    RenderRectanglePreviewCell(cursor, _gridState.GetCell(cursor.x, cursor.y));
+                    ref readonly Cell cell = ref _gridState.GetCell(cursor.x, cursor.y);
+                    RenderRectanglePreviewCell(cursor, cell);
                 }
             }
 
@@ -727,7 +729,8 @@ namespace _Project.Scripts.Input
         {
             if (!_hasLastWaterDragCell)
             {
-                RenderRectanglePreviewCell(target, _gridState.GetCell(target.x, target.y));
+                ref readonly Cell cell = ref _gridState.GetCell(target.x, target.y);
+                RenderRectanglePreviewCell(target, cell);
                 _lastWaterDragCell = target;
                 _hasLastWaterDragCell = true;
                 return;
@@ -747,7 +750,8 @@ namespace _Project.Scripts.Input
 
                 if (_gridState.IsInside(cursor.x, cursor.y))
                 {
-                    RenderRectanglePreviewCell(cursor, _gridState.GetCell(cursor.x, cursor.y));
+                    ref readonly Cell cell = ref _gridState.GetCell(cursor.x, cursor.y);
+                    RenderRectanglePreviewCell(cursor, cell);
                 }
             }
 
@@ -765,7 +769,8 @@ namespace _Project.Scripts.Input
         {
             if (!_hasLastOxygenDragCell)
             {
-                RenderRectanglePreviewCell(target, _gridState.GetCell(target.x, target.y));
+                ref readonly Cell cell = ref _gridState.GetCell(target.x, target.y);
+                RenderRectanglePreviewCell(target, cell);
                 _lastOxygenDragCell = target;
                 _hasLastOxygenDragCell = true;
                 return;
@@ -785,7 +790,8 @@ namespace _Project.Scripts.Input
 
                 if (_gridState.IsInside(cursor.x, cursor.y))
                 {
-                    RenderRectanglePreviewCell(cursor, _gridState.GetCell(cursor.x, cursor.y));
+                    ref readonly Cell cell = ref _gridState.GetCell(cursor.x, cursor.y);
+                    RenderRectanglePreviewCell(cursor, cell);
                 }
             }
 
@@ -928,7 +934,7 @@ namespace _Project.Scripts.Input
             if (_currentToolMode == ToolMode.BuildCable)
             {
                 if (!_gridState.IsInside(pos.x, pos.y)) return;
-                Cell cableCell = _gridState.GetCell(pos.x, pos.y);
+                ref readonly Cell cableCell = ref _gridState.GetCell(pos.x, pos.y);
                 if (cableCell.HasCable) return;
                 
                 if (HasExistingCablePlanAt(pos))
@@ -1376,7 +1382,8 @@ namespace _Project.Scripts.Input
                 return false;
             }
 
-            if (_gridState.GetCell(cellPos.x, cellPos.y).IsCableMarked)
+            ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
+            if (cell.IsCableMarked)
             {
                 return true;
             }
@@ -1469,7 +1476,8 @@ namespace _Project.Scripts.Input
                 return false;
             }
 
-            if (_gridState.GetCell(cellPos.x, cellPos.y).IsWaterMarked)
+            ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
+            if (cell.IsWaterMarked)
             {
                 return true;
             }
@@ -1531,7 +1539,8 @@ namespace _Project.Scripts.Input
                 return false;
             }
 
-            if (_gridState.GetCell(cellPos.x, cellPos.y).IsOxygenMarked)
+            ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
+            if (cell.IsOxygenMarked)
             {
                 return true;
             }
@@ -1685,7 +1694,7 @@ namespace _Project.Scripts.Input
 
             foreach (Vector2Int cell in _currentCablePlanPreviewCells)
             {
-                Cell gridCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell gridCell = ref _gridState.GetCell(cell.x, cell.y);
                 bool hasOpenCableTask = _globalTaskBoardService.TryGetCableTaskByCell(cell, out UnitTaskRecord task)
                     && task != null
                     && task.TaskType == UnitTaskType.BuildCable
@@ -1713,7 +1722,7 @@ namespace _Project.Scripts.Input
 
             foreach (Vector2Int cell in _currentWaterPlanPreviewCells)
             {
-                Cell gridCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell gridCell = ref _gridState.GetCell(cell.x, cell.y);
                 bool hasOpenWaterTask = _globalTaskBoardService.TryGetWaterTaskByCell(cell, out UnitTaskRecord task)
                     && task != null
                     && task.TaskType == UnitTaskType.BuildWater
@@ -1737,7 +1746,7 @@ namespace _Project.Scripts.Input
 
             foreach (Vector2Int cell in _currentOxygenPlanPreviewCells)
             {
-                Cell gridCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell gridCell = ref _gridState.GetCell(cell.x, cell.y);
                 bool hasOpenOxygenTask = _globalTaskBoardService.TryGetOxygenTaskByCell(cell, out UnitTaskRecord task)
                     && task != null
                     && task.TaskType == UnitTaskType.BuildOxygen
@@ -1828,7 +1837,7 @@ namespace _Project.Scripts.Input
                 && _currentToolMode != ToolMode.CancelOxygenPlan
                 && _currentToolMode != ToolMode.DestroyObject) return false;
 
-            Cell cell = _gridState.GetCell(pos.x, pos.y);
+            ref readonly Cell cell = ref _gridState.GetCell(pos.x, pos.y);
 
             if (IsBuildToolMode())
             {
@@ -2138,7 +2147,7 @@ namespace _Project.Scripts.Input
                     return;
                 }
 
-                Cell hoveredCell = _gridState.GetCell(_hoverCell.x, _hoverCell.y);
+                ref readonly Cell hoveredCell = ref _gridState.GetCell(_hoverCell.x, _hoverCell.y);
                 _gridTileVisualService.SetDigPreview(_hoverCell, ResolveDigPreviewVisualKind(_hoverCell, hoveredCell));
                 _currentCursorPreviewCells.Add(_hoverCell);
             }

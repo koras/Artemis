@@ -37,16 +37,16 @@ namespace _Project.Scripts.Systems.Power
             current.HasCable = true;
             gridState.SetCell(cell.x, cell.y, current);
             RecalculateMask(gridState, cell);
-            Cell centerAfterMask = gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell centerAfterMask = ref gridState.GetCell(cell.x, cell.y);
             Debug.Log($"[CablePlace] Center updated ({cell.x},{cell.y}) hasCable={centerAfterMask.HasCable} mask={ToMask4(centerAfterMask.CableMask4)}");
 
             for (int i = 0; i < Directions.Length; i++)
             {
                 Vector2Int neighbor = cell + Directions[i];
                 if (!gridState.IsInside(neighbor.x, neighbor.y)) continue;
-                Cell neighborBeforeMask = gridState.GetCell(neighbor.x, neighbor.y);
+                ref readonly Cell neighborBeforeMask = ref gridState.GetCell(neighbor.x, neighbor.y);
                 RecalculateMask(gridState, neighbor);
-                Cell neighborAfterMask = gridState.GetCell(neighbor.x, neighbor.y);
+                ref readonly Cell neighborAfterMask = ref gridState.GetCell(neighbor.x, neighbor.y);
                 Debug.Log(
                     $"[CablePlace] Neighbor updated ({neighbor.x},{neighbor.y}) " +
                     $"hasCable={neighborAfterMask.HasCable} " +
@@ -148,7 +148,8 @@ namespace _Project.Scripts.Systems.Power
         private static bool HasCable(GridState gridState, Vector2Int cell)
         {
             if (!gridState.IsInside(cell.x, cell.y)) return false;
-            bool hasCable = gridState.GetCell(cell.x, cell.y).HasCable;
+            ref readonly Cell current = ref gridState.GetCell(cell.x, cell.y);
+            bool hasCable = current.HasCable;
             if (hasCable)
             {
                 Debug.Log($"в такой ячейке {cell.x}*{cell.y} есть cable");

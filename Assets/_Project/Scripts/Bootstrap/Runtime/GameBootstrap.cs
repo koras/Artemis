@@ -1323,7 +1323,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
         /// </summary>
         private bool IsCellReservedOrBuilt(Vector2Int cell)
         {
-            Cell cellData = _gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell cellData = ref _gridState.GetCell(cell.x, cell.y);
             if (cellData.ReservedByUnitId != 0) return true;
             if (cellData.IsOccupiedByBuilding) return true;
             if (cellData.BuildObjectType.HasValue) return true;
@@ -1376,7 +1376,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
             {
                 for (int x = minX; x <= maxX; x++)
                 {
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (!cell.HasWater && !cell.IsWaterPreviewVisible)
                     {
                         continue;
@@ -1428,7 +1428,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
             {
                 for (int x = minX; x <= maxX; x++)
                 {
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (!cell.HasCable && !cell.IsCablePreviewVisible)
                     {
                         continue;

@@ -219,7 +219,7 @@ namespace _Project.Scripts.Systems.Animals
         {
             nextCell = currentCell;
 
-            Cell cell = _gridState.GetCell(currentCell.x, currentCell.y);
+            ref readonly Cell cell = ref _gridState.GetCell(currentCell.x, currentCell.y);
             Vector2Int down = MovementSupportRules.GetDownDirection(cell);
             Vector2Int candidateCell = currentCell + down;
             if (!_gridState.IsInside(candidateCell.x, candidateCell.y))
@@ -244,7 +244,7 @@ namespace _Project.Scripts.Systems.Animals
                 return true;
             }
 
-            Cell cell = _gridState.GetCell(supportCell.x, supportCell.y);
+            ref readonly Cell cell = ref _gridState.GetCell(supportCell.x, supportCell.y);
             if (MovementSupportRules.IsLadderCell(cell))
             {
                 return false;

@@ -35,7 +35,7 @@ namespace _Project.Scripts.Systems.Grid
                 {
                     int index = _gridState.GetIndex(x, y);
                     _fogAlphaByCell[index] = FAR_ALPHA;
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (IsGlobalSeedType(cell.Type))
                     {
                         RevealFromOpenCell(new Vector2Int(x, y));
@@ -85,7 +85,7 @@ namespace _Project.Scripts.Systems.Grid
                 return;
             }
 
-            Cell currentCell = _gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell currentCell = ref _gridState.GetCell(cell.x, cell.y);
             if (currentCell.Type != CellType.Empty)
             {
                 return;

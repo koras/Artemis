@@ -77,7 +77,7 @@ namespace _Project.Scripts.Presentation.Grid
         public void OnDigCompleted(Vector2Int cellPos)
         {
             _gridTileVisualService.SetTaskMarker(cellPos, false);
-            Cell cell = _gridState.GetCell(cellPos.x, cellPos.y);
+            ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
             _gridTileVisualService.SetGroundByCellType(cellPos, cell.Type);
             _materialTransitionOverlayService?.RefreshAround(cellPos);
         }
@@ -142,7 +142,7 @@ namespace _Project.Scripts.Presentation.Grid
                 {
                     Vector2Int cellPos = new Vector2Int(payload.AnchorCell.x + x, payload.AnchorCell.y + y);
                     _gridTileVisualService.SetDestructionMarker(cellPos, false);
-                    Cell cell = _gridState.GetCell(cellPos.x, cellPos.y);
+                    ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
                     _gridTileVisualService.SetGroundByCellType(cellPos, cell.Type);
                     _materialTransitionOverlayService?.RefreshAround(cellPos);
                 }
@@ -619,7 +619,7 @@ namespace _Project.Scripts.Presentation.Grid
                 return $"{tag}=({pos.x},{pos.y}) outside";
             }
 
-            Cell cell = _gridState.GetCell(pos.x, pos.y);
+            ref readonly Cell cell = ref _gridState.GetCell(pos.x, pos.y);
             CableVisualResolver.ResolveVisualDebug(cell.CableMask4, out CableVisualShapeId shapeId, out float rotationZ, out _);
             return $"{tag}=({pos.x},{pos.y}) hasCable={cell.HasCable} mask={cell.CableMask4} shape={shapeId} rot={rotationZ:0.##} preview={cell.IsCablePreviewVisible}";
         }
@@ -682,7 +682,7 @@ namespace _Project.Scripts.Presentation.Grid
                 return false;
             }
 
-            Cell port = _gridState.GetCell(portCell.x, portCell.y);
+            ref readonly Cell port = ref _gridState.GetCell(portCell.x, portCell.y);
             return port.HasCable && port.CableNetworkId > 0;
         }
 

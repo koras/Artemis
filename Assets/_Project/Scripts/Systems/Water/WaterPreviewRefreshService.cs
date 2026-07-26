@@ -92,7 +92,7 @@ namespace _Project.Scripts.Systems.Water
             foreach (Vector2Int stagedCell in stagedSnapshot)
             {
                 if (!_gridState.IsInside(stagedCell.x, stagedCell.y)) continue;
-                Cell stagedGridCell = _gridState.GetCell(stagedCell.x, stagedCell.y);
+                ref readonly Cell stagedGridCell = ref _gridState.GetCell(stagedCell.x, stagedCell.y);
                 if (stagedGridCell.HasWater) continue;
                 stagedPreviewCells.Add(stagedCell);
             }
@@ -102,7 +102,7 @@ namespace _Project.Scripts.Systems.Water
                 for (int x = 0; x < _gridState.Width; x++)
                 {
                     Vector2Int cellPos = new Vector2Int(x, y);
-                    Cell markedCell = _gridState.GetCell(x, y);
+                    ref readonly Cell markedCell = ref _gridState.GetCell(x, y);
                     if (!markedCell.IsWaterMarked || markedCell.HasWater)
                     {
                         continue;
@@ -120,7 +120,7 @@ namespace _Project.Scripts.Systems.Water
 
                 Vector2Int cell = task.TargetCell;
                 if (!_gridState.IsInside(cell.x, cell.y)) continue;
-                Cell taskCell = _gridState.GetCell(cell.x, cell.y);
+                ref readonly Cell taskCell = ref _gridState.GetCell(cell.x, cell.y);
                 if (taskCell.HasWater) continue;
                 stagedPreviewCells.Add(cell);
             }
@@ -203,7 +203,7 @@ namespace _Project.Scripts.Systems.Water
         public bool HasPlannedWaterAt(Vector2Int cellPos, HashSet<Vector2Int> stagedPreviewCells)
         {
             if (!_gridState.IsInside(cellPos.x, cellPos.y)) return false;
-            Cell cell = _gridState.GetCell(cellPos.x, cellPos.y);
+            ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
             if (cell.HasWater) return false;
             if (stagedPreviewCells.Contains(cellPos)) return true;
             if (cell.IsWaterMarked) return true;
@@ -218,7 +218,7 @@ namespace _Project.Scripts.Systems.Water
         private bool HasWaterOrPlannedAt(Vector2Int cellPos, HashSet<Vector2Int> stagedPreviewCells)
         {
             if (!_gridState.IsInside(cellPos.x, cellPos.y)) return false;
-            Cell cell = _gridState.GetCell(cellPos.x, cellPos.y);
+            ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
             if (cell.HasWater) return true;
             return HasPlannedWaterAt(cellPos, stagedPreviewCells);
         }
@@ -236,7 +236,8 @@ namespace _Project.Scripts.Systems.Water
         private bool HasBuiltWaterAt(Vector2Int cellPos)
         {
             if (!_gridState.IsInside(cellPos.x, cellPos.y)) return false;
-            return _gridState.GetCell(cellPos.x, cellPos.y).HasWater;
+            ref readonly Cell cell = ref _gridState.GetCell(cellPos.x, cellPos.y);
+            return cell.HasWater;
         }
     }
 }

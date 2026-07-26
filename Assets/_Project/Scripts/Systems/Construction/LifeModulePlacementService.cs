@@ -37,7 +37,8 @@ namespace _Project.Scripts.Systems.Construction
             _constructionConfig = constructionConfig;
         }
 
-        public bool TryCreatePayloadFromDrag(Vector2Int dragStartCell, Vector2Int dragEndCell, out LifeModuleTaskPayload payload)
+        public bool TryCreatePayloadFromDrag(Vector2Int dragStartCell, Vector2Int dragEndCell,
+            out LifeModuleTaskPayload payload)
         {
             payload = null;
 
@@ -50,7 +51,8 @@ namespace _Project.Scripts.Systems.Construction
                 return false;
             }
 
-            if (!TryResolveMergedBounds(selectedMinX, selectedMaxX, anchorY, out int mergedMinX, out int mergedMaxX, out int[] replacedGroupIds))
+            if (!TryResolveMergedBounds(selectedMinX, selectedMaxX, anchorY, out int mergedMinX, out int mergedMaxX,
+                    out int[] replacedGroupIds))
             {
                 return false;
             }
@@ -69,7 +71,8 @@ namespace _Project.Scripts.Systems.Construction
                 : BuildUnderMinimumPreviewParts(previewAnchorCell, previewWidth);
             Vector2Int[] occupiedCells = BuildOccupiedCells(parts);
             bool canOccupy = isMinimumWidthReached
-                ? ValidateOccupiedCells(occupiedCells, replacedGroupIds, allowLifeModuleOverlapWithinReplacedGroups: true)
+                ? ValidateOccupiedCells(occupiedCells, replacedGroupIds,
+                    allowLifeModuleOverlapWithinReplacedGroups: true)
                 : AreCellsInsideGrid(occupiedCells);
             bool addsNewFootprintCells = !isMinimumWidthReached || AddsNewFootprintCells(occupiedCells);
 
@@ -225,7 +228,7 @@ namespace _Project.Scripts.Systems.Construction
                 return false;
             }
 
-            Cell current = _gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell current = ref _gridState.GetCell(cell.x, cell.y);
             if (current.LifeModuleType == LifeModuleType.None || current.LifeModuleGroupId == 0)
             {
                 return false;
@@ -235,7 +238,8 @@ namespace _Project.Scripts.Systems.Construction
             return true;
         }
 
-        private bool TryResolveMergedBounds(int selectedMinX, int selectedMaxX, int anchorY, out int mergedMinX, out int mergedMaxX, out int[] replacedGroupIds)
+        private bool TryResolveMergedBounds(int selectedMinX, int selectedMaxX, int anchorY, out int mergedMinX,
+            out int mergedMaxX, out int[] replacedGroupIds)
         {
             mergedMinX = selectedMinX;
             mergedMaxX = selectedMaxX;
@@ -254,7 +258,7 @@ namespace _Project.Scripts.Systems.Construction
                             continue;
                         }
 
-                        Cell cell = _gridState.GetCell(x, y);
+                        ref readonly Cell cell = ref _gridState.GetCell(x, y);
                         if (cell.LifeModuleType == LifeModuleType.None || cell.LifeModuleGroupId == 0)
                         {
                             continue;
@@ -292,8 +296,7 @@ namespace _Project.Scripts.Systems.Construction
                         }
                     }
                 }
-            }
-            while (changed);
+            } while (changed);
 
             replacedGroupIds = new int[mergedGroupIds.Count];
             mergedGroupIds.CopyTo(replacedGroupIds);
@@ -310,7 +313,7 @@ namespace _Project.Scripts.Systems.Construction
             {
                 for (int x = 0; x < _gridState.Width; x++)
                 {
-                    Cell cell = _gridState.GetCell(x, y);
+                    ref readonly Cell cell = ref _gridState.GetCell(x, y);
                     if (cell.LifeModuleGroupId != groupId || cell.LifeModuleType == LifeModuleType.None)
                     {
                         continue;
@@ -329,7 +332,8 @@ namespace _Project.Scripts.Systems.Construction
             return minX != int.MaxValue && maxX != int.MinValue && anchorY != int.MinValue;
         }
 
-        private bool ValidateOccupiedCells(Vector2Int[] occupiedCells, int[] replacedGroupIds, bool allowLifeModuleOverlapWithinReplacedGroups)
+        private bool ValidateOccupiedCells(Vector2Int[] occupiedCells, int[] replacedGroupIds,
+            bool allowLifeModuleOverlapWithinReplacedGroups)
         {
             var replacedGroups = replacedGroupIds != null ? new HashSet<int>(replacedGroupIds) : new HashSet<int>();
 
@@ -341,7 +345,7 @@ namespace _Project.Scripts.Systems.Construction
                     return false;
                 }
 
-                Cell cell = _gridState.GetCell(occupiedCell.x, occupiedCell.y);
+                ref readonly Cell cell = ref _gridState.GetCell(occupiedCell.x, occupiedCell.y);
                 if (cell.IsOccupiedByBuilding || _buildingPlacementService.IsPlannedCell(occupiedCell))
                 {
                     return false;
@@ -352,7 +356,8 @@ namespace _Project.Scripts.Systems.Construction
                     return false;
                 }
 
-                if (allowLifeModuleOverlapWithinReplacedGroups && cell.LifeModuleType != LifeModuleType.None && !replacedGroups.Contains(cell.LifeModuleGroupId))
+                if (allowLifeModuleOverlapWithinReplacedGroups && cell.LifeModuleType != LifeModuleType.None &&
+                    !replacedGroups.Contains(cell.LifeModuleGroupId))
                 {
                     return false;
                 }
@@ -371,7 +376,7 @@ namespace _Project.Scripts.Systems.Construction
                     continue;
                 }
 
-                Cell cell = _gridState.GetCell(occupiedCell.x, occupiedCell.y);
+                ref readonly Cell cell = ref _gridState.GetCell(occupiedCell.x, occupiedCell.y);
                 if (cell.LifeModuleType == LifeModuleType.None)
                 {
                     return true;
@@ -438,7 +443,8 @@ namespace _Project.Scripts.Systems.Construction
                 currentX += partWidth;
             }
 
-            result.Add(CreatePart(LifeModulePartType.Right, new Vector2Int(anchorCell.x + totalWidth - SIDE_WIDTH, anchorCell.y), SIDE_WIDTH, order));
+            result.Add(CreatePart(LifeModulePartType.Right,
+                new Vector2Int(anchorCell.x + totalWidth - SIDE_WIDTH, anchorCell.y), SIDE_WIDTH, order));
             return result;
         }
 
@@ -526,7 +532,8 @@ namespace _Project.Scripts.Systems.Construction
             };
         }
 
-        private static LifeModulePartPayload CreatePart(LifeModulePartType partType, Vector2Int anchorCell, int width, byte order)
+        private static LifeModulePartPayload CreatePart(LifeModulePartType partType, Vector2Int anchorCell, int width,
+            byte order)
         {
             return new LifeModulePartPayload
             {
@@ -538,7 +545,8 @@ namespace _Project.Scripts.Systems.Construction
             };
         }
 
-        private void ApplyPartToGrid(LifeModulePartPayload part, int groupId, LifeModuleType stateType, bool allowBuiltCells)
+        private void ApplyPartToGrid(LifeModulePartPayload part, int groupId, LifeModuleType stateType,
+            bool allowBuiltCells)
         {
             for (int y = 0; y < part.Height; y++)
             {
@@ -551,7 +559,8 @@ namespace _Project.Scripts.Systems.Construction
                     }
 
                     Cell cell = _gridState.GetCell(cellPos.x, cellPos.y);
-                    if (allowBuiltCells && stateType == LifeModuleType.Preview && cell.LifeModuleType == LifeModuleType.Built)
+                    if (allowBuiltCells && stateType == LifeModuleType.Preview &&
+                        cell.LifeModuleType == LifeModuleType.Built)
                     {
                         continue;
                     }
@@ -606,7 +615,8 @@ namespace _Project.Scripts.Systems.Construction
                 return false;
             }
 
-            if (_constructionConfig == null || _constructionConfig.CostPerCellItems == null || _constructionConfig.CostPerCellItems.Length == 0)
+            if (_constructionConfig == null || _constructionConfig.CostPerCellItems == null ||
+                _constructionConfig.CostPerCellItems.Length == 0)
             {
                 return true;
             }
@@ -633,7 +643,8 @@ namespace _Project.Scripts.Systems.Construction
                 return false;
             }
 
-            if (_constructionConfig == null || _constructionConfig.CostPerCellItems == null || _constructionConfig.CostPerCellItems.Length == 0)
+            if (_constructionConfig == null || _constructionConfig.CostPerCellItems == null ||
+                _constructionConfig.CostPerCellItems.Length == 0)
             {
                 return true;
             }

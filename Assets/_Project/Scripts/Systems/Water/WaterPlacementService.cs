@@ -37,16 +37,16 @@ namespace _Project.Scripts.Systems.Water
             current.HasWater = true;
             gridState.SetCell(cell.x, cell.y, current);
             RecalculateMask(gridState, cell);
-            Cell centerAfterMask = gridState.GetCell(cell.x, cell.y);
+            ref readonly Cell centerAfterMask = ref gridState.GetCell(cell.x, cell.y);
             Debug.Log($"[WaterPlace] Center updated ({cell.x},{cell.y}) hasWater={centerAfterMask.HasWater} mask={ToMask4(centerAfterMask.WaterMask4)}");
 
             for (int i = 0; i < Directions.Length; i++)
             {
                 Vector2Int neighbor = cell + Directions[i];
                 if (!gridState.IsInside(neighbor.x, neighbor.y)) continue;
-                Cell neighborBeforeMask = gridState.GetCell(neighbor.x, neighbor.y);
+                ref readonly Cell neighborBeforeMask = ref gridState.GetCell(neighbor.x, neighbor.y);
                 RecalculateMask(gridState, neighbor);
-                Cell neighborAfterMask = gridState.GetCell(neighbor.x, neighbor.y);
+                ref readonly Cell neighborAfterMask = ref gridState.GetCell(neighbor.x, neighbor.y);
                 Debug.Log(
                     $"[WaterPlace] Neighbor updated ({neighbor.x},{neighbor.y}) " +
                     $"hasWater={neighborAfterMask.HasWater} " +
@@ -148,7 +148,8 @@ namespace _Project.Scripts.Systems.Water
         private static bool HasWater(GridState gridState, Vector2Int cell)
         {
             if (!gridState.IsInside(cell.x, cell.y)) return false;
-            bool hasWater = gridState.GetCell(cell.x, cell.y).HasWater;
+            ref readonly Cell current = ref gridState.GetCell(cell.x, cell.y);
+            bool hasWater = current.HasWater;
             if (hasWater)
             {
                 Debug.Log($"в такой ячейке {cell.x}*{cell.y} есть Water");

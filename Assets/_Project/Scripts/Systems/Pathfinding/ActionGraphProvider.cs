@@ -29,7 +29,8 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return _movementActionEdgesBuffer;
             }
 
-            GetLocalAxes(grid.GetCell(from.x, from.y), out var up, out var down, out var right, out var left);
+            ref readonly Cell fromCell = ref grid.GetCell(from.x, from.y);
+            GetLocalAxes(fromCell, out var up, out var down, out var right, out var left);
 
             TryWalk(grid, from, right, down, _movementActionEdgesBuffer);
             TryWalk(grid, from, left, down, _movementActionEdgesBuffer);
@@ -60,7 +61,8 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return false;
             }
 
-            Vector2Int down = MovementSupportRules.GetDownDirection(grid.GetCell(cellPos.x, cellPos.y));
+            ref readonly Cell cell = ref grid.GetCell(cellPos.x, cellPos.y);
+            Vector2Int down = MovementSupportRules.GetDownDirection(cell);
             return MovementSupportRules.IsCellStandableForMovement(grid, cellPos, down);
         }
 
@@ -92,14 +94,14 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            Cell fromCell = grid.GetCell(from.x, from.y);
-            Cell targetCell = grid.GetCell(targetPos.x, targetPos.y);
+            ref readonly Cell fromCell = ref grid.GetCell(from.x, from.y);
+            ref readonly Cell targetCell = ref grid.GetCell(targetPos.x, targetPos.y);
             if (IsBuiltLifeModuleCell(fromCell) || IsBuiltLifeModuleCell(targetCell))
             {
                 return;
             }
 
-            Cell middleCell = grid.GetCell(middlePos.x, middlePos.y);
+            ref readonly Cell middleCell = ref grid.GetCell(middlePos.x, middlePos.y);
             if (!IsAirCell(middleCell))
             {
                 return;
@@ -121,8 +123,8 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            Cell fromCell = grid.GetCell(from.x, from.y);
-            Cell toCell = grid.GetCell(to.x, to.y);
+            ref readonly Cell fromCell = ref grid.GetCell(from.x, from.y);
+            ref readonly Cell toCell = ref grid.GetCell(to.x, to.y);
             if (IsBuiltLifeModuleCell(fromCell) || IsBuiltLifeModuleCell(toCell))
             {
                 return;
@@ -149,12 +151,12 @@ namespace _Project.Scripts.Systems.Pathfinding
         private static void TryClimb(GridState grid, Vector2Int from, Vector2Int right, Vector2Int left, Vector2Int up,
             Vector2Int down, List<MovementActionEdge> outEdges)
         {
-            Cell fromCell = grid.GetCell(from.x, from.y);
+            ref readonly Cell fromCell = ref grid.GetCell(from.x, from.y);
             Vector2Int upPos = from + up;
 
             if (grid.IsInside(upPos.x, upPos.y))
             {
-                Cell upCell = grid.GetCell(upPos.x, upPos.y);
+                ref readonly Cell upCell = ref grid.GetCell(upPos.x, upPos.y);
                 bool blocksLifeModuleVerticalTransition =
                     IsBuiltLifeModuleCell(fromCell) || IsBuiltLifeModuleCell(upCell);
                 if (!blocksLifeModuleVerticalTransition && IsLadderCell(upCell))
@@ -174,7 +176,7 @@ namespace _Project.Scripts.Systems.Pathfinding
                 Vector2Int downPos = from + down;
                 if (grid.IsInside(downPos.x, downPos.y))
                 {
-                    Cell downCell = grid.GetCell(downPos.x, downPos.y);
+                    ref readonly Cell downCell = ref grid.GetCell(downPos.x, downPos.y);
                     if (IsBuiltLifeModuleCell(downCell))
                     {
                         return;
@@ -206,10 +208,10 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            Cell fromCell = grid.GetCell(from.x, from.y);
-            Cell upCell = grid.GetCell(upPos.x, upPos.y);
-            Cell sideCell = grid.GetCell(sidePos.x, sidePos.y);
-            Cell targetCell = grid.GetCell(targetPos.x, targetPos.y);
+            ref readonly Cell fromCell = ref grid.GetCell(from.x, from.y);
+            ref readonly Cell upCell = ref grid.GetCell(upPos.x, upPos.y);
+            ref readonly Cell sideCell = ref grid.GetCell(sidePos.x, sidePos.y);
+            ref readonly Cell targetCell = ref grid.GetCell(targetPos.x, targetPos.y);
             if (IsBuiltLifeModuleCell(fromCell)
                 || IsBuiltLifeModuleCell(upCell)
                 || IsBuiltLifeModuleCell(sideCell)
@@ -258,9 +260,9 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            Cell fromCell = grid.GetCell(from.x, from.y);
-            Cell sideCell = grid.GetCell(sidePos.x, sidePos.y);
-            Cell targetCell = grid.GetCell(targetPos.x, targetPos.y);
+            ref readonly Cell fromCell = ref grid.GetCell(from.x, from.y);
+            ref readonly Cell sideCell = ref grid.GetCell(sidePos.x, sidePos.y);
+            ref readonly Cell targetCell = ref grid.GetCell(targetPos.x, targetPos.y);
             if (IsBuiltLifeModuleCell(fromCell)
                 || IsBuiltLifeModuleCell(sideCell)
                 || IsBuiltLifeModuleCell(targetCell))
@@ -303,7 +305,7 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            Cell cell = grid.GetCell(target.x, target.y);
+            ref readonly Cell cell = ref grid.GetCell(target.x, target.y);
             if (!CellTraversalRules.IsDiggable(cell.Type))
             {
                 return;
@@ -326,7 +328,7 @@ namespace _Project.Scripts.Systems.Pathfinding
                 return;
             }
 
-            Cell cell = grid.GetCell(target.x, target.y);
+            ref readonly Cell cell = ref grid.GetCell(target.x, target.y);
             if (!CellTraversalRules.IsBuildable(cell.Type))
             {
                 return;

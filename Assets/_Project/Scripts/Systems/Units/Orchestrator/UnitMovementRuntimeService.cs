@@ -150,7 +150,7 @@ namespace _Project.Scripts.Systems.Units
         {
             if (!_context.Grid.IsInside(state.CurrentCell.x, state.CurrentCell.y)) return false;
 
-            Cell currentCell = _context.Grid.GetCell(state.CurrentCell.x, state.CurrentCell.y);
+            ref readonly Cell currentCell = ref _context.Grid.GetCell(state.CurrentCell.x, state.CurrentCell.y);
             if (IsLadderCell(currentCell)) return false;
             if (!IsAirCell(currentCell)) return false;
 
@@ -172,7 +172,7 @@ namespace _Project.Scripts.Systems.Units
                 Vector2Int belowCellPos = landingCell + down;
                 if (!_context.Grid.IsInside(belowCellPos.x, belowCellPos.y)) break;
 
-                Cell belowCell = _context.Grid.GetCell(belowCellPos.x, belowCellPos.y);
+                ref readonly Cell belowCell = ref _context.Grid.GetCell(belowCellPos.x, belowCellPos.y);
                 if (IsLadderCell(belowCell)) break;
                 if (IsBridgeCell(belowCell)) break;
                 if (!IsAirCell(belowCell)) break;

@@ -53,7 +53,7 @@ namespace _Project.Scripts.Systems.Water
                                 continue;
                             }
 
-                            Cell neighborCell = _gridState.GetCell(neighbor.x, neighbor.y);
+                            ref readonly Cell neighborCell = ref _gridState.GetCell(neighbor.x, neighbor.y);
                             if (!neighborCell.HasWater)
                             {
                                 continue;
