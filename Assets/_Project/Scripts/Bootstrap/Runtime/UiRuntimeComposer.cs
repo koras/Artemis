@@ -66,6 +66,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
                 OfferPanelPresenter = hudSetupResult.OfferPanelPresenter,
                 ShopPanelPresenter = hudSetupResult.ShopPanelPresenter,
                 HudWindowCoordinator = hudSetupResult.HudWindowCoordinator,
+                HudMenuUnlockService = hudSetupResult.HudMenuUnlockService,
                 HudRootElement = uiDocument != null ? uiDocument.rootVisualElement : null
             };
 

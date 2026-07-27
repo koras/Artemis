@@ -10,6 +10,7 @@ using _Project.Scripts.Data.Water;
 using _Project.Scripts.Data.Oxygen;
 using _Project.Scripts.Data.Power;
 using _Project.Scripts.Systems.Simulation;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +39,11 @@ namespace _Project.Scripts.Presentation.Grid
         private readonly OxygenPreviewRefreshService _oxygenPreviewRefreshService;
         private bool _isCableBuildTintActive;
         private Color _cableBuildTintColor = Color.white;
+
+        /// <summary>
+        /// Raised after a successful building view has been created.
+        /// </summary>
+        public event Action<BuildingDef> BuildingViewCreated;
 
         public ConstructionDigVisualCallbackService(
             GridState gridState,
@@ -116,6 +122,7 @@ namespace _Project.Scripts.Presentation.Grid
                 && _buildingViewRegistry.TryGetViewPrefab(payload.BuildingDef, out BuildingViewBase buildingViewPrefab))
             {
                 SpawnBuildingView(buildingViewPrefab, payload.AnchorCell, size);
+                BuildingViewCreated?.Invoke(payload.BuildingDef);
                 return;
             }
 
@@ -151,7 +158,7 @@ namespace _Project.Scripts.Presentation.Grid
             if (_viewsByAnchor.TryGetValue(payload.AnchorCell, out BuildingViewBase view))
             {
                 _viewsByAnchor.Remove(payload.AnchorCell);
-                Object.Destroy(view.gameObject);
+                UnityEngine.Object.Destroy(view.gameObject);
             }
         }
 
@@ -640,7 +647,7 @@ namespace _Project.Scripts.Presentation.Grid
             float offsetY = (size.y - 1) * 0.5f * _gridState.CellSize;
             Vector3 spawnPosition = new Vector3(anchorCenterWorld.x + offsetX, anchorCenterWorld.y + offsetY, 0f);
 
-            BuildingViewBase view = Object.Instantiate(buildingViewPrefab, spawnPosition, Quaternion.identity, _buildingsRoot);
+            BuildingViewBase view = UnityEngine.Object.Instantiate(buildingViewPrefab, spawnPosition, Quaternion.identity, _buildingsRoot);
             view.Initialize(anchorCell, size);
             _viewsByAnchor[anchorCell] = view;
             if (_isCableBuildTintActive)

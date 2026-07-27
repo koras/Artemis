@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Presentation.UI
@@ -45,6 +46,10 @@ namespace _Project.Scripts.Presentation.UI
         [SerializeField] private Sprite _exitWaterIcon;
         [SerializeField] private Sprite _exitOxygenIcon;
 
+        [Header("Menu Button Unlocks (Optional)")]
+        // По умолчанию каталог пустой, поэтому существующие кнопки видимы сразу.
+        [SerializeField] private HudMenuButtonDefinition[] _menuButtonDefinitions = Array.Empty<HudMenuButtonDefinition>();
+
         public Sprite BottomMenuEnergyIcon => _bottomMenuEnergyIcon;
         public Sprite BottomMenuOxygenIcon => _bottomMenuOxygenIcon;
         public Sprite BottomMenuWaterIcon => _bottomMenuWaterIcon;
@@ -73,5 +78,6 @@ namespace _Project.Scripts.Presentation.UI
         public Sprite ExitCableIcon => _exitCableIcon;
         public Sprite ExitWaterIcon => _exitWaterIcon;
         public Sprite ExitOxygenIcon => _exitOxygenIcon;
+        public HudMenuButtonDefinition[] MenuButtonDefinitions => _menuButtonDefinitions;
     }
 }

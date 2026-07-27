@@ -135,7 +135,8 @@ namespace _Project.Scripts.Systems.Offers
                 _reservationService,
                 _reputationService,
                 _objectiveEvaluationService,
-                NotifyStateChanged);
+                NotifyStateChanged,
+                NotifyOfferCompleted);
             _stateSerializer = new OfferStateSerializer(_context, _reputationService);
 
             if (_context.ResourceInventoryService != null)
@@ -145,6 +146,7 @@ namespace _Project.Scripts.Systems.Offers
         }
 
         public event Action StateChanged;
+        public event Action<OfferDefinition> OfferCompleted;
 
         public int Gold => _context.ResourceInventoryService != null
             ? _context.ResourceInventoryService.GetAmount(ResourceInventoryService.GOLD_RESOURCE_ID)
@@ -162,6 +164,7 @@ namespace _Project.Scripts.Systems.Offers
             }
 
             StateChanged = null;
+            OfferCompleted = null;
         }
 
         public bool HasGold(int amount)
@@ -306,6 +309,11 @@ namespace _Project.Scripts.Systems.Offers
         private void NotifyStateChanged()
         {
             StateChanged?.Invoke();
+        }
+
+        private void NotifyOfferCompleted(OfferDefinition offerDefinition)
+        {
+            OfferCompleted?.Invoke(offerDefinition);
         }
 
         private void OnResourceAmountChanged(ResourceAmountChangedEvent changeEvent)

@@ -22,6 +22,7 @@ namespace _Project.Scripts.Presentation.UI
             public readonly ShopPanelPresenter ShopPanelPresenter;
             public readonly HudWindowCoordinator HudWindowCoordinator;
             public readonly ConstructionToolPanelController ConstructionToolPanelController;
+            public readonly HudMenuUnlockService HudMenuUnlockService;
 
             public HudSetupResult(
                 TaskQueuePanelPresenter taskQueuePanelPresenter,
@@ -31,7 +32,8 @@ namespace _Project.Scripts.Presentation.UI
                 OfferPanelPresenter offerPanelPresenter,
                 ShopPanelPresenter shopPanelPresenter,
                 HudWindowCoordinator hudWindowCoordinator,
-                ConstructionToolPanelController constructionToolPanelController)
+                ConstructionToolPanelController constructionToolPanelController,
+                HudMenuUnlockService hudMenuUnlockService)
             {
                 TaskQueuePanelPresenter = taskQueuePanelPresenter;
                 ResourceInventoryPanelPresenter = resourceInventoryPanelPresenter;
@@ -41,6 +43,7 @@ namespace _Project.Scripts.Presentation.UI
                 ShopPanelPresenter = shopPanelPresenter;
                 HudWindowCoordinator = hudWindowCoordinator;
                 ConstructionToolPanelController = constructionToolPanelController;
+                HudMenuUnlockService = hudMenuUnlockService;
             }
         }
 
@@ -77,13 +80,13 @@ namespace _Project.Scripts.Presentation.UI
 
             if (uiDocument == null)
             {
-                return new HudSetupResult(null, null, null, null, null, null, hudWindowCoordinator, panelController);
+                return new HudSetupResult(null, null, null, null, null, null, hudWindowCoordinator, panelController, null);
             }
 
             VisualElement root = uiDocument.rootVisualElement;
             if (root == null)
             {
-                return new HudSetupResult(null, null, null, null, null, null, hudWindowCoordinator, panelController);
+                return new HudSetupResult(null, null, null, null, null, null, hudWindowCoordinator, panelController, null);
             }
 
             var taskQueuePanelPresenter = new TaskQueuePanelPresenter(root, hudWindowCoordinator);
@@ -93,6 +96,9 @@ namespace _Project.Scripts.Presentation.UI
             var offerPanelPresenter = new OfferPanelPresenter(root, offerSystemService, hudWindowCoordinator);
             var shopPanelPresenter = new ShopPanelPresenter(root, shopSystemService, hudWindowCoordinator);
             _ = new BottomHudMenuPresenter(root, hudWindowCoordinator);
+            var hudMenuUnlockService = new HudMenuUnlockService(
+                root,
+                hudMenuIconSet != null ? hudMenuIconSet.MenuButtonDefinitions : null);
             MenuButtonIconBinder.Bind(root, hudMenuIconSet);
 
             Button shovelButton = root.Q<Button>("shovel-btn");
@@ -133,7 +139,8 @@ namespace _Project.Scripts.Presentation.UI
                 offerPanelPresenter,
                 shopPanelPresenter,
                 hudWindowCoordinator,
-                panelController);
+                panelController,
+                hudMenuUnlockService);
         }
     }
 }

@@ -415,6 +415,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
                 ResumeSimulation,
                 SetSimulationSpeed);
             _runtimeHandles.Ui = ui;
+            BindHudMenuUnlockEvents(ui);
 
             // Сразу проталкиваем текущее состояние паузы и скорости в HUD,
             // чтобы визуал не ждал первого пользовательского события или тика.
@@ -939,6 +940,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
         {
             UiRuntimeContext previousUi = _runtimeHandles.Ui;
             ConstructionToolPanelController previousConstructionToolPanelController = previousUi.ConstructionToolPanelController;
+            UnbindHudMenuUnlockEvents(previousUi);
 
             previousUi.ResourceInventoryPanelPresenter?.Dispose();
             previousUi.ColonyEventHudPresenter?.Dispose();
@@ -963,8 +965,35 @@ namespace _Project.Scripts.Bootstrap.Runtime
                 PauseSimulation,
                 ResumeSimulation,
                 SetSimulationSpeed);
+            BindHudMenuUnlockEvents(_runtimeHandles.Ui);
             RebindToolSelectionHandler(previousConstructionToolPanelController, _runtimeHandles.Ui.ConstructionToolPanelController);
             EnsureHudRootVisible();
+        }
+
+        private void BindHudMenuUnlockEvents(UiRuntimeContext uiContext)
+        {
+            if (uiContext?.HudMenuUnlockService == null)
+            {
+                return;
+            }
+
+            _runtimeHandles.Gameplay.ConstructionDigVisualCallbackService.BuildingViewCreated +=
+                uiContext.HudMenuUnlockService.HandleBuildingViewCreated;
+            _runtimeHandles.Gameplay.OfferSystemService.OfferCompleted +=
+                uiContext.HudMenuUnlockService.HandleOfferCompleted;
+        }
+
+        private void UnbindHudMenuUnlockEvents(UiRuntimeContext uiContext)
+        {
+            if (uiContext?.HudMenuUnlockService == null)
+            {
+                return;
+            }
+
+            _runtimeHandles.Gameplay.ConstructionDigVisualCallbackService.BuildingViewCreated -=
+                uiContext.HudMenuUnlockService.HandleBuildingViewCreated;
+            _runtimeHandles.Gameplay.OfferSystemService.OfferCompleted -=
+                uiContext.HudMenuUnlockService.HandleOfferCompleted;
         }
 
         private void EnsureHudDocumentEnabled()

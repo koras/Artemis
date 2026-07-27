@@ -30,7 +30,7 @@
                     <ui:Button name="build-ladder-btn" text="Ladder" class="menu-icon-btn"/>
                     <ui:Button name="destruction-btn" text="Destroy" class="bottom-menu-btn menu-icon-btn"/>
                     <ui:Button name="shovel-btn" text="Shovel" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="cancel-shovel-btn" text="Cancel" class="bottom-menu-btn menu-icon-btn" style="width: 110px;"/>
+                    <ui:Button name="cancel-shovel-btn" text="Cancel" class="bottom-menu-btn menu-icon-btn"/>
                     <ui:Button name="exit-cable-btn" text="Cable Exit" class="bottom-menu-btn menu-icon-btn"/>
                     <ui:Button name="exit-water-btn" text="Water Exit" class="bottom-menu-btn menu-icon-btn"/>
                     <ui:Button name="exit-oxygen-btn" text="Oxygen Exit" class="bottom-menu-btn menu-icon-btn"/>

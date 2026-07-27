@@ -1164,17 +1164,17 @@
 .bottom-bar-right {
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .bottom-menu-btn {
-    min-width: 110px;
+    min-width: 80px;
 }
 
 .bottom-popup-panel {
     position: absolute;
     left: 16px;
-    bottom: 132px;
+    bottom: 108px;
     display: none;
     flex-direction: column;
     gap: 6px;
@@ -1208,27 +1208,27 @@
 }
 
 .tool-panel Button {
-    min-width: 110px;
-    height: 36px;
-    font-size: 14px;
+    min-width: 88px;
+    height: 30px;
+    font-size: 12px;
 }
 
 .menu-icon-btn {
-    min-width: 86px;
-    width: 96px;
-    height: 104px;
-    padding-top: 72px;
+    min-width: 80px;
+    width: 80px;
+    height: 84px;
+    padding-top: 56px;
     padding-left: 4px;
     padding-right: 4px;
-    padding-bottom: 16px;
-    font-size: 11px;
+    padding-bottom: 12px;
+    font-size: 10px;
     white-space: normal;
     unity-text-align: upper-center;
     -unity-font-style: bold;
     background-position-x: center;
     background-position-y: 4px;
     background-repeat: no-repeat;
-    background-size: 64px 64px;
+    background-size: 52px 52px;
     background-color: rgb(64, 72, 84);
     border-left-width: 1px;
     border-right-width: 1px;

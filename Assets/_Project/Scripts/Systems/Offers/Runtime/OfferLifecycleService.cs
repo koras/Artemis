@@ -1,4 +1,5 @@
 using System;
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Data.Offers;
 using _Project.Scripts.Systems.Resources;
@@ -18,19 +19,22 @@ namespace _Project.Scripts.Systems.Offers.Runtime
         private readonly OfferReputationService _reputationService;
         private readonly OfferObjectiveEvaluationService _objectiveEvaluationService;
         private readonly Action _stateChanged;
+        private readonly Action<OfferDefinition> _offerCompleted;
 
         public OfferLifecycleService(
             OfferSystemContext context,
             OfferReservationService reservationService,
             OfferReputationService reputationService,
             OfferObjectiveEvaluationService objectiveEvaluationService,
-            Action stateChanged)
+            Action stateChanged,
+            Action<OfferDefinition> offerCompleted)
         {
             _context = context;
             _reservationService = reservationService;
             _reputationService = reputationService;
             _objectiveEvaluationService = objectiveEvaluationService;
             _stateChanged = stateChanged;
+            _offerCompleted = offerCompleted;
         }
 
         public bool AcceptOffer(string runtimeId)
@@ -393,6 +397,7 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             _reputationService.ApplyReputation(record.Definition.Customer, Mathf.Max(0, record.Definition.ReputationReward));
             ApplyOutcomes(record);
             RegisterCompletedChainStep(record);
+            _offerCompleted?.Invoke(record.Definition);
         }
 
         private void ApplyOutcomes(OfferRuntimeRecord record)

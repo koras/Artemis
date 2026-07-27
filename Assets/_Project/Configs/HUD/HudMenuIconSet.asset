@@ -40,3 +40,9 @@ MonoBehaviour:
   _exitCableIcon: {fileID: 0}
   _exitWaterIcon: {fileID: 0}
   _exitOxygenIcon: {fileID: 0}
+  _menuButtonDefinitions:
+  - ButtonId: 
+    Description: 
+    UnlockType: 0
+    RequiredBuildingDef: {fileID: 0}
+    RequiredOfferDefinition: {fileID: 0}

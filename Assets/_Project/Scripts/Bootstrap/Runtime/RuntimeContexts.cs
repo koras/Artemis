@@ -103,6 +103,7 @@ namespace _Project.Scripts.Bootstrap.Runtime
         public OfferPanelPresenter OfferPanelPresenter;
         public ShopPanelPresenter ShopPanelPresenter;
         public HudWindowCoordinator HudWindowCoordinator;
+        public HudMenuUnlockService HudMenuUnlockService;
         public TaskQueueHudRefreshService TaskQueueHudRefreshService;
         public PowerDebugHudPresenter PowerDebugHudPresenter;
         public CharacterDiagnosticsPanelPresenter CharacterDiagnosticsPanelPresenter;
