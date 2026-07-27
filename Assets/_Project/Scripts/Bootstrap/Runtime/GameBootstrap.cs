@@ -979,6 +979,8 @@ namespace _Project.Scripts.Bootstrap.Runtime
 
             _runtimeHandles.Gameplay.ConstructionDigVisualCallbackService.BuildingViewCreated +=
                 uiContext.HudMenuUnlockService.HandleBuildingViewCreated;
+            _runtimeHandles.Gameplay.ConstructionDigVisualCallbackService.LifeModuleBuilt +=
+                uiContext.HudMenuUnlockService.HandleLifeModuleBuilt;
             _runtimeHandles.Gameplay.OfferSystemService.OfferCompleted +=
                 uiContext.HudMenuUnlockService.HandleOfferCompleted;
         }
@@ -992,6 +994,8 @@ namespace _Project.Scripts.Bootstrap.Runtime
 
             _runtimeHandles.Gameplay.ConstructionDigVisualCallbackService.BuildingViewCreated -=
                 uiContext.HudMenuUnlockService.HandleBuildingViewCreated;
+            _runtimeHandles.Gameplay.ConstructionDigVisualCallbackService.LifeModuleBuilt -=
+                uiContext.HudMenuUnlockService.HandleLifeModuleBuilt;
             _runtimeHandles.Gameplay.OfferSystemService.OfferCompleted -=
                 uiContext.HudMenuUnlockService.HandleOfferCompleted;
         }

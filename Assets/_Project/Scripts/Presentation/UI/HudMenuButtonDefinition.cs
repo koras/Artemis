@@ -7,9 +7,14 @@ namespace _Project.Scripts.Presentation.UI
 {
     public enum HudMenuButtonUnlockType
     {
+        [InspectorName("Всегда доступно")]
         AlwaysVisible = 0,
+        [InspectorName("После создания BuildingView")]
         BuildingViewCreated = 1,
-        OfferCompleted = 2
+        [InspectorName("После завершения OfferDefinition")]
+        OfferCompleted = 2,
+        [InspectorName("Всегда скрыто")]
+        AlwaysHidden = 3
     }
 
     /// <summary>
@@ -24,5 +29,6 @@ namespace _Project.Scripts.Presentation.UI
         public HudMenuButtonUnlockType UnlockType = HudMenuButtonUnlockType.AlwaysVisible;
         public BuildingDef RequiredBuildingDef;
         public OfferDefinition RequiredOfferDefinition;
+        public bool RequiresLifeModuleBuilt = true;
     }
 }

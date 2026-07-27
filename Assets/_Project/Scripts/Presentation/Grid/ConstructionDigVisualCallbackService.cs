@@ -45,6 +45,11 @@ namespace _Project.Scripts.Presentation.Grid
         /// </summary>
         public event Action<BuildingDef> BuildingViewCreated;
 
+        /// <summary>
+        /// Raised after the LifeModule construction pipeline is finalized successfully.
+        /// </summary>
+        public event Action LifeModuleBuilt;
+
         public ConstructionDigVisualCallbackService(
             GridState gridState,
             GridTileVisualService gridTileVisualService,
@@ -244,6 +249,7 @@ namespace _Project.Scripts.Presentation.Grid
             _lifeModulePlacementService.FinalizeBuild(payload);
             _lifeModulePreviewRefreshService.RebuildBuilt();
             _lifeModulePreviewRefreshService.RebuildPreview();
+            LifeModuleBuilt?.Invoke();
         }
 
         public void OnLifeModulePreviewCleared(LifeModuleTaskPayload payload)

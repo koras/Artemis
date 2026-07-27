@@ -32,7 +32,7 @@ namespace _Project.Scripts.Editor
         public static void Open()
         {
             HudMenuEditorWindow window = GetWindow<HudMenuEditorWindow>("Artemis Menu");
-            window.minSize = new Vector2(760f, 420f);
+            window.minSize = new Vector2(980f, 420f);
             window.Show();
         }
 
@@ -90,7 +90,8 @@ namespace _Project.Scripts.Editor
                 EditorGUILayout.LabelField("Название", EditorStyles.boldLabel, GUILayout.Width(180f));
                 EditorGUILayout.LabelField("Что отвечает", EditorStyles.boldLabel, GUILayout.Width(260f));
                 EditorGUILayout.LabelField("Событие появления", EditorStyles.boldLabel, GUILayout.Width(170f));
-                EditorGUILayout.LabelField("Объект события", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField("Объект события", EditorStyles.boldLabel, GUILayout.Width(180f));
+                EditorGUILayout.LabelField("LifeModule", EditorStyles.boldLabel, GUILayout.Width(90f));
             }
 
             _serializedMenuIconSet?.Update();
@@ -135,6 +136,7 @@ namespace _Project.Scripts.Editor
                 SerializedProperty unlockTypeProperty = definitionProperty.FindPropertyRelative("UnlockType");
                 SerializedProperty buildingProperty = definitionProperty.FindPropertyRelative("RequiredBuildingDef");
                 SerializedProperty offerProperty = definitionProperty.FindPropertyRelative("RequiredOfferDefinition");
+                SerializedProperty lifeModuleProperty = definitionProperty.FindPropertyRelative("RequiresLifeModuleBuilt");
 
                 descriptionProperty.stringValue = EditorGUILayout.TextField(
                     GUIContent.none,
@@ -158,6 +160,11 @@ namespace _Project.Scripts.Editor
                     buildingProperty.objectReferenceValue = null;
                     offerProperty.objectReferenceValue = null;
                 }
+
+                lifeModuleProperty.boolValue = EditorGUILayout.Toggle(
+                    GUIContent.none,
+                    lifeModuleProperty.boolValue,
+                    GUILayout.Width(90f));
             }
         }
 
@@ -195,6 +202,7 @@ namespace _Project.Scripts.Editor
             definitionProperty.FindPropertyRelative("UnlockType").enumValueIndex = (int)HudMenuButtonUnlockType.AlwaysVisible;
             definitionProperty.FindPropertyRelative("RequiredBuildingDef").objectReferenceValue = null;
             definitionProperty.FindPropertyRelative("RequiredOfferDefinition").objectReferenceValue = null;
+            definitionProperty.FindPropertyRelative("RequiresLifeModuleBuilt").boolValue = true;
             _serializedMenuIconSet.ApplyModifiedProperties();
         }
 
@@ -280,6 +288,11 @@ namespace _Project.Scripts.Editor
 
         private static string GetUnlockDescription(HudMenuButtonDefinition definition)
         {
+            if (definition != null && definition.UnlockType == HudMenuButtonUnlockType.AlwaysHidden)
+            {
+                return "Всегда скрыта";
+            }
+
             if (definition == null || definition.UnlockType == HudMenuButtonUnlockType.AlwaysVisible)
             {
                 return "Сразу";

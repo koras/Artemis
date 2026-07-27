@@ -15,6 +15,7 @@ namespace _Project.Scripts.Presentation.UI
         private readonly VisualElement _root;
         private readonly Dictionary<string, HudMenuButtonDefinition> _definitionsByButtonId;
         private readonly HashSet<string> _unlockedButtonIds = new HashSet<string>(StringComparer.Ordinal);
+        private bool _isLifeModuleBuilt;
 
         public HudMenuUnlockService(VisualElement root, HudMenuButtonDefinition[] definitions)
         {
@@ -30,6 +31,16 @@ namespace _Project.Scripts.Presentation.UI
             if (!_definitionsByButtonId.TryGetValue(buttonId, out HudMenuButtonDefinition definition))
             {
                 return true;
+            }
+
+            if (definition.UnlockType == HudMenuButtonUnlockType.AlwaysHidden)
+            {
+                return false;
+            }
+
+            if (definition.RequiresLifeModuleBuilt && !_isLifeModuleBuilt)
+            {
+                return false;
             }
 
             return definition.UnlockType == HudMenuButtonUnlockType.AlwaysVisible
@@ -62,6 +73,18 @@ namespace _Project.Scripts.Presentation.UI
             }
 
             UnlockMatchingButtons(HudMenuButtonUnlockType.OfferCompleted, definition => definition.RequiredOfferDefinition == offerDefinition);
+        }
+
+        public void HandleLifeModuleBuilt()
+        {
+            if (_isLifeModuleBuilt)
+            {
+                return;
+            }
+
+            _isLifeModuleBuilt = true;
+            ApplyVisibility();
+            Changed?.Invoke();
         }
 
         public void ApplyVisibility()
