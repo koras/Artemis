@@ -12,6 +12,9 @@ namespace _Project.Scripts.Systems.Power
     /// </summary>
     public sealed class PowerNetworkService
     {
+        // Пересчёт сети временно отключён, но код оставлен для последующего включения.
+        private static readonly bool NetworkRecalculationDisabled = true;
+
         private static readonly Vector2Int[] NeighborOffsets =
         {
             Vector2Int.up,
@@ -113,7 +116,10 @@ namespace _Project.Scripts.Systems.Power
         /// </summary>
         public void Recalculate(GameTimeService gameTimeService, float tickDurationSeconds)
         {
-            return;
+            if (NetworkRecalculationDisabled)
+            {
+                return;
+            }
 
             float tickHours = Mathf.Max(0.0001f, tickDurationSeconds / 3600f);
             Dictionary<Vector2Int, int> componentByCell = BuildCableComponents();

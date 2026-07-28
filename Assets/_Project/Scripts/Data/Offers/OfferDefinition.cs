@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace _Project.Scripts.Data.Offers
 {
@@ -59,5 +60,53 @@ namespace _Project.Scripts.Data.Offers
         [Min(1)] public int DeadlineDays = 7;
 
         public bool HasStages => Stages != null && Stages.Length > 0;
+
+        /// <summary>Возвращает ключ локализации для текстового поля оффера.</summary>
+        public LocalizedString GetLocalizedField(string field)
+        {
+            return OfferLocalizationKeys.Localized(OfferLocalizationKeys.Offer(OfferId, field));
+        }
+
+        /// <summary>Возвращает локализованные заголовок и описание оффера.</summary>
+        public LocalizedString GetLocalizedTitle() => GetLocalizedField("title");
+        public LocalizedString GetLocalizedDescription() => GetLocalizedField("description");
+
+        /// <summary>Возвращает локализованные сообщения жизненного цикла оффера.</summary>
+        public LocalizedString GetLocalizedIntroMessage() => GetLocalizedField("intro");
+        public LocalizedString GetLocalizedAcceptMessage() => GetLocalizedField("accept");
+        public LocalizedString GetLocalizedCompleteMessage() => GetLocalizedField("complete");
+        public LocalizedString GetLocalizedFailMessage() => GetLocalizedField("fail");
+
+        /// <summary>Возвращает локализованный текст этапа.</summary>
+        public LocalizedString GetLocalizedStageField(int stageIndex, string field)
+        {
+            return OfferLocalizationKeys.Localized(OfferLocalizationKeys.Stage(OfferId, stageIndex, field));
+        }
+
+        /// <summary>Возвращает локализованное описание objective этапа.</summary>
+        public LocalizedString GetLocalizedObjectiveDescription(int stageIndex, int objectiveIndex)
+        {
+            return OfferLocalizationKeys.Localized(
+                OfferLocalizationKeys.Objective(OfferId, stageIndex, objectiveIndex));
+        }
+
+        /// <summary>Возвращает локализованные тексты условий и результата оффера.</summary>
+        public LocalizedString GetLocalizedUnlockConditionDescription(int conditionIndex)
+        {
+            return OfferLocalizationKeys.Localized(
+                OfferLocalizationKeys.UnlockCondition(OfferId, conditionIndex));
+        }
+
+        public LocalizedString GetLocalizedFailureConditionDescription(int conditionIndex)
+        {
+            return OfferLocalizationKeys.Localized(
+                OfferLocalizationKeys.FailureCondition(OfferId, conditionIndex));
+        }
+
+        public LocalizedString GetLocalizedOutcomeDescription(int outcomeIndex)
+        {
+            return OfferLocalizationKeys.Localized(
+                OfferLocalizationKeys.Outcome(OfferId, outcomeIndex));
+        }
     }
 }

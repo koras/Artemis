@@ -20,6 +20,16 @@ namespace _Project.Scripts.Presentation.UI
         [SerializeField] private BuildingDef _waterReclamationBuildingDef;
         [SerializeField] private BuildingDef _waterProcessingUnitBuildingDef;
 
+        // Декоративные объекты доступны из отдельного меню «Декор».
+        [Header("Decoration Defs")]
+        [SerializeField] private BuildingDef _flowerSmall1BuildingDef;
+        [SerializeField] private BuildingDef _flowerSmallBuildingDef;
+        [SerializeField] private BuildingDef _flowerBig2BuildingDef;
+        [SerializeField] private BuildingDef _flowerBig1BuildingDef;
+        [SerializeField] private BuildingDef _paintAstroBuildingDef;
+        [SerializeField] private BuildingDef _paintPlanetBuildingDef;
+        [SerializeField] private BuildingDef _paintRockerBuildingDef;
+
         public BuildingDef LadderBuildingDef => _ladderBuildingDef;
         public BuildingDef BridgeBuildingDef => _bridgeBuildingDef;
         public BuildingDef StorageBuildingDef => _storageBuildingDef;
@@ -33,5 +43,12 @@ namespace _Project.Scripts.Presentation.UI
         public BuildingDef OxigenProcessingUnitBuildingDef => _oxigenProcessingUnitBuildingDef;
         public BuildingDef WaterReclamationBuildingDef => _waterReclamationBuildingDef;
         public BuildingDef WaterProcessingUnitBuildingDef => _waterProcessingUnitBuildingDef;
+        public BuildingDef FlowerSmall1BuildingDef => _flowerSmall1BuildingDef;
+        public BuildingDef FlowerSmallBuildingDef => _flowerSmallBuildingDef;
+        public BuildingDef FlowerBig2BuildingDef => _flowerBig2BuildingDef;
+        public BuildingDef FlowerBig1BuildingDef => _flowerBig1BuildingDef;
+        public BuildingDef PaintAstroBuildingDef => _paintAstroBuildingDef;
+        public BuildingDef PaintPlanetBuildingDef => _paintPlanetBuildingDef;
+        public BuildingDef PaintRockerBuildingDef => _paintRockerBuildingDef;
     }
 }

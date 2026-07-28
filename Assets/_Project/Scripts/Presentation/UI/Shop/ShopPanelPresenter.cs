@@ -2,6 +2,7 @@ using _Project.Scripts.Data.Shop;
 using _Project.Scripts.Presentation.UI;
 using _Project.Scripts.Systems.Shop;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 namespace _Project.Scripts.Presentation.UI.Shop
@@ -36,6 +37,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
         private Button _filterEquipmentButton;
         private Button _filterPersonnelButton;
         private Label _goldLabel;
+        private readonly LocalizedString _goldLabelString = new LocalizedString("UI", "shop.gold");
         private VisualElement _panel;
         private VisualElement _filterRow;
         private VisualElement _tableHeader;
@@ -57,6 +59,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
             _openButton?.RegisterCallback<ClickEvent>(OnOpenClicked);
             EnsurePanelReady();
+            _goldLabelString.StringChanged += OnGoldLabelChanged;
 
             if (_shopSystemService != null)
             {
@@ -74,6 +77,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
             _closeButton?.UnregisterCallback<ClickEvent>(OnCloseClicked);
             UnbindOrdersButton();
             UnbindFilterButtons();
+            _goldLabelString.StringChanged -= OnGoldLabelChanged;
 
             if (_shopSystemService != null)
             {
@@ -105,7 +109,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
         {
             if (_shopSystemService == null || _shopSystemService.AvailableEntries.Count == 0)
             {
-                _rowsContainer.Add(new Label("No products available.") { name = "shop-empty-row" });
+                _rowsContainer.Add(CreateLocalizedLabel("shop.no.products", "shop-empty-row"));
                 return;
             }
 
@@ -129,7 +133,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
             if (addedRows == 0)
             {
-                _rowsContainer.Add(new Label("No products for selected category.") { name = "shop-empty-row" });
+                _rowsContainer.Add(CreateLocalizedLabel("shop.no.filtered.products", "shop-empty-row"));
             }
         }
 
@@ -137,7 +141,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
         {
             if (_shopSystemService == null || _shopSystemService.PendingOrders.Count == 0)
             {
-                _rowsContainer.Add(new Label("No active orders.") { name = "shop-empty-row" });
+                _rowsContainer.Add(CreateLocalizedLabel("shop.no.orders", "shop-empty-row"));
                 return;
             }
 
@@ -244,10 +248,8 @@ namespace _Project.Scripts.Presentation.UI.Shop
             {
                 _shopSystemService.CancelOrder(order.OrderId);
                 Render();
-            })
-            {
-                text = "Cancel"
-            };
+            });
+            cancelButton.SetBinding("text", new LocalizedString("UI", "shop.cancel"));
             cancelButton.AddToClassList("shop-order-cancel-btn");
             actionsCell.Add(cancelButton);
             row.Add(actionsCell);
@@ -422,7 +424,8 @@ namespace _Project.Scripts.Presentation.UI.Shop
             }
 
             // Header gold mirrors runtime balance so price changes are visible while shopping.
-            _goldLabel.text = $"Gold: {(_shopSystemService != null ? _shopSystemService.Gold : 0)}";
+            _goldLabelString.Arguments = new object[] { _shopSystemService != null ? _shopSystemService.Gold : 0 };
+            _goldLabelString.RefreshString();
         }
 
         private void UpdateViewStates()
@@ -446,7 +449,9 @@ namespace _Project.Scripts.Presentation.UI.Shop
             SetFilterButtonState(_filterPersonnelButton, _activeFilterCategory == ShopProductCategory.Personnel);
             if (_ordersTabButton != null)
             {
-                _ordersTabButton.text = isCatalog ? "Orders" : "Catalog";
+                _ordersTabButton.SetBinding(
+                    "text",
+                    new LocalizedString("UI", isCatalog ? "shop.orders" : "shop.catalog"));
             }
         }
 
@@ -464,29 +469,45 @@ namespace _Project.Scripts.Presentation.UI.Shop
         {
             if (isCatalog)
             {
-                header.Add(BuildHeaderLabel("Product", "shop-col-product"));
-                header.Add(BuildHeaderLabel("Supplier", "shop-col-supplier"));
-                header.Add(BuildHeaderLabel("Selected", "shop-col-selected"));
-                header.Add(BuildHeaderLabel("Limit", "shop-col-max"));
-                header.Add(BuildHeaderLabel("Unit Price", "shop-col-unit-price"));
-                header.Add(BuildHeaderLabel("Total", "shop-col-total-price"));
-                header.Add(BuildHeaderLabel("Action", "shop-col-actions-title"));
+                header.Add(BuildHeaderLabel("shop.product", "shop-col-product"));
+                header.Add(BuildHeaderLabel("shop.supplier", "shop-col-supplier"));
+                header.Add(BuildHeaderLabel("shop.selected", "shop-col-selected"));
+                header.Add(BuildHeaderLabel("shop.limit", "shop-col-max"));
+                header.Add(BuildHeaderLabel("shop.unit.price", "shop-col-unit-price"));
+                header.Add(BuildHeaderLabel("shop.total", "shop-col-total-price"));
+                header.Add(BuildHeaderLabel("shop.action", "shop-col-actions-title"));
                 return;
             }
 
-            header.Add(BuildHeaderLabel("Product", "shop-col-product"));
-            header.Add(BuildHeaderLabel("Amount", "shop-col-order-amount"));
-            header.Add(BuildHeaderLabel("Price", "shop-col-order-price"));
-            header.Add(BuildHeaderLabel("Days Left", "shop-col-order-days"));
-            header.Add(BuildHeaderLabel("Action", "shop-col-actions-title"));
+            header.Add(BuildHeaderLabel("shop.product", "shop-col-product"));
+            header.Add(BuildHeaderLabel("shop.amount", "shop-col-order-amount"));
+            header.Add(BuildHeaderLabel("shop.price", "shop-col-order-price"));
+            header.Add(BuildHeaderLabel("shop.days.left", "shop-col-order-days"));
+            header.Add(BuildHeaderLabel("shop.action", "shop-col-actions-title"));
         }
 
-        private static Label BuildHeaderLabel(string text, string className)
+        private static Label BuildHeaderLabel(string key, string className)
         {
-            var label = new Label(text);
+            var label = new Label();
+            label.SetBinding("text", new LocalizedString("UI", key));
             label.AddToClassList("shop-table-cell");
             label.AddToClassList(className);
             return label;
+        }
+
+        private static Label CreateLocalizedLabel(string key, string name)
+        {
+            var label = new Label { name = name };
+            label.SetBinding("text", new LocalizedString("UI", key));
+            return label;
+        }
+
+        private void OnGoldLabelChanged(string text)
+        {
+            if (_goldLabel != null)
+            {
+                _goldLabel.text = text;
+            }
         }
 
         private static void SetFilterButtonState(Button button, bool isActive)

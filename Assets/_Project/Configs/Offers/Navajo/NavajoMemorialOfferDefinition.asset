@@ -61,9 +61,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 0    ScheduleInspection: 0
+      RequireOperational: 0
+    ScheduleInspection: 0
     BonusGold: 15
-    BonusReputation: 0  - StageId: navajo-memorial-stable
+    BonusReputation: 0
+  - StageId: navajo-memorial-stable
     Title: "Quiet Utility"
     Description: "Keep oxygen stable while the cooperative reviews the new space."
     Objectives:
@@ -76,9 +78,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 1    ScheduleInspection: 0
+      RequireOperational: 1
+    ScheduleInspection: 0
     BonusGold: 0
-    BonusReputation: 4  FailureConditions: []
+    BonusReputation: 4
+    FailureConditions: []
   GoldReward: 235
   ReputationReward: 14
   ReputationPenaltyOnFail: 14

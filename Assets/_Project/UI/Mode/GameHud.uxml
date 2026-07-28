@@ -1,4 +1,4 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:l="UnityEngine.Localization" editor-extension-mode="False">
     <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
     <ui:VisualElement name="hud-root" class="hud-root" style="align-items: stretch;">
         <ui:VisualElement name="hud-top-bar" class="hud-top-bar" style="top: 0; right: 0; left: 0;">
@@ -14,26 +14,53 @@
                 <ui:Label name="game-time-label" text="00:00 / 1 sol"/>
             </ui:VisualElement>
             <ui:VisualElement name="hud-right-controls" class="hud-right-controls">
-                <ui:Button name="offers-open-btn" text="Offers" class="offers-open-btn" style="height: 37px; width: 166px;"/>
-                <ui:Button name="shop-open-btn" text="SHOP" class="shop-open-btn" style="width: 166px;"/>
+                <ui:Button name="offers-open-btn" text="Offers" class="offers-open-btn" style="height: 37px; width: 166px;">
+                    <Bindings><l:LocalizedString property="text" table="UI" entry="menu.offers" /></Bindings>
+                </ui:Button>
+                <ui:Button name="shop-open-btn" text="SHOP" class="shop-open-btn" style="width: 166px;">
+                    <Bindings><l:LocalizedString property="text" table="UI" entry="menu.shop" /></Bindings>
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="tool-panel" class="tool-panel" style="bottom: 0; right: 0; left: 0;">
             <ui:VisualElement class="bottom-bar-main">
                 <ui:VisualElement class="bottom-bar-left" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255);">
-                    <ui:Button name="bottom-menu-energy-btn" text="Electricity" class="bottom-menu-btn menu-icon-btn" />
-                    <ui:Button name="bottom-menu-oxygen-btn" text="Oxygen" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="bottom-menu-water-btn" text="Water" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="bottom-menu-module-btn" text="Module" class="bottom-menu-btn menu-icon-btn"/>
+                    <ui:Button name="bottom-menu-energy-btn" text="Electricity" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="resource.electricity" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="bottom-menu-oxygen-btn" text="Oxygen" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="resource.oxygen" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="bottom-menu-water-btn" text="Water" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="resource.water" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="bottom-menu-module-btn" text="Module" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="resource.module" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="bottom-menu-decoration-btn" text="Декор" class="bottom-menu-btn menu-icon-btn"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="bottom-bar-right">
-                    <ui:Button name="build-ladder-btn" text="Ladder" class="menu-icon-btn"/>
-                    <ui:Button name="destruction-btn" text="Destroy" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="shovel-btn" text="Shovel" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="cancel-shovel-btn" text="Cancel" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="exit-cable-btn" text="Cable Exit" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="exit-water-btn" text="Water Exit" class="bottom-menu-btn menu-icon-btn"/>
-                    <ui:Button name="exit-oxygen-btn" text="Oxygen Exit" class="bottom-menu-btn menu-icon-btn"/>
+                    <ui:Button name="build-ladder-btn" text="Ladder" class="menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="building.ladder" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="destruction-btn" text="Destroy" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="action.destroy" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="shovel-btn" text="Shovel" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="action.shovel" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="cancel-shovel-btn" text="Cancel" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="action.cancel" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="exit-cable-btn" text="Cable Exit" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="action.cable.exit" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="exit-water-btn" text="Water Exit" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="action.water.exit" /></Bindings>
+                    </ui:Button>
+                    <ui:Button name="exit-oxygen-btn" text="Oxygen Exit" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="action.oxygen.exit" /></Bindings>
+                    </ui:Button>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

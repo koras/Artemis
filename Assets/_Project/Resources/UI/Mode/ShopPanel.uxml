@@ -1,19 +1,31 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:l="UnityEngine.Localization" editor-extension-mode="False">
     <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
 
     <ui:VisualElement name="shop-panel" class="shop-panel">
         <ui:VisualElement class="shop-panel-header">
-            <ui:Label text="Order Goods" class="shop-panel-title"/>
+            <ui:Label text="Order Goods" class="shop-panel-title">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="shop.title" /></Bindings>
+            </ui:Label>
             <ui:Label name="shop-gold-label" text="Gold: 0" class="shop-gold-label"/>
             <ui:Button name="shop-close-btn" text="X" class="shop-close-btn"/>
         </ui:VisualElement>
 
         <ui:VisualElement name="shop-filter-row" class="shop-filter-row">
-            <ui:Button name="shop-filter-all" text="All" class="shop-filter-btn"/>
-            <ui:Button name="shop-filter-food" text="Food" class="shop-filter-btn"/>
-            <ui:Button name="shop-filter-equipment" text="Equipment" class="shop-filter-btn"/>
-            <ui:Button name="shop-filter-personnel" text="Personnel" class="shop-filter-btn"/>
-            <ui:Button name="shop-tab-orders" text="Orders" class="shop-tab-btn shop-tab-btn-orders shop-orders-toggle-btn"/>
+            <ui:Button name="shop-filter-all" text="All" class="shop-filter-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="shop.all" /></Bindings>
+            </ui:Button>
+            <ui:Button name="shop-filter-food" text="Food" class="shop-filter-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="shop.food" /></Bindings>
+            </ui:Button>
+            <ui:Button name="shop-filter-equipment" text="Equipment" class="shop-filter-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="shop.equipment" /></Bindings>
+            </ui:Button>
+            <ui:Button name="shop-filter-personnel" text="Personnel" class="shop-filter-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="shop.personnel" /></Bindings>
+            </ui:Button>
+            <ui:Button name="shop-tab-orders" text="Orders" class="shop-tab-btn shop-tab-btn-orders shop-orders-toggle-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="shop.orders" /></Bindings>
+            </ui:Button>
         </ui:VisualElement>
 
         <ui:ScrollView name="shop-list" class="shop-list">

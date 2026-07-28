@@ -1,4 +1,4 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:l="UnityEngine.Localization" editor-extension-mode="False">
     <ui:VisualElement class="shop-table-row">
         <ui:VisualElement name="shop-row-product" class="shop-table-cell shop-col-product">
             <ui:Label name="shop-row-product-name" class="shop-product-name"/>
@@ -13,7 +13,9 @@
         <ui:Label name="shop-row-unit-price" class="shop-table-cell shop-col-unit-price"/>
         <ui:Label name="shop-row-total-price" class="shop-table-cell shop-col-total-price"/>
         <ui:VisualElement class="shop-col-actions">
-            <ui:Button name="shop-row-order" text="Order"/>
+            <ui:Button name="shop-row-order" text="Order">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="shop.order" /></Bindings>
+            </ui:Button>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -1,4 +1,4 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:l="UnityEngine.Localization" editor-extension-mode="False">
     <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
 
     <ui:VisualElement name="offer-tooltip-panel" class="offer-tooltip-panel">
@@ -17,9 +17,15 @@
         <ui:Label name="offer-tooltip-requirements" class="offer-tooltip-requirements"/>
         <ui:Label name="offer-tooltip-deadline" class="offer-tooltip-deadline"/>
         <ui:VisualElement class="offer-tooltip-buttons">
-            <ui:Button name="offer-tooltip-accept-btn" text="Accept"/>
-            <ui:Button name="offer-tooltip-close-btn" text="Close"/>
-            <ui:Button name="offer-tooltip-reject-btn" text="Reject"/>
+            <ui:Button name="offer-tooltip-accept-btn" text="Accept">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="offers.accept" /></Bindings>
+            </ui:Button>
+            <ui:Button name="offer-tooltip-close-btn" text="Close">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="offers.close" /></Bindings>
+            </ui:Button>
+            <ui:Button name="offer-tooltip-reject-btn" text="Reject">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="offers.reject" /></Bindings>
+            </ui:Button>
         </ui:VisualElement>
         <ui:Button name="offer-tooltip-header-close-btn" text="X" class="offer-tooltip-header-close-btn"/>
     </ui:VisualElement>

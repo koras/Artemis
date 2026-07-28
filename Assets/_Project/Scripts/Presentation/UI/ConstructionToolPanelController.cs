@@ -20,11 +20,19 @@ namespace _Project.Scripts.Presentation.UI
         private readonly BuildingDef _oxigenProcessingUnitBuildingDef;
         private readonly BuildingDef _waterReclamationBuildingDef;
         private readonly BuildingDef _waterProcessingUnitBuildingDef;
+        private readonly BuildingDef _flowerSmall1BuildingDef;
+        private readonly BuildingDef _flowerSmallBuildingDef;
+        private readonly BuildingDef _flowerBig2BuildingDef;
+        private readonly BuildingDef _flowerBig1BuildingDef;
+        private readonly BuildingDef _paintAstroBuildingDef;
+        private readonly BuildingDef _paintPlanetBuildingDef;
+        private readonly BuildingDef _paintRockerBuildingDef;
 
         private BuildingDef _activeBuildingDef;
         private Button _shovelButton, _buildLadderButton, _buildBridgeButton, _buildStorageButton, _buildSolarPanelButton, _buildRegolithProcessingUnitButton,
             _buildSleepModuleButton, _buildBatteryButton, _buildDinnerButton, _buildShowerButton, _buildOxygenStorageButton, _buildOxigenProcessingUnitButton, _buildWaterReclamationButton,
             _buildWaterProcessingUnitButton,
+            _buildFlowerSmall1Button, _buildFlowerSmallButton, _buildFlowerBig2Button, _buildFlowerBig1Button, _buildPaintAstroButton, _buildPaintPlanetButton, _buildPaintRockerButton,
             _buildCableButton, _cancelCablePlanButton, _exitCablePlanButton, _buildWaterButton, _cancelWaterPlanButton, _exitWaterPlanButton,
             _buildOxygenButton, _cancelOxygenPlanButton, _exitOxygenPlanButton, _buildLifeModuleButton, _cancelLifeModulePlanButton, _cancelButton, _destructionButton;
 
@@ -33,7 +41,9 @@ namespace _Project.Scripts.Presentation.UI
         public ConstructionToolPanelController(BuildingDef ladderBuildingDef, BuildingDef bridgeBuildingDef, BuildingDef storageBuildingDef, BuildingDef solarPanelBuildingDef,
             BuildingDef regolithProcessingUnitBuildingDef, BuildingDef sleepModuleBuildingDef, BuildingDef batteryBuildingDef,
             BuildingDef dinnerBuildingDef, BuildingDef showerBuildingDef, BuildingDef oxygenStorageBuildingDef, BuildingDef oxigenProcessingUnitBuildingDef,
-            BuildingDef waterReclamationBuildingDef, BuildingDef waterProcessingUnitBuildingDef, bool enableLogs)
+            BuildingDef waterReclamationBuildingDef, BuildingDef waterProcessingUnitBuildingDef,
+            BuildingDef flowerSmall1BuildingDef, BuildingDef flowerSmallBuildingDef, BuildingDef flowerBig2BuildingDef, BuildingDef flowerBig1BuildingDef,
+            BuildingDef paintAstroBuildingDef, BuildingDef paintPlanetBuildingDef, BuildingDef paintRockerBuildingDef, bool enableLogs)
         {
             _ladderBuildingDef = ladderBuildingDef;
             _bridgeBuildingDef = bridgeBuildingDef;
@@ -48,11 +58,20 @@ namespace _Project.Scripts.Presentation.UI
             _oxigenProcessingUnitBuildingDef = oxigenProcessingUnitBuildingDef;
             _waterReclamationBuildingDef = waterReclamationBuildingDef;
             _waterProcessingUnitBuildingDef = waterProcessingUnitBuildingDef;
+            _flowerSmall1BuildingDef = flowerSmall1BuildingDef;
+            _flowerSmallBuildingDef = flowerSmallBuildingDef;
+            _flowerBig2BuildingDef = flowerBig2BuildingDef;
+            _flowerBig1BuildingDef = flowerBig1BuildingDef;
+            _paintAstroBuildingDef = paintAstroBuildingDef;
+            _paintPlanetBuildingDef = paintPlanetBuildingDef;
+            _paintRockerBuildingDef = paintRockerBuildingDef;
         }
 
         public void Bind(Button destructionButton, Button shovelButton, Button buildLadderButton, Button buildBridgeButton, Button buildStorageButton, Button buildSolarPanelButton,
             Button buildRegolithProcessingUnitButton, Button buildSleepModuleButton, Button buildBatteryButton, Button buildDinnerButton, Button buildShowerButton,
             Button buildOxygenStorageButton, Button buildOxigenProcessingUnitButton, Button buildWaterReclamationButton, Button buildWaterProcessingUnitButton,
+            Button buildFlowerSmall1Button, Button buildFlowerSmallButton, Button buildFlowerBig2Button, Button buildFlowerBig1Button,
+            Button buildPaintAstroButton, Button buildPaintPlanetButton, Button buildPaintRockerButton,
             Button buildCableButton, Button cancelCablePlanButton,
             Button exitCablePlanButton, Button buildWaterButton, Button cancelWaterPlanButton, Button exitWaterPlanButton,
             Button buildOxygenButton, Button cancelOxygenPlanButton, Button exitOxygenPlanButton, Button buildLifeModuleButton, Button cancelLifeModulePlanButton, Button cancelButton)
@@ -61,6 +80,8 @@ namespace _Project.Scripts.Presentation.UI
             _buildSolarPanelButton = buildSolarPanelButton; _buildRegolithProcessingUnitButton = buildRegolithProcessingUnitButton; _buildSleepModuleButton = buildSleepModuleButton;
             _buildBatteryButton = buildBatteryButton; _buildDinnerButton = buildDinnerButton; _buildShowerButton = buildShowerButton; _buildOxygenStorageButton = buildOxygenStorageButton;
             _buildOxigenProcessingUnitButton = buildOxigenProcessingUnitButton; _buildWaterReclamationButton = buildWaterReclamationButton; _buildWaterProcessingUnitButton = buildWaterProcessingUnitButton;
+            _buildFlowerSmall1Button = buildFlowerSmall1Button; _buildFlowerSmallButton = buildFlowerSmallButton; _buildFlowerBig2Button = buildFlowerBig2Button; _buildFlowerBig1Button = buildFlowerBig1Button;
+            _buildPaintAstroButton = buildPaintAstroButton; _buildPaintPlanetButton = buildPaintPlanetButton; _buildPaintRockerButton = buildPaintRockerButton;
             _buildCableButton = buildCableButton; _cancelCablePlanButton = cancelCablePlanButton;
             _exitCablePlanButton = exitCablePlanButton; _buildWaterButton = buildWaterButton; _cancelWaterPlanButton = cancelWaterPlanButton;
             _exitWaterPlanButton = exitWaterPlanButton; _buildOxygenButton = buildOxygenButton; _cancelOxygenPlanButton = cancelOxygenPlanButton;
@@ -80,6 +101,13 @@ namespace _Project.Scripts.Presentation.UI
             if (_buildOxigenProcessingUnitButton != null) _buildOxigenProcessingUnitButton.clicked += OnBuildOxigenProcessingUnitClicked;
             if (_buildWaterReclamationButton != null) _buildWaterReclamationButton.clicked += OnBuildWaterReclamationClicked;
             if (_buildWaterProcessingUnitButton != null) _buildWaterProcessingUnitButton.clicked += OnBuildWaterProcessingUnitClicked;
+            if (_buildFlowerSmall1Button != null) _buildFlowerSmall1Button.clicked += OnBuildFlowerSmall1Clicked;
+            if (_buildFlowerSmallButton != null) _buildFlowerSmallButton.clicked += OnBuildFlowerSmallClicked;
+            if (_buildFlowerBig2Button != null) _buildFlowerBig2Button.clicked += OnBuildFlowerBig2Clicked;
+            if (_buildFlowerBig1Button != null) _buildFlowerBig1Button.clicked += OnBuildFlowerBig1Clicked;
+            if (_buildPaintAstroButton != null) _buildPaintAstroButton.clicked += OnBuildPaintAstroClicked;
+            if (_buildPaintPlanetButton != null) _buildPaintPlanetButton.clicked += OnBuildPaintPlanetClicked;
+            if (_buildPaintRockerButton != null) _buildPaintRockerButton.clicked += OnBuildPaintRockerClicked;
             if (_buildCableButton != null) _buildCableButton.clicked += OnBuildCableClicked;
             if (_cancelCablePlanButton != null) _cancelCablePlanButton.clicked += OnCancelCablePlanClicked;
             if (_exitCablePlanButton != null) _exitCablePlanButton.clicked += OnExitCablePlanClicked;
@@ -118,6 +146,21 @@ namespace _Project.Scripts.Presentation.UI
         private void OnBuildWaterReclamationClicked() { if (_waterReclamationBuildingDef == null) return; _activeBuildingDef = _waterReclamationBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildWaterReclamation, _activeBuildingDef); }
         // Отдельный режим для WaterProcessingUnit: обычная постановка build-задач через общий pipeline.
         private void OnBuildWaterProcessingUnitClicked() { if (_waterProcessingUnitBuildingDef == null) return; _activeBuildingDef = _waterProcessingUnitBuildingDef; ToolSelectionChanged?.Invoke(ToolMode.BuildWaterProcessingUnit, _activeBuildingDef); }
+        // Декор использует общий режим обычной постройки, но выбирает свой BuildingDef.
+        private void OnBuildFlowerSmall1Clicked() { SelectDecoration(_flowerSmall1BuildingDef); }
+        private void OnBuildFlowerSmallClicked() { SelectDecoration(_flowerSmallBuildingDef); }
+        private void OnBuildFlowerBig2Clicked() { SelectDecoration(_flowerBig2BuildingDef); }
+        private void OnBuildFlowerBig1Clicked() { SelectDecoration(_flowerBig1BuildingDef); }
+        private void OnBuildPaintAstroClicked() { SelectDecoration(_paintAstroBuildingDef); }
+        private void OnBuildPaintPlanetClicked() { SelectDecoration(_paintPlanetBuildingDef); }
+        private void OnBuildPaintRockerClicked() { SelectDecoration(_paintRockerBuildingDef); }
+
+        private void SelectDecoration(BuildingDef decorationBuildingDef)
+        {
+            if (decorationBuildingDef == null) return;
+            _activeBuildingDef = decorationBuildingDef;
+            ToolSelectionChanged?.Invoke(ToolMode.BuildDinner, _activeBuildingDef);
+        }
         private void OnBuildCableClicked() { _activeBuildingDef = null; ToolSelectionChanged?.Invoke(ToolMode.BuildCable, null); }
         private void OnCancelCablePlanClicked() { _activeBuildingDef = null; ToolSelectionChanged?.Invoke(ToolMode.CancelCablePlan, null); }
         private void OnExitCablePlanClicked() { _activeBuildingDef = null; ToolSelectionChanged?.Invoke(ToolMode.ExitCablePlan, null); }

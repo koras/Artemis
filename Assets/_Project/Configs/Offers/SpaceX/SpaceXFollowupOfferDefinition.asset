@@ -61,9 +61,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 10
       RequiredSols: 1
-      RequireOperational: 0    ScheduleInspection: 0
+      RequireOperational: 0
+    ScheduleInspection: 0
     BonusGold: 20
-    BonusReputation: 0  - StageId: spacex-corridor-vip
+    BonusReputation: 0
+  - StageId: spacex-corridor-vip
     Title: "VIP Corridor"
     Description: "Add sleeping capacity and pass the commercial readiness review."
     Objectives:
@@ -86,9 +88,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 0
-      RequireOperational: 1    ScheduleInspection: 1
+      RequireOperational: 1
+    ScheduleInspection: 1
     BonusGold: 0
-    BonusReputation: 5  FailureConditions: []
+    BonusReputation: 5
+    FailureConditions: []
   GoldReward: 290
   ReputationReward: 14
   ReputationPenaltyOnFail: 14

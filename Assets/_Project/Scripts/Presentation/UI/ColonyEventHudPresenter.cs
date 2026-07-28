@@ -1,6 +1,8 @@
 using _Project.Scripts.Data.ColonyEvents;
 using _Project.Scripts.Systems.ColonyEvents;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 namespace _Project.Scripts.Presentation.UI
@@ -30,6 +32,7 @@ namespace _Project.Scripts.Presentation.UI
             _acknowledgeButton = _panel?.Q<Button>("colony-event-ack-btn");
 
             _acknowledgeButton?.RegisterCallback<ClickEvent>(OnDismissClicked);
+            LocalizationSettings.SelectedLocaleChanged += OnSelectedLocaleChanged;
 
             if (_colonyEventService != null)
             {
@@ -50,6 +53,7 @@ namespace _Project.Scripts.Presentation.UI
             }
 
             _acknowledgeButton?.UnregisterCallback<ClickEvent>(OnDismissClicked);
+            LocalizationSettings.SelectedLocaleChanged -= OnSelectedLocaleChanged;
         }
 
         private void OnCurrentEventChanged(ColonyEventDefinition definition)
@@ -73,9 +77,14 @@ namespace _Project.Scripts.Presentation.UI
                 return;
             }
 
-            _titleLabel.text = definition.Title;
-            _descriptionLabel.text = definition.Description;
+            _titleLabel.SetBinding("text", definition.GetLocalizedTitle());
+            _descriptionLabel.SetBinding("text", definition.GetLocalizedDescription());
             SetVisible(true);
+        }
+
+        private void OnSelectedLocaleChanged(Locale _)
+        {
+            Render(_currentDefinition);
         }
 
         private void OnDismissClicked(ClickEvent _)

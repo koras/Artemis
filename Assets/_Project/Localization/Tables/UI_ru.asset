@@ -1,0 +1,2769 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_ru
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: ru
+  m_SharedData: {fileID: 11400000, guid: 167d4477678b7c547885694c5f8a6d3c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 3102728192
+    m_Localized: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3207585792
+    m_Localized: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3211780096
+    m_Localized: "\u042D\u043B\u0435\u043A\u0442\u0440\u0438\u0447\u0435\u0441\u0442\u0432\u043E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3211780097
+    m_Localized: "\u041A\u0438\u0441\u043B\u043E\u0440\u043E\u0434"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168704
+    m_Localized: "\u0412\u043E\u0434\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168705
+    m_Localized: "\u041C\u043E\u0434\u0443\u043B\u0438"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168706
+    m_Localized: "\u041B\u0435\u0441\u0442\u043D\u0438\u0446\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168707
+    m_Localized: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168708
+    m_Localized: "\u041B\u043E\u043F\u0430\u0442\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168709
+    m_Localized: "\u041E\u0442\u043C\u0435\u043D\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168710
+    m_Localized: "\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u043A\u0430\u0431\u0435\u043B\u044F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168711
+    m_Localized: "\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0432\u043E\u0434\u044B"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168712
+    m_Localized: "\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u043A\u0438\u0441\u043B\u043E\u0440\u043E\u0434\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000001
+    m_Localized: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000002
+    m_Localized: "\u041D\u043E\u0432\u044B\u0435 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000003
+    m_Localized: "\u041F\u0440\u0438\u043D\u044F\u0442\u044B\u0435 \u0437\u0430\u0434\u0430\u043D\u0438\u044F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000004
+    m_Localized: "\u0417\u043E\u043B\u043E\u0442\u043E: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000005
+    m_Localized: "\u0417\u0410\u0414\u0410\u041D\u0418\u0415"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000006
+    m_Localized: "\u0417\u0410\u041A\u0410\u0417\u0427\u0418\u041A"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000007
+    m_Localized: "\u0420\u0415\u041F\u0423\u0422\u0410\u0426\u0418\u042F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000008
+    m_Localized: "\u0420\u0415\u0421\u0423\u0420\u0421\u042B"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000009
+    m_Localized: "\u0414\u0415\u0414\u041B\u0410\u0419\u041D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000010
+    m_Localized: "\u041F\u0415\u0420\u0415\u0417\u0410\u0420\u042F\u0414\u041A\u0410"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000011
+    m_Localized: "\u0414\u0415\u0419\u0421\u0422\u0412\u0418\u042F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000012
+    m_Localized: "\u0420\u0415\u0428\u0415\u041D\u0418\u0415"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000013
+    m_Localized: "\u041D\u0435\u0442 \u043D\u043E\u0432\u044B\u0445 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000014
+    m_Localized: "\u041D\u0435\u0442 \u043F\u0440\u0438\u043D\u044F\u0442\u044B\u0445
+      \u0437\u0430\u0434\u0430\u043D\u0438\u0439."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000015
+    m_Localized: "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000016
+    m_Localized: "\u041F\u0440\u0438\u043D\u044F\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000017
+    m_Localized: "\u0417\u0430\u0440\u0435\u0437\u0435\u0440\u0432\u0438\u0440\u043E\u0432\u0430\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000018
+    m_Localized: "\u0421\u043D\u044F\u0442\u044C \u0440\u0435\u0437\u0435\u0440\u0432"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000019
+    m_Localized: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000020
+    m_Localized: "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000021
+    m_Localized: "\u0417\u0430\u043A\u0430\u0437 \u0442\u043E\u0432\u0430\u0440\u043E\u0432"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000022
+    m_Localized: "\u0417\u043E\u043B\u043E\u0442\u043E: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000023
+    m_Localized: "\u0412\u0441\u0435"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000024
+    m_Localized: "\u0415\u0434\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000025
+    m_Localized: "\u041E\u0431\u043E\u0440\u0443\u0434\u043E\u0432\u0430\u043D\u0438\u0435"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000026
+    m_Localized: "\u041F\u0435\u0440\u0441\u043E\u043D\u0430\u043B"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000027
+    m_Localized: "\u0417\u0430\u043A\u0430\u0437\u044B"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000028
+    m_Localized: "\u041A\u0430\u0442\u0430\u043B\u043E\u0433"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000029
+    m_Localized: "\u0422\u043E\u0432\u0430\u0440"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000030
+    m_Localized: "\u041F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000031
+    m_Localized: "\u0412\u044B\u0431\u0440\u0430\u043D\u043E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000032
+    m_Localized: "\u041B\u0438\u043C\u0438\u0442"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000033
+    m_Localized: "\u0426\u0435\u043D\u0430 \u0437\u0430 \u0435\u0434."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000034
+    m_Localized: "\u0412\u0441\u0435\u0433\u043E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000035
+    m_Localized: "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000036
+    m_Localized: "\u0426\u0435\u043D\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000037
+    m_Localized: "\u041E\u0441\u0442\u0430\u043B\u043E\u0441\u044C \u0434\u043D\u0435\u0439"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000038
+    m_Localized: "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000039
+    m_Localized: "\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000040
+    m_Localized: "\u041E\u0442\u043C\u0435\u043D\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000041
+    m_Localized: "\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0445
+      \u0442\u043E\u0432\u0430\u0440\u043E\u0432."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000042
+    m_Localized: "\u041D\u0435\u0442 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u0432
+      \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000043
+    m_Localized: "\u041D\u0435\u0442 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445
+      \u0437\u0430\u043A\u0430\u0437\u043E\u0432."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000101
+    m_Localized: "\u0422\u0445\u0430\u0431\u043E \u041D\u0434\u043B\u043E\u0432\u0443"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000102
+    m_Localized: Cape Horizon Trading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000103
+    m_Localized: "\u0420\u0435\u0433\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0439
+      \u043E\u043F\u0442\u043E\u0432\u044B\u0439 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C,
+      \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0449\u0438\u0439 \u0441 \u0440\u043E\u0437\u043D\u0438\u0447\u043D\u044B\u043C\u0438
+      \u043F\u043E\u0441\u0442\u0430\u0432\u043A\u0430\u043C\u0438, \u0442\u043E\u0432\u0430\u0440\u0430\u043C\u0438
+      \u0434\u043B\u044F \u0434\u043E\u043C\u0430 \u0438 \u043F\u0440\u0430\u043A\u0442\u0438\u0447\u043D\u044B\u043C\u0438
+      \u0440\u0435\u0441\u0443\u0440\u0441\u0430\u043C\u0438 \u043A\u043E\u043B\u043E\u043D\u0438\u0438."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000104
+    m_Localized: "\u0412\u044D\u0439 \u0427\u0436\u0430\u043D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000105
+    m_Localized: Jade River Imports
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000106
+    m_Localized: "\u041A\u0440\u0443\u043F\u043D\u044B\u0439 \u0438\u043C\u043F\u043E\u0440\u0442\u0451\u0440
+      \u043F\u043E\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0445
+      \u0442\u043E\u0432\u0430\u0440\u043E\u0432."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000107
+    m_Localized: "\u0414\u0430\u0432\u0438\u0442 \u0411\u0435\u043A\u0435\u043B\u0435"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000108
+    m_Localized: Abyssinia Coffee Partners
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000109
+    m_Localized: "\u041E\u043F\u044B\u0442\u043D\u044B\u0439 \u0442\u043E\u0440\u0433\u043E\u0432\u044B\u0439
+      \u043F\u0430\u0440\u0442\u043D\u0451\u0440, \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0449\u0438\u0439
+      \u0441 \u0441\u0435\u043B\u044C\u0441\u043A\u043E\u0445\u043E\u0437\u044F\u0439\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u043C\u0438
+      \u0442\u043E\u0432\u0430\u0440\u0430\u043C\u0438."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000110
+    m_Localized: "\u0413\u043E\u0441\u043F\u043E\u0434\u0438\u043D \u041C\u0430\u043A\u0440\u043E\u043D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000111
+    m_Localized: "\u041B\u0443\u043D\u043D\u0430\u044F \u0431\u044E\u0440\u043E\u043A\u0440\u0430\u0442\u0438\u044F
+      \u0424\u0440\u0430\u043D\u0446\u0438\u0438"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000112
+    m_Localized: "\u041B\u0443\u043D\u043D\u043E\u0435 \u0432\u0435\u0434\u043E\u043C\u0441\u0442\u0432\u043E
+      \u043F\u0440\u0435\u0434\u043F\u043E\u0447\u0438\u0442\u0430\u0435\u0442 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B
+      \u043A\u0430\u0436\u0434\u043E\u0439 \u043F\u043E\u0441\u0442\u0430\u0432\u043A\u0435."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000113
+    m_Localized: "\u0410\u0440\u0434\u0436\u0443\u043D \u041F\u0430\u0442\u0435\u043B\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000114
+    m_Localized: Lotus Bridge Exports
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000115
+    m_Localized: "\u041A\u043E\u043C\u043C\u0435\u0440\u0447\u0435\u0441\u043A\u0438\u0439
+      \u043F\u0430\u0440\u0442\u043D\u0451\u0440, \u0437\u0430\u0438\u043D\u0442\u0435\u0440\u0435\u0441\u043E\u0432\u0430\u043D\u043D\u044B\u0439
+      \u0432 \u043A\u0440\u0443\u043F\u043D\u044B\u0445 \u0437\u0430\u043A\u0430\u0437\u0430\u0445."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000116
+    m_Localized: "\u0421\u043E\u0444\u0438\u044F \u0420\u0430\u043C\u0438\u0440\u0435\u0441"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000117
+    m_Localized: Sol Norte Distribution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000118
+    m_Localized: "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C, \u0437\u0430\u043D\u0438\u043C\u0430\u044E\u0449\u0438\u0439\u0441\u044F
+      \u043F\u043E\u0441\u0442\u0430\u0432\u043A\u0430\u043C\u0438 \u0434\u043B\u044F
+      \u0433\u043E\u0440\u043E\u0434\u0441\u043A\u043E\u0439 \u0442\u043E\u0440\u0433\u043E\u0432\u043B\u0438."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000119
+    m_Localized: "\u041A\u0430\u0439 \u0411\u0435\u0433\u0435\u0439"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000120
+    m_Localized: Red Mesa Artisan Cooperative
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000121
+    m_Localized: "\u041F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u0435\u043B\u044C
+      \u0441\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u0430, \u0432\u044B\u0441\u0442\u0443\u043F\u0430\u044E\u0449\u0438\u0439
+      \u0437\u0430 \u0447\u0435\u0441\u0442\u043D\u0443\u044E \u0442\u043E\u0440\u0433\u043E\u0432\u043B\u044E."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000122
+    m_Localized: "\u0418\u043B\u043E\u043D \u041C\u0443\u0441\u043A\u043E\u0432\u0438\u0447"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000123
+    m_Localized: "\u0413\u043B\u0430\u0432\u0430 NASA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000124
+    m_Localized: "\u0417\u0430\u043F\u0443\u0441\u043A\u0430\u0435\u0442 \u0440\u0430\u043A\u0435\u0442\u044B
+      \u0440\u0430\u043D\u044C\u0448\u0435 \u0441\u0440\u043E\u043A\u043E\u0432 \u0438
+      \u043E\u043F\u0435\u0440\u0435\u0436\u0430\u0435\u0442 \u043F\u0430\u043D\u0438\u043A\u0443.
+      \u041B\u044E\u0431\u0438\u0442, \u043A\u043E\u0433\u0434\u0430 \u043F\u043B\u0430\u043D
+      \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442, \u0434\u0430\u0436\u0435
+      \u0435\u0441\u043B\u0438 \u043C\u0435\u043D\u044F\u0435\u0442\u0441\u044F \u043A\u0430\u0436\u0434\u044B\u0435
+      \u0434\u0435\u0441\u044F\u0442\u044C \u043C\u0438\u043D\u0443\u0442."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000125
+    m_Localized: "\u0413\u043E\u0441\u043F\u043E\u0434\u0438\u043D \u0414\u043E\u043D\u0430\u043B\u044C\u0434"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000126
+    m_Localized: "\u0410\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0441\u043A\u0438\u0439
+      \u0431\u0438\u0437\u043D\u0435\u0441\u043C\u0435\u043D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000127
+    m_Localized: "\u041A\u043E\u043C\u043F\u0430\u043D\u0438\u044F, \u043A\u043E\u0442\u043E\u0440\u0430\u044F
+      \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B\u0430 \u043F\u044F\u0442\u044C\u0434\u0435\u0441\u044F\u0442
+      \u0432\u043E\u0439\u043D."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638843727872
+    m_Localized: "\u0418\u0437\u043E\u043B\u044F\u0442\u043E\u0440 \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u0438"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638923419648
+    m_Localized: "\xAB\u041F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u0448\u0430\u0433
+      \u0434\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0434\u0438\u0441\u0446\u0438\u043F\u043B\u0438\u043D\u044B
+      \u043A\u0430\u043C\u043D\u044E \u0438 \u0441\u0442\u0430\u043B\u0438: \u0438\u0437\u043E\u043B\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u043E\u0435
+      \u043A\u0440\u044B\u043B\u043E \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0438
+      \u0434\u043B\u044F \u0438\u043D\u0446\u0438\u0434\u0435\u043D\u0442\u043E\u0432,
+      \u043A\u043E\u043D\u0442\u0440\u0430\u0431\u0430\u043D\u0434\u044B \u0438 \u0442\u044F\u0436\u0435\u043B\u044B\u0445
+      \u0442\u0440\u0443\u0434\u043E\u0432\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638923419649
+    m_Localized: "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044F\u043C
+      \u043D\u0443\u0436\u043D\u0430 \u0431\u0430\u0437\u0430, \u043A\u043E\u0442\u043E\u0440\u0430\u044F
+      \u0441\u043C\u043E\u0436\u0435\u0442 \u043F\u043E\u0433\u043B\u043E\u0442\u0438\u0442\u044C
+      \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442 \u0438 \u043D\u0435 \u0440\u0430\u0437\u0432\u0430\u043B\u0438\u0442\u044C\u0441\u044F."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638923419650
+    m_Localized: "\u041F\u043E\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0438\u0437\u043E\u043B\u044F\u0442\u043E\u0440
+      \u0438 \u043F\u0440\u043E\u0439\u0434\u0438\u0442\u0435 \u0444\u0438\u043D\u0430\u043B\u044C\u043D\u0443\u044E
+      \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0443 \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u0438."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638923419651
+    m_Localized: "\u041F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u0438\u0437\u043E\u043B\u044F\u0442\u043E\u0440\u0430
+      \u0437\u0430\u0432\u0435\u0440\u0448\u0438\u043B\u0430 \u0434\u0438\u0441\u0446\u0438\u043F\u043B\u0438\u043D\u0430\u0440\u043D\u0443\u044E
+      \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0443."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638923419652
+    m_Localized: "\u041F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u043F\u043E\u043A\u0430\u0437\u0430\u043B\u0430,
+      \u0447\u0442\u043E \u0438\u0437\u043E\u043B\u044F\u0442\u043E\u0440 \u0441\u043B\u0438\u0448\u043A\u043E\u043C
+      \u0441\u043B\u0430\u0431 \u0434\u043B\u044F \u0440\u0435\u0430\u043B\u044C\u043D\u044B\u0445
+      \u0438\u043D\u0446\u0438\u0434\u0435\u043D\u0442\u043E\u0432."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638923419653
+    m_Localized: "\u041F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u043A\u0430 \u0438\u0437\u043E\u043B\u044F\u0442\u043E\u0440\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613952
+    m_Localized: "\u0420\u0430\u0441\u0448\u0438\u0440\u044C\u0442\u0435 \u0441\u0440\u0435\u0434\u0443
+      \u043E\u0431\u0438\u0442\u0430\u043D\u0438\u044F \u0438 \u0434\u043E\u0431\u0430\u0432\u044C\u0442\u0435
+      \u0441\u043F\u0430\u043B\u044C\u043D\u044B\u0435 \u043C\u0435\u0441\u0442\u0430
+      \u0432 \u0437\u0430\u0449\u0438\u0442\u043D\u043E\u0435 \u043A\u0440\u044B\u043B\u043E."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613953
+    m_Localized: "\u0414\u043E\u0441\u0442\u0438\u0433\u043D\u0438\u0442\u0435 \u0448\u0438\u0440\u0438\u043D\u044B
+      \u0436\u0438\u0437\u043D\u0435\u043D\u043D\u043E\u0433\u043E \u043C\u043E\u0434\u0443\u043B\u044F
+      10."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613954
+    m_Localized: "\u041F\u043E\u0441\u0442\u0440\u043E\u0439\u0442\u0435 2 \u043C\u043E\u0434\u0443\u043B\u044F
+      \u0441\u043D\u0430."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000000001
+    m_Localized: "\u041E\u0431\u0437\u043E\u0440 \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u0438"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000000002
+    m_Localized: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u0435 \u043E\u0442\u0437\u044B\u0432
+      \u0438 \u043F\u0440\u043E\u0439\u0434\u0438\u0442\u0435 \u043E\u043A\u043E\u043D\u0447\u0430\u0442\u0435\u043B\u044C\u043D\u0443\u044E
+      \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0443 \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u0438."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000000003
+    m_Localized: "\u041F\u0440\u043E\u0439\u0434\u0438\u0442\u0435 \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0443
+      \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u043D\u0438\u044F."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613955
+    m_Localized: "\u041A\u043E\u043D\u0442\u0440\u0430\u043A\u0442 \u043D\u0430 \u0433\u043B\u0443\u0431\u043E\u043A\u0443\u044E
+      \u0434\u043E\u0431\u044B\u0447\u0443 \u043F\u043E\u043B\u0435\u0437\u043D\u044B\u0445
+      \u0438\u0441\u043A\u043E\u043F\u0430\u0435\u043C\u044B\u0445"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613956
+    m_Localized: "\xAB\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044F\u043C
+      \u0438\u0437 \u042E\u0436\u043D\u043E\u0439 \u0410\u0444\u0440\u0438\u043A\u0438
+      \u043D\u0443\u0436\u0435\u043D \u0431\u043E\u043B\u0435\u0435 \u0436\u0435\u0441\u0442\u043A\u0438\u0439
+      \u0441\u0438\u0433\u043D\u0430\u043B \u0434\u043B\u044F \u0433\u043E\u0440\u043D\u043E\u0434\u043E\u0431\u044B\u0432\u0430\u044E\u0449\u0435\u0439
+      \u043F\u0440\u043E\u043C\u044B\u0448\u043B\u0435\u043D\u043D\u043E\u0441\u0442\u0438:
+      \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0438,
+      \u0431\u043E\u043B\u044C\u0448\u0438\u0439 \u0442\u0435\u043C\u043F \u0438
+      \u043C\u0435\u043D\u044C\u0448\u0430\u044F \u0443\u0441\u0442\u043E\u0439\u0447\u0438\u0432\u043E\u0441\u0442\u044C
+      \u043A \u0434\u0440\u0435\u0439\u0444\u0443\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613957
+    m_Localized: "\xAB\u041F\u0435\u0440\u0432\u044B\u0439 \u0442\u0435\u0441\u0442
+      \u043F\u0440\u043E\u0441\u0442: \u043F\u0435\u0440\u0435\u043C\u0435\u0449\u0430\u0439\u0442\u0435
+      \u0431\u043E\u043B\u0435\u0435 \u0442\u044F\u0436\u0435\u043B\u0443\u044E \u0440\u0443\u0434\u0443
+      \u0431\u0435\u0437 \u043E\u043F\u0440\u0430\u0432\u0434\u0430\u043D\u0438\u0439\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613958
+    m_Localized: "\u041F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u044C\u0442\u0435
+      \u0442\u0438\u0442\u0430\u043D\u043E\u0432\u0443\u044E \u043F\u043E\u0441\u044B\u043B\u043A\u0443
+      \u0438 \u043E\u0442\u043F\u0440\u0430\u0432\u044C\u0442\u0435 \u0435\u0435
+      \u0432\u043E\u0432\u0440\u0435\u043C\u044F."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613959
+    m_Localized: "\u041D\u0430 \u043F\u0430\u0440\u0442\u0438\u044E \u0442\u044F\u0436\u0435\u043B\u044B\u0445
+      \u0433\u0440\u0443\u0437\u043E\u0432 \u0431\u044B\u043B \u0437\u0430\u043A\u043B\u044E\u0447\u0435\u043D
+      \u0432\u0442\u043E\u0440\u043E\u0439, \u0431\u043E\u043B\u0435\u0435 \u0441\u0443\u0440\u043E\u0432\u044B\u0439
+      \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613960
+    m_Localized: "\u041A\u043E\u043D\u0442\u0440\u0430\u043A\u0442 \u043D\u0430 \u0434\u043E\u0431\u044B\u0447\u0443
+      \u043F\u043E\u043B\u0435\u0437\u043D\u044B\u0445 \u0438\u0441\u043A\u043E\u043F\u0430\u0435\u043C\u044B\u0445
+      \u0431\u044B\u043B \u0441\u043E\u0440\u0432\u0430\u043D \u043F\u0440\u0435\u0436\u0434\u0435,
+      \u0447\u0435\u043C \u044D\u0442\u043E \u0443\u0431\u0435\u0434\u0438\u043B\u043E
+      \u043A\u0440\u0443\u043F\u043D\u044B\u0445 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0435\u0439."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613961
+    m_Localized: "\u0413\u043B\u0443\u0431\u043E\u043A\u0438\u0439 \u0432\u044B\u0440\u0435\u0437"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613962
+    m_Localized: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u0434\u043E\u0441\u0442\u0430\u0442\u043E\u0447\u043D\u043E
+      \u0442\u0438\u0442\u0430\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0434\u043E\u0432\u043B\u0435\u0442\u0432\u043E\u0440\u0438\u0442\u044C
+      \u0431\u043E\u043B\u0435\u0435 \u0442\u0440\u0435\u0431\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0433\u043E
+      \u043F\u0440\u043E\u043C\u044B\u0448\u043B\u0435\u043D\u043D\u043E\u0433\u043E
+      \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044F."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613963
+    m_Localized: "\u041D\u0430\u043A\u043E\u043F\u0438\u0442\u0435 16 \u0422\u0438\u0442\u0430\u043D\u043E\u0432."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613964
+    m_Localized: "\u041C\u0430\u0433\u0438\u0441\u0442\u0440\u0430\u043B\u044C\u043D\u0430\u044F
+      \u043C\u0430\u0433\u0438\u0441\u0442\u0440\u0430\u043B\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613965
+    m_Localized: 'The second request wants more than ore: it wants a backbone of
+      storage, power, and processing that can survive stress.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613966
+    m_Localized: The buyers now care about discipline, not just tonnage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613967
+    m_Localized: Build the backbone and keep it stable long enough to earn trust.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613968
+    m_Localized: The backbone held and pushed the contract into security territory.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613969
+    m_Localized: The backbone looked too weak for long-term heavy work.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613970
+    m_Localized: Mining Backbone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613971
+    m_Localized: Add storage and a processing unit for the deeper mining program.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613972
+    m_Localized: Build 2 Storage buildings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613973
+    m_Localized: Build 1 Regolith Processing Unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613974
+    m_Localized: Efficiency Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613975
+    m_Localized: 'The final Chinese step is managerial: keep capital visible, widen
+      the colony, and survive a hard efficiency audit.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613976
+    m_Localized: The audit team does not care about your excuses, only your ratios.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613977
+    m_Localized: Prepare the colony for a cold efficiency review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613978
+    m_Localized: The audit cleared the colony for industrial expansion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613979
+    m_Localized: The review found too much slack in the system.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613980
+    m_Localized: Efficiency Buffer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613981
+    m_Localized: Keep enough gold on hand and widen the habitat spine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613982
+    m_Localized: Reach 250 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613983
+    m_Localized: Reach life-module width 8.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613984
+    m_Localized: Second Production Line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613985
+    m_Localized: 'With bulk extraction proven, the next demand is a tougher one:
+      add a second processing backbone and keep it stable under load.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613986
+    m_Localized: This is the point where scale turns into systems engineering.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613987
+    m_Localized: Build the line, store the output, and hold power steady.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613988
+    m_Localized: The second line held and moved the program into audit phase.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613989
+    m_Localized: The line buckled before it could be trusted.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613990
+    m_Localized: Second Line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613991
+    m_Localized: Add a new regolith processor and enough storage to feed it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613992
+    m_Localized: Build 1 Regolith Processing Unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613993
+    m_Localized: Build 2 Storage buildings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613994
+    m_Localized: Industrial Scale Trial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613995
+    m_Localized: Chinese buyers want proof that the moon base can move raw material
+      in bulk, not just in curated science lots.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613996
+    m_Localized: 'The request is blunt: scale matters more than elegance.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613997
+    m_Localized: Fill the stockpile and send the first heavy batch.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613998
+    m_Localized: The industrial desk approved a larger expansion package.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927613999
+    m_Localized: The batch never reached the scale benchmark.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614000
+    m_Localized: Bulk Extraction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614001
+    m_Localized: Pull enough titan to make the industrial buyers take the base seriously.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614002
+    m_Localized: Accumulate 20 Titan.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614003
+    m_Localized: Stability Program Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614004
+    m_Localized: 'The final Ethiopian request turns your humane base into a public
+      program: prove it can stay kind without becoming weak.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614005
+    m_Localized: This review will decide whether the colony can be sold as a stable
+      community, not just a mine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614006
+    m_Localized: Keep beds ready, hold a gold buffer, and pass the program review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614007
+    m_Localized: The program review concluded that the colony can sustain more civilian
+      life.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614008
+    m_Localized: The review judged the colony too brittle for expansion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614009
+    m_Localized: Program Readiness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614010
+    m_Localized: Add beds and keep enough funding for a longer support cycle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614011
+    m_Localized: Build 2 Sleep Modules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614012
+    m_Localized: Reach 200 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614013
+    m_Localized: Rest Zone Program
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614014
+    m_Localized: 'The next phase wants the base to feel humane: food, rest, and a
+      recovery loop that can stay calm under pressure.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614015
+    m_Localized: A stable base is measured by how people recover, not just how they
+      mine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614016
+    m_Localized: Build the rest zone and keep its utilities healthy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614017
+    m_Localized: The rest zone proved the colony can care for its people.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614018
+    m_Localized: The support loop never looked steady enough to trust.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614019
+    m_Localized: Rest Zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614020
+    m_Localized: Expand the habitat and add a dinner space for the relief program.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614021
+    m_Localized: Reach life-module width 8.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614022
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614023
+    m_Localized: Sustainment Goods
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614024
+    m_Localized: The first Ethiopian request focuses on dependable sustainment cargo
+      for a colony that still feels exposed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614025
+    m_Localized: The cargo is modest, but the promise behind it matters.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614026
+    m_Localized: Prepare the sustainment batch and deliver it on schedule.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614027
+    m_Localized: The sustainment goods arrived and opened a broader stability program.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614028
+    m_Localized: The sustainment program stumbled before it started.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614029
+    m_Localized: Relief Stock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614030
+    m_Localized: Gather aluminium for the sustainment package.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614031
+    m_Localized: Accumulate 10 aluminium.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614032
+    m_Localized: Habitat Certification Wing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614033
+    m_Localized: With samples secured, the bureau now wants a proper scientific habitat
+      with reliable life support.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614034
+    m_Localized: Engineers from Europe drafted a certification checklist.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614035
+    m_Localized: Extend the habitat and keep the utility line stable long enough
+      for sign-off.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614036
+    m_Localized: The wing passed structural certification.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614037
+    m_Localized: Certification failed before the observers arrived.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614038
+    m_Localized: Research Habitat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614039
+    m_Localized: Expand the living band and add sleeping capacity for the visiting
+      team.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614040
+    m_Localized: Reach life-module width 10.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614041
+    m_Localized: Build 1 Sleep Module.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614042
+    m_Localized: European Colony Inspection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614043
+    m_Localized: 'The final French request is ceremonial and political: host an official
+      inspection without letting the base look improvised.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614044
+    m_Localized: The inspectors want a colony that feels permanent, not lucky.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614045
+    m_Localized: Prepare a dining space, keep a cash reserve, and welcome the inspection
+      convoy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614046
+    m_Localized: The European review stamped the colony as a serious scientific outpost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614047
+    m_Localized: The inspectors saw too much improvisation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614048
+    m_Localized: Inspection Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614049
+    m_Localized: Set up a dignified host space and keep funding visible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614050
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614051
+    m_Localized: Reach 220 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614052
+    m_Localized: Regolith for Research
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614053
+    m_Localized: French labs want clean regolith shipments to justify a larger scientific
+      station on the moon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614054
+    m_Localized: The first batch is meant for a fragile research window.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614055
+    m_Localized: Secure the regolith and send it before the science slot expires.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614056
+    m_Localized: The laboratory shipment impressed the bureau.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614057
+    m_Localized: The regolith never reached the scientists in time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614058
+    m_Localized: Research Stockpile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614059
+    m_Localized: Gather regolith fit for laboratory use.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614060
+    m_Localized: Accumulate 12 Rogalite.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614061
+    m_Localized: Civic Guest Program
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614062
+    m_Localized: 'The final Indian request is a public-facing one: open the first
+      civic guest module and prove the colony can welcome non-specialists.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614063
+    m_Localized: The guest program is meant to humanize the colony, not just fund
+      it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614064
+    m_Localized: Finish the public-facing module and pass the final visit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614065
+    m_Localized: The guest program launched and broadened the colony's reputation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614066
+    m_Localized: The visit made the colony feel too improvised for civilians.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614067
+    m_Localized: Public Module
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614068
+    m_Localized: Add water support and keep a visible cash reserve for the public
+      launch.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614069
+    m_Localized: Build 1 Water Reclamation unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614070
+    m_Localized: Reach 220 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614071
+    m_Localized: Delegation Habitat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614072
+    m_Localized: 'The next phase is social as much as technical: create a larger,
+      calmer habitat for a civilian delegation.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614073
+    m_Localized: A civilian delegation needs more than a miner bunk.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614074
+    m_Localized: Expand the habitat and keep the daily support loop visible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614075
+    m_Localized: The habitat is ready for a formal delegation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614076
+    m_Localized: The delegation wing never felt stable enough.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614077
+    m_Localized: Delegation Quarters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614078
+    m_Localized: Widen the habitat and add sleeping capacity for official guests.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614079
+    m_Localized: Reach life-module width 12.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614080
+    m_Localized: Build 2 Sleep Modules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614081
+    m_Localized: Civil Supply Bridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614082
+    m_Localized: 'India wants a dependable civil supply bridge first: practical materials,
+      predictable timing, no heroic improvisation.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614083
+    m_Localized: The first request is about trust, not spectacle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614084
+    m_Localized: Prepare the base materials package and send it on time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614085
+    m_Localized: The bridge held and the delegation planners moved forward.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614086
+    m_Localized: The materials package slipped before the first delegation even launched.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614087
+    m_Localized: Common Stock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614088
+    m_Localized: Gather aluminium for the civil supply package.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614089
+    m_Localized: Accumulate 14 aluminium.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614090
+    m_Localized: Base Celebration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614091
+    m_Localized: 'The final request turns the colony into a stage: hold a visible
+      event without exposing how thin your support margins are.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614092
+    m_Localized: A public event can sell a story faster than any shipment manifest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614093
+    m_Localized: Build the event buffer, keep funding on hand, and pass the final
+      review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614094
+    m_Localized: The celebration landed and turned the colony into a destination.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614095
+    m_Localized: The event exposed more fragility than charm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614096
+    m_Localized: Event Budget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614097
+    m_Localized: Widen the habitat and keep enough gold for a visible event.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614098
+    m_Localized: Reach life-module width 8.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614099
+    m_Localized: Reach 180 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614100
+    m_Localized: Mess Hall Service Wing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614101
+    m_Localized: 'With dispatches working, the next task is service quality inside
+      the colony: food, flow, and practical support under load.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614102
+    m_Localized: A colony that can sell goods should also know how to host people.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638927614103
+    m_Localized: Build the service wing and keep it operating for a full cycle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808256
+    m_Localized: The service wing proved the base can host a steady crowd.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808257
+    m_Localized: The wing never looked ready for real traffic.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808258
+    m_Localized: Service Wing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808259
+    m_Localized: Add dining capacity and reinforce the logistics spine behind it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808260
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808261
+    m_Localized: Build 2 Storage buildings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808262
+    m_Localized: Service Supply Loop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808263
+    m_Localized: 'Mexico wants a smaller but reliable service loop: repeatable dispatches
+      that prove the base can support daily commerce.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808264
+    m_Localized: This is the kind of contract that looks easy until your base gets
+      busy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808265
+    m_Localized: Prepare the first service batch and send it without delay.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808266
+    m_Localized: The service loop started cleanly and opened the next request.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808267
+    m_Localized: The service loop stalled before trust could build.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808268
+    m_Localized: Local Stock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808269
+    m_Localized: Gather regolith for the fast service dispatch.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808270
+    m_Localized: Accumulate 10 Rogalite.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808271
+    m_Localized: Fair Trade Sample
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808272
+    m_Localized: The cooperative wants proof that your extraction can respect limits
+      and still keep a promise.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808273
+    m_Localized: This contract is small by design. Trust matters more than volume.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808274
+    m_Localized: Prepare the fair-trade sample and send it without diluting its value.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808275
+    m_Localized: The sample shipment built trust with the cooperative.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808276
+    m_Localized: The sample never made it through the trust test.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808277
+    m_Localized: Careful Reserve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808278
+    m_Localized: Gather a modest regolith sample without turning the request into
+      bulk mining.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808279
+    m_Localized: Accumulate 8 Rogalite.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808280
+    m_Localized: Cultural Habitat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808281
+    m_Localized: 'The next request asks for space, not cargo: a visible cultural
+      and memorial wing inside the colony.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808282
+    m_Localized: A colony without memory looks temporary, no matter how rich it becomes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808283
+    m_Localized: Build the cultural wing and keep the essentials stable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808284
+    m_Localized: The memorial wing gave the colony a sense of continuity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808285
+    m_Localized: The space felt too thin to carry the meaning it needed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808286
+    m_Localized: Cultural Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808287
+    m_Localized: Expand the habitat and add a visible landmark path.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808288
+    m_Localized: Reach life-module width 8.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808289
+    m_Localized: Build 1 Bridge section.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808290
+    m_Localized: Stewardship Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808291
+    m_Localized: 'The final cooperative step is philosophical and practical: keep
+      a buffer, show restraint, and pass a stewardship review.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808292
+    m_Localized: This review asks whether your colony can grow without losing its
+      judgment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808293
+    m_Localized: Keep a reserve, add living capacity, and pass the stewardship review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808294
+    m_Localized: The cooperative endorsed the colony's quieter path forward.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808295
+    m_Localized: The review judged the colony too extractive and too thinly buffered.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808296
+    m_Localized: Stewardship Buffer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808297
+    m_Localized: Hold a gold reserve and add another calm sleeping space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808298
+    m_Localized: Reach 160 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808299
+    m_Localized: Build 1 Sleep Module.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808300
+    m_Localized: Orbital Guest Corridor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808301
+    m_Localized: Now SpaceX wants the base to look like a real transfer stop, not
+      a mining camp with a lucky launch pad.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808302
+    m_Localized: Commercial planners are testing whether your base can host transit
+      traffic.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808303
+    m_Localized: Expand the guest corridor and make it inspection-safe.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808304
+    m_Localized: The corridor passed SpaceX review and unlocked the tourism pilot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808305
+    m_Localized: The corridor looked temporary and under-serviced.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808306
+    m_Localized: Orbital Expansion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808307
+    m_Localized: Add storage and a wider habitat spine for transfer crews.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808308
+    m_Localized: Build 2 Storage buildings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808309
+    m_Localized: Reach life-module width 10.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808310
+    m_Localized: Dock Ring Metals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808311
+    m_Localized: SpaceX wants a clean, fast metals route before committing to a permanent
+      orbital exchange hub.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808312
+    m_Localized: A launch slot is open, but only for a team that can move metal fast.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808313
+    m_Localized: Stock the ring metals and push them out on the next mission.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808314
+    m_Localized: The first hub shipment reached orbit intact.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808315
+    m_Localized: The launch window closed before the ring shipment moved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808316
+    m_Localized: Metal Stockpile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808317
+    m_Localized: Gather titan and aluminium for the docking ring package.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808318
+    m_Localized: Accumulate 18 Titan.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808319
+    m_Localized: Accumulate 12 aluminium.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808320
+    m_Localized: First Tourist Wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808321
+    m_Localized: 'The final SpaceX test is simple to say and hard to fake: host the
+      first paying tourists without the base feeling fragile.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808322
+    m_Localized: A tourism pilot is pencilled into the launch board.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808323
+    m_Localized: Build the guest experience, keep support online, and pass the final
+      welcome inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808324
+    m_Localized: The first tourist wave left glowing reports and opened a new market.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808325
+    m_Localized: The guests saw too much mining camp and not enough colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808326
+    m_Localized: Guest Experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808327
+    m_Localized: Add hospitality and keep oxygen stable for a full sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808328
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808329
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808330
+    m_Localized: Containment Block Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808331
+    m_Localized: 'The last request is political: build an isolated holding block
+      for security incidents without destabilizing the colony economy.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808332
+    m_Localized: Security planners want an answer before the next policy hearing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808333
+    m_Localized: Create a detention-ready wing with food, beds, and buffer funding.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808334
+    m_Localized: The review board approved the moon security program.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808335
+    m_Localized: The block was judged too weak or too expensive to trust.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808336
+    m_Localized: Containment Prep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808337
+    m_Localized: Lay down the isolated support block and give it enough beds to function.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808338
+    m_Localized: Build 3 Storage buildings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808339
+    m_Localized: Build 2 Sleep Modules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808340
+    m_Localized: Lunar Logistics Rush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808341
+    m_Localized: A pressure test for American logistics. Build a reliable first shipment
+      lane before regulators start asking questions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808342
+    m_Localized: Washington wants proof that your moon base can move freight on schedule.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808343
+    m_Localized: A fast launch slot has been reserved. Do not waste it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808344
+    m_Localized: The shipment landed cleanly and the logistics desk wants more.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808345
+    m_Localized: The lane broke down before the first audit even began.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808346
+    m_Localized: Logistics Stockpile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808347
+    m_Localized: Pull enough titan into storage so the launch team can assemble the
+      first rush convoy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808348
+    m_Localized: Accumulate 10 Titan in storage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808349
+    m_Localized: Federal Safety Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808350
+    m_Localized: The logistics lane is open. Now the federal observer wants a safer
+      and wider storage wing before granting security clearance.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808351
+    m_Localized: A federal safety office is preparing a surprise visit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808352
+    m_Localized: Expand the storage wing and prove the oxygen line can stay stable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808353
+    m_Localized: The audit signed off and unlocked the next control package.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808354
+    m_Localized: The inspector found a weak point in your support wing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808355
+    m_Localized: Storage Wing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808356
+    m_Localized: Add more storage and expand the habitat spine around it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808357
+    m_Localized: Build 2 Storage buildings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51638931808358
+    m_Localized: Reach life-module width 8.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025469149184
+    m_Localized: Heavy Lift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025641115648
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025641115649
+    m_Localized: Reserve 16 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025641115650
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025641115651
+    m_Localized: Discipline Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025641115652
+    m_Localized: Keep power and processing stable for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025641115653
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025641115654
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309952
+    m_Localized: Throughput Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309953
+    m_Localized: Receive the review team and pass the final audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309954
+    m_Localized: Pass the efficiency audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309955
+    m_Localized: Stable Throughput
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309956
+    m_Localized: Hold both power and production in an operational state for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309957
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309958
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309959
+    m_Localized: Heavy Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309960
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309961
+    m_Localized: Reserve 20 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309962
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309963
+    m_Localized: Stability Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309964
+    m_Localized: Receive the review team and pass the final stability inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309965
+    m_Localized: Pass the stability program inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309966
+    m_Localized: Utility Calm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309967
+    m_Localized: Keep water recovery and oxygen online for a full sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309968
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309969
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309970
+    m_Localized: Supply Transfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309971
+    m_Localized: Reserve the package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309972
+    m_Localized: Reserve 10 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309973
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309974
+    m_Localized: Utility Norms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309975
+    m_Localized: Keep oxygen and water recovery online while the bureau runs its
+      checklist.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309976
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309977
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309978
+    m_Localized: European Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309979
+    m_Localized: Receive the inspection delegation and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309980
+    m_Localized: Pass the European inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025645309981
+    m_Localized: Laboratory Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504256
+    m_Localized: Reserve the sample and wait for the next mission to return.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504257
+    m_Localized: Reserve 12 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504258
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504259
+    m_Localized: First Civic Visit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504260
+    m_Localized: Welcome the first visitors and pass the civic readiness inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504261
+    m_Localized: Pass the civic visit inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504262
+    m_Localized: Civil Utilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504263
+    m_Localized: Support the new quarters with food and oxygen stability.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504264
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504265
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504266
+    m_Localized: Base Materials Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504267
+    m_Localized: Reserve the aluminium and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504268
+    m_Localized: Reserve 14 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504269
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504270
+    m_Localized: Base Celebration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504271
+    m_Localized: Receive the service review and pass the final event inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504272
+    m_Localized: Pass the celebration inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504273
+    m_Localized: Hosted Service
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504274
+    m_Localized: Keep food and water support online while the service wing is reviewed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504275
+    m_Localized: Build 1 Water Processing Unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504276
+    m_Localized: Maintain 1 operational Dinner Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504277
+    m_Localized: Fast Dispatch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504278
+    m_Localized: Reserve the regolith and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504279
+    m_Localized: Reserve 10 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504280
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504281
+    m_Localized: Fair Trade Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504282
+    m_Localized: Reserve the sample and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504283
+    m_Localized: Reserve 8 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025649504284
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698560
+    m_Localized: Quiet Utility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698561
+    m_Localized: Keep oxygen stable while the cooperative reviews the new space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698562
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698563
+    m_Localized: Respect Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698564
+    m_Localized: Receive the stewardship observers and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698565
+    m_Localized: Pass the stewardship inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698566
+    m_Localized: VIP Corridor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698567
+    m_Localized: Add sleeping capacity and pass the commercial readiness review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698568
+    m_Localized: Build 2 Sleep Modules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698569
+    m_Localized: Pass the corridor inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698570
+    m_Localized: Launch Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698571
+    m_Localized: Reserve the full package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698572
+    m_Localized: Reserve 18 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698573
+    m_Localized: Reserve 12 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698574
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698575
+    m_Localized: Tourist Arrival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698576
+    m_Localized: Hold cash for premium support and pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698577
+    m_Localized: Reach 300 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698578
+    m_Localized: Pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698579
+    m_Localized: Federal Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698580
+    m_Localized: Feed the block, keep cash on hand, and survive the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698581
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698582
+    m_Localized: Reach 260 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698583
+    m_Localized: Pass the final security review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698584
+    m_Localized: Priority Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698585
+    m_Localized: Reserve the titan and send it on the next mission before the contract
+      window closes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698586
+    m_Localized: Reserve 10 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698587
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698588
+    m_Localized: Safety Check
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698589
+    m_Localized: Keep support systems online while the federal observer checks the
+      base.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698590
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56025653698591
+    m_Localized: Pass the inspection review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62597788327936
+    m_Localized: Heavy Lift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62597884796928
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62597884796929
+    m_Localized: Reserve 16 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62597884796930
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62598723657728
+    m_Localized: Discipline Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62598723657729
+    m_Localized: Keep power and processing stable for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62598723657730
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62598723657731
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62599507992576
+    m_Localized: Throughput Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62599507992577
+    m_Localized: Receive the review team and pass the final audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62599507992578
+    m_Localized: Pass the efficiency audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600183275520
+    m_Localized: Stable Throughput
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600183275521
+    m_Localized: Hold both power and production in an operational state for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600183275522
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600183275523
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600774672384
+    m_Localized: Heavy Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600774672385
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600774672386
+    m_Localized: Reserve 20 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62600774672387
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62601630310400
+    m_Localized: Stability Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62601630310401
+    m_Localized: Receive the review team and pass the final stability inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62601630310402
+    m_Localized: Pass the stability program inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62602410450944
+    m_Localized: Utility Calm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62602410450945
+    m_Localized: Keep water recovery and oxygen online for a full sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62602410450946
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62602410450947
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62603198980096
+    m_Localized: Supply Transfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62603198980097
+    m_Localized: Reserve the package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62603198980098
+    m_Localized: Reserve 10 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62603198980099
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62604121726976
+    m_Localized: Utility Norms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62604121726977
+    m_Localized: Keep oxygen and water recovery online while the bureau runs its
+      checklist.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62604121726978
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62604121726979
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62605006725120
+    m_Localized: European Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62605006725121
+    m_Localized: Receive the inspection delegation and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62605006725122
+    m_Localized: Pass the European inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62605933666304
+    m_Localized: Laboratory Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62605933666305
+    m_Localized: Reserve the sample and wait for the next mission to return.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62605933666306
+    m_Localized: Reserve 12 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62605933666307
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62606864801792
+    m_Localized: First Civic Visit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62606864801793
+    m_Localized: Welcome the first visitors and pass the civic readiness inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62606864801794
+    m_Localized: Pass the civic visit inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62607716245504
+    m_Localized: Civil Utilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62607716245505
+    m_Localized: Support the new quarters with food and oxygen stability.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62607716245506
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62607716245507
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62608479608832
+    m_Localized: Base Materials Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62608479608833
+    m_Localized: Reserve the aluminium and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62608479608834
+    m_Localized: Reserve 14 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62608479608835
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62609209417728
+    m_Localized: Base Celebration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62609209417729
+    m_Localized: Receive the service review and pass the final event inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62609209417730
+    m_Localized: Pass the celebration inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610044084224
+    m_Localized: Hosted Service
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610044084225
+    m_Localized: Keep food and water support online while the service wing is reviewed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610044084226
+    m_Localized: Build 1 Water Processing Unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610044084227
+    m_Localized: Maintain 1 operational Dinner Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610895527936
+    m_Localized: Fast Dispatch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610895527937
+    m_Localized: Reserve the regolith and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610895527938
+    m_Localized: Reserve 10 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62610895527939
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62611814080512
+    m_Localized: Fair Trade Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62611814080513
+    m_Localized: Reserve the sample and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62611814080514
+    m_Localized: Reserve 8 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62611814080515
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62612548083712
+    m_Localized: Quiet Utility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62612548083713
+    m_Localized: Keep oxygen stable while the cooperative reviews the new space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62612548083714
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62613365972992
+    m_Localized: Respect Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62613365972993
+    m_Localized: Receive the stewardship observers and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62613365972994
+    m_Localized: Pass the stewardship inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62614133530624
+    m_Localized: VIP Corridor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62614133530625
+    m_Localized: Add sleeping capacity and pass the commercial readiness review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62614137724928
+    m_Localized: Build 2 Sleep Modules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62614137724929
+    m_Localized: Pass the corridor inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615022723072
+    m_Localized: Launch Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615022723073
+    m_Localized: Reserve the full package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615022723074
+    m_Localized: Reserve 18 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615022723075
+    m_Localized: Reserve 12 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615022723076
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615828029440
+    m_Localized: Tourist Arrival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615828029441
+    m_Localized: Hold cash for premium support and pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615832223744
+    m_Localized: Reach 300 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62615832223745
+    m_Localized: Pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62616641724416
+    m_Localized: Federal Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62616641724417
+    m_Localized: Feed the block, keep cash on hand, and survive the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62616641724418
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62616641724419
+    m_Localized: Reach 260 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62616641724420
+    m_Localized: Pass the final security review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62617363144704
+    m_Localized: Priority Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62617363144705
+    m_Localized: Reserve the titan and send it on the next mission before the contract
+      window closes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62617363144706
+    m_Localized: Reserve 10 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62617363144707
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62618143285248
+    m_Localized: Safety Check
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62618143285249
+    m_Localized: Keep support systems online while the federal observer checks the
+      base.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62618143285250
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62618143285251
+    m_Localized: Pass the inspection review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63417078505472
+    m_Localized: Heavy Lift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63417263054848
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63417263054849
+    m_Localized: Reserve 16 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63417263054850
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63418408099840
+    m_Localized: Discipline Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63418408099841
+    m_Localized: Keep power and processing stable for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63418408099842
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63418408099843
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63419611865088
+    m_Localized: Throughput Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63419611865089
+    m_Localized: Receive the review team and pass the final audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63419611865090
+    m_Localized: Pass the efficiency audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63420786270208
+    m_Localized: Stable Throughput
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63420786270209
+    m_Localized: Hold both power and production in an operational state for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63420786270210
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63420786270211
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63421952286720
+    m_Localized: Heavy Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63421952286721
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63421952286722
+    m_Localized: Reserve 20 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63421952286723
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63423093137408
+    m_Localized: Stability Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63423093137409
+    m_Localized: Receive the review team and pass the final stability inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63423093137410
+    m_Localized: Pass the stability program inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63424322068480
+    m_Localized: Utility Calm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63424322068481
+    m_Localized: Keep water recovery and oxygen online for a full sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63424322068482
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63424322068483
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63425689411584
+    m_Localized: Supply Transfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63425689411585
+    m_Localized: Reserve the package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63425689411586
+    m_Localized: Reserve 10 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63425693605888
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63426926731264
+    m_Localized: Utility Norms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63426926731265
+    m_Localized: Keep oxygen and water recovery online while the bureau runs its
+      checklist.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63426926731266
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63426926731267
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63428084359168
+    m_Localized: European Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63428084359169
+    m_Localized: Receive the inspection delegation and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63428084359170
+    m_Localized: Pass the European inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63429309095936
+    m_Localized: Laboratory Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63429309095937
+    m_Localized: Reserve the sample and wait for the next mission to return.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63429309095938
+    m_Localized: Reserve 12 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63429309095939
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63430567387136
+    m_Localized: First Civic Visit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63430567387137
+    m_Localized: Welcome the first visitors and pass the civic readiness inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63430567387138
+    m_Localized: Pass the civic visit inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63431775346688
+    m_Localized: Civil Utilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63431775346689
+    m_Localized: Support the new quarters with food and oxygen stability.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63431775346690
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63431775346691
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63433025249280
+    m_Localized: Base Materials Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63433025249281
+    m_Localized: Reserve the aluminium and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63433025249282
+    m_Localized: Reserve 14 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63433025249283
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63434275151872
+    m_Localized: Base Celebration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63434275151873
+    m_Localized: Receive the service review and pass the final event inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63434275151874
+    m_Localized: Pass the celebration inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63435566997504
+    m_Localized: Hosted Service
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63435566997505
+    m_Localized: Keep food and water support online while the service wing is reviewed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63435566997506
+    m_Localized: Build 1 Water Processing Unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63435566997507
+    m_Localized: Maintain 1 operational Dinner Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63436800122880
+    m_Localized: Fast Dispatch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63436800122881
+    m_Localized: Reserve the regolith and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63436800122882
+    m_Localized: Reserve 10 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63436800122883
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63438024859648
+    m_Localized: Fair Trade Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63438024859649
+    m_Localized: Reserve the sample and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63438024859650
+    m_Localized: Reserve 8 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63438024859651
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63439136350208
+    m_Localized: Quiet Utility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63439136350209
+    m_Localized: Keep oxygen stable while the cooperative reviews the new space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63439136350210
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63440482721792
+    m_Localized: Respect Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63440482721793
+    m_Localized: Receive the stewardship observers and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63440482721794
+    m_Localized: Pass the stewardship inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63441757790208
+    m_Localized: VIP Corridor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63441757790209
+    m_Localized: Add sleeping capacity and pass the commercial readiness review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63441757790210
+    m_Localized: Build 2 Sleep Modules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63441757790211
+    m_Localized: Pass the corridor inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63442999304192
+    m_Localized: Launch Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63442999304193
+    m_Localized: Reserve the full package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63442999304194
+    m_Localized: Reserve 18 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63442999304195
+    m_Localized: Reserve 12 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63442999304196
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63444299538432
+    m_Localized: Tourist Arrival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63444299538433
+    m_Localized: Hold cash for premium support and pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63444299538434
+    m_Localized: Reach 300 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63444299538435
+    m_Localized: Pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63445444583424
+    m_Localized: Federal Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63445444583425
+    m_Localized: Feed the block, keep cash on hand, and survive the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63445444583426
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63445444583427
+    m_Localized: Reach 260 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63445444583428
+    m_Localized: Pass the final security review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63446690291712
+    m_Localized: Priority Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63446690291713
+    m_Localized: Reserve the titan and send it on the next mission before the contract
+      window closes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63446690291714
+    m_Localized: Reserve 10 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63446690291715
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63447936000000
+    m_Localized: Safety Check
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63447936000001
+    m_Localized: Keep support systems online while the federal observer checks the
+      base.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63447936000002
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63447936000003
+    m_Localized: Pass the inspection review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000001
+    m_Localized: Метеоритный дождь
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000002
+    m_Localized: Усиленный метеоритный дождь. Сегодня солнечные панели работают хуже обычного.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000003
+    m_Localized: Неделя лунных потрясений
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000004
+    m_Localized: Лунное потрясение может повлиять на работу оборудования и жизненно важные модули.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000005
+    m_Localized: Неделя активного радиационного фона
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000006
+    m_Localized: Астрологи предупредили о неделе активного радиационного фона. Будьте аккуратны и поменьше выходите на поверхность Луны.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000007
+    m_Localized: Солнечная активность
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7000000008
+    m_Localized: Астрологи предсказали усиленную солнечную активность. Сегодня выработка энергии выше, но радиационный фон растёт.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -75,6 +75,13 @@ namespace _Project.Scripts.Presentation.UI
                 constructionToolDefinitions != null ? constructionToolDefinitions.OxigenProcessingUnitBuildingDef : null,
                 constructionToolDefinitions != null ? constructionToolDefinitions.WaterReclamationBuildingDef : null,
                 constructionToolDefinitions != null ? constructionToolDefinitions.WaterProcessingUnitBuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.FlowerSmall1BuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.FlowerSmallBuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.FlowerBig2BuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.FlowerBig1BuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.PaintAstroBuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.PaintPlanetBuildingDef : null,
+                constructionToolDefinitions != null ? constructionToolDefinitions.PaintRockerBuildingDef : null,
                 enableAiLogs);
             var hudWindowCoordinator = new HudWindowCoordinator();
 
@@ -127,9 +134,16 @@ namespace _Project.Scripts.Presentation.UI
             Button oxygenExitButton = root.Q<Button>("exit-oxygen-btn");
             Button lifeModuleBuildButton = root.Q<Button>("build-life-module-btn");
             Button lifeModuleCancelButton = root.Q<Button>("cancel-life-module-btn");
+            Button flowerSmall1Button = root.Q<Button>("build-flower-small1-btn");
+            Button flowerSmallButton = root.Q<Button>("build-flower-small-btn");
+            Button flowerBig2Button = root.Q<Button>("build-flower-big2-btn");
+            Button flowerBig1Button = root.Q<Button>("build-flower-big1-btn");
+            Button paintAstroButton = root.Q<Button>("build-paint-astro-btn");
+            Button paintPlanetButton = root.Q<Button>("build-paint-planet-btn");
+            Button paintRockerButton = root.Q<Button>("build-paint-rocker-btn");
             Button shovelCancelButton = root.Q<Button>("cancel-shovel-btn");
 
-            panelController.Bind(destructionBtn, shovelButton, tool2Button, tool10Button, tool3Button, solarPanelBtn, tool4Button, tool5Button, tool6Button, tool7Button, showerButton, tool8Button, tool11Button, tool9Button, tool12Button, cableBuildButton, cableCancelButton, cableExitButton, waterBuildButton, waterCancelButton, waterExitButton, oxygenBuildButton, oxygenCancelButton, oxygenExitButton, lifeModuleBuildButton, lifeModuleCancelButton, shovelCancelButton);
+            panelController.Bind(destructionBtn, shovelButton, tool2Button, tool10Button, tool3Button, solarPanelBtn, tool4Button, tool5Button, tool6Button, tool7Button, showerButton, tool8Button, tool11Button, tool9Button, tool12Button, flowerSmall1Button, flowerSmallButton, flowerBig2Button, flowerBig1Button, paintAstroButton, paintPlanetButton, paintRockerButton, cableBuildButton, cableCancelButton, cableExitButton, waterBuildButton, waterCancelButton, waterExitButton, oxygenBuildButton, oxygenCancelButton, oxygenExitButton, lifeModuleBuildButton, lifeModuleCancelButton, shovelCancelButton);
 
             return new HudSetupResult(
                 taskQueuePanelPresenter,

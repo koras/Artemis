@@ -9,6 +9,9 @@ namespace _Project.Scripts.Systems.Oxygen
     /// </summary>
     public sealed class OxygenNetworkService
     {
+        // Пересчёт сети временно отключён, но код оставлен для последующего включения.
+        private static readonly bool NetworkRecalculationDisabled = true;
+
         private readonly GridState _gridState;
         private int _lastComponentCount;
 
@@ -19,7 +22,10 @@ namespace _Project.Scripts.Systems.Oxygen
 
         public void Recalculate()
         {
-            return;
+            if (NetworkRecalculationDisabled)
+            {
+                return;
+            }
 
             if (_gridState == null)
             {

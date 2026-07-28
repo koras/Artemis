@@ -61,9 +61,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 0    ScheduleInspection: 0
+      RequireOperational: 0
+    ScheduleInspection: 0
     BonusGold: 25
-    BonusReputation: 0  - StageId: france-utilities
+    BonusReputation: 0
+  - StageId: france-utilities
     Title: "Utility Norms"
     Description: "Keep oxygen and water recovery online while the bureau runs its checklist."
     Objectives:
@@ -86,9 +88,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 1    ScheduleInspection: 0
+      RequireOperational: 1
+    ScheduleInspection: 0
     BonusGold: 0
-    BonusReputation: 4  FailureConditions: []
+    BonusReputation: 4
+    FailureConditions: []
   GoldReward: 260
   ReputationReward: 14
   ReputationPenaltyOnFail: 14

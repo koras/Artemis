@@ -36,7 +36,7 @@ namespace _Project.Scripts.Presentation.UI.Editor
                 return;
             }
 
-            UIDocument[] documents = Object.FindObjectsByType<UIDocument>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            UIDocument[] documents = Object.FindObjectsByType<UIDocument>(FindObjectsInactive.Include);
             bool shouldEnable = EditorApplication.isPlaying;
 
             for (int i = 0; i < documents.Length; i++)

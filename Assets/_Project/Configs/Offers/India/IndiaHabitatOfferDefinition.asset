@@ -61,9 +61,11 @@ MonoBehaviour:
       RequiredCount: 2
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 0    ScheduleInspection: 0
+      RequireOperational: 0
+    ScheduleInspection: 0
     BonusGold: 20
-    BonusReputation: 0  - StageId: india-habitat-utilities
+    BonusReputation: 0
+  - StageId: india-habitat-utilities
     Title: "Civil Utilities"
     Description: "Support the new quarters with food and oxygen stability."
     Objectives:
@@ -86,9 +88,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 1    ScheduleInspection: 0
+      RequireOperational: 1
+    ScheduleInspection: 0
     BonusGold: 0
-    BonusReputation: 4  FailureConditions: []
+    BonusReputation: 4
+    FailureConditions: []
   GoldReward: 265
   ReputationReward: 14
   ReputationPenaltyOnFail: 14

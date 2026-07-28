@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace _Project.Scripts.Data.ColonyEvents
 {
@@ -65,5 +66,17 @@ namespace _Project.Scripts.Data.ColonyEvents
 
         [Header("Conditions")]
         public ColonyEventConditionSet Conditions = new ColonyEventConditionSet();
+
+        /// <summary>Возвращает локализованный заголовок события.</summary>
+        public LocalizedString GetLocalizedTitle()
+        {
+            return new LocalizedString("UI", $"event.{EventId}.title");
+        }
+
+        /// <summary>Возвращает локализованное описание события.</summary>
+        public LocalizedString GetLocalizedDescription()
+        {
+            return new LocalizedString("UI", $"event.{EventId}.description");
+        }
     }
 }

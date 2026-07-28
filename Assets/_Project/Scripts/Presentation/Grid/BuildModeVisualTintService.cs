@@ -132,7 +132,7 @@ namespace _Project.Scripts.Presentation.Grid
                 RegisterTilemap(gridTilemapRenderSettings.HoverHighlightTilemap, BuildModeTintType.Cable, BuildModeTintType.Water, BuildModeTintType.Oxygen);
             }
 
-            Tilemap[] sceneTilemaps = Object.FindObjectsByType<Tilemap>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            Tilemap[] sceneTilemaps = Object.FindObjectsByType<Tilemap>(FindObjectsInactive.Exclude);
             for (int i = 0; i < sceneTilemaps.Length; i++)
             {
                 Tilemap tilemap = sceneTilemaps[i];

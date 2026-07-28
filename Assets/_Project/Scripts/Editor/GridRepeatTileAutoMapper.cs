@@ -27,7 +27,7 @@ namespace _Project.Scripts.Editor.Grid
 
             if (settings == null)
             {
-                settings = UnityEngine.Object.FindFirstObjectByType<GridTilemapRenderSettings>();
+                settings = UnityEngine.Object.FindAnyObjectByType<GridTilemapRenderSettings>();
             }
 
             if (settings == null)

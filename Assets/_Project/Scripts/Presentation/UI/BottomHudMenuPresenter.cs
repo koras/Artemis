@@ -11,16 +11,19 @@ namespace _Project.Scripts.Presentation.UI
         private const string OxygenPopupTemplatePath = "UI/Mode/BottomPopupOxygen";
         private const string WaterPopupTemplatePath = "UI/Mode/BottomPopupWater";
         private const string ModulePopupTemplatePath = "UI/Mode/BottomPopupModule";
+        private const string DecorationPopupTemplatePath = "UI/Mode/BottomPopupDecoration";
 
         private readonly Button _energyButton;
         private readonly Button _oxygenButton;
         private readonly Button _waterButton;
         private readonly Button _moduleButton;
+        private readonly Button _decorationButton;
         private readonly VisualElement _toolPanel;
         private readonly VisualElement _energyPopup;
         private readonly VisualElement _oxygenPopup;
         private readonly VisualElement _waterPopup;
         private readonly VisualElement _modulePopup;
+        private readonly VisualElement _decorationPopup;
         private readonly HudWindowCoordinator _hudWindowCoordinator;
 
         public BottomHudMenuPresenter(VisualElement root, HudWindowCoordinator hudWindowCoordinator)
@@ -30,18 +33,21 @@ namespace _Project.Scripts.Presentation.UI
             _oxygenButton = root?.Q<Button>("bottom-menu-oxygen-btn");
             _waterButton = root?.Q<Button>("bottom-menu-water-btn");
             _moduleButton = root?.Q<Button>("bottom-menu-module-btn");
+            _decorationButton = root?.Q<Button>("bottom-menu-decoration-btn");
             _toolPanel = root?.Q<VisualElement>("tool-panel");
 
             _energyPopup = EnsurePopupCreated(root, "bottom-popup-energy", EnergyPopupTemplatePath);
             _oxygenPopup = EnsurePopupCreated(root, "bottom-popup-oxygen", OxygenPopupTemplatePath);
             _waterPopup = EnsurePopupCreated(root, "bottom-popup-water", WaterPopupTemplatePath);
             _modulePopup = EnsurePopupCreated(root, "bottom-popup-module", ModulePopupTemplatePath);
+            _decorationPopup = EnsurePopupCreated(root, "bottom-popup-decoration", DecorationPopupTemplatePath);
             _hudWindowCoordinator?.Register(WINDOW_ID, CloseAll);
 
             _energyButton?.RegisterCallback<ClickEvent>(_ => TogglePopup(_energyPopup));
             _oxygenButton?.RegisterCallback<ClickEvent>(_ => TogglePopup(_oxygenPopup));
             _waterButton?.RegisterCallback<ClickEvent>(_ => TogglePopup(_waterPopup));
             _moduleButton?.RegisterCallback<ClickEvent>(_ => TogglePopup(_modulePopup));
+            _decorationButton?.RegisterCallback<ClickEvent>(_ => TogglePopup(_decorationPopup));
         }
 
         private void TogglePopup(VisualElement targetPopup)
@@ -62,6 +68,7 @@ namespace _Project.Scripts.Presentation.UI
             _oxygenPopup?.RemoveFromClassList("open");
             _waterPopup?.RemoveFromClassList("open");
             _modulePopup?.RemoveFromClassList("open");
+            _decorationPopup?.RemoveFromClassList("open");
         }
 
         private VisualElement EnsurePopupCreated(VisualElement root, string popupName, string templatePath)

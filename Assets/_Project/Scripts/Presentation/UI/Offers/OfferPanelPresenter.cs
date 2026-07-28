@@ -4,6 +4,8 @@ using _Project.Scripts.Data.Offers;
 using _Project.Scripts.Presentation.UI;
 using _Project.Scripts.Systems.Offers;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 namespace _Project.Scripts.Presentation.UI.Offers
@@ -35,6 +37,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
         private VisualElement _availableSection;
         private VisualElement _activeSection;
         private Label _goldLabel;
+        private readonly LocalizedString _goldLabelString = new LocalizedString("UI", "offers.gold");
         private ScrollView _availableList;
         private ScrollView _activeList;
         private readonly VisualTreeAsset _panelTemplate;
@@ -95,7 +98,6 @@ namespace _Project.Scripts.Presentation.UI.Offers
             VisualElement hudRightControls = root?.Q<VisualElement>("hud-right-controls");
             if (hudRightControls != null && _openButton != null)
             {
-                _openButton.text = "OFFERS";
                 _openButton.RemoveFromHierarchy();
                 hudRightControls.Add(_openButton);
             }
@@ -109,6 +111,8 @@ namespace _Project.Scripts.Presentation.UI.Offers
             _tooltipHeaderCloseButton?.RegisterCallback<ClickEvent>(OnTooltipCloseClicked);
             _tooltipAcceptButton?.RegisterCallback<ClickEvent>(OnTooltipAcceptClicked);
             _tooltipRejectButton?.RegisterCallback<ClickEvent>(OnTooltipRejectClicked);
+            _goldLabelString.StringChanged += OnGoldLabelChanged;
+            LocalizationSettings.SelectedLocaleChanged += OnSelectedLocaleChanged;
 
             if (_offerSystemService != null)
             {
@@ -129,6 +133,8 @@ namespace _Project.Scripts.Presentation.UI.Offers
             _tooltipHeaderCloseButton?.UnregisterCallback<ClickEvent>(OnTooltipCloseClicked);
             _tooltipAcceptButton?.UnregisterCallback<ClickEvent>(OnTooltipAcceptClicked);
             _tooltipRejectButton?.UnregisterCallback<ClickEvent>(OnTooltipRejectClicked);
+            _goldLabelString.StringChanged -= OnGoldLabelChanged;
+            LocalizationSettings.SelectedLocaleChanged -= OnSelectedLocaleChanged;
 
             if (_offerSystemService != null)
             {
@@ -147,7 +153,8 @@ namespace _Project.Scripts.Presentation.UI.Offers
             _renderSchedule?.Pause();
             _renderSchedule = null;
             _renderQueued = false;
-            _goldLabel.text = $"Gold: {_offerSystemService.Gold}";
+            _goldLabelString.Arguments = new object[] { _offerSystemService.Gold };
+            _goldLabelString.RefreshString();
 
             DetectNewOffers();
             UpdateOpenButtonBlink();
@@ -164,7 +171,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             if (_offerSystemService == null || _offerSystemService.AvailableOffers.Count == 0)
             {
-                _availableList.Add(new Label("No new offers.") { name = "offer-empty-row" });
+                _availableList.Add(CreateLocalizedLabel("offers.no.new", "offer-empty-row"));
                 return;
             }
 
@@ -181,7 +188,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             if (_offerSystemService == null || _offerSystemService.ActiveOffers.Count == 0)
             {
-                _activeList.Add(new Label("No accepted tasks.") { name = "offer-empty-row" });
+                _activeList.Add(CreateLocalizedLabel("offers.no.accepted", "offer-empty-row"));
                 return;
             }
 
@@ -201,12 +208,14 @@ namespace _Project.Scripts.Presentation.UI.Offers
             row.AddToClassList("offer-table-row");
 
             OfferStageProgressSnapshot stageProgress = _offerSystemService.GetStageProgress(record);
-            string stagePrefix = stageProgress != null
-                ? $"S{stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}"
-                : "S1/1";
 
-            row.Add(BuildTableCell($"{definition.Title} [{definition.Category}] {stagePrefix}", "offer-col-title"));
-            row.Add(BuildTableCell(definition.Customer.FullName, "offer-col-customer"));
+            row.Add(BuildLocalizedTableCell(
+                definition.GetLocalizedTitle(),
+                definition.Title,
+                "offer-col-title"));
+            row.Add(BuildLocalizedTableCell(
+                definition.Customer.GetLocalizedFullName(),
+                "offer-col-customer"));
             row.Add(BuildTableCell(goldReward.ToString(), "offer-col-gold"));
             row.Add(BuildTableCell($"+{definition.ReputationReward}", "offer-col-reputation"));
             row.Add(BuildTableCell(BuildStageSummary(stageProgress, definition), "offer-col-requirements"));
@@ -223,24 +232,24 @@ namespace _Project.Scripts.Presentation.UI.Offers
             var actions = new VisualElement();
             actions.AddToClassList("offer-table-cell");
             actions.AddToClassList("offer-col-actions");
-            actions.Add(new Button(() => OpenTooltip(record)) { text = "Details" });
+            actions.Add(CreateLocalizedButton(() => OpenTooltip(record), "offers.details"));
             if (isActive)
             {
                 if (_offerSystemService.CurrentStageHasDeliverObjectives(record))
                 {
                     if (isReservedForShipment)
                     {
-                        actions.Add(new Button(() => _offerSystemService.CancelOfferReservation(record.RuntimeId)) { text = "Unreserve" });
+                        actions.Add(CreateLocalizedButton(() => _offerSystemService.CancelOfferReservation(record.RuntimeId), "offers.unreserve"));
                     }
                     else
                     {
-                        actions.Add(new Button(() => _offerSystemService.TryReserveOfferForNextMission(record.RuntimeId, 0)) { text = "Reserve" });
+                        actions.Add(CreateLocalizedButton(() => _offerSystemService.TryReserveOfferForNextMission(record.RuntimeId, 0), "offers.reserve"));
                     }
                 }
             }
             else
             {
-                actions.Add(new Button(() => _offerSystemService.AcceptOffer(record.RuntimeId)) { text = "Accept" });
+                actions.Add(CreateLocalizedButton(() => _offerSystemService.AcceptOffer(record.RuntimeId), "offers.accept"));
             }
 
             row.Add(actions);
@@ -251,16 +260,96 @@ namespace _Project.Scripts.Presentation.UI.Offers
         {
             var header = new VisualElement();
             header.AddToClassList("offer-table-header");
-            header.Add(BuildTableCell("TASK", "offer-col-title"));
-            header.Add(BuildTableCell("CUSTOMER", "offer-col-customer"));
+            header.Add(BuildLocalizedTableCell("offers.task", "offer-col-title"));
+            header.Add(BuildLocalizedTableCell("offers.customer", "offer-col-customer"));
             header.Add(BuildTableCell("G", "offer-col-gold"));
-            header.Add(BuildTableCell("REP", "offer-col-reputation"));
-            header.Add(BuildTableCell("RESOURCES", "offer-col-requirements"));
-            header.Add(BuildTableCell("DEADLINE", "offer-col-deadline"));
+            header.Add(BuildLocalizedTableCell("offers.reputation", "offer-col-reputation"));
+            header.Add(BuildLocalizedTableCell("offers.resources", "offer-col-requirements"));
+            header.Add(BuildLocalizedTableCell("offers.deadline", "offer-col-deadline"));
          //   header.Add(BuildTableCell("SOURCE", "offer-col-source"));
-            header.Add(BuildTableCell("COOLDOWN", "offer-col-cooldown"));
-            header.Add(BuildTableCell(isActive ? "ACTIONS" : "DECISION", "offer-col-actions-title"));
+            header.Add(BuildLocalizedTableCell("offers.cooldown", "offer-col-cooldown"));
+            header.Add(BuildLocalizedTableCell(isActive ? "offers.actions" : "offers.decision", "offer-col-actions-title"));
             return header;
+        }
+
+        private static Button CreateLocalizedButton(System.Action action, string key)
+        {
+            var button = new Button(action);
+            button.SetBinding("text", new LocalizedString("UI", key));
+            return button;
+        }
+
+        private static Label CreateLocalizedLabel(string key, string name)
+        {
+            var label = new Label { name = name };
+            label.SetBinding("text", new LocalizedString("UI", key));
+            return label;
+        }
+
+        private static Label BuildLocalizedTableCell(string key, string className)
+        {
+            var label = CreateLocalizedLabel(key, string.Empty);
+            label.AddToClassList("offer-table-cell");
+            label.AddToClassList(className);
+            return label;
+        }
+
+        private static Label BuildLocalizedTableCell(LocalizedString localizedString, string className)
+        {
+            var label = new Label();
+            label.SetBinding("text", localizedString);
+            label.AddToClassList("offer-table-cell");
+            label.AddToClassList(className);
+            return label;
+        }
+
+        private static Label BuildLocalizedTableCell(
+            LocalizedString localizedString,
+            string fallback,
+            string className)
+        {
+            var label = new Label();
+            BindLocalizedLabel(label, localizedString, fallback);
+            label.AddToClassList("offer-table-cell");
+            label.AddToClassList(className);
+            return label;
+        }
+
+        /// <summary>
+        /// Показывает исходный текст, если ключ OfferDefinition ещё не добавлен в таблицу.
+        /// Это защищает UI от пустых подписей и отображения технического ключа.
+        /// </summary>
+        private static void BindLocalizedLabel(Label label, LocalizedString localizedString, string fallback)
+        {
+            if (label == null)
+            {
+                return;
+            }
+
+            // Сначала показываем source-текст, затем binding обновит его после загрузки локали.
+            label.text = fallback;
+            label.SetBinding("text", localizedString);
+        }
+
+        private static bool IsMissingOfferLocalization(string value)
+        {
+            return string.IsNullOrWhiteSpace(value) ||
+                   value.StartsWith("offer.") ||
+                   value.IndexOf("translation", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private void OnSelectedLocaleChanged(Locale _)
+        {
+            // Stage/objective тексты собираются в одну строку, поэтому их нужно перерисовать.
+            QueueRender();
+        }
+
+        private void OnGoldLabelChanged(string text)
+        {
+            if (_goldLabel != null)
+            {
+                _goldLabel.text = text;
+            }
         }
 
         private static Label BuildTableCell(string text, string className)
@@ -291,11 +380,11 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
 
             _tooltipPortrait.sprite = definition.Customer.KindPortrait;
-            _tooltipCustomerName.text = definition.Customer.FullName;
-            _tooltipCompanyName.text = definition.Customer.CompanyName;
-            _tooltipCompanyDescription.text = definition.Customer.CompanyDescription;
-            _tooltipTitle.text = definition.Title;
-            _tooltipDescription.text = definition.Description;
+            _tooltipCustomerName.SetBinding("text", definition.Customer.GetLocalizedFullName());
+            _tooltipCompanyName.SetBinding("text", definition.Customer.GetLocalizedCompanyName());
+            _tooltipCompanyDescription.SetBinding("text", definition.Customer.GetLocalizedCompanyDescription());
+            BindLocalizedLabel(_tooltipTitle, definition.GetLocalizedTitle(), definition.Title);
+            BindLocalizedLabel(_tooltipDescription, definition.GetLocalizedDescription(), definition.Description);
             OfferStageProgressSnapshot stageProgress = _offerSystemService.GetStageProgress(_selectedOffer);
             bool hasDeliverObjectives = _offerSystemService.CurrentStageHasDeliverObjectives(_selectedOffer);
             string shipmentRuleText = hasDeliverObjectives
@@ -325,7 +414,9 @@ namespace _Project.Scripts.Presentation.UI.Offers
             {
                 if (hasDeliverObjectives)
                 {
-                    _tooltipAcceptButton.text = _selectedOffer.IsReservedForShipment ? "Unreserve" : "Reserve";
+                        _tooltipAcceptButton.SetBinding(
+                            "text",
+                            new LocalizedString("UI", _selectedOffer.IsReservedForShipment ? "offers.unreserve" : "offers.reserve"));
                     _tooltipAcceptButton.style.display = DisplayStyle.Flex;
                 }
                 else
@@ -336,7 +427,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
             else
             {
-                _tooltipAcceptButton.text = "Accept";
+                _tooltipAcceptButton.SetBinding("text", new LocalizedString("UI", "offers.accept"));
             }
         }
 
@@ -493,12 +584,12 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
 
             string title = stageProgress.Stage != null
-                ? $"Stage {stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}: {stageProgress.Stage.Title}"
+                ? $"Stage {stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}: {GetLocalizedStageText(definition, stageProgress.StageIndex, "title", stageProgress.Stage.Title)}"
                 : $"Stage {stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}";
             string description = stageProgress.Stage != null && !string.IsNullOrWhiteSpace(stageProgress.Stage.Description)
-                ? stageProgress.Stage.Description
+                ? GetLocalizedStageText(definition, stageProgress.StageIndex, "description", stageProgress.Stage.Description)
                 : string.Empty;
-            string objectives = BuildObjectiveLines(stageProgress.Objectives);
+            string objectives = BuildObjectiveLines(stageProgress.Objectives, definition, stageProgress.StageIndex);
 
             if (string.IsNullOrWhiteSpace(description))
             {
@@ -508,7 +599,10 @@ namespace _Project.Scripts.Presentation.UI.Offers
             return $"{title}\n{description}\n{objectives}";
         }
 
-        private static string BuildObjectiveLines(OfferObjectiveProgressSnapshot[] objectives)
+        private static string BuildObjectiveLines(
+            OfferObjectiveProgressSnapshot[] objectives,
+            OfferDefinition definition,
+            int stageIndex)
         {
             if (objectives == null || objectives.Length == 0)
             {
@@ -525,7 +619,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
                 }
 
                 string description = !string.IsNullOrWhiteSpace(objective.Objective.Description)
-                    ? objective.Objective.Description
+                    ? GetLocalizedObjectiveText(definition, stageIndex, i, objective.Objective.Description)
                     : objective.Objective.ObjectiveType.ToString();
                 string progress = objective.TargetValue > 0
                     ? $"{objective.CurrentValue}/{objective.TargetValue}"
@@ -535,6 +629,46 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
 
             return result;
+        }
+
+        private static string GetLocalizedStageText(
+            OfferDefinition definition,
+            int stageIndex,
+            string field,
+            string fallback)
+        {
+            if (definition == null)
+            {
+                return fallback;
+            }
+
+            if (LocalizationSettings.SelectedLocale == null)
+            {
+                return fallback;
+            }
+
+            string localized = definition.GetLocalizedStageField(stageIndex, field).GetLocalizedString();
+            return IsMissingOfferLocalization(localized) ? fallback : localized;
+        }
+
+        private static string GetLocalizedObjectiveText(
+            OfferDefinition definition,
+            int stageIndex,
+            int objectiveIndex,
+            string fallback)
+        {
+            if (definition == null)
+            {
+                return fallback;
+            }
+
+            if (LocalizationSettings.SelectedLocale == null)
+            {
+                return fallback;
+            }
+
+            string localized = definition.GetLocalizedObjectiveDescription(stageIndex, objectiveIndex).GetLocalizedString();
+            return IsMissingOfferLocalization(localized) ? fallback : localized;
         }
 
         private void OnOpenClicked(ClickEvent _)

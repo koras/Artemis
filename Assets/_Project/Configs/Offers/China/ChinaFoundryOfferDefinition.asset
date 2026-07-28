@@ -61,9 +61,11 @@ MonoBehaviour:
       RequiredCount: 2
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 0    ScheduleInspection: 0
+      RequireOperational: 0
+    ScheduleInspection: 0
     BonusGold: 20
-    BonusReputation: 0  - StageId: china-line-stable
+    BonusReputation: 0
+  - StageId: china-line-stable
     Title: "Stable Throughput"
     Description: "Hold both power and production in an operational state for 1 sol."
     Objectives:
@@ -86,9 +88,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 1    ScheduleInspection: 0
+      RequireOperational: 1
+    ScheduleInspection: 0
     BonusGold: 0
-    BonusReputation: 4  FailureConditions: []
+    BonusReputation: 4
+    FailureConditions: []
   GoldReward: 280
   ReputationReward: 14
   ReputationPenaltyOnFail: 14

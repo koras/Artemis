@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace _Project.Scripts.Data.Offers
 {
@@ -22,5 +23,28 @@ namespace _Project.Scripts.Data.Offers
         public Sprite VeryAngryPortrait;
 
         public string FullName => $"{FirstName} {LastName}".Trim();
+
+        /// <summary>
+        /// Возвращает стабильный идентификатор профиля для ключей таблицы локализации.
+        /// </summary>
+        public string LocalizationId => name.Replace("OfferCustomerDefinition", string.Empty).ToLowerInvariant();
+
+        /// <summary>Возвращает локализованное полное имя заказчика.</summary>
+        public LocalizedString GetLocalizedFullName()
+        {
+            return new LocalizedString("UI", $"customer.{LocalizationId}.full_name");
+        }
+
+        /// <summary>Возвращает локализованное название компании.</summary>
+        public LocalizedString GetLocalizedCompanyName()
+        {
+            return new LocalizedString("UI", $"customer.{LocalizationId}.company_name");
+        }
+
+        /// <summary>Возвращает локализованное описание компании.</summary>
+        public LocalizedString GetLocalizedCompanyDescription()
+        {
+            return new LocalizedString("UI", $"customer.{LocalizationId}.company_description");
+        }
     }
 }

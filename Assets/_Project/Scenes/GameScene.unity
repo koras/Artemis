@@ -2892,6 +2892,13 @@ MonoBehaviour:
   _oxigenProcessingUnitBuildingDef: {fileID: 11400000, guid: 8235b967f0ae9304abb13e7417b2c979, type: 2}
   _waterReclamationBuildingDef: {fileID: 11400000, guid: e51a8b706cbab3f47ace0388704f55f9, type: 2}
   _waterProcessingUnitBuildingDef: {fileID: 11400000, guid: 466a3ed9ff3df5b4b892aba00acdda31, type: 2}
+  _flowerSmall1BuildingDef: {fileID: 11400000, guid: 2cc5df6005ea9584cbc7081e479684fa, type: 2}
+  _flowerSmallBuildingDef: {fileID: 11400000, guid: 8c0f6330a633dd1428dece63e2875ba6, type: 2}
+  _flowerBig2BuildingDef: {fileID: 11400000, guid: 163d1f8585092a04c916ad8098bbb3be, type: 2}
+  _flowerBig1BuildingDef: {fileID: 11400000, guid: d6124f09d2998cd4190d144ac17550a4, type: 2}
+  _paintAstroBuildingDef: {fileID: 11400000, guid: ec068eb8da96f6744a72bdd1e0a137ab, type: 2}
+  _paintPlanetBuildingDef: {fileID: 11400000, guid: 52834ac4c5b1fa94690c83229f90d6d8, type: 2}
+  _paintRockerBuildingDef: {fileID: 11400000, guid: a79286a949974f941bf08d0872d8acef, type: 2}
 --- !u!114 &1833181082
 MonoBehaviour:
   m_ObjectHideFlags: 0

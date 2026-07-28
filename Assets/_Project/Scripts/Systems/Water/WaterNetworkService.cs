@@ -9,6 +9,9 @@ namespace _Project.Scripts.Systems.Water
     /// </summary>
     public sealed class WaterNetworkService
     {
+        // Пересчёт сети временно отключён, но код оставлен для последующего включения.
+        private static readonly bool NetworkRecalculationDisabled = true;
+
         private readonly GridState _gridState;
         private int _lastComponentCount;
 
@@ -19,7 +22,10 @@ namespace _Project.Scripts.Systems.Water
 
         public void Recalculate()
         {
-            return;
+            if (NetworkRecalculationDisabled)
+            {
+                return;
+            }
             if (_gridState == null)
             {
                 return;

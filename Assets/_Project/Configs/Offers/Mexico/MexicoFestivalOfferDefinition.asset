@@ -61,9 +61,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 1
-      RequireOperational: 0    ScheduleInspection: 0
+      RequireOperational: 0
+    ScheduleInspection: 0
     BonusGold: 20
-    BonusReputation: 0  - StageId: mexico-event-pass
+    BonusReputation: 0
+  - StageId: mexico-event-pass
     Title: "Base Celebration"
     Description: "Receive the service review and pass the final event inspection."
     Objectives:
@@ -76,9 +78,11 @@ MonoBehaviour:
       RequiredCount: 1
       RequiredWidth: 1
       RequiredSols: 0
-      RequireOperational: 1    ScheduleInspection: 1
+      RequireOperational: 1
+    ScheduleInspection: 1
     BonusGold: 0
-    BonusReputation: 6  FailureConditions: []
+    BonusReputation: 6
+    FailureConditions: []
   GoldReward: 335
   ReputationReward: 18
   ReputationPenaltyOnFail: 16
