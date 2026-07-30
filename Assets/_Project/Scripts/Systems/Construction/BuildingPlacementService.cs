@@ -22,6 +22,7 @@ namespace _Project.Scripts.Systems.Construction
         private readonly bool _enableAiLogs;
         // Runtime-кэш tile, собранных из preview-спрайтов.
         private readonly Dictionary<BuildingDef, TileBase> _previewTilesByDef = new Dictionary<BuildingDef, TileBase>();
+        private readonly Dictionary<Sprite, TileBase> _previewTilesBySprite = new Dictionary<Sprite, TileBase>();
 
         /// <summary>
         /// Initializes build placement service dependencies.
@@ -67,6 +68,32 @@ namespace _Project.Scripts.Systems.Construction
             var tile = ScriptableObject.CreateInstance<Tile>();
             tile.sprite = buildingDef.PreviewSprite;
             _previewTilesByDef[buildingDef] = tile;
+            return tile;
+        }
+
+        /// <summary>
+        /// Returns a preview tile for a specific sprite variant, such as a ladder end or center part.
+        /// </summary>
+        public TileBase GetPreviewTile(BuildingDef buildingDef, Sprite previewSprite)
+        {
+            if (buildingDef == null)
+            {
+                return null;
+            }
+
+            if (previewSprite == buildingDef.PreviewSprite)
+            {
+                return GetPreviewTile(buildingDef);
+            }
+
+            if (_previewTilesBySprite.TryGetValue(previewSprite, out TileBase cachedTile))
+            {
+                return cachedTile;
+            }
+
+            var tile = ScriptableObject.CreateInstance<Tile>();
+            tile.sprite = previewSprite;
+            _previewTilesBySprite[previewSprite] = tile;
             return tile;
         }
 

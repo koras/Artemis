@@ -127,6 +127,23 @@ namespace _Project.Scripts.Presentation.Buildings
             _visualSpriteRenderer.sprite = _buildingDef.BuiltSprite;
         }
 
+        /// <summary>
+        /// Sets a runtime-specific sprite while keeping renderer ownership inside the base view.
+        /// </summary>
+        protected void SetVisualSprite(Sprite sprite)
+        {
+            if (_visualSpriteRenderer == null)
+            {
+                Debug.LogError($"[Build] VisualSpriteRenderer is not wired on '{name}' view prefab.");
+                return;
+            }
+
+            if (sprite != null)
+            {
+                _visualSpriteRenderer.sprite = sprite;
+            }
+        }
+
         private void HideRootSprite()
         {
             if (_rootSpriteRenderer != null)

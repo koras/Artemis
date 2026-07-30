@@ -17,7 +17,13 @@ MonoBehaviour:
   UiDescription: "\u041B\u0435\u0441\u0442\u043D\u0438\u0446\u0430 \u0434\u043B\u044F
     \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F"
   PreviewSprite: {fileID: -1942671465, guid: e45bc713b97cd504d8c955fe23c36142, type: 3}
-  BuiltSprite: {fileID: 170952254, guid: e45bc713b97cd504d8c955fe23c36142, type: 3}
+  BuiltSprite: {fileID: 1637759510, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
+  LadderBottomBuiltSprite: {fileID: -746511139, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
+  LadderCenterBuiltSprite: {fileID: 1637759510, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
+  LadderTopBuiltSprite: {fileID: 3181169863757504611, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
+  LadderBottomPreviewSprite: {fileID: 1099722540, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
+  LadderCenterPreviewSprite: {fileID: -1512300497, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
+  LadderTopPreviewSprite: {fileID: 7085338807174098435, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
   Width: 1
   Height: 1
   CanRotate: 0
@@ -28,6 +34,7 @@ MonoBehaviour:
   AllowedPlacementCellTypes: 
   RequiredBelowAnyCellTypes: 
   RequiredBelowAnyBuildObjectTypes: 
+  ResourceDeliveryTargetOffset: {x: 0, y: 0}
   BuildTicks: 2
   CostItems:
   - ResourceId: Ladder

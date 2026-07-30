@@ -165,6 +165,9 @@ namespace _Project.Scripts.Presentation.Grid
                 _viewsByAnchor.Remove(payload.AnchorCell);
                 UnityEngine.Object.Destroy(view.gameObject);
             }
+
+            // После удаления обновляем соседние лестницы: одна из них могла стать верхним концом.
+            RefreshLadderVisuals();
         }
 
         /// <summary>
@@ -656,6 +659,7 @@ namespace _Project.Scripts.Presentation.Grid
             BuildingViewBase view = UnityEngine.Object.Instantiate(buildingViewPrefab, spawnPosition, Quaternion.identity, _buildingsRoot);
             view.Initialize(anchorCell, size);
             _viewsByAnchor[anchorCell] = view;
+            RefreshLadderVisuals();
             if (_isCableBuildTintActive)
             {
                 view.SetModeTint(_cableBuildTintColor);
@@ -680,6 +684,37 @@ namespace _Project.Scripts.Presentation.Grid
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Обновляет built-спрайт каждой лестницы по соседним клеткам сетки.
+        /// </summary>
+        private void RefreshLadderVisuals()
+        {
+            foreach (KeyValuePair<Vector2Int, BuildingViewBase> pair in _viewsByAnchor)
+            {
+                if (!(pair.Value is LadderBuildingView ladderView))
+                {
+                    continue;
+                }
+
+                Vector2Int cell = ladderView.AnchorCell;
+                bool hasLadderBelow = IsLadderCell(cell + Vector2Int.down);
+                bool hasLadderAbove = IsLadderCell(cell + Vector2Int.up);
+                ladderView.RefreshVisual(hasLadderBelow, hasLadderAbove);
+            }
+        }
+
+        private bool IsLadderCell(Vector2Int cell)
+        {
+            if (!_gridState.IsInside(cell.x, cell.y))
+            {
+                return false;
+            }
+
+            ref readonly Cell gridCell = ref _gridState.GetCell(cell.x, cell.y);
+            return gridCell.BuildObjectType.HasValue
+                && gridCell.BuildObjectType.Value == BuildObjectType.Ladder;
         }
 
         private bool IsConnectedToPowerNetwork(BuildingRuntimeEntity entity)

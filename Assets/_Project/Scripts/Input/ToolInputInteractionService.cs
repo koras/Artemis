@@ -575,6 +575,16 @@ namespace _Project.Scripts.Input
             ClearActivePreview(true);
             RefreshAllPlannedBuildPreviews();
 
+            if (_currentToolMode == ToolMode.BuildLadder)
+            {
+                // Лестницу можно планировать только вдоль вертикали: X берём из стартовой клетки,
+                // а горизонтальное смещение курсора игнорируем. Все проверки placement остаются
+                // внутри RenderRectanglePreviewCell и BuildingManager, поэтому это меняет только форму выбора.
+                RenderVerticalLadderPreview(a, b);
+                UpdateCursorPreview();
+                return;
+            }
+
             int minX = Mathf.Min(a.x, b.x);
             int maxX = Mathf.Max(a.x, b.x);
             int minY = Mathf.Min(a.y, b.y);
@@ -591,6 +601,27 @@ namespace _Project.Scripts.Input
             }
 
             UpdateCursorPreview();
+        }
+
+        /// <summary>
+        /// Рисует preview лестницы вертикальной линией от стартовой клетки до текущей клетки.
+        /// </summary>
+        private void RenderVerticalLadderPreview(Vector2Int start, Vector2Int end)
+        {
+            int minY = Mathf.Min(start.y, end.y);
+            int maxY = Mathf.Max(start.y, end.y);
+
+            for (int y = minY; y <= maxY; y++)
+            {
+                Vector2Int pos = new Vector2Int(start.x, y);
+                if (!_gridState.IsInside(pos.x, pos.y))
+                {
+                    continue;
+                }
+
+                ref readonly Cell cell = ref _gridState.GetCell(pos.x, pos.y);
+                RenderRectanglePreviewCell(pos, cell, start, end);
+            }
         }
 
         /// <summary>
@@ -857,7 +888,11 @@ namespace _Project.Scripts.Input
         /// <summary>
         /// Runtime interaction and preview helper.
         /// </summary>
-        private void RenderRectanglePreviewCell(Vector2Int pos, Cell cell)
+        private void RenderRectanglePreviewCell(
+            Vector2Int pos,
+            Cell cell,
+            Vector2Int? ladderLineStart = null,
+            Vector2Int? ladderLineEnd = null)
         {
             if (IsBuildToolMode())
             {
@@ -889,7 +924,7 @@ namespace _Project.Scripts.Input
                     _currentBuildPreviewAnchors.Add(pos);
                 }
 
-                TileBase previewTile = _buildingPlacementService.GetPreviewTile(_activeBuildingDef);
+                TileBase previewTile = GetBuildPreviewTile(pos, ladderLineStart, ladderLineEnd);
                 if (previewTile == null) return;
 
                 int previewWidth = Mathf.Max(1, _activeBuildingDef != null ? _activeBuildingDef.Width : 1);
@@ -1100,6 +1135,60 @@ namespace _Project.Scripts.Input
             if (!HasAnyMark(cell)) return;
             _currentCancelPreviewCells.Add(pos);
             _gridTileVisualService.SetTaskMarker(pos, false);
+        }
+
+        /// <summary>
+        /// Resolves a build preview tile, including the correct ladder end/center variant.
+        /// </summary>
+        private TileBase GetBuildPreviewTile(BuildingDef buildingDef, Vector2Int cell, Vector2Int? ladderLineStart, Vector2Int? ladderLineEnd)
+        {
+            if (buildingDef == null)
+            {
+                return null;
+            }
+
+            if (buildingDef.ObjectType != BuildObjectType.Ladder)
+            {
+                return _buildingPlacementService.GetPreviewTile(buildingDef);
+            }
+
+            bool hasLadderBelow = IsLadderForPreview(cell + Vector2Int.down, ladderLineStart, ladderLineEnd);
+            bool hasLadderAbove = IsLadderForPreview(cell + Vector2Int.up, ladderLineStart, ladderLineEnd);
+            Sprite previewSprite = buildingDef.ResolveLadderSprite(hasLadderBelow, hasLadderAbove, true);
+            return _buildingPlacementService.GetPreviewTile(buildingDef, previewSprite);
+        }
+
+        private TileBase GetBuildPreviewTile(Vector2Int cell, Vector2Int? ladderLineStart, Vector2Int? ladderLineEnd)
+        {
+            return GetBuildPreviewTile(_activeBuildingDef, cell, ladderLineStart, ladderLineEnd);
+        }
+
+        /// <summary>
+        /// Checks both built ladders and cells included in the current vertical preview line.
+        /// </summary>
+        private bool IsLadderForPreview(Vector2Int cell, Vector2Int? ladderLineStart, Vector2Int? ladderLineEnd)
+        {
+            if (!_gridState.IsInside(cell.x, cell.y))
+            {
+                return false;
+            }
+
+            ref readonly Cell gridCell = ref _gridState.GetCell(cell.x, cell.y);
+            if (gridCell.BuildObjectType.HasValue && gridCell.BuildObjectType.Value == BuildObjectType.Ladder)
+            {
+                return true;
+            }
+
+            if (!ladderLineStart.HasValue || !ladderLineEnd.HasValue)
+            {
+                return false;
+            }
+
+            Vector2Int start = ladderLineStart.Value;
+            Vector2Int end = ladderLineEnd.Value;
+            return cell.x == start.x
+                && cell.y >= Mathf.Min(start.y, end.y)
+                && cell.y <= Mathf.Max(start.y, end.y);
         }
 
         /// <summary>
@@ -1589,7 +1678,7 @@ namespace _Project.Scripts.Input
                 BuildTaskPayload payload = task.BuildPayload;
                 if (payload == null || payload.BuildingDef == null) continue;
 
-                TileBase previewTile = _buildingPlacementService.GetPreviewTile(payload.BuildingDef);
+                TileBase previewTile = GetBuildPreviewTile(payload.BuildingDef, payload.AnchorCell, null, null);
                 if (previewTile == null) continue;
 
                 int previewWidth = Mathf.Max(1, payload.IsRotated ? payload.BuildingDef.Height : payload.BuildingDef.Width);
@@ -2011,7 +2100,7 @@ namespace _Project.Scripts.Input
                     return;
                 }
 
-                TileBase previewTile = _buildingPlacementService.GetPreviewTile(_activeBuildingDef);
+                TileBase previewTile = GetBuildPreviewTile(_hoverCell, null, null);
                 if (previewTile == null) return;
 
                 _footprintBuffer.Clear();
