@@ -10,7 +10,7 @@ namespace _Project.Scripts.Editor
     /// Generic custom Inspector entry point for localized config definitions.
     /// Localization controls are driven by LocalizationIdAttribute and LocalizationKeyAttribute.
     /// </summary>
-    [CustomEditor(typeof(BaseLocalizedConfigDefinition), true)]
+    [CustomEditor(typeof(BaseLocalizedDefinitionConfig), true)]
     public sealed class LocalizationConfigEditor : UnityEditor.Editor
     {
         private int _selectedKeyIndex;

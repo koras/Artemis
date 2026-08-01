@@ -111,6 +111,18 @@ MonoBehaviour:
     m_Key: resource.dropped_prefabs
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000062
+    m_Key: time.sol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000063
+    m_Key: time.day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000064
+    m_Key: time.night
+    m_Metadata:
+      m_Items: []
   - m_Id: 3220168706
     m_Key: building.ladder
     m_Metadata:
@@ -2393,6 +2405,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1675471321292803
     m_Key: offer.offer-usa-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1788316969066496
+    m_Key: building.electricbattery.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1788316969066497
+    m_Key: building.electricbattery.description
     m_Metadata:
       m_Items: []
   m_Metadata:

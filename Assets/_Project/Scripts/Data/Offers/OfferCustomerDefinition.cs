@@ -15,7 +15,7 @@ namespace _Project.Scripts.Data.Offers
     /// </remarks>
     [LocalizationNamespace("customer", nameof(OfferCustomerDefinition.LocalizationId))]
     [CreateAssetMenu(menuName = "Artemis/Offers/Customer Definition", fileName = "OfferCustomerDefinition")]
-    public sealed class OfferCustomerDefinition : BaseLocalizedConfigDefinition
+    public sealed class OfferCustomerDefinition : BaseLocalizedDefinitionConfig
     {
         [Header("Identity")]
         [Tooltip("Stable ID used in customer localization keys. Do not change after translations are added.")]

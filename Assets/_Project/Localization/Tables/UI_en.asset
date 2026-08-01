@@ -4048,6 +4048,26 @@ MonoBehaviour:
     m_Localized: Dropped Prefabs
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000062
+    m_Localized: Sol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000063
+    m_Localized: Day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000064
+    m_Localized: Night
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1788316969066496
+    m_Localized: ""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1788316969066497
+    m_Localized: ""
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

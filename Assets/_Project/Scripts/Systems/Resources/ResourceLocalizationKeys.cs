@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace _Project.Scripts.Systems.Resources
 {
     /// <summary>
@@ -16,16 +13,6 @@ namespace _Project.Scripts.Systems.Resources
             return resourceId == DroppedPrefabsId
                 ? "resource.dropped_prefabs"
                 : $"resource.item.{Normalize(resourceId)}";
-        }
-
-        public static IEnumerable<string> GetKnownResourceIds()
-        {
-            foreach (SceneResourceType resourceType in Enum.GetValues(typeof(SceneResourceType)))
-            {
-                yield return resourceType.GetResourceId();
-            }
-
-            yield return DroppedPrefabsId;
         }
 
         private static string Normalize(string resourceId)

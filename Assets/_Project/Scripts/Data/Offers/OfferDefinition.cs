@@ -15,7 +15,7 @@ namespace _Project.Scripts.Data.Offers
     /// </remarks>
     [LocalizationNamespace("offer", nameof(OfferDefinition.OfferId))]
     [CreateAssetMenu(menuName = "Artemis/Offers/Offer Definition", fileName = "OfferDefinition")]
-    public sealed class OfferDefinition : BaseLocalizedConfigDefinition
+    public sealed class OfferDefinition : BaseLocalizedDefinitionConfig
     {
         private const string TitleSuffix = "title";
         private const string DescriptionSuffix = "description";

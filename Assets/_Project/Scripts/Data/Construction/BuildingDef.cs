@@ -53,7 +53,7 @@ namespace _Project.Scripts.Data.Construction
     /// </remarks>
     [LocalizationNamespace("building", nameof(BuildingDef.LocalizationId))]
     [CreateAssetMenu(menuName = "Artemis/Construction/Building Def", fileName = "BuildingDef")]
-    public sealed class BuildingDef : BaseLocalizedConfigDefinition
+    public sealed class BuildingDef : BaseLocalizedDefinitionConfig
     {
         private const string NameSuffix = "name";
         private const string DescriptionSuffix = "description";

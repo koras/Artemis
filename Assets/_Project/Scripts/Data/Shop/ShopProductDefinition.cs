@@ -23,7 +23,7 @@ namespace _Project.Scripts.Data.Shop
     /// </remarks>
     [LocalizationNamespace("shop.product", nameof(ShopProductDefinition.ProductId))]
     [CreateAssetMenu(menuName = "Artemis/Shop/Product Definition", fileName = "ShopProductDefinition")]
-    public sealed class ShopProductDefinition : BaseLocalizedConfigDefinition
+    public sealed class ShopProductDefinition : BaseLocalizedDefinitionConfig
     {
         private const string NameSuffix = "name";
         private const string DescriptionSuffix = "description";

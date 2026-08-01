@@ -1,6 +1,8 @@
-using _Project.Scripts.Systems.Simulation;
 using System;
+using _Project.Scripts.Data.Localization;
+using _Project.Scripts.Systems.Simulation;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 namespace _Project.Scripts.Presentation.UI
@@ -22,6 +24,12 @@ namespace _Project.Scripts.Presentation.UI
         private readonly Action _pauseAction;
         private readonly Action _playAction;
         private readonly Action<float> _speedChangeAction;
+        private readonly LocalizedString _solLabel = new LocalizedString(
+            "UI", LocalizationKeyBuilder.FromEnum("time", GameTimeLocalizationToken.Sol));
+        private readonly LocalizedString _dayLabel = new LocalizedString(
+            "UI", LocalizationKeyBuilder.FromEnum("time", GameTimeLocalizationToken.Day));
+        private readonly LocalizedString _nightLabel = new LocalizedString(
+            "UI", LocalizationKeyBuilder.FromEnum("time", GameTimeLocalizationToken.Night));
 
         public GameTimeHudPresenter(
             VisualElement root,
@@ -56,8 +64,9 @@ namespace _Project.Scripts.Presentation.UI
             }
 
             int minutes = gameTimeService.TotalGameMinutes % 60;
-            string phaseText = gameTimeService.IsDay ? "Day" : "Night";
-            _timeLabel.text = $"{gameTimeService.Hour:00}:{minutes:00} / Sol {gameTimeService.Sol} / {phaseText}";
+            string phaseText = (gameTimeService.IsDay ? _dayLabel : _nightLabel).GetLocalizedString();
+            string solText = _solLabel.GetLocalizedString();
+            _timeLabel.text = $"{gameTimeService.Hour:00}:{minutes:00} / {solText} {gameTimeService.Sol} / {phaseText}";
         }
 
         // Keeps the HUD buttons aligned with the current simulation mode.
