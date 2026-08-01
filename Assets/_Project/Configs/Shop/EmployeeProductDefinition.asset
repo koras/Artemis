@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34e3a9090d5446ba54a9e4f23cf7551, type: 3}
   m_Name: EmployeeProductDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Shop.ShopProductDefinition
-  ProductId: product-human-Employee
-  ProductName: Employee
-  Description: Employee
+  ProductId: product-human-employee
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   ProductSprite: {fileID: 3295483416912216581, guid: eb1e816ebece91c4dbf9f779ecc4030d, type: 3}
   Category: 2
   ResourceType: 5

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WaterPipeShopProductDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Shop.ShopProductDefinition
   ProductId: water-pipe
-  ProductName: Water Pipe
-  Description: 
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   ProductSprite: {fileID: 0}
   Category: 1
   ResourceType: 14

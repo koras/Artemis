@@ -3,6 +3,7 @@ using _Project.Scripts.Data.Shop;
 using _Project.Scripts.Systems.Shop;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 namespace _Project.Scripts.Presentation.UI.Shop
@@ -60,6 +61,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
             _openButton.RegisterCallback<ClickEvent>(OnOpenClicked);
             EnsurePanelReady();
             _goldLabelString.StringChanged += OnGoldLabelChanged;
+            LocalizationSettings.SelectedLocaleChanged += OnSelectedLocaleChanged;
             _shopSystemService.StateChanged += OnShopStateChanged;
             _hudWindowCoordinator.Register(WINDOW_ID, ClosePanel);
             Render();
@@ -73,6 +75,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
             UnbindOrdersButton();
             UnbindFilterButtons();
             _goldLabelString.StringChanged -= OnGoldLabelChanged;
+            LocalizationSettings.SelectedLocaleChanged -= OnSelectedLocaleChanged;
             _shopSystemService.StateChanged -= OnShopStateChanged;
         }
 
@@ -155,8 +158,8 @@ namespace _Project.Scripts.Presentation.UI.Shop
             int totalPrice = selectedAmount * entry.UnitPrice;
 
             Label productName = row.Q<Label>("shop-row-product-name");
-            productName.text = entry.Product.ProductName;
-            productName.tooltip = entry.Product.Description;
+            productName.text = entry.Product.GetLocalizedName().GetLocalizedString();
+            productName.tooltip = entry.Product.GetLocalizedDescription().GetLocalizedString();
 
             Label supplierLabel = row.Q<Label>("shop-row-supplier");
             supplierLabel.SetBinding("text", entry.Supplier.GetLocalizedCompanyName());
@@ -201,9 +204,9 @@ namespace _Project.Scripts.Presentation.UI.Shop
             productCell.AddToClassList("shop-table-cell");
             productCell.AddToClassList("shop-col-product");
 
-            Label productName = new Label(order.Product.ProductName);
+            Label productName = new Label(order.Product.GetLocalizedName().GetLocalizedString());
             productName.AddToClassList("shop-product-name");
-            productName.tooltip = order.Product.Description;
+            productName.tooltip = order.Product.GetLocalizedDescription().GetLocalizedString();
 
             productCell.Add(productName);
             row.Add(productCell);
@@ -312,6 +315,11 @@ namespace _Project.Scripts.Presentation.UI.Shop
         private void OnShopStateChanged()
         {
             EnsurePanelReady();
+            Render();
+        }
+
+        private void OnSelectedLocaleChanged(Locale _)
+        {
             Render();
         }
 

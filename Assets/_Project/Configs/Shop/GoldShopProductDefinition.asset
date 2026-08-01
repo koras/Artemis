@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoldShopProductDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Shop.ShopProductDefinition
   ProductId: gold
-  ProductName: Gold
-  Description: 
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   ProductSprite: {fileID: 0}
   Category: 1
   ResourceType: 6

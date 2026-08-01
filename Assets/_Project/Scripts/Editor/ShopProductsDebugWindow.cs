@@ -37,13 +37,17 @@ namespace _Project.Scripts.Editor
             using (new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
             {
                 GUILayout.Label("Search", GUILayout.Width(45f));
-                string nextSearch = GUILayout.TextField(_search, EditorStyles.toolbarTextField, GUILayout.MinWidth(240f));
+
+                string nextSearch =
+                    GUILayout.TextField(_search, EditorStyles.toolbarTextField, GUILayout.MinWidth(240f));
+
                 if (!string.Equals(nextSearch, _search))
                 {
                     _search = nextSearch;
                 }
 
                 GUILayout.FlexibleSpace();
+
                 if (GUILayout.Button("Refresh", EditorStyles.toolbarButton, GUILayout.Width(90f)))
                 {
                     RefreshDefinitions();
@@ -71,9 +75,11 @@ namespace _Project.Scripts.Editor
         private void DrawRows()
         {
             _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
+
             for (int i = 0; i < _definitions.Count; i++)
             {
                 ShopOfferDefinition definition = _definitions[i];
+
                 if (definition == null || !MatchesSearch(definition))
                 {
                     continue;
@@ -84,7 +90,10 @@ namespace _Project.Scripts.Editor
                 using (new EditorGUILayout.HorizontalScope(EditorStyles.textArea))
                 {
                     GUILayout.Label(definition.DefinitionId, GUILayout.Width(170f));
-                    GUILayout.Label(definition.Product != null ? definition.Product.ProductName : "<missing>", GUILayout.Width(170f));
+                    var localizedString = definition.Product.GetLocalizedName();
+                    var productName = localizedString.GetLocalizedString();
+
+                    GUILayout.Label(definition.Product != null ? productName : "<missing>", GUILayout.Width(170f));
                     GUILayout.Label(supplierName, GUILayout.Width(160f));
                     GUILayout.Label(definition.BaseUnitPrice.ToString(), GUILayout.Width(95f));
                     GUILayout.Label(definition.MaxPurchaseAmount.ToString(), GUILayout.Width(95f));
@@ -106,7 +115,9 @@ namespace _Project.Scripts.Editor
 
         private static string BuildPeriodText(ShopOfferDefinition definition)
         {
-            ShopPeriodicWindowCondition periodic = definition.Conditions != null ? definition.Conditions.PeriodicWindow : null;
+            ShopPeriodicWindowCondition periodic =
+                definition.Conditions != null ? definition.Conditions.PeriodicWindow : null;
+
             if (periodic == null || !periodic.Enabled)
             {
                 return "always";
@@ -117,7 +128,9 @@ namespace _Project.Scripts.Editor
 
         private static string BuildReputationText(ShopOfferDefinition definition)
         {
-            ShopSupplierReputationCondition condition = definition.Conditions != null ? definition.Conditions.SupplierReputation : null;
+            ShopSupplierReputationCondition condition =
+                definition.Conditions != null ? definition.Conditions.SupplierReputation : null;
+
             if (condition == null || !condition.Enabled)
             {
                 return "-";
@@ -128,7 +141,9 @@ namespace _Project.Scripts.Editor
 
         private static string BuildResourceText(ShopOfferDefinition definition)
         {
-            ShopResourceAmountCondition condition = definition.Conditions != null ? definition.Conditions.ResourceAmount : null;
+            ShopResourceAmountCondition condition =
+                definition.Conditions != null ? definition.Conditions.ResourceAmount : null;
+
             if (condition == null || !condition.Enabled)
             {
                 return "-";
@@ -145,19 +160,22 @@ namespace _Project.Scripts.Editor
             }
 
             string needle = _search.Trim().ToLowerInvariant();
-            if (!string.IsNullOrWhiteSpace(definition.DefinitionId) && definition.DefinitionId.ToLowerInvariant().Contains(needle))
+
+            if (!string.IsNullOrWhiteSpace(definition.DefinitionId) &&
+                definition.DefinitionId.ToLowerInvariant().Contains(needle))
             {
                 return true;
             }
 
-            if (!string.IsNullOrWhiteSpace(definition.OfferId) && definition.OfferId.ToLowerInvariant().Contains(needle))
+            if (!string.IsNullOrWhiteSpace(definition.OfferId) &&
+                definition.OfferId.ToLowerInvariant().Contains(needle))
             {
                 return true;
             }
 
             if (definition.Product != null
-                && !string.IsNullOrWhiteSpace(definition.Product.ProductName)
-                && definition.Product.ProductName.ToLowerInvariant().Contains(needle))
+                && !string.IsNullOrWhiteSpace(definition.Product.GetLocalizedName().GetLocalizedString())
+                && definition.Product.GetLocalizedName().GetLocalizedString().ToLowerInvariant().Contains(needle))
             {
                 return true;
             }
@@ -176,10 +194,12 @@ namespace _Project.Scripts.Editor
         {
             _definitions.Clear();
             string[] guids = AssetDatabase.FindAssets("t:ShopOfferDefinition");
+
             for (int i = 0; i < guids.Length; i++)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guids[i]);
                 ShopOfferDefinition definition = AssetDatabase.LoadAssetAtPath<ShopOfferDefinition>(path);
+
                 if (definition != null)
                 {
                     _definitions.Add(definition);

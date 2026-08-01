@@ -3320,6 +3320,102 @@ MonoBehaviour:
     m_Localized: Пройдите проверку инспекции.
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000201
+    m_Localized: Пиво
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000202
+    m_Localized: Напиток для поддержания морали колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000203
+    m_Localized: Кабель
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000204
+    m_Localized: Соединяет системы колонии и инженерные линии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000205
+    m_Localized: Работник
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000206
+    m_Localized: Подготовленный работник для работы в колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000207
+    m_Localized: Рыба
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000208
+    m_Localized: Компактный источник пищи из аквакультуры.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000209
+    m_Localized: Золото
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000210
+    m_Localized: Ценный товар для торговли и крупных закупок.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000211
+    m_Localized: Лестница
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000212
+    m_Localized: Обеспечивает безопасный доступ между уровнями колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000213
+    m_Localized: Медикаменты
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000214
+    m_Localized: Медицинские припасы для лечения травм колонистов.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000215
+    m_Localized: Мясо
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000216
+    m_Localized: Питательный продукт для рациона колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000217
+    m_Localized: Кислородная труба
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000218
+    m_Localized: Передаёт кислород между соединёнными системами.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000219
+    m_Localized: Дерево
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000220
+    m_Localized: Живое растение для пространств колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000221
+    m_Localized: Овощи
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000222
+    m_Localized: Свежие овощи для рациона колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000223
+    m_Localized: Водяная труба
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000224
+    m_Localized: Передаёт воду между соединёнными системами.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

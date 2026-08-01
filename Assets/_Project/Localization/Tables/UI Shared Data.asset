@@ -399,6 +399,102 @@ MonoBehaviour:
     m_Key: shop.no.orders
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000201
+    m_Key: shop.product.beer.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000202
+    m_Key: shop.product.beer.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000203
+    m_Key: shop.product.cable.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000204
+    m_Key: shop.product.cable.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000205
+    m_Key: shop.product.product-human-employee.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000206
+    m_Key: shop.product.product-human-employee.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000207
+    m_Key: shop.product.fish.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000208
+    m_Key: shop.product.fish.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000209
+    m_Key: shop.product.gold.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000210
+    m_Key: shop.product.gold.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000211
+    m_Key: shop.product.ladder.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000212
+    m_Key: shop.product.ladder.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000213
+    m_Key: shop.product.medicines.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000214
+    m_Key: shop.product.medicines.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000215
+    m_Key: shop.product.meat.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000216
+    m_Key: shop.product.meat.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000217
+    m_Key: shop.product.oxygen-pipe.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000218
+    m_Key: shop.product.oxygen-pipe.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000219
+    m_Key: shop.product.tree.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000220
+    m_Key: shop.product.tree.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000221
+    m_Key: shop.product.vegetables.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000222
+    m_Key: shop.product.vegetables.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000223
+    m_Key: shop.product.water-pipe.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000224
+    m_Key: shop.product.water-pipe.description
+    m_Metadata:
+      m_Items: []
   - m_Id: 4000000101
     m_Key: customer.africansouthafrica.full_name
     m_Metadata:

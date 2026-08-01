@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Data.ColonyEvents;
 using _Project.Scripts.Data.Construction;
 using _Project.Scripts.Data.Offers;
+using _Project.Scripts.Data.Shop;
 using UnityEditor;
 using UnityEditor.Localization;
 using UnityEngine;
@@ -51,6 +52,7 @@ namespace _Project.Scripts.Editor
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_ru.asset", ImportAssetOptions.ForceUpdate);
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_en.asset", ImportAssetOptions.ForceUpdate);
             AddMenuEntries(collection);
+            AddShopProductEntries(collection);
             AddCustomerEntries(collection);
             AddBuildingEntries(collection);
             AddOfferEntries(collection);
@@ -187,8 +189,6 @@ namespace _Project.Scripts.Editor
 
         private static void AddCustomerEntries(StringTableCollection collection)
         {
-            StringTable russianTable = GetOrCreateTable(collection, "ru");
-            StringTable englishTable = GetOrCreateTable(collection, "en");
             string[] guids = AssetDatabase.FindAssets("t:OfferCustomerDefinition");
 
             for (int assetIndex = 0; assetIndex < guids.Length; assetIndex++)
@@ -201,20 +201,14 @@ namespace _Project.Scripts.Editor
                     continue;
                 }
 
-                EnsureEntry(englishTable, customer.FullNameLocalizationKey);
-                EnsureEntry(englishTable, customer.CompanyNameLocalizationKey);
-                EnsureEntry(englishTable, customer.CompanyDescriptionLocalizationKey);
-
-                EnsureEntry(russianTable, customer.FullNameLocalizationKey);
-                EnsureEntry(russianTable, customer.CompanyNameLocalizationKey);
-                EnsureEntry(russianTable, customer.CompanyDescriptionLocalizationKey);
+                EnsureEntryInAllTables(collection, customer.FullNameLocalizationKey);
+                EnsureEntryInAllTables(collection, customer.CompanyNameLocalizationKey);
+                EnsureEntryInAllTables(collection, customer.CompanyDescriptionLocalizationKey);
             }
         }
 
         private static void AddBuildingEntries(StringTableCollection collection)
         {
-            StringTable russianTable = GetOrCreateTable(collection, "ru");
-            StringTable englishTable = GetOrCreateTable(collection, "en");
             string[] guids = AssetDatabase.FindAssets("t:BuildingDef");
 
             for (int assetIndex = 0; assetIndex < guids.Length; assetIndex++)
@@ -227,10 +221,27 @@ namespace _Project.Scripts.Editor
                     continue;
                 }
 
-                EnsureEntry(englishTable, building.NameLocalizationKey);
-                EnsureEntry(englishTable, building.DescriptionLocalizationKey);
-                EnsureEntry(russianTable, building.NameLocalizationKey);
-                EnsureEntry(russianTable, building.DescriptionLocalizationKey);
+                EnsureEntryInAllTables(collection, building.NameLocalizationKey);
+                EnsureEntryInAllTables(collection, building.DescriptionLocalizationKey);
+            }
+        }
+
+        private static void AddShopProductEntries(StringTableCollection collection)
+        {
+            string[] guids = AssetDatabase.FindAssets("t:ShopProductDefinition");
+
+            for (int assetIndex = 0; assetIndex < guids.Length; assetIndex++)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guids[assetIndex]);
+                ShopProductDefinition product = AssetDatabase.LoadAssetAtPath<ShopProductDefinition>(assetPath);
+
+                if (product == null || string.IsNullOrWhiteSpace(product.ProductId))
+                {
+                    continue;
+                }
+
+                EnsureEntryInAllTables(collection, product.NameLocalizationKey);
+                EnsureEntryInAllTables(collection, product.DescriptionLocalizationKey);
             }
         }
 
@@ -243,9 +254,23 @@ namespace _Project.Scripts.Editor
             }
         }
 
+        private static void EnsureEntryInAllTables(StringTableCollection collection, string key)
+        {
+            foreach (Locale locale in LocalizationEditorSettings.GetLocales())
+            {
+                EnsureEntry(GetOrCreateTable(collection, locale.Identifier), key);
+            }
+        }
+
         private static StringTable GetOrCreateTable(StringTableCollection collection, string localeCode)
         {
-            LocaleIdentifier localeIdentifier = new LocaleIdentifier(localeCode);
+            return GetOrCreateTable(collection, new LocaleIdentifier(localeCode));
+        }
+
+        private static StringTable GetOrCreateTable(
+            StringTableCollection collection,
+            LocaleIdentifier localeIdentifier)
+        {
             StringTable table = collection.GetTable(localeIdentifier) as StringTable;
             return table ?? (StringTable)collection.AddNewTable(localeIdentifier);
         }
@@ -358,10 +383,7 @@ namespace _Project.Scripts.Editor
 
         private static void AddOfferKey(StringTableCollection collection, string key)
         {
-            StringTable russianTable = GetOrCreateTable(collection, "ru");
-            StringTable englishTable = GetOrCreateTable(collection, "en");
-            EnsureEntry(russianTable, key);
-            EnsureEntry(englishTable, key);
+            EnsureEntryInAllTables(collection, key);
         }
 
         /// <summary>
