@@ -42,26 +42,15 @@ namespace _Project.Scripts.Systems.Shop
             _ironRocketArrivalService = ironRocketArrivalService;
             _catalog = new List<ShopOfferDefinition>();
 
-            if (catalog == null)
-            {
-                return;
-            }
-
             for (int i = 0; i < catalog.Count; i++)
             {
-                ShopOfferDefinition definition = catalog[i];
-                if (definition != null)
-                {
-                    _catalog.Add(definition);
-                }
+                _catalog.Add(catalog[i]);
             }
         }
 
         public IReadOnlyList<ShopRuntimeEntry> AvailableEntries => _availableEntries;
         public IReadOnlyList<PendingShopOrder> PendingOrders => _pendingOrders;
-        public int Gold => _resourceInventoryService != null
-            ? _resourceInventoryService.GetAmount(ResourceInventoryService.GOLD_RESOURCE_ID)
-            : 0;
+        public int Gold => _resourceInventoryService.GetAmount(ResourceInventoryService.GOLD_RESOURCE_ID);
 
         public void Tick()
         {
@@ -144,7 +133,6 @@ namespace _Project.Scripts.Systems.Shop
                 Guid.NewGuid().ToString("N"),
                 entryKey,
                 entry.Product,
-                entry.Product.ResourceId,
                 amount,
                 entry.UnitPrice,
                 totalPrice,
@@ -184,11 +172,6 @@ namespace _Project.Scripts.Systems.Shop
 
         public int GetRemainingDeliveryDays(PendingShopOrder order)
         {
-            if (_ironRocketArrivalService == null)
-            {
-                return 0;
-            }
-
             int remainingMissions = Mathf.Max(0, order.TargetScheduledMissionIndex - _ironRocketArrivalService.ScheduledMissionIndex);
             if (remainingMissions == 0)
             {
@@ -224,10 +207,7 @@ namespace _Project.Scripts.Systems.Shop
                 {
                     // Delivery should use the product's current inventory mapping so fixed shop assets
                     // immediately affect already pending orders too.
-                    string deliveredResourceId = order.Product != null
-                        ? order.Product.ResourceId
-                        : order.ResourceId;
-                    _resourceInventoryService.Add(deliveredResourceId, order.Amount);
+                    _resourceInventoryService.Add(order.Product.ResourceId, order.Amount);
                 }
 
                 RemovePendingAmount(order.EntryKey, order.Amount);
@@ -258,7 +238,7 @@ namespace _Project.Scripts.Systems.Shop
 
         private int GetNextMissionTarget()
         {
-            return _ironRocketArrivalService != null ? _ironRocketArrivalService.ScheduledMissionIndex + 1 : 1;
+            return _ironRocketArrivalService.ScheduledMissionIndex + 1;
         }
 
         private int GetMaxSelectableAmount(string entryKey)
@@ -327,11 +307,6 @@ namespace _Project.Scripts.Systems.Shop
 
         private bool IsDefinitionEligible(ShopOfferDefinition definition)
         {
-            if (definition == null || definition.Product == null || definition.Supplier == null)
-            {
-                return false;
-            }
-
             if (definition.BaseUnitPrice < 1)
             {
                 return false;
@@ -467,8 +442,7 @@ namespace _Project.Scripts.Systems.Shop
 
         private static string BuildCollisionKey(ShopOfferDefinition definition, int currentSol)
         {
-            string supplierId = definition.Supplier != null ? definition.Supplier.name : "missing-supplier";
-            return $"{definition.Product.ProductId}_{supplierId}_{currentSol}";
+            return $"{definition.Product.ProductId}_{definition.Supplier.name}_{currentSol}";
         }
 
         private static string BuildEntryKey(ShopOfferDefinition definition, int currentSol)
@@ -510,7 +484,6 @@ namespace _Project.Scripts.Systems.Shop
             public readonly string OrderId;
             public readonly string EntryKey;
             public readonly ShopProductDefinition Product;
-            public readonly string ResourceId;
             public readonly int Amount;
             public readonly int UnitPrice;
             public readonly int TotalPrice;
@@ -521,7 +494,6 @@ namespace _Project.Scripts.Systems.Shop
                 string orderId,
                 string entryKey,
                 ShopProductDefinition product,
-                string resourceId,
                 int amount,
                 int unitPrice,
                 int totalPrice,
@@ -531,7 +503,6 @@ namespace _Project.Scripts.Systems.Shop
                 OrderId = orderId;
                 EntryKey = entryKey;
                 Product = product;
-                ResourceId = resourceId;
                 Amount = amount;
                 UnitPrice = unitPrice;
                 TotalPrice = totalPrice;

@@ -49,6 +49,7 @@ namespace _Project.Scripts.Editor
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_ru.asset", ImportAssetOptions.ForceUpdate);
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_en.asset", ImportAssetOptions.ForceUpdate);
             AddMenuEntries(collection);
+            AddCustomerEntries(collection);
             AddOfferEntries(collection);
             AddColonyEventEntries(collection);
 
@@ -159,33 +160,6 @@ namespace _Project.Scripts.Editor
                 { "shop.no.products", ("Нет доступных товаров.", "No products available.") },
                 { "shop.no.filtered.products", ("Нет товаров в выбранной категории.", "No products for selected category.") },
                 { "shop.no.orders", ("Нет активных заказов.", "No active orders.") },
-                { "customer.africansouthafrica.full_name", ("Тхабо Ндлову", "Thabo Ndlovu") },
-                { "customer.africansouthafrica.company_name", ("Cape Horizon Trading", "Cape Horizon Trading") },
-                { "customer.africansouthafrica.company_description", ("Региональный оптовый покупатель, работающий с розничными поставками, товарами для дома и практичными ресурсами колонии.", "Regional wholesale buyer focused on retail distribution, household goods, and practical colony supplies.") },
-                { "customer.china.full_name", ("Вэй Чжан", "Wei Zhang") },
-                { "customer.china.company_name", ("Jade River Imports", "Jade River Imports") },
-                { "customer.china.company_description", ("Крупный импортёр потребительских товаров.", "Large-scale import manager specializing in consumer products.") },
-                { "customer.ethiopian.full_name", ("Давит Бекеле", "Dawit Bekele") },
-                { "customer.ethiopian.company_name", ("Abyssinia Coffee Partners", "Abyssinia Coffee Partners") },
-                { "customer.ethiopian.company_description", ("Опытный торговый партнёр, работающий с сельскохозяйственными товарами.", "Experienced trade customer working with agricultural goods.") },
-                { "customer.france.full_name", ("Господин Макрон", "Mr Macron") },
-                { "customer.france.company_name", ("Лунная бюрократия Франции", "French Lunar Bureaucracy") },
-                { "customer.france.company_description", ("Лунное ведомство предпочитает документы каждой поставке.", "A lunar bureaucracy that prefers paperwork before every shipment.") },
-                { "customer.india.full_name", ("Арджун Патель", "Arjun Patel") },
-                { "customer.india.company_name", ("Lotus Bridge Exports", "Lotus Bridge Exports") },
-                { "customer.india.company_description", ("Коммерческий партнёр, заинтересованный в крупных заказах.", "Growth-oriented commercial partner interested in bulk orders.") },
-                { "customer.mexico.full_name", ("София Рамирес", "Sofia Ramirez") },
-                { "customer.mexico.company_name", ("Sol Norte Distribution", "Sol Norte Distribution") },
-                { "customer.mexico.company_description", ("Покупатель, занимающийся поставками для городской торговли.", "Distribution-focused buyer serving urban retail channels.") },
-                { "customer.navajo.full_name", ("Кай Бегей", "Kai Begay") },
-                { "customer.navajo.company_name", ("Red Mesa Artisan Cooperative", "Red Mesa Artisan Cooperative") },
-                { "customer.navajo.company_description", ("Представитель сообщества, выступающий за честную торговлю.", "Community-centered business representative focused on authentic trade.") },
-                { "customer.spacex.full_name", ("Илон Мускович", "Elon Muskovich") },
-                { "customer.spacex.company_name", ("Глава NASA", "NASA Chief") },
-                { "customer.spacex.company_description", ("Запускает ракеты раньше сроков и опережает панику. Любит, когда план работает, даже если меняется каждые десять минут.", "Launches rockets ahead of schedule and deadlines ahead of panic. Loves when everything follows the plan, even if the plan changes every ten minutes.") },
-                { "customer.usa.full_name", ("Господин Дональд", "Mr Donald") },
-                { "customer.usa.company_name", ("Американский бизнесмен", "American businessman") },
-                { "customer.usa.company_description", ("Компания, которая закончила пятьдесят войн.", "The Company That Ended 50 Wars") }
             };
 
             foreach (KeyValuePair<string, (string Russian, string English)> entry in entries)
@@ -198,6 +172,41 @@ namespace _Project.Scripts.Editor
 
             foreach (StringTable table in collection.StringTables)
             {
+                EditorUtility.SetDirty(table);
+            }
+        }
+
+        private static void AddCustomerEntries(StringTableCollection collection)
+        {
+            StringTable russianTable = GetOrCreateTable(collection, "ru");
+            StringTable englishTable = GetOrCreateTable(collection, "en");
+            string[] guids = AssetDatabase.FindAssets("t:OfferCustomerDefinition");
+
+            for (int assetIndex = 0; assetIndex < guids.Length; assetIndex++)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guids[assetIndex]);
+                OfferCustomerDefinition customer = AssetDatabase.LoadAssetAtPath<OfferCustomerDefinition>(assetPath);
+
+                if (customer == null)
+                {
+                    continue;
+                }
+
+                EnsureEntry(englishTable, customer.FullNameLocalizationKey);
+                EnsureEntry(englishTable, customer.CompanyNameLocalizationKey);
+                EnsureEntry(englishTable, customer.CompanyDescriptionLocalizationKey);
+
+                EnsureEntry(russianTable, customer.FullNameLocalizationKey);
+                EnsureEntry(russianTable, customer.CompanyNameLocalizationKey);
+                EnsureEntry(russianTable, customer.CompanyDescriptionLocalizationKey);
+            }
+        }
+
+        private static void EnsureEntry(StringTable table, string key)
+        {
+            if (table.GetEntry(key) == null)
+            {
+                table.AddEntry(key, string.Empty);
                 EditorUtility.SetDirty(table);
             }
         }

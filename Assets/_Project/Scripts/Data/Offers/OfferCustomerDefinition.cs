@@ -1,50 +1,78 @@
 using UnityEngine;
 using UnityEngine.Localization;
+using _Project.Scripts.Data.Localization;
 
 namespace _Project.Scripts.Data.Offers
 {
     /// <summary>
     /// Заказчик офферов: профиль, компания и набор портретов по уровню репутации.
     /// </summary>
+    /// <remarks>
+    /// Generic custom Inspector: <c>LocalizationConfigEditor</c> in
+    /// Assets/_Project/Scripts/Editor/LocalizationConfigEditors.cs.
+    /// Localization dropdowns: <c>LocalizationConfigEditorUtility</c> in
+    /// Assets/_Project/Scripts/Editor/LocalizationConfigEditorUtility.cs.
+    /// </remarks>
+    [LocalizationNamespace("customer", nameof(OfferCustomerDefinition.LocalizationId))]
     [CreateAssetMenu(menuName = "Artemis/Offers/Customer Definition", fileName = "OfferCustomerDefinition")]
-    public sealed class OfferCustomerDefinition : ScriptableObject
+    public sealed class OfferCustomerDefinition : BaseLocalizedConfigDefinition
     {
         [Header("Identity")]
-        public string FirstName;
-        public string LastName;
-        public string CompanyName;
-        [TextArea] public string CompanyDescription;
+        [Tooltip("Stable ID used in customer localization keys. Do not change after translations are added.")]
+        [LocalizationId("Customer Id")]
+        [HideInInspector] public string CustomerId;
+
         public string OfferAffinityTag;
+
+        [LocalizationKey("First Name + Last Name", OfferCustomerLocalizationKeys.FullNameSuffix)]
+        [SerializeField, HideInInspector]
+        private string _fullNameLocalizationKey = OfferCustomerLocalizationKeys.FullNameSuffix;
+
+        [LocalizationKey("Company Name", OfferCustomerLocalizationKeys.CompanyNameSuffix)]
+        [SerializeField, HideInInspector]
+        private string _companyNameLocalizationKey = OfferCustomerLocalizationKeys.CompanyNameSuffix;
+
+        [LocalizationKey("Company Description", OfferCustomerLocalizationKeys.CompanyDescriptionSuffix)]
+        [SerializeField, HideInInspector] private string _companyDescriptionLocalizationKey =
+            OfferCustomerLocalizationKeys.CompanyDescriptionSuffix;
 
         [Header("Portraits By Reputation")]
         public Sprite KindPortrait;
+
         public Sprite NeutralPortrait;
         public Sprite AngryPortrait;
         public Sprite VeryAngryPortrait;
 
-        public string FullName => $"{FirstName} {LastName}".Trim();
+        /// <summary>Возвращает стабильный идентификатор профиля для ключей таблицы локализации.</summary>
+        public string LocalizationId => CustomerId.ToLowerInvariant();
 
-        /// <summary>
-        /// Возвращает стабильный идентификатор профиля для ключей таблицы локализации.
-        /// </summary>
-        public string LocalizationId => name.Replace("OfferCustomerDefinition", string.Empty).ToLowerInvariant();
+        public string FullNameLocalizationKey => GetLocalizationKey(_fullNameLocalizationKey);
+
+        public string CompanyNameLocalizationKey => GetLocalizationKey(_companyNameLocalizationKey);
+
+        public string CompanyDescriptionLocalizationKey => GetLocalizationKey(_companyDescriptionLocalizationKey);
 
         /// <summary>Возвращает локализованное полное имя заказчика.</summary>
         public LocalizedString GetLocalizedFullName()
         {
-            return new LocalizedString("UI", $"customer.{LocalizationId}.full_name");
+            return OfferCustomerLocalizationKeys.Localized(FullNameLocalizationKey);
         }
 
         /// <summary>Возвращает локализованное название компании.</summary>
         public LocalizedString GetLocalizedCompanyName()
         {
-            return new LocalizedString("UI", $"customer.{LocalizationId}.company_name");
+            return OfferCustomerLocalizationKeys.Localized(CompanyNameLocalizationKey);
         }
 
         /// <summary>Возвращает локализованное описание компании.</summary>
         public LocalizedString GetLocalizedCompanyDescription()
         {
-            return new LocalizedString("UI", $"customer.{LocalizationId}.company_description");
+            return OfferCustomerLocalizationKeys.Localized(CompanyDescriptionLocalizationKey);
+        }
+
+        private string GetLocalizationKey(string suffix)
+        {
+            return OfferCustomerLocalizationKeys.Key(LocalizationId, suffix);
         }
     }
 }

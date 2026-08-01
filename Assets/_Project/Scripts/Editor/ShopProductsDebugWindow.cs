@@ -79,7 +79,7 @@ namespace _Project.Scripts.Editor
                     continue;
                 }
 
-                string supplierName = definition.Supplier != null ? definition.Supplier.CompanyName : "<missing>";
+                string supplierName = definition.Supplier != null ? definition.Supplier.LocalizationId : "<missing>";
 
                 using (new EditorGUILayout.HorizontalScope(EditorStyles.textArea))
                 {
@@ -163,8 +163,8 @@ namespace _Project.Scripts.Editor
             }
 
             if (definition.Supplier != null
-                && !string.IsNullOrWhiteSpace(definition.Supplier.CompanyName)
-                && definition.Supplier.CompanyName.ToLowerInvariant().Contains(needle))
+                && !string.IsNullOrWhiteSpace(definition.Supplier.LocalizationId)
+                && definition.Supplier.LocalizationId.ToLowerInvariant().Contains(needle))
             {
                 return true;
             }

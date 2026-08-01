@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.Localization;
+using _Project.Scripts.Data.Localization;
 
 namespace _Project.Scripts.Data.Offers
 {
     /// <summary>
     /// Шаблон оффера: условия появления, требования выполнения, награды и штрафы репутации.
     /// </summary>
+    [LocalizationNamespace("offer", nameof(OfferDefinition.OfferId))]
     [CreateAssetMenu(menuName = "Artemis/Offers/Offer Definition", fileName = "OfferDefinition")]
-    public sealed class OfferDefinition : ScriptableObject
+    public sealed class OfferDefinition : BaseLocalizedConfigDefinition
     {
         [Header("Identity")]
-        public string OfferId = "offer-id";
+        [LocalizationId("Offer Id")]
+        [HideInInspector] public string OfferId = "offer-id";
         public OfferCustomerDefinition Customer;
         public string Title;
         [TextArea] public string Description;

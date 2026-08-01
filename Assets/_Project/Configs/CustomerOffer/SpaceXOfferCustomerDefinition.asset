@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829fb78073e4dd19595dd7b60f15bfc, type: 3}
   m_Name: SpaceXOfferCustomerDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferCustomerDefinition
-  FirstName: Elon
-  LastName: Muskovich
-  CompanyName: NASA Chief
-  CompanyDescription: Launches rockets ahead of schedule and deadlines ahead of panic.
-    Loves when everything follows the plan, even if the plan changes every ten minutes
+  CustomerId: spacex
   OfferAffinityTag: Aerospace
+  _fullNameLocalizationKey: full_name
+  _companyNameLocalizationKey: company_name
+  _companyDescriptionLocalizationKey: company_description
   KindPortrait: {fileID: 21300000, guid: 22c025ed6d96ffc4799998544ecd6681, type: 3}
   NeutralPortrait: {fileID: 21300000, guid: 22c025ed6d96ffc4799998544ecd6681, type: 3}
   AngryPortrait: {fileID: 21300000, guid: 22c025ed6d96ffc4799998544ecd6681, type: 3}

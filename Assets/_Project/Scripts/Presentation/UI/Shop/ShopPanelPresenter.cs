@@ -1,5 +1,5 @@
+using System;
 using _Project.Scripts.Data.Shop;
-using _Project.Scripts.Presentation.UI;
 using _Project.Scripts.Systems.Shop;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -10,7 +10,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
     /// <summary>
     /// Shop UI presenter: open/close panel, category filter, order toggle, and order actions.
     /// </summary>
-    public sealed class ShopPanelPresenter : System.IDisposable
+    public sealed class ShopPanelPresenter : IDisposable
     {
         public const string WINDOW_ID = "Shop";
 
@@ -53,45 +53,31 @@ namespace _Project.Scripts.Presentation.UI.Shop
             _root = root;
             _shopSystemService = shopSystemService;
             _hudWindowCoordinator = hudWindowCoordinator;
-            _openButton = root?.Q<Button>("shop-open-btn");
+            _openButton = _root.Q<Button>("shop-open-btn");
             _panelTemplate = Resources.Load<VisualTreeAsset>(PANEL_TEMPLATE_PATH);
             _rowTemplate = Resources.Load<VisualTreeAsset>(ROW_TEMPLATE_PATH);
 
-            _openButton?.RegisterCallback<ClickEvent>(OnOpenClicked);
+            _openButton.RegisterCallback<ClickEvent>(OnOpenClicked);
             EnsurePanelReady();
             _goldLabelString.StringChanged += OnGoldLabelChanged;
-
-            if (_shopSystemService != null)
-            {
-                _shopSystemService.StateChanged += OnShopStateChanged;
-            }
-
-            _hudWindowCoordinator?.Register(WINDOW_ID, ClosePanel);
+            _shopSystemService.StateChanged += OnShopStateChanged;
+            _hudWindowCoordinator.Register(WINDOW_ID, ClosePanel);
             Render();
         }
 
         public void Dispose()
         {
-            _hudWindowCoordinator?.SetBlockingWindowOpen(WINDOW_ID, false);
-            _openButton?.UnregisterCallback<ClickEvent>(OnOpenClicked);
-            _closeButton?.UnregisterCallback<ClickEvent>(OnCloseClicked);
+            _hudWindowCoordinator.SetBlockingWindowOpen(WINDOW_ID, false);
+            _openButton.UnregisterCallback<ClickEvent>(OnOpenClicked);
+            _closeButton.UnregisterCallback<ClickEvent>(OnCloseClicked);
             UnbindOrdersButton();
             UnbindFilterButtons();
             _goldLabelString.StringChanged -= OnGoldLabelChanged;
-
-            if (_shopSystemService != null)
-            {
-                _shopSystemService.StateChanged -= OnShopStateChanged;
-            }
+            _shopSystemService.StateChanged -= OnShopStateChanged;
         }
 
         public void Render()
         {
-            if (_rowsContainer == null)
-            {
-                return;
-            }
-
             _rowsContainer.Clear();
             UpdateViewStates();
             RefreshGoldLabel();
@@ -107,7 +93,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
         private void RenderCatalog()
         {
-            if (_shopSystemService == null || _shopSystemService.AvailableEntries.Count == 0)
+            if (_shopSystemService.AvailableEntries.Count == 0)
             {
                 _rowsContainer.Add(CreateLocalizedLabel("shop.no.products", "shop-empty-row"));
                 return;
@@ -139,7 +125,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
         private void RenderOrders()
         {
-            if (_shopSystemService == null || _shopSystemService.PendingOrders.Count == 0)
+            if (_shopSystemService.PendingOrders.Count == 0)
             {
                 _rowsContainer.Add(CreateLocalizedLabel("shop.no.orders", "shop-empty-row"));
                 return;
@@ -158,7 +144,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
         private VisualElement BuildProductRow(ShopSystemService.ShopRuntimeEntry entry)
         {
-            var row = _rowTemplate != null ? _rowTemplate.Instantiate() : new VisualElement();
+            VisualElement row = _rowTemplate.Instantiate();
             row.AddToClassList(GetRowTypeClass(entry.Product.Category));
 
             string entryKey = entry.EntryKey;
@@ -168,50 +154,39 @@ namespace _Project.Scripts.Presentation.UI.Shop
             int visibleRemainingCapacity = Mathf.Max(0, remainingOrderCapacity - selectedAmount);
             int totalPrice = selectedAmount * entry.UnitPrice;
 
-            var productName = row.Q<Label>("shop-row-product-name");
-            if (productName != null)
-            {
-                productName.text = entry.Product.ProductName;
-                productName.tooltip = entry.Product.Description;
-            }
+            Label productName = row.Q<Label>("shop-row-product-name");
+            productName.text = entry.Product.ProductName;
+            productName.tooltip = entry.Product.Description;
 
-            SetLabelText(row, "shop-row-supplier", entry.Supplier != null ? entry.Supplier.CompanyName : "<missing>");
+            Label supplierLabel = row.Q<Label>("shop-row-supplier");
+            supplierLabel.SetBinding("text", entry.Supplier.GetLocalizedCompanyName());
             SetLabelText(row, "shop-row-selected-value", selectedAmount.ToString());
             SetLabelText(row, "shop-row-max", $"{visibleRemainingCapacity}/{entry.MaxPurchaseAmount}");
             SetLabelText(row, "shop-row-unit-price", entry.UnitPrice.ToString());
             SetLabelText(row, "shop-row-total-price", totalPrice.ToString());
 
-            var minusButton = row.Q<Button>("shop-row-minus");
-            if (minusButton != null)
+            Button minusButton = row.Q<Button>("shop-row-minus");
+            minusButton.clicked += () =>
             {
-                minusButton.clicked += () =>
-                {
-                    _shopSystemService.ChangeSelectedAmount(entryKey, -1);
-                    Render();
-                };
-            }
+                _shopSystemService.ChangeSelectedAmount(entryKey, -1);
+                Render();
+            };
 
-            var plusButton = row.Q<Button>("shop-row-plus");
-            if (plusButton != null)
+            Button plusButton = row.Q<Button>("shop-row-plus");
+            plusButton.SetEnabled(visibleRemainingCapacity > 0);
+            plusButton.clicked += () =>
             {
-                plusButton.SetEnabled(visibleRemainingCapacity > 0);
-                plusButton.clicked += () =>
-                {
-                    _shopSystemService.ChangeSelectedAmount(entryKey, 1);
-                    Render();
-                };
-            }
+                _shopSystemService.ChangeSelectedAmount(entryKey, 1);
+                Render();
+            };
 
-            var orderButton = row.Q<Button>("shop-row-order");
-            if (orderButton != null)
+            Button orderButton = row.Q<Button>("shop-row-order");
+            orderButton.SetEnabled(selectedAmount > 0 && visibleRemainingCapacity < remainingOrderCapacity);
+            orderButton.clicked += () =>
             {
-                orderButton.SetEnabled(selectedAmount > 0 && visibleRemainingCapacity < remainingOrderCapacity);
-                orderButton.clicked += () =>
-                {
-                    _shopSystemService.PlaceOrder(entryKey);
-                    Render();
-                };
-            }
+                _shopSystemService.PlaceOrder(entryKey);
+                Render();
+            };
 
             return row;
         }
@@ -226,12 +201,9 @@ namespace _Project.Scripts.Presentation.UI.Shop
             productCell.AddToClassList("shop-table-cell");
             productCell.AddToClassList("shop-col-product");
 
-            var productName = new Label(order.Product != null ? order.Product.ProductName : "<missing>");
+            Label productName = new Label(order.Product.ProductName);
             productName.AddToClassList("shop-product-name");
-            if (order.Product != null)
-            {
-                productName.tooltip = order.Product.Description;
-            }
+            productName.tooltip = order.Product.Description;
 
             productCell.Add(productName);
             row.Add(productCell);
@@ -267,11 +239,7 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
         private static void SetLabelText(VisualElement row, string name, string value)
         {
-            var label = row.Q<Label>(name);
-            if (label != null)
-            {
-                label.text = value;
-            }
+            row.Q<Label>(name).text = value;
         }
 
         private static string GetRowTypeClass(ShopProductCategory category)
@@ -292,16 +260,11 @@ namespace _Project.Scripts.Presentation.UI.Shop
         private void OnOpenClicked(ClickEvent _)
         {
             EnsurePanelReady();
-            if (_panel == null)
-            {
-                return;
-            }
-
             _activeViewMode = ShopViewMode.Catalog;
             _activeFilterCategory = null;
-            _hudWindowCoordinator?.CloseAll(WINDOW_ID);
+            _hudWindowCoordinator.CloseAll(WINDOW_ID);
             _panel.style.display = DisplayStyle.Flex;
-            _hudWindowCoordinator?.SetBlockingWindowOpen(WINDOW_ID, true);
+            _hudWindowCoordinator.SetBlockingWindowOpen(WINDOW_ID, true);
             Render();
         }
 
@@ -363,21 +326,13 @@ namespace _Project.Scripts.Presentation.UI.Shop
             BindPanelElements();
             BindOrdersButton();
             BindFilterButtons();
-            if (_panel != null)
-            {
-                _panel.style.display = DisplayStyle.None;
-            }
+            _panel.style.display = DisplayStyle.None;
 
-            _closeButton?.RegisterCallback<ClickEvent>(OnCloseClicked);
+            _closeButton.RegisterCallback<ClickEvent>(OnCloseClicked);
         }
 
         private void BindPanelElements()
         {
-            if (_panel == null)
-            {
-                return;
-            }
-
             _closeButton = _panel.Q<Button>("shop-close-btn");
             _goldLabel = _panel.Q<Label>("shop-gold-label");
             _ordersTabButton = _panel.Q<Button>("shop-tab-orders");
@@ -392,77 +347,58 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
         private void BindOrdersButton()
         {
-            _ordersTabButton?.RegisterCallback<ClickEvent>(OnOrdersTabClicked);
+            _ordersTabButton.RegisterCallback<ClickEvent>(OnOrdersTabClicked);
         }
 
         private void BindFilterButtons()
         {
-            _filterAllButton?.RegisterCallback<ClickEvent>(OnFilterAllClicked);
-            _filterFoodButton?.RegisterCallback<ClickEvent>(OnFilterFoodClicked);
-            _filterEquipmentButton?.RegisterCallback<ClickEvent>(OnFilterEquipmentClicked);
-            _filterPersonnelButton?.RegisterCallback<ClickEvent>(OnFilterPersonnelClicked);
+            _filterAllButton.RegisterCallback<ClickEvent>(OnFilterAllClicked);
+            _filterFoodButton.RegisterCallback<ClickEvent>(OnFilterFoodClicked);
+            _filterEquipmentButton.RegisterCallback<ClickEvent>(OnFilterEquipmentClicked);
+            _filterPersonnelButton.RegisterCallback<ClickEvent>(OnFilterPersonnelClicked);
         }
 
         private void UnbindOrdersButton()
         {
-            _ordersTabButton?.UnregisterCallback<ClickEvent>(OnOrdersTabClicked);
+            _ordersTabButton.UnregisterCallback<ClickEvent>(OnOrdersTabClicked);
         }
 
         private void UnbindFilterButtons()
         {
-            _filterAllButton?.UnregisterCallback<ClickEvent>(OnFilterAllClicked);
-            _filterFoodButton?.UnregisterCallback<ClickEvent>(OnFilterFoodClicked);
-            _filterEquipmentButton?.UnregisterCallback<ClickEvent>(OnFilterEquipmentClicked);
-            _filterPersonnelButton?.UnregisterCallback<ClickEvent>(OnFilterPersonnelClicked);
+            _filterAllButton.UnregisterCallback<ClickEvent>(OnFilterAllClicked);
+            _filterFoodButton.UnregisterCallback<ClickEvent>(OnFilterFoodClicked);
+            _filterEquipmentButton.UnregisterCallback<ClickEvent>(OnFilterEquipmentClicked);
+            _filterPersonnelButton.UnregisterCallback<ClickEvent>(OnFilterPersonnelClicked);
         }
 
         private void RefreshGoldLabel()
         {
-            if (_goldLabel == null)
-            {
-                return;
-            }
-
             // Header gold mirrors runtime balance so price changes are visible while shopping.
-            _goldLabelString.Arguments = new object[] { _shopSystemService != null ? _shopSystemService.Gold : 0 };
+            _goldLabelString.Arguments = new object[] { _shopSystemService.Gold };
             _goldLabelString.RefreshString();
         }
 
         private void UpdateViewStates()
         {
             bool isCatalog = _activeViewMode == ShopViewMode.Catalog;
-            if (_filterRow != null)
-            {
-                _filterRow.style.display = DisplayStyle.Flex;
-            }
-
-            if (_tableHeader != null)
-            {
-                _tableHeader.Clear();
-                PopulateTableHeader(_tableHeader, isCatalog);
-            }
+            _filterRow.style.display = DisplayStyle.Flex;
+            _tableHeader.Clear();
+            PopulateTableHeader(_tableHeader, isCatalog);
 
             SetTabButtonState(_ordersTabButton, !isCatalog, true);
             SetFilterButtonState(_filterAllButton, !_activeFilterCategory.HasValue);
             SetFilterButtonState(_filterFoodButton, _activeFilterCategory == ShopProductCategory.Food);
             SetFilterButtonState(_filterEquipmentButton, _activeFilterCategory == ShopProductCategory.Equipment);
             SetFilterButtonState(_filterPersonnelButton, _activeFilterCategory == ShopProductCategory.Personnel);
-            if (_ordersTabButton != null)
-            {
-                _ordersTabButton.SetBinding(
-                    "text",
-                    new LocalizedString("UI", isCatalog ? "shop.orders" : "shop.catalog"));
-            }
+            _ordersTabButton.SetBinding(
+                "text",
+                new LocalizedString("UI", isCatalog ? "shop.orders" : "shop.catalog"));
         }
 
         private void ClosePanel()
         {
-            if (_panel != null)
-            {
-                _panel.style.display = DisplayStyle.None;
-            }
-
-            _hudWindowCoordinator?.SetBlockingWindowOpen(WINDOW_ID, false);
+            _panel.style.display = DisplayStyle.None;
+            _hudWindowCoordinator.SetBlockingWindowOpen(WINDOW_ID, false);
         }
 
         private static void PopulateTableHeader(VisualElement header, bool isCatalog)
@@ -504,30 +440,17 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
         private void OnGoldLabelChanged(string text)
         {
-            if (_goldLabel != null)
-            {
-                _goldLabel.text = text;
-            }
+            _goldLabel.text = text;
         }
 
         private static void SetFilterButtonState(Button button, bool isActive)
         {
-            if (button == null)
-            {
-                return;
-            }
-
             const string activeClass = "shop-filter-btn-active";
             button.EnableInClassList(activeClass, isActive);
         }
 
         private static void SetTabButtonState(Button button, bool isActive, bool isOrdersTab)
         {
-            if (button == null)
-            {
-                return;
-            }
-
             const string activeCatalogClass = "shop-tab-btn-active";
             const string activeOrdersClass = "shop-tab-btn-orders-active";
             button.EnableInClassList(activeCatalogClass, isActive && !isOrdersTab);
@@ -536,32 +459,19 @@ namespace _Project.Scripts.Presentation.UI.Shop
 
         private VisualElement EnsurePanelCreated(VisualElement root)
         {
-            if (root == null)
-            {
-                return null;
-            }
-
             VisualElement existingPanel = root.Q<VisualElement>("shop-panel");
             if (existingPanel != null)
             {
                 return existingPanel;
             }
 
-            if (_panelTemplate == null)
-            {
-                return null;
-            }
-
             VisualElement panelTree = _panelTemplate.Instantiate();
             VisualElement instantiatedPanel = panelTree.Q<VisualElement>("shop-panel");
-            if (instantiatedPanel == null)
-            {
-                return null;
-            }
 
             instantiatedPanel.RemoveFromHierarchy();
             root.Add(instantiatedPanel);
             return instantiatedPanel;
         }
+
     }
 }

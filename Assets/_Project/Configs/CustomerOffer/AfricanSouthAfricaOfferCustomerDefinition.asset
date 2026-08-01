@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829fb78073e4dd19595dd7b60f15bfc, type: 3}
   m_Name: AfricanSouthAfricaOfferCustomerDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferCustomerDefinition
-  FirstName: Thabo
-  LastName: Ndlovu
-  CompanyName: Cape Horizon Trading
-  CompanyDescription: Regional wholesale buyer focused on retail distribution, household
-    goods, and long-term supply contracts across South Africa.
+  CustomerId: africansouthafrica
   OfferAffinityTag: IndustryAfricanSouthAfrica
+  _fullNameLocalizationKey: full_name
+  _companyNameLocalizationKey: company_name
+  _companyDescriptionLocalizationKey: company_description
   KindPortrait: {fileID: 21300000, guid: ea1ea704f778d164ab81215ad4437ce5, type: 3}
   NeutralPortrait: {fileID: 21300000, guid: ea1ea704f778d164ab81215ad4437ce5, type: 3}
   AngryPortrait: {fileID: 21300000, guid: ea1ea704f778d164ab81215ad4437ce5, type: 3}
