@@ -292,7 +292,6 @@ namespace _Project.Scripts.Systems.Offers.Runtime
                     {
                         ObjectiveId = $"legacy-{i}",
                         ObjectiveType = OfferObjectiveType.DeliverResource,
-                        Description = $"{requirement.Amount} {requirement.ResourceId}",
                         ResourceId = requirement.ResourceId,
                         RequiredAmount = requirement.Amount
                     },
@@ -306,9 +305,7 @@ namespace _Project.Scripts.Systems.Offers.Runtime
             {
                 Stage = new OfferStageDefinition
                 {
-                    StageId = "legacy",
-                    Title = "Shipment",
-                    Description = record.Definition.Description
+                    StageId = "legacy"
                 },
                 StageIndex = 0,
                 TotalStages = 1,

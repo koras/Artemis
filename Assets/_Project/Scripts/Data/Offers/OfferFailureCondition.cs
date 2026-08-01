@@ -1,4 +1,6 @@
 using System;
+using _Project.Scripts.Data.Localization;
+using UnityEngine;
 
 namespace _Project.Scripts.Data.Offers
 {
@@ -6,7 +8,11 @@ namespace _Project.Scripts.Data.Offers
     public sealed class OfferFailureCondition
     {
         public string ConditionId;
-        public string Description;
+
+        [LocalizationKey("Description", "description")]
+        [SerializeField]
+        private string _descriptionLocalizationKey = "description";
+
         public OfferObjectiveDefinition Objective = new OfferObjectiveDefinition();
         public bool FailWhenObjectiveIncomplete = true;
     }

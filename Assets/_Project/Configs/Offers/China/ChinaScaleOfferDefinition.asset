@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-china-01
   Customer: {fileID: 11400000, guid: c1b1597e98231e44784c5c43d272e33b, type: 2}
-  Title: "Industrial Scale Trial"
-  Description: "Chinese buyers want proof that the moon base can move raw material in bulk, not just in curated science lots."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: IndustryChina
-  IntroMessage: "The request is blunt: scale matters more than elegance."
-  AcceptMessage: "Fill the stockpile and send the first heavy batch."
-  CompleteMessage: "The industrial desk approved a larger expansion package."
-  FailMessage: "The batch never reached the scale benchmark."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 120
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: china-stock
-    Title: "Bulk Extraction"
-    Description: "Pull enough titan to make the industrial buyers take the base seriously."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: china-stock-titan
       ObjectiveType: 2
-      Description: "Accumulate 20 Titan."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 20
       BuildObjectType: 0
@@ -56,12 +56,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: china-ship
-    Title: "Heavy Shipment"
-    Description: "Reserve the titan and wait for the next mission arrival."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: china-ship-titan
       ObjectiveType: 1
-      Description: "Reserve 20 Titan for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 20
       BuildObjectType: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: china-ship-mission
       ObjectiveType: 8
-      Description: "Wait for the next mission arrival."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

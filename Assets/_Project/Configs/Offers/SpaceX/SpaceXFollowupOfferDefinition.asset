@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-spacex-02
   Customer: {fileID: 11400000, guid: 3702a689729f2424c804cfb01113b103, type: 2}
-  Title: "Orbital Guest Corridor"
-  Description: "Now SpaceX wants the base to look like a real transfer stop, not a mining camp with a lucky launch pad."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: Aerospace
-  IntroMessage: "Commercial planners are testing whether your base can host transit traffic."
-  AcceptMessage: "Expand the guest corridor and make it inspection-safe."
-  CompleteMessage: "The corridor passed SpaceX review and unlocked the tourism pilot."
-  FailMessage: "The corridor looked temporary and under-serviced."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 900
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: spacex-corridor-build
-    Title: "Orbital Expansion"
-    Description: "Add storage and a wider habitat spine for transfer crews."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: spacex-corridor-storage
       ObjectiveType: 3
-      Description: "Build 2 Storage buildings."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 5
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: spacex-corridor-life
       ObjectiveType: 5
-      Description: "Reach life-module width 10."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: spacex-corridor-vip
-    Title: "VIP Corridor"
-    Description: "Add sleeping capacity and pass the commercial readiness review."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: spacex-corridor-sleep
       ObjectiveType: 3
-      Description: "Build 2 Sleep Modules."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 9
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: spacex-corridor-pass
       ObjectiveType: 10
-      Description: "Pass the corridor inspection."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

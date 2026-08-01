@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace _Project.Scripts.Data.Localization
 {
@@ -21,15 +22,31 @@ namespace _Project.Scripts.Data.Localization
     /// Marks a serialized suffix field for generic localization key selection.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public sealed class LocalizationKeyAttribute : Attribute
+    public sealed class LocalizationKeyAttribute : PropertyAttribute
     {
         public string Label { get; }
         public string DefaultSuffix { get; }
+        public string DisplayLabel => $"{Label} (Localization Key)";
 
         public LocalizationKeyAttribute(string label, string defaultSuffix)
         {
             Label = label;
             DefaultSuffix = defaultSuffix;
+        }
+    }
+
+    /// <summary>
+    /// Marks a serialized collection as a localization key path segment.
+    /// The editor adds segment and collection index to the parent localization scope.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public sealed class LocalizationCollectionAttribute : Attribute
+    {
+        public string Segment { get; }
+
+        public LocalizationCollectionAttribute(string segment)
+        {
+            Segment = segment;
         }
     }
 }

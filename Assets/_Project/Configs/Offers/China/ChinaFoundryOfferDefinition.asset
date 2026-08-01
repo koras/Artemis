@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-china-02
   Customer: {fileID: 11400000, guid: c1b1597e98231e44784c5c43d272e33b, type: 2}
-  Title: "Second Production Line"
-  Description: "With bulk extraction proven, the next demand is a tougher one: add a second processing backbone and keep it stable under load."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: IndustryChina
-  IntroMessage: "This is the point where scale turns into systems engineering."
-  AcceptMessage: "Build the line, store the output, and hold power steady."
-  CompleteMessage: "The second line held and moved the program into audit phase."
-  FailMessage: "The line buckled before it could be trusted."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 960
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: china-line-build
-    Title: "Second Line"
-    Description: "Add a new regolith processor and enough storage to feed it."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: china-line-proc
       ObjectiveType: 3
-      Description: "Build 1 Regolith Processing Unit."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 7
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: china-line-storage
       ObjectiveType: 3
-      Description: "Build 2 Storage buildings."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 5
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: china-line-stable
-    Title: "Stable Throughput"
-    Description: "Hold both power and production in an operational state for 1 sol."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: china-line-battery
       ObjectiveType: 6
-      Description: "Maintain 1 operational Electric Battery for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 8
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: china-line-oper
       ObjectiveType: 6
-      Description: "Maintain 1 operational Regolith Processing Unit for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 7

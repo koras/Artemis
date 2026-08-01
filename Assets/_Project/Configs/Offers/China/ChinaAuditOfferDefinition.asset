@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-china-03
   Customer: {fileID: 11400000, guid: c1b1597e98231e44784c5c43d272e33b, type: 2}
-  Title: "Efficiency Audit"
-  Description: "The final Chinese step is managerial: keep capital visible, widen the colony, and survive a hard efficiency audit."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 2
   OfferAffinityTag: IndustryChina
-  IntroMessage: "The audit team does not care about your excuses, only your ratios."
-  AcceptMessage: "Prepare the colony for a cold efficiency review."
-  CompleteMessage: "The audit cleared the colony for industrial expansion."
-  FailMessage: "The review found too much slack in the system."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1800
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: china-audit-buffer
-    Title: "Efficiency Buffer"
-    Description: "Keep enough gold on hand and widen the habitat spine."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: china-audit-gold
       ObjectiveType: 7
-      Description: "Reach 250 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 250
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: china-audit-life
       ObjectiveType: 5
-      Description: "Reach life-module width 8."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: china-audit-pass
-    Title: "Throughput Audit"
-    Description: "Receive the review team and pass the final audit."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: china-audit-pass
       ObjectiveType: 10
-      Description: "Pass the efficiency audit."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

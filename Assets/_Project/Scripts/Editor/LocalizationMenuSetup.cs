@@ -280,12 +280,12 @@ namespace _Project.Scripts.Editor
 
                 addedOfferAssets++;
 
-                AddOfferEntry(collection, definition.OfferId, "title", definition.Title);
-                AddOfferEntry(collection, definition.OfferId, "description", definition.Description);
-                AddOfferEntry(collection, definition.OfferId, "intro", definition.IntroMessage);
-                AddOfferEntry(collection, definition.OfferId, "accept", definition.AcceptMessage);
-                AddOfferEntry(collection, definition.OfferId, "complete", definition.CompleteMessage);
-                AddOfferEntry(collection, definition.OfferId, "fail", definition.FailMessage);
+                AddOfferKey(collection, definition.TitleLocalizationKey);
+                AddOfferKey(collection, definition.DescriptionLocalizationKey);
+                AddOfferKey(collection, definition.IntroLocalizationKey);
+                AddOfferKey(collection, definition.AcceptLocalizationKey);
+                AddOfferKey(collection, definition.CompleteLocalizationKey);
+                AddOfferKey(collection, definition.FailLocalizationKey);
 
                 if (definition.Stages != null)
                 {
@@ -298,12 +298,9 @@ namespace _Project.Scripts.Editor
                             continue;
                         }
 
-                        AddOfferEntry(collection, OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "title"),
-                            stage.Title);
-
-                        AddOfferEntry(collection,
-                            OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "description"),
-                            stage.Description);
+                        AddOfferKey(collection, OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "title"));
+                        AddOfferKey(collection,
+                            OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "description"));
 
                         if (stage.Objectives == null)
                         {
@@ -316,9 +313,8 @@ namespace _Project.Scripts.Editor
 
                             if (objective != null)
                             {
-                                AddOfferEntry(collection,
-                                    OfferLocalizationKeys.Objective(definition.OfferId, stageIndex, objectiveIndex),
-                                    objective.Description);
+                                AddOfferKey(collection,
+                                    OfferLocalizationKeys.Objective(definition.OfferId, stageIndex, objectiveIndex));
                             }
                         }
                     }
@@ -330,10 +326,9 @@ namespace _Project.Scripts.Editor
                          conditionIndex < definition.ExtraUnlockConditions.Length;
                          conditionIndex++)
                     {
-                        AddOfferEntry(
+                        AddOfferKey(
                             collection,
-                            OfferLocalizationKeys.UnlockCondition(definition.OfferId, conditionIndex),
-                            definition.ExtraUnlockConditions[conditionIndex]?.Description);
+                            OfferLocalizationKeys.UnlockCondition(definition.OfferId, conditionIndex));
                     }
                 }
 
@@ -341,10 +336,9 @@ namespace _Project.Scripts.Editor
                 {
                     for (int conditionIndex = 0; conditionIndex < definition.FailureConditions.Length; conditionIndex++)
                     {
-                        AddOfferEntry(
+                        AddOfferKey(
                             collection,
-                            OfferLocalizationKeys.FailureCondition(definition.OfferId, conditionIndex),
-                            definition.FailureConditions[conditionIndex]?.Description);
+                            OfferLocalizationKeys.FailureCondition(definition.OfferId, conditionIndex));
                     }
                 }
 
@@ -352,10 +346,9 @@ namespace _Project.Scripts.Editor
                 {
                     for (int outcomeIndex = 0; outcomeIndex < definition.Outcomes.Length; outcomeIndex++)
                     {
-                        AddOfferEntry(
+                        AddOfferKey(
                             collection,
-                            OfferLocalizationKeys.Outcome(definition.OfferId, outcomeIndex),
-                            definition.Outcomes[outcomeIndex]?.Description);
+                            OfferLocalizationKeys.Outcome(definition.OfferId, outcomeIndex));
                     }
                 }
             }
@@ -363,32 +356,12 @@ namespace _Project.Scripts.Editor
             Debug.Log($"[Localization] OfferDefinition assets scanned: {addedOfferAssets}/{guids.Length}.");
         }
 
-        private static void AddOfferEntry(StringTableCollection collection, string offerId, string field, string value)
+        private static void AddOfferKey(StringTableCollection collection, string key)
         {
-            AddOfferEntry(collection, OfferLocalizationKeys.Offer(offerId, field), value);
-        }
-
-        private static void AddOfferEntry(StringTableCollection collection, string key, string value)
-        {
-            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(value))
-            {
-                return;
-            }
-
             StringTable russianTable = GetOrCreateTable(collection, "ru");
             StringTable englishTable = GetOrCreateTable(collection, "en");
-            // Не перезаписываем уже переведённые строки при повторном запуске генератора.
-            StringTableEntry russianEntry = russianTable.GetEntry(key);
-
-            if (russianEntry == null)
-            {
-                Debug.LogWarning($"[Localization] Missing Russian translation for '{key}'.");
-            }
-
-            if (englishTable.GetEntry(key) == null)
-            {
-                englishTable.AddEntry(key, value);
-            }
+            EnsureEntry(russianTable, key);
+            EnsureEntry(englishTable, key);
         }
 
         /// <summary>

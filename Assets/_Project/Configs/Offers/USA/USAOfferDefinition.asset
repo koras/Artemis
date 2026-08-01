@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-usa-01
   Customer: {fileID: 11400000, guid: 8458ebd819267f146bcd4c46790fc19b, type: 2}
-  Title: "Lunar Logistics Rush"
-  Description: "A pressure test for American logistics. Build a reliable first shipment lane before regulators start asking questions."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: Industry
-  IntroMessage: "Washington wants proof that your moon base can move freight on schedule."
-  AcceptMessage: "A fast launch slot has been reserved. Do not waste it."
-  CompleteMessage: "The shipment landed cleanly and the logistics desk wants more."
-  FailMessage: "The lane broke down before the first audit even began."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 60
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: usa-log-brief
-    Title: "Logistics Stockpile"
-    Description: "Pull enough titan into storage so the launch team can assemble the first rush convoy."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: usa-log-1-stock
       ObjectiveType: 2
-      Description: "Accumulate 10 Titan in storage."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 10
       BuildObjectType: 0
@@ -56,12 +56,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: usa-log-launch
-    Title: "Priority Shipment"
-    Description: "Reserve the titan and send it on the next mission before the contract window closes."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: usa-log-1-deliver
       ObjectiveType: 1
-      Description: "Reserve 10 Titan for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 10
       BuildObjectType: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: usa-log-1-mission
       ObjectiveType: 8
-      Description: "Wait for the next mission arrival."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

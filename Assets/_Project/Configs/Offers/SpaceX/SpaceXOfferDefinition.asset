@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-spacex-01
   Customer: {fileID: 11400000, guid: 3702a689729f2424c804cfb01113b103, type: 2}
-  Title: "Dock Ring Metals"
-  Description: "SpaceX wants a clean, fast metals route before committing to a permanent orbital exchange hub."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: Aerospace
-  IntroMessage: "A launch slot is open, but only for a team that can move metal fast."
-  AcceptMessage: "Stock the ring metals and push them out on the next mission."
-  CompleteMessage: "The first hub shipment reached orbit intact."
-  FailMessage: "The launch window closed before the ring shipment moved."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 120
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: spacex-metal-stock
-    Title: "Metal Stockpile"
-    Description: "Gather titan and aluminium for the docking ring package."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: spacex-metal-titan
       ObjectiveType: 2
-      Description: "Accumulate 18 Titan."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 18
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: spacex-metal-al
       ObjectiveType: 2
-      Description: "Accumulate 12 aluminium."
+      _descriptionLocalizationKey: description
       ResourceId: aluminium
       RequiredAmount: 12
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 25
     BonusReputation: 0
   - StageId: spacex-metal-launch
-    Title: "Launch Window"
-    Description: "Reserve the full package and wait for the next mission arrival."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: spacex-metal-ship-titan
       ObjectiveType: 1
-      Description: "Reserve 18 Titan for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 18
       BuildObjectType: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: spacex-metal-ship-al
       ObjectiveType: 1
-      Description: "Reserve 12 aluminium for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: aluminium
       RequiredAmount: 12
       BuildObjectType: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: spacex-metal-mission
       ObjectiveType: 8
-      Description: "Wait for the next mission arrival."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

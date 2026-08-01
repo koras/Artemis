@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-france-02
   Customer: {fileID: 11400000, guid: 89fc6c8f2735d3742a69ebd167d403ee, type: 2}
-  Title: "Habitat Certification Wing"
-  Description: "With samples secured, the bureau now wants a proper scientific habitat with reliable life support."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 2
   OfferAffinityTag: Science
-  IntroMessage: "Engineers from Europe drafted a certification checklist."
-  AcceptMessage: "Extend the habitat and keep the utility line stable long enough for sign-off."
-  CompleteMessage: "The wing passed structural certification."
-  FailMessage: "Certification failed before the observers arrived."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 840
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: france-habitat
-    Title: "Research Habitat"
-    Description: "Expand the living band and add sleeping capacity for the visiting team."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: france-hab-life
       ObjectiveType: 5
-      Description: "Reach life-module width 10."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: france-hab-sleep
       ObjectiveType: 3
-      Description: "Build 1 Sleep Module."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 9
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 25
     BonusReputation: 0
   - StageId: france-utilities
-    Title: "Utility Norms"
-    Description: "Keep oxygen and water recovery online while the bureau runs its checklist."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: france-hab-oxy
       ObjectiveType: 6
-      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 13
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: france-hab-water
       ObjectiveType: 6
-      Description: "Maintain 1 operational Water Reclamation unit for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 11

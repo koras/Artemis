@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-southafrica-02
   Customer: {fileID: 11400000, guid: 6e1ad63ad32f613458b418f88e2c5359, type: 2}
-  Title: "Mining Backbone"
-  Description: "The second request wants more than ore: it wants a backbone of storage, power, and processing that can survive stress."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: IndustryAfricanSouthAfrica
-  IntroMessage: "The buyers now care about discipline, not just tonnage."
-  AcceptMessage: "Build the backbone and keep it stable long enough to earn trust."
-  CompleteMessage: "The backbone held and pushed the contract into security territory."
-  FailMessage: "The backbone looked too weak for long-term heavy work."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 900
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: south-backbone-build
-    Title: "Mining Backbone"
-    Description: "Add storage and a processing unit for the deeper mining program."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: south-backbone-storage
       ObjectiveType: 3
-      Description: "Build 2 Storage buildings."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 5
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: south-backbone-proc
       ObjectiveType: 3
-      Description: "Build 1 Regolith Processing Unit."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 7
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: south-backbone-discipline
-    Title: "Discipline Window"
-    Description: "Keep power and processing stable for 1 sol."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: south-backbone-battery
       ObjectiveType: 6
-      Description: "Maintain 1 operational Electric Battery for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 8
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: south-backbone-oper
       ObjectiveType: 6
-      Description: "Maintain 1 operational Regolith Processing Unit for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 7

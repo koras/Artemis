@@ -207,6 +207,113 @@ namespace _Project.Scripts.Editor
             return result;
         }
 
+        internal static bool TryGetNestedLocalizationScope(
+            SerializedProperty property,
+            out string scope)
+        {
+            scope = string.Empty;
+            UnityEngine.Object target = property.serializedObject.targetObject;
+            if (target == null)
+            {
+                return false;
+            }
+
+            object[] metadataAttributes = target.GetType().GetCustomAttributes(
+                typeof(LocalizationNamespaceAttribute),
+                true);
+            if (metadataAttributes.Length == 0)
+            {
+                return false;
+            }
+
+            scope = GetScope(target);
+            Type currentType = target.GetType();
+            string[] pathParts = property.propertyPath.Split('.');
+            List<string> pathSegments = new List<string>();
+
+            for (int pathIndex = 0; pathIndex < pathParts.Length; pathIndex++)
+            {
+                FieldInfo field = FindField(currentType, pathParts[pathIndex]);
+                if (field == null)
+                {
+                    return false;
+                }
+
+                if (field.GetCustomAttribute<LocalizationKeyAttribute>() != null)
+                {
+                    break;
+                }
+
+                LocalizationCollectionAttribute collectionAttribute =
+                    field.GetCustomAttribute<LocalizationCollectionAttribute>();
+                if (collectionAttribute != null)
+                {
+                    if (pathIndex + 2 >= pathParts.Length
+                        || pathParts[pathIndex + 1] != "Array"
+                        || !TryGetArrayIndex(pathParts[pathIndex + 2], out int arrayIndex))
+                    {
+                        return false;
+                    }
+
+                    pathSegments.Add(collectionAttribute.Segment);
+                    pathSegments.Add(arrayIndex.ToString());
+                    currentType = GetElementType(field.FieldType);
+                    pathIndex += 2;
+                    continue;
+                }
+
+                currentType = field.FieldType;
+            }
+
+            if (pathSegments.Count > 0)
+            {
+                scope = string.Concat(scope, ".", string.Join(".", pathSegments));
+            }
+
+            return true;
+        }
+
+        private static FieldInfo FindField(Type targetType, string fieldName)
+        {
+            const BindingFlags flags = BindingFlags.Instance |
+                                        BindingFlags.Public |
+                                        BindingFlags.NonPublic |
+                                        BindingFlags.DeclaredOnly;
+
+            for (Type type = targetType; type != null; type = type.BaseType)
+            {
+                FieldInfo field = type.GetField(fieldName, flags);
+                if (field != null)
+                {
+                    return field;
+                }
+            }
+
+            return null;
+        }
+
+        private static Type GetElementType(Type collectionType)
+        {
+            return collectionType.IsArray
+                ? collectionType.GetElementType()
+                : collectionType.GetGenericArguments()[0];
+        }
+
+        private static bool TryGetArrayIndex(string dataToken, out int index)
+        {
+            const string prefix = "data[";
+            index = 0;
+
+            if (!dataToken.StartsWith(prefix, StringComparison.Ordinal)
+                || !dataToken.EndsWith("]", StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            string indexText = dataToken.Substring(prefix.Length, dataToken.Length - prefix.Length - 1);
+            return int.TryParse(indexText, out index);
+        }
+
         private static void DrawLocalizationKeyFields(
             List<FieldInfo> localizationFields,
             SerializedObject serializedObject,
@@ -233,7 +340,7 @@ namespace _Project.Scripts.Editor
                 SerializedProperty property = serializedObject.FindProperty(field.Name);
 
                 DrawLocalizationKeyField(
-                    attribute.Label,
+                    attribute.DisplayLabel,
                     property,
                     attribute.DefaultSuffix,
                     scope,
@@ -381,13 +488,13 @@ namespace _Project.Scripts.Editor
             return fields;
         }
 
-        private static StringTableCollection GetStringTableCollection()
+        internal static StringTableCollection GetStringTableCollection()
         {
             var collections = LocalizationEditorSettings.GetStringTableCollections();
             return collections[0];
         }
 
-        private static List<string> GetKeySuffixes(StringTableCollection collection, string scope)
+        internal static List<string> GetKeySuffixes(StringTableCollection collection, string scope)
         {
             string prefix = $"{scope}.";
             List<string> keySuffixes = new List<string>();

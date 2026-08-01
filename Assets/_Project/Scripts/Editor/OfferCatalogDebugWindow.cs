@@ -86,7 +86,7 @@ namespace _Project.Scripts.Editor
                 using (new EditorGUILayout.HorizontalScope(EditorStyles.textArea))
                 {
                     GUILayout.Label(offer.OfferId, GUILayout.Width(160f));
-                    GUILayout.Label(offer.Title, GUILayout.Width(180f));
+                    GUILayout.Label(offer.GetLocalizedTitle().GetLocalizedString(), GUILayout.Width(180f));
                     GUILayout.Label(offer.Customer != null ? offer.Customer.LocalizationId : "<missing>", GUILayout.Width(160f));
                     GUILayout.Label(offer.TriggerTypes.ToString(), GUILayout.Width(140f));
                     GUILayout.Label(offer.IsRepeatable ? "Yes" : "No", GUILayout.Width(80f));
@@ -118,7 +118,8 @@ namespace _Project.Scripts.Editor
                 return true;
             }
 
-            if (!string.IsNullOrWhiteSpace(offer.Title) && offer.Title.ToLowerInvariant().Contains(needle))
+            string localizedTitle = offer.GetLocalizedTitle().GetLocalizedString();
+            if (!string.IsNullOrWhiteSpace(localizedTitle) && localizedTitle.ToLowerInvariant().Contains(needle))
             {
                 return true;
             }

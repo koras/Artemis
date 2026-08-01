@@ -395,3 +395,102 @@ Key,Id,English(en),Russian(ru)
 "event.radiation-week.description",7000000006,"Astronomers warned of a week of high radiation. Be careful and spend less time on the lunar surface.","Астрологи предупредили о неделе активного радиационного фона. Будьте аккуратны и поменьше выходите на поверхность Луны."
 "event.solar-activity.title",7000000007,"Solar Activity","Солнечная активность"
 "event.solar-activity.description",7000000008,"Astronomers predict increased solar activity. Energy generation is higher today, but radiation levels are rising.","Астрологи предсказали усиленную солнечную активность. Сегодня выработка энергии выше, но радиационный фон растёт."
+offer.offer-southafrica-01.stage.1.title,1675463427612672,Heavy Lift,Тяжёлый груз
+offer.offer-southafrica-01.stage.1.description,1675463461167104,Reserve the titan and wait for the next mission arrival.,Зарезервируйте титан и дождитесь прибытия следующей миссии.
+offer.offer-southafrica-01.stage.1.objective.0.description,1675463461167105,Reserve 16 Titan for shipment.,Зарезервируйте 16 единиц титана для отправки.
+offer.offer-southafrica-01.stage.1.objective.1.description,1675463461167106,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-southafrica-02.stage.1.title,1675463767351296,Discipline Window,Окно стабильности
+offer.offer-southafrica-02.stage.1.description,1675463767351297,Keep power and processing stable for 1 sol.,Поддерживайте стабильную работу энергосистемы и переработки в течение 1 сола.
+offer.offer-southafrica-02.stage.1.objective.0.description,1675463767351298,Maintain 1 operational Electric Battery for 1 sol.,Поддерживайте 1 работающую электрическую батарею в течение 1 сола.
+offer.offer-southafrica-02.stage.1.objective.1.description,1675463767351299,Maintain 1 operational Regolith Processing Unit for 1 sol.,Поддерживайте 1 работающую установку переработки реголита в течение 1 сола.
+offer.offer-china-03.stage.1.title,1675464073535488,Throughput Audit,Аудит пропускной способности
+offer.offer-china-03.stage.1.description,1675464073535489,Receive the review team and pass the final audit.,Встретьте команду проверки и пройдите финальный аудит.
+offer.offer-china-03.stage.1.objective.0.description,1675464073535490,Pass the efficiency audit.,Пройдите аудит эффективности.
+offer.offer-china-02.stage.1.title,1675464379719680,Stable Throughput,Стабильная производительность
+offer.offer-china-02.stage.1.description,1675464379719681,Hold both power and production in an operational state for 1 sol.,Поддерживайте энергосистему и производство в рабочем состоянии в течение 1 сола.
+offer.offer-china-02.stage.1.objective.0.description,1675464379719682,Maintain 1 operational Electric Battery for 1 sol.,Поддерживайте 1 работающую электрическую батарею в течение 1 сола.
+offer.offer-china-02.stage.1.objective.1.description,1675464379719683,Maintain 1 operational Regolith Processing Unit for 1 sol.,Поддерживайте 1 работающую установку переработки реголита в течение 1 сола.
+offer.offer-china-01.stage.1.title,1675464698486784,Heavy Shipment,Тяжёлая поставка
+offer.offer-china-01.stage.1.description,1675464698486785,Reserve the titan and wait for the next mission arrival.,Зарезервируйте титан и дождитесь прибытия следующей миссии.
+offer.offer-china-01.stage.1.objective.0.description,1675464698486786,Reserve 20 Titan for shipment.,Зарезервируйте 20 единиц титана для отправки.
+offer.offer-china-01.stage.1.objective.1.description,1675464698486787,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-ethiopian-03.stage.1.title,1675465008865280,Stability Review,Проверка стабильности
+offer.offer-ethiopian-03.stage.1.description,1675465008865281,Receive the review team and pass the final stability inspection.,Встретьте команду проверки и пройдите финальную проверку стабильности.
+offer.offer-ethiopian-03.stage.1.objective.0.description,1675465008865282,Pass the stability program inspection.,Пройдите проверку программы стабильности.
+offer.offer-ethiopian-02.stage.1.title,1675465310855168,Utility Calm,Стабильная инфраструктура
+offer.offer-ethiopian-02.stage.1.description,1675465310855169,Keep water recovery and oxygen online for a full sol.,Поддерживайте работу восстановления воды и кислорода в течение полного сола.
+offer.offer-ethiopian-02.stage.1.objective.0.description,1675465310855170,Maintain 1 operational Water Reclamation unit for 1 sol.,Поддерживайте 1 работающую установку восстановления воды в течение 1 сола.
+offer.offer-ethiopian-02.stage.1.objective.1.description,1675465310855171,Maintain 1 operational Oxygen Station for 1 sol.,Поддерживайте 1 работающую кислородную станцию в течение 1 сола.
+offer.offer-ethiopian-01.stage.1.title,1675465621233664,Supply Transfer,Перевод поставок
+offer.offer-ethiopian-01.stage.1.description,1675465625427968,Reserve the package and wait for the next mission arrival.,Зарезервируйте комплект и дождитесь прибытия следующей миссии.
+offer.offer-ethiopian-01.stage.1.objective.0.description,1675465625427969,Reserve 10 aluminium for shipment.,Зарезервируйте 10 единиц алюминия для отправки.
+offer.offer-ethiopian-01.stage.1.objective.1.description,1675465625427970,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-france-02.stage.1.title,1675465923223552,Utility Norms,Нормы инфраструктуры
+offer.offer-france-02.stage.1.description,1675465923223553,Keep oxygen and water recovery online while the bureau runs its checklist.,"Поддерживайте работу кислорода и восстановления воды, пока бюро проводит проверку."
+offer.offer-france-02.stage.1.objective.0.description,1675465923223554,Maintain 1 operational Oxygen Station for 1 sol.,Поддерживайте 1 работающую кислородную станцию в течение 1 сола.
+offer.offer-france-02.stage.1.objective.1.description,1675465923223555,Maintain 1 operational Water Reclamation unit for 1 sol.,Поддерживайте 1 работающую установку восстановления воды в течение 1 сола.
+offer.offer-france-03.stage.1.title,1675466225213440,European Audit,Европейский аудит
+offer.offer-france-03.stage.1.description,1675466225213441,Receive the inspection delegation and pass the final review.,Встретьте инспекционную делегацию и пройдите финальную проверку.
+offer.offer-france-03.stage.1.objective.0.description,1675466225213442,Pass the European inspection.,Пройдите европейскую проверку.
+offer.offer-france-01.stage.1.title,1675466523009024,Laboratory Shipment,Лабораторная поставка
+offer.offer-france-01.stage.1.description,1675466523009025,Reserve the sample and wait for the next mission to return.,Зарезервируйте образец и дождитесь возвращения следующей миссии.
+offer.offer-france-01.stage.1.objective.0.description,1675466523009026,Reserve 12 Rogalite for shipment.,Зарезервируйте 12 единиц рогалита для отправки.
+offer.offer-france-01.stage.1.objective.1.description,1675466523009027,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-india-03.stage.1.title,1675466862747648,First Civic Visit,Первый гражданский визит
+offer.offer-india-03.stage.1.description,1675466866941952,Welcome the first visitors and pass the civic readiness inspection.,Встретьте первых посетителей и пройдите проверку гражданской готовности.
+offer.offer-india-03.stage.1.objective.0.description,1675466866941953,Pass the civic visit inspection.,Пройдите проверку гражданского визита.
+offer.offer-india-02.stage.1.title,1675467223457792,Civil Utilities,Гражданская инфраструктура
+offer.offer-india-02.stage.1.description,1675467227652096,Support the new quarters with food and oxygen stability.,Обеспечьте новые помещения едой и стабильной подачей кислорода.
+offer.offer-india-02.stage.1.objective.0.description,1675467227652097,Build 1 Dinner Station.,Постройте 1 обеденную станцию.
+offer.offer-india-02.stage.1.objective.1.description,1675467227652098,Maintain 1 operational Oxygen Station for 1 sol.,Поддерживайте 1 работающую кислородную станцию в течение 1 сола.
+offer.offer-india-01.stage.1.title,1675467596750848,Base Materials Shipment,Поставка материалов на базу
+offer.offer-india-01.stage.1.description,1675467596750849,Reserve the aluminium and wait for the next mission arrival.,Зарезервируйте алюминий и дождитесь прибытия следующей миссии.
+offer.offer-india-01.stage.1.objective.0.description,1675467596750850,Reserve 14 aluminium for shipment.,Зарезервируйте 14 единиц алюминия для отправки.
+offer.offer-india-01.stage.1.objective.1.description,1675467596750851,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-mexico-03.stage.1.title,1675467940683776,Base Celebration,Праздник на базе
+offer.offer-mexico-03.stage.1.description,1675467940683777,Receive the service review and pass the final event inspection.,Пройдите проверку сервиса и финальную проверку мероприятия.
+offer.offer-mexico-03.stage.1.objective.0.description,1675467940683778,Pass the celebration inspection.,Пройдите проверку праздника.
+offer.offer-mexico-02.stage.1.title,1675468259450880,Hosted Service,Приём гостей
+offer.offer-mexico-02.stage.1.description,1675468259450881,Keep food and water support online while the service wing is reviewed.,"Поддерживайте снабжение едой и водой, пока проверяют сервисное крыло."
+offer.offer-mexico-02.stage.1.objective.0.description,1675468259450882,Build 1 Water Processing Unit.,Постройте 1 установку переработки воды.
+offer.offer-mexico-02.stage.1.objective.1.description,1675468263645184,Maintain 1 operational Dinner Station for 1 sol.,Поддерживайте 1 работающую обеденную станцию в течение 1 сола.
+offer.offer-mexico-01.stage.1.title,1675468569829376,Fast Dispatch,Быстрая отправка
+offer.offer-mexico-01.stage.1.description,1675468569829377,Reserve the regolith and wait for the next mission arrival.,Зарезервируйте реголит и дождитесь прибытия следующей миссии.
+offer.offer-mexico-01.stage.1.objective.0.description,1675468569829378,Reserve 10 Rogalite for shipment.,Зарезервируйте 10 единиц рогалита для отправки.
+offer.offer-mexico-01.stage.1.objective.1.description,1675468569829379,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-navajo-01.stage.1.title,1675468884402176,Fair Trade Shipment,Поставка по справедливой торговле
+offer.offer-navajo-01.stage.1.description,1675468884402177,Reserve the sample and wait for the next mission arrival.,Зарезервируйте образец и дождитесь прибытия следующей миссии.
+offer.offer-navajo-01.stage.1.objective.0.description,1675468884402178,Reserve 8 Rogalite for shipment.,Зарезервируйте 8 единиц рогалита для отправки.
+offer.offer-navajo-01.stage.1.objective.1.description,1675468884402179,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-navajo-02.stage.1.title,1675469203169280,Quiet Utility,Стабильная инфраструктура
+offer.offer-navajo-02.stage.1.description,1675469203169281,Keep oxygen stable while the cooperative reviews the new space.,"Поддерживайте стабильный уровень кислорода, пока кооператив проверяет новое пространство."
+offer.offer-navajo-02.stage.1.objective.0.description,1675469203169282,Maintain 1 operational Oxygen Station for 1 sol.,Поддерживайте 1 работающую кислородную станцию в течение 1 сола.
+offer.offer-navajo-03.stage.1.title,1675469513547776,Respect Review,Проверка уважения
+offer.offer-navajo-03.stage.1.description,1675469513547777,Receive the stewardship observers and pass the final review.,Встретьте наблюдателей программы ответственного развития и пройдите финальную проверку.
+offer.offer-navajo-03.stage.1.objective.0.description,1675469513547778,Pass the stewardship inspection.,Пройдите проверку программы ответственного развития.
+offer.offer-spacex-02.stage.1.title,1675469823926272,VIP Corridor,VIP-коридор
+offer.offer-spacex-02.stage.1.description,1675469823926273,Add sleeping capacity and pass the commercial readiness review.,Добавьте спальные места и пройдите проверку коммерческой готовности.
+offer.offer-spacex-02.stage.1.objective.0.description,1675469823926274,Build 2 Sleep Modules.,Постройте 2 модуля сна.
+offer.offer-spacex-02.stage.1.objective.1.description,1675469823926275,Pass the corridor inspection.,Пройдите проверку коридора.
+offer.offer-spacex-01.stage.1.title,1675470130110464,Launch Window,Окно запуска
+offer.offer-spacex-01.stage.1.description,1675470130110465,Reserve the full package and wait for the next mission arrival.,Зарезервируйте полный комплект и дождитесь прибытия следующей миссии.
+offer.offer-spacex-01.stage.1.objective.0.description,1675470130110466,Reserve 18 Titan for shipment.,Зарезервируйте 18 единиц титана для отправки.
+offer.offer-spacex-01.stage.1.objective.1.description,1675470130110467,Reserve 12 aluminium for shipment.,Зарезервируйте 12 единиц алюминия для отправки.
+offer.offer-spacex-01.stage.1.objective.2.description,1675470134304768,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-spacex-03.stage.1.title,1675470432100352,Tourist Arrival,Прибытие туристов
+offer.offer-spacex-03.stage.1.description,1675470432100353,Hold cash for premium support and pass the tourism inspection.,Сохраните денежный резерв для расширенной поддержки и пройдите туристическую проверку.
+offer.offer-spacex-03.stage.1.objective.0.description,1675470432100354,Reach 300 stored Gold.,Накопите 300 единиц золота.
+offer.offer-spacex-03.stage.1.objective.1.description,1675470432100355,Pass the tourism inspection.,Пройдите туристическую проверку.
+offer.offer-usa-03.stage.1.title,1675470725701632,Federal Review,Федеральная проверка
+offer.offer-usa-03.stage.1.description,1675470725701633,"Feed the block, keep cash on hand, and survive the final review.","Обеспечьте блок питанием, сохраните денежный резерв и пройдите финальную проверку."
+offer.offer-usa-03.stage.1.objective.0.description,1675470725701634,Build 1 Dinner Station.,Постройте 1 обеденную станцию.
+offer.offer-usa-03.stage.1.objective.1.description,1675470725701635,Reach 260 stored Gold.,Накопите 260 единиц золота.
+offer.offer-usa-03.stage.1.objective.2.description,1675470725701636,Pass the final security review.,Пройдите финальную проверку безопасности.
+offer.offer-usa-01.stage.1.title,1675471015108608,Priority Shipment,Приоритетная поставка
+offer.offer-usa-01.stage.1.description,1675471015108609,Reserve the titan and send it on the next mission before the contract window closes.,Зарезервируйте титан и отправьте его следующей миссией до закрытия окна контракта.
+offer.offer-usa-01.stage.1.objective.0.description,1675471015108610,Reserve 10 Titan for shipment.,Зарезервируйте 10 единиц титана для отправки.
+offer.offer-usa-01.stage.1.objective.1.description,1675471015108611,Wait for the next mission arrival.,Дождитесь прибытия следующей миссии.
+offer.offer-usa-02.stage.1.title,1675471321292800,Safety Check,Проверка безопасности
+offer.offer-usa-02.stage.1.description,1675471321292801,Keep support systems online while the federal observer checks the base.,"Поддерживайте системы жизнеобеспечения, пока федеральный наблюдатель проверяет базу."
+offer.offer-usa-02.stage.1.objective.0.description,1675471321292802,Maintain 1 operational Oxygen Station for 1 sol.,Поддерживайте 1 работающую кислородную станцию в течение 1 сола.
+offer.offer-usa-02.stage.1.objective.1.description,1675471321292803,Pass the inspection review.,Пройдите проверку инспекции.
