@@ -77,11 +77,20 @@ namespace _Project.Scripts.Input
                 return;
             }
 
+            _cameraInputController.Update();
+
+            // While the middle mouse button is held, mouse dragging must not trigger grid interactions.
+            if (_cameraInputController.IsMiddleMouseHeld)
+            {
+                _gridInputController.CancelActiveInteraction();
+                _gridHoverSystem.ClearHover();
+                return;
+            }
+
             Vector2 mouseScreen = Mouse.current.position.ReadValue();
             Vector3 mouseWorld3 = _camera.ScreenToWorldPoint(new Vector3(mouseScreen.x, mouseScreen.y, 0f));
             Vector2 mouseWorld2 = new Vector2(mouseWorld3.x, mouseWorld3.y);
 
-            _cameraInputController.Update();
             _gridInputController.Update();
             _gridHoverSystem.UpdateHover(mouseWorld2);
         }

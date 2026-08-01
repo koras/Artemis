@@ -20,6 +20,13 @@ namespace _Project.Scripts.Input
         private readonly Vector2 _gridOrigin;
         private readonly float _worldWidth;
         private readonly float _worldHeight;
+        private Vector2 _lastMiddleMousePosition;
+        private bool _isMiddleMouseDragging;
+
+        /// <summary>
+        /// Gets whether the mouse wheel is currently held for scene panning.
+        /// </summary>
+        public bool IsMiddleMouseHeld => Mouse.current != null && Mouse.current.middleButton.isPressed;
 
         public CameraInputController(
             Camera camera,
@@ -51,7 +58,57 @@ namespace _Project.Scripts.Input
 
             UpdateZoom();
             UpdateMovement();
+            UpdateMiddleMousePan();
             ClampViewToGrid();
+        }
+
+        /// <summary>
+        /// Moves the camera anchor by dragging the scene while the mouse wheel is held.
+        /// </summary>
+        private void UpdateMiddleMousePan()
+        {
+            if (Mouse.current == null)
+            {
+                return;
+            }
+
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            if (Mouse.current.middleButton.wasPressedThisFrame)
+            {
+                _lastMiddleMousePosition = mousePosition;
+                _isMiddleMouseDragging = true;
+                return;
+            }
+
+            if (!Mouse.current.middleButton.isPressed)
+            {
+                _isMiddleMouseDragging = false;
+                return;
+            }
+
+            if (!_isMiddleMouseDragging)
+            {
+                _lastMiddleMousePosition = mousePosition;
+                _isMiddleMouseDragging = true;
+                return;
+            }
+
+            Vector2 mouseDelta = mousePosition - _lastMiddleMousePosition;
+            _lastMiddleMousePosition = mousePosition;
+            if (mouseDelta.sqrMagnitude <= 0f)
+            {
+                return;
+            }
+
+            float orthographicSize = GetCurrentOrthographicSize();
+            float worldUnitsPerPixelY = (orthographicSize * 2f) / Screen.height;
+            float worldUnitsPerPixelX = worldUnitsPerPixelY * _camera.aspect;
+            Vector3 dragDelta = new Vector3(
+                -mouseDelta.x * worldUnitsPerPixelX,
+                -mouseDelta.y * worldUnitsPerPixelY,
+                0f);
+            Transform movementTransform = _movementTarget != null ? _movementTarget : _camera.transform;
+            movementTransform.position += dragDelta;
         }
 
         /// <summary>
