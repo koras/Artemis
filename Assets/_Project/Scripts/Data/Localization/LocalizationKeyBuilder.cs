@@ -21,12 +21,11 @@ namespace _Project.Scripts.Data.Localization
             {
                 char character = value[index];
                 bool isUppercase = char.IsUpper(character);
-                var @char = value[index + 1];
 
                 bool startsNewWord = index > 0
-                                     && isUppercase
-                                     && (char.IsLower(value[index - 1])
-                                         || index + 1 < value.Length && char.IsLower(@char));
+                    && isUppercase
+                    && (char.IsLower(value[index - 1])
+                        || index + 1 < value.Length && char.IsLower(value[index + 1]));
 
                 if (startsNewWord)
                 {

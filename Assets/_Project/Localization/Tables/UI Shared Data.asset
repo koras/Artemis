@@ -123,6 +123,282 @@ MonoBehaviour:
     m_Key: time.night
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001000
+    m_Key: character.diagnostics.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001001
+    m_Key: character.diagnostics.no_characters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001002
+    m_Key: character.diagnostics.name_key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001003
+    m_Key: character.diagnostics.state
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001004
+    m_Key: character.diagnostics.local
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001005
+    m_Key: character.diagnostics.work_decision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001006
+    m_Key: character.diagnostics.task_block_reason
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001007
+    m_Key: character.diagnostics.food_preferences
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001008
+    m_Key: character.diagnostics.movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001009
+    m_Key: character.diagnostics.animation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001010
+    m_Key: character.diagnostics.hunger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001011
+    m_Key: character.diagnostics.sleep_desire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001012
+    m_Key: character.diagnostics.mood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001013
+    m_Key: character.diagnostics.sleep_cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001014
+    m_Key: character.diagnostics.eat_cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001015
+    m_Key: character.diagnostics.work_24h
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001016
+    m_Key: character.diagnostics.rest_cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001017
+    m_Key: character.diagnostics.cycle.done_left_total
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001018
+    m_Key: character.diagnostics.cycle.done_left_current_eat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001019
+    m_Key: character.diagnostics.cycle.done_left_target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001020
+    m_Key: character.diagnostics.state.idle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001021
+    m_Key: character.diagnostics.state.moving
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001022
+    m_Key: character.diagnostics.state.working
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001023
+    m_Key: character.diagnostics.state.need_override
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001024
+    m_Key: character.diagnostics.state.delivering_resource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001025
+    m_Key: character.diagnostics.state.sleeping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001026
+    m_Key: character.diagnostics.state.eating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001027
+    m_Key: character.diagnostics.state.resting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001028
+    m_Key: character.diagnostics.local.none
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001029
+    m_Key: character.diagnostics.local.sleep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001030
+    m_Key: character.diagnostics.local.eat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001031
+    m_Key: character.diagnostics.local.rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001032
+    m_Key: character.diagnostics.work_decision.yes_already
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001033
+    m_Key: character.diagnostics.work_decision.no_local_need
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001034
+    m_Key: character.diagnostics.work_decision.no_quota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001035
+    m_Key: character.diagnostics.work_decision.yes_will_take
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001036
+    m_Key: character.diagnostics.reason.idle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001037
+    m_Key: character.diagnostics.reason.manual_move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001038
+    m_Key: character.diagnostics.reason.local_need_flow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001039
+    m_Key: character.diagnostics.reason.local_need
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001040
+    m_Key: character.diagnostics.reason.delivering_resource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001041
+    m_Key: character.diagnostics.reason.already_has_task
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001042
+    m_Key: character.diagnostics.reason.task_acquired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001043
+    m_Key: character.diagnostics.reason.unknown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001044
+    m_Key: character.diagnostics.reason.idle_wandering
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001045
+    m_Key: character.diagnostics.reason.idle_wander_settle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001046
+    m_Key: character.diagnostics.reason.idle_wander_wait
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001047
+    m_Key: character.diagnostics.reason.idle_wander_retry_pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001048
+    m_Key: resource.item.meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001100
+    m_Key: character.name.prefix.astra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001101
+    m_Key: character.name.prefix.luna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001102
+    m_Key: character.name.prefix.nova
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001103
+    m_Key: character.name.prefix.orion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001104
+    m_Key: character.name.prefix.vega
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001105
+    m_Key: character.name.prefix.argo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001106
+    m_Key: character.name.prefix.helios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001107
+    m_Key: character.name.prefix.rhea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001108
+    m_Key: character.name.prefix.atlas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001109
+    m_Key: character.name.prefix.nix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001110
+    m_Key: character.name.suffix.stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001111
+    m_Key: character.name.suffix.vale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001112
+    m_Key: character.name.suffix.ray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001113
+    m_Key: character.name.suffix.drift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001114
+    m_Key: character.name.suffix.ward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001115
+    m_Key: character.name.suffix.flint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001116
+    m_Key: character.name.suffix.brook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001117
+    m_Key: character.name.suffix.quill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001118
+    m_Key: character.name.suffix.frost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001119
+    m_Key: character.name.suffix.dawn
+    m_Metadata:
+      m_Items: []
   - m_Id: 3220168706
     m_Key: building.ladder
     m_Metadata:

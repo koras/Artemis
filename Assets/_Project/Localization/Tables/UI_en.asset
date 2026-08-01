@@ -4068,6 +4068,282 @@ MonoBehaviour:
     m_Localized: ""
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001000
+    m_Localized: Characters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001001
+    m_Localized: No characters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001002
+    m_Localized: NameKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001003
+    m_Localized: State
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001004
+    m_Localized: Local
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001005
+    m_Localized: Work decision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001006
+    m_Localized: Task block reason
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001007
+    m_Localized: Food preferences
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001008
+    m_Localized: 'Movement: current {0}, max {1}, lerp {2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001009
+    m_Localized: 'Animation: sim x{0}, anim x{1}, playback x{2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001010
+    m_Localized: 'Hunger: {0}/300 | To critical: {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001011
+    m_Localized: 'Sleep desire: {0}/300 | To critical: {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001012
+    m_Localized: 'Mood: {0}/100'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001013
+    m_Localized: Sleep cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001014
+    m_Localized: Eat cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001015
+    m_Localized: Work (24h)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001016
+    m_Localized: Rest cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001017
+    m_Localized: ' min (done/left/total)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001018
+    m_Localized: ' min (done/left/current eat)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001019
+    m_Localized: ' min (done/left/target)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001020
+    m_Localized: Idle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001021
+    m_Localized: Moving
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001022
+    m_Localized: Working
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001023
+    m_Localized: Need Override
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001024
+    m_Localized: Delivering Resource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001025
+    m_Localized: Sleeping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001026
+    m_Localized: Eating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001027
+    m_Localized: Resting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001028
+    m_Localized: None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001029
+    m_Localized: Sleep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001030
+    m_Localized: Eat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001031
+    m_Localized: Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001032
+    m_Localized: YES (already on global task)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001033
+    m_Localized: 'NO (local need: {0})'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001034
+    m_Localized: NO (work quota reached)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001035
+    m_Localized: YES (will take global task)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001036
+    m_Localized: Idle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001037
+    m_Localized: Manual move active
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001038
+    m_Localized: 'Local need flow: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001039
+    m_Localized: 'Local need: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001040
+    m_Localized: Delivering resource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001041
+    m_Localized: Already has global task
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001042
+    m_Localized: Task acquired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001043
+    m_Localized: Task not acquired (unknown reason)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001044
+    m_Localized: Idle wandering
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001045
+    m_Localized: Idle wander settle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001046
+    m_Localized: Idle wander wait
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001047
+    m_Localized: Idle wander retry pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001048
+    m_Localized: Meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001100
+    m_Localized: Astra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001101
+    m_Localized: Luna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001102
+    m_Localized: Nova
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001103
+    m_Localized: Orion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001104
+    m_Localized: Vega
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001105
+    m_Localized: Argo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001106
+    m_Localized: Helios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001107
+    m_Localized: Rhea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001108
+    m_Localized: Atlas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001109
+    m_Localized: Nix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001110
+    m_Localized: Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001111
+    m_Localized: Vale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001112
+    m_Localized: Ray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001113
+    m_Localized: Drift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001114
+    m_Localized: Ward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001115
+    m_Localized: Flint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001116
+    m_Localized: Brook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001117
+    m_Localized: Quill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001118
+    m_Localized: Frost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001119
+    m_Localized: Dawn
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

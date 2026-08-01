@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Systems.Construction;
+using _Project.Scripts.Systems.Resources;
 using _Project.Scripts.Data.Tasks;
 using _Project.Scripts.Presentation.Character;
 using _Project.Scripts.Systems.Units.Orchestrator;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace _Project.Scripts.Systems.Units
 {
@@ -143,8 +146,10 @@ namespace _Project.Scripts.Systems.Units
                 return "-";
             }
 
+            string localeCode = LocalizationSettings.SelectedLocale.Identifier.Code;
             if (FoodPreferenceSummaryByActor.TryGetValue(actor, out FoodPreferenceSummaryCache cached)
-                && cached.Version == actor.FoodPreferencesVersion)
+                && cached.Version == actor.FoodPreferencesVersion
+                && cached.LocaleCode == localeCode)
             {
                 return cached.Summary;
             }
@@ -175,14 +180,17 @@ namespace _Project.Scripts.Systems.Units
                 KeyValuePair<string, int> entry = entries[i];
                 builder.Append(i + 1);
                 builder.Append(". ");
-                builder.Append(entry.Key);
+                builder.Append(new LocalizedString("UI", ResourceLocalizationKeys.Name(entry.Key)).GetLocalizedString());
                 builder.Append(" (");
                 builder.Append(entry.Value);
                 builder.Append(')');
             }
 
             string result = builder.ToString();
-            FoodPreferenceSummaryByActor[actor] = new FoodPreferenceSummaryCache(actor.FoodPreferencesVersion, result);
+            FoodPreferenceSummaryByActor[actor] = new FoodPreferenceSummaryCache(
+                actor.FoodPreferencesVersion,
+                localeCode,
+                result);
             entries.Clear();
             builder.Length = 0;
             return result;
@@ -204,11 +212,13 @@ namespace _Project.Scripts.Systems.Units
         private readonly struct FoodPreferenceSummaryCache
         {
             public readonly int Version;
+            public readonly string LocaleCode;
             public readonly string Summary;
 
-            public FoodPreferenceSummaryCache(int version, string summary)
+            public FoodPreferenceSummaryCache(int version, string localeCode, string summary)
             {
                 Version = version;
+                LocaleCode = localeCode;
                 Summary = summary;
             }
         }

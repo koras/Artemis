@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement name="character-diagnostics-panel" class="character-diagnostics-panel">
         <ui:VisualElement class="character-diagnostics-header">
-            <ui:Label text="Characters" class="character-diagnostics-title"/>
+            <ui:Label name="character-diagnostics-title" text="Characters" class="character-diagnostics-title"/>
             <ui:Button name="character-diagnostics-close-btn" text="X" class="character-diagnostics-close-btn"/>
         </ui:VisualElement>
         <ui:VisualElement class="character-diagnostics-details">

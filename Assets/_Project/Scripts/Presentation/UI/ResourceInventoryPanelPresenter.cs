@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Systems.Resources;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 namespace _Project.Scripts.Presentation.UI
@@ -46,6 +47,7 @@ namespace _Project.Scripts.Presentation.UI
 
             _resourceInventoryService = resourceInventoryService;
             _sceneResourceObjectService = sceneResourceObjectService;
+            LocalizationSettings.SelectedLocaleChanged += OnSelectedLocaleChanged;
 
             if (_resourceInventoryService != null)
             {
@@ -61,6 +63,8 @@ namespace _Project.Scripts.Presentation.UI
             {
                 _resourceInventoryService.ResourceAmountChanged -= OnResourceAmountChanged;
             }
+
+            LocalizationSettings.SelectedLocaleChanged -= OnSelectedLocaleChanged;
 
             foreach (ResourceRowView rowView in _resourceRowsById.Values)
             {
@@ -119,18 +123,13 @@ namespace _Project.Scripts.Presentation.UI
             var row = new VisualElement();
             row.AddToClassList("resource-row");
 
-            string iconText = string.IsNullOrWhiteSpace(resourceId)
-                ? "?"
-                : resourceId.Substring(0, 1).ToUpperInvariant();
+            var localizedResourceName = new LocalizedString("UI", ResourceLocalizationKeys.Name(resourceId));
+            string iconText = GetResourceIconText(localizedResourceName.GetLocalizedString());
 
             var iconLabel = new Label(iconText);
             iconLabel.AddToClassList("resource-icon");
-            TryApplyIconTexture(iconLabel, resourceId);
 
             var nameLabel = new Label();
-
-            var localizedResourceName = new LocalizedString("UI", ResourceLocalizationKeys.Name(resourceId));
-
             nameLabel.SetBinding("text", localizedResourceName);
             nameLabel.AddToClassList("resource-row-name");
 
@@ -161,9 +160,32 @@ namespace _Project.Scripts.Presentation.UI
                 _resourceList.Add(rowView.Row);
             }
 
+            UpdateResourceIcon(rowView, resourceId);
             rowView.Amount = amount;
             rowView.AmountLabel.text = amount.ToString();
             rowView.IconLabel.tooltip = BuildTooltipText(resourceId, amount);
+        }
+
+        private void OnSelectedLocaleChanged(Locale _)
+        {
+            Render();
+        }
+
+        private void UpdateResourceIcon(ResourceRowView rowView, string resourceId)
+        {
+            string localizedResourceName = new LocalizedString(
+                "UI",
+                ResourceLocalizationKeys.Name(resourceId)).GetLocalizedString();
+
+            rowView.IconLabel.text = GetResourceIconText(localizedResourceName);
+            TryApplyIconTexture(rowView.IconLabel, resourceId);
+        }
+
+        private static string GetResourceIconText(string localizedResourceName)
+        {
+            return string.IsNullOrWhiteSpace(localizedResourceName)
+                ? "?"
+                : localizedResourceName.Substring(0, 1).ToUpperInvariant();
         }
 
         private static string BuildTooltipText(string resourceId, int amount)
