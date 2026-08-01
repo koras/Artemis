@@ -11,6 +11,13 @@ csharp_style_var_elsewhere = true:suggestion
 csharp_style_var_for_built_in_types = true:suggestion
 csharp_style_var_when_type_is_apparent = true:suggestion
 
+csharp_braces_for_ifelse = required
+csharp_braces_for_for = required
+csharp_braces_for_foreach = required
+csharp_braces_for_while = required
+csharp_braces_for_using = required
+csharp_braces_for_lock = required
+
 dotnet_naming_rule.private_fields_rule.severity = warning
 dotnet_naming_rule.private_fields_rule.style = lower_camel_case_style_underscore
 dotnet_naming_rule.private_fields_rule.symbols = private_fields_symbols
@@ -101,8 +108,17 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggest
 
 # ReSharper properties
 resharper_autodetect_indent_settings = true
-resharper_csharp_blank_lines_around_field = 0
+# Для обычных single-line fields пустые строки не нужны.
+resharper_csharp_blank_lines_around_single_line_field = 0
+# Для fields с attribute/doc-header оставляем одну пустую строку между соседними декларациями.
+resharper_csharp_blank_lines_around_field = 1
 resharper_csharp_keep_blank_lines_in_declarations = 1
+# Пустая строка перед многострочным statement, например перед многострочным вызовом метода.
+resharper_csharp_blank_lines_before_multiline_statements = 1
+# Пустая строка после многострочного statement, например между закрывающей `);` и следующим `if`.
+resharper_csharp_blank_lines_after_multiline_statements = 1
+# Пустая строка между многострочными case-секциями switch.
+resharper_csharp_blank_lines_around_multiline_case_section = 1
 resharper_extra_spaces = remove_all
 resharper_formatter_off_tag = @formatter:off
 resharper_formatter_on_tag = @formatter:on

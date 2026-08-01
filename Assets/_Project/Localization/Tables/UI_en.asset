@@ -3059,7 +3059,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7000000002
-    m_Localized: An intense meteor shower. Solar panels operate worse than usual today.
+    m_Localized: An intense meteor shower. Solar panels operate worse than usual
+      today.
     m_Metadata:
       m_Items: []
   - m_Id: 7000000003
@@ -3075,7 +3076,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7000000006
-    m_Localized: Astronomers warned of a week of high radiation. Be careful and spend less time on the lunar surface.
+    m_Localized: Astronomers warned of a week of high radiation. Be careful and spend
+      less time on the lunar surface.
     m_Metadata:
       m_Items: []
   - m_Id: 7000000007
@@ -3083,7 +3085,407 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7000000008
-    m_Localized: Astronomers predict increased solar activity. Energy generation is higher today, but radiation levels are rising.
+    m_Localized: Astronomers predict increased solar activity. Energy generation
+      is higher today, but radiation levels are rising.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463427612672
+    m_Localized: Heavy Lift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167104
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167105
+    m_Localized: Reserve 16 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167106
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351296
+    m_Localized: Discipline Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351297
+    m_Localized: Keep power and processing stable for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351298
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351299
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535488
+    m_Localized: Throughput Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535489
+    m_Localized: Receive the review team and pass the final audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535490
+    m_Localized: Pass the efficiency audit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719680
+    m_Localized: Stable Throughput
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719681
+    m_Localized: Hold both power and production in an operational state for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719682
+    m_Localized: Maintain 1 operational Electric Battery for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719683
+    m_Localized: Maintain 1 operational Regolith Processing Unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486784
+    m_Localized: Heavy Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486785
+    m_Localized: Reserve the titan and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486786
+    m_Localized: Reserve 20 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486787
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865280
+    m_Localized: Stability Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865281
+    m_Localized: Receive the review team and pass the final stability inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865282
+    m_Localized: Pass the stability program inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855168
+    m_Localized: Utility Calm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855169
+    m_Localized: Keep water recovery and oxygen online for a full sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855170
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855171
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465621233664
+    m_Localized: Supply Transfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427968
+    m_Localized: Reserve the package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427969
+    m_Localized: Reserve 10 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427970
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223552
+    m_Localized: Utility Norms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223553
+    m_Localized: Keep oxygen and water recovery online while the bureau runs its
+      checklist.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223554
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223555
+    m_Localized: Maintain 1 operational Water Reclamation unit for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213440
+    m_Localized: European Audit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213441
+    m_Localized: Receive the inspection delegation and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213442
+    m_Localized: Pass the European inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009024
+    m_Localized: Laboratory Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009025
+    m_Localized: Reserve the sample and wait for the next mission to return.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009026
+    m_Localized: Reserve 12 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009027
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466862747648
+    m_Localized: First Civic Visit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466866941952
+    m_Localized: Welcome the first visitors and pass the civic readiness inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466866941953
+    m_Localized: Pass the civic visit inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467223457792
+    m_Localized: Civil Utilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652096
+    m_Localized: Support the new quarters with food and oxygen stability.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652097
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652098
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750848
+    m_Localized: Base Materials Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750849
+    m_Localized: Reserve the aluminium and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750850
+    m_Localized: Reserve 14 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750851
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683776
+    m_Localized: Base Celebration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683777
+    m_Localized: Receive the service review and pass the final event inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683778
+    m_Localized: Pass the celebration inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450880
+    m_Localized: Hosted Service
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450881
+    m_Localized: Keep food and water support online while the service wing is reviewed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450882
+    m_Localized: Build 1 Water Processing Unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468263645184
+    m_Localized: Maintain 1 operational Dinner Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829376
+    m_Localized: Fast Dispatch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829377
+    m_Localized: Reserve the regolith and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829378
+    m_Localized: Reserve 10 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829379
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402176
+    m_Localized: Fair Trade Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402177
+    m_Localized: Reserve the sample and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402178
+    m_Localized: Reserve 8 Rogalite for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402179
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169280
+    m_Localized: Quiet Utility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169281
+    m_Localized: Keep oxygen stable while the cooperative reviews the new space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169282
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547776
+    m_Localized: Respect Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547777
+    m_Localized: Receive the stewardship observers and pass the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547778
+    m_Localized: Pass the stewardship inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926272
+    m_Localized: VIP Corridor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926273
+    m_Localized: Add sleeping capacity and pass the commercial readiness review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926274
+    m_Localized: Build 2 Sleep Modules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926275
+    m_Localized: Pass the corridor inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110464
+    m_Localized: Launch Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110465
+    m_Localized: Reserve the full package and wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110466
+    m_Localized: Reserve 18 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110467
+    m_Localized: Reserve 12 aluminium for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470134304768
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100352
+    m_Localized: Tourist Arrival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100353
+    m_Localized: Hold cash for premium support and pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100354
+    m_Localized: Reach 300 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100355
+    m_Localized: Pass the tourism inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701632
+    m_Localized: Federal Review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701633
+    m_Localized: Feed the block, keep cash on hand, and survive the final review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701634
+    m_Localized: Build 1 Dinner Station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701635
+    m_Localized: Reach 260 stored Gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701636
+    m_Localized: Pass the final security review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108608
+    m_Localized: Priority Shipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108609
+    m_Localized: Reserve the titan and send it on the next mission before the contract
+      window closes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108610
+    m_Localized: Reserve 10 Titan for shipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108611
+    m_Localized: Wait for the next mission arrival.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292800
+    m_Localized: Safety Check
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292801
+    m_Localized: Keep support systems online while the federal observer checks the
+      base.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292802
+    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292803
+    m_Localized: Pass the inspection review.
     m_Metadata:
       m_Items: []
   references:

@@ -1439,6 +1439,402 @@ MonoBehaviour:
     m_Key: event.solar-activity.description
     m_Metadata:
       m_Items: []
+  - m_Id: 1675463427612672
+    m_Key: offer.offer-southafrica-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167104
+    m_Key: offer.offer-southafrica-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167105
+    m_Key: offer.offer-southafrica-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167106
+    m_Key: offer.offer-southafrica-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351296
+    m_Key: offer.offer-southafrica-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351297
+    m_Key: offer.offer-southafrica-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351298
+    m_Key: offer.offer-southafrica-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351299
+    m_Key: offer.offer-southafrica-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535488
+    m_Key: offer.offer-china-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535489
+    m_Key: offer.offer-china-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535490
+    m_Key: offer.offer-china-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719680
+    m_Key: offer.offer-china-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719681
+    m_Key: offer.offer-china-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719682
+    m_Key: offer.offer-china-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719683
+    m_Key: offer.offer-china-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486784
+    m_Key: offer.offer-china-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486785
+    m_Key: offer.offer-china-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486786
+    m_Key: offer.offer-china-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486787
+    m_Key: offer.offer-china-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865280
+    m_Key: offer.offer-ethiopian-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865281
+    m_Key: offer.offer-ethiopian-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865282
+    m_Key: offer.offer-ethiopian-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855168
+    m_Key: offer.offer-ethiopian-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855169
+    m_Key: offer.offer-ethiopian-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855170
+    m_Key: offer.offer-ethiopian-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855171
+    m_Key: offer.offer-ethiopian-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465621233664
+    m_Key: offer.offer-ethiopian-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427968
+    m_Key: offer.offer-ethiopian-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427969
+    m_Key: offer.offer-ethiopian-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427970
+    m_Key: offer.offer-ethiopian-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223552
+    m_Key: offer.offer-france-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223553
+    m_Key: offer.offer-france-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223554
+    m_Key: offer.offer-france-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223555
+    m_Key: offer.offer-france-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213440
+    m_Key: offer.offer-france-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213441
+    m_Key: offer.offer-france-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213442
+    m_Key: offer.offer-france-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009024
+    m_Key: offer.offer-france-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009025
+    m_Key: offer.offer-france-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009026
+    m_Key: offer.offer-france-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009027
+    m_Key: offer.offer-france-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466862747648
+    m_Key: offer.offer-india-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466866941952
+    m_Key: offer.offer-india-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466866941953
+    m_Key: offer.offer-india-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467223457792
+    m_Key: offer.offer-india-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652096
+    m_Key: offer.offer-india-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652097
+    m_Key: offer.offer-india-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652098
+    m_Key: offer.offer-india-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750848
+    m_Key: offer.offer-india-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750849
+    m_Key: offer.offer-india-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750850
+    m_Key: offer.offer-india-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750851
+    m_Key: offer.offer-india-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683776
+    m_Key: offer.offer-mexico-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683777
+    m_Key: offer.offer-mexico-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683778
+    m_Key: offer.offer-mexico-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450880
+    m_Key: offer.offer-mexico-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450881
+    m_Key: offer.offer-mexico-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450882
+    m_Key: offer.offer-mexico-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468263645184
+    m_Key: offer.offer-mexico-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829376
+    m_Key: offer.offer-mexico-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829377
+    m_Key: offer.offer-mexico-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829378
+    m_Key: offer.offer-mexico-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829379
+    m_Key: offer.offer-mexico-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402176
+    m_Key: offer.offer-navajo-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402177
+    m_Key: offer.offer-navajo-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402178
+    m_Key: offer.offer-navajo-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402179
+    m_Key: offer.offer-navajo-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169280
+    m_Key: offer.offer-navajo-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169281
+    m_Key: offer.offer-navajo-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169282
+    m_Key: offer.offer-navajo-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547776
+    m_Key: offer.offer-navajo-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547777
+    m_Key: offer.offer-navajo-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547778
+    m_Key: offer.offer-navajo-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926272
+    m_Key: offer.offer-spacex-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926273
+    m_Key: offer.offer-spacex-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926274
+    m_Key: offer.offer-spacex-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926275
+    m_Key: offer.offer-spacex-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110464
+    m_Key: offer.offer-spacex-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110465
+    m_Key: offer.offer-spacex-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110466
+    m_Key: offer.offer-spacex-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110467
+    m_Key: offer.offer-spacex-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470134304768
+    m_Key: offer.offer-spacex-01.stage.1.objective.2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100352
+    m_Key: offer.offer-spacex-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100353
+    m_Key: offer.offer-spacex-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100354
+    m_Key: offer.offer-spacex-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100355
+    m_Key: offer.offer-spacex-03.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701632
+    m_Key: offer.offer-usa-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701633
+    m_Key: offer.offer-usa-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701634
+    m_Key: offer.offer-usa-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701635
+    m_Key: offer.offer-usa-03.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701636
+    m_Key: offer.offer-usa-03.stage.1.objective.2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108608
+    m_Key: offer.offer-usa-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108609
+    m_Key: offer.offer-usa-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108610
+    m_Key: offer.offer-usa-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108611
+    m_Key: offer.offer-usa-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292800
+    m_Key: offer.offer-usa-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292801
+    m_Key: offer.offer-usa-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292802
+    m_Key: offer.offer-usa-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292803
+    m_Key: offer.offer-usa-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
