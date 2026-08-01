@@ -80,7 +80,7 @@ namespace _Project.Scripts.Editor
             {
                 GUILayout.Label("Open", GUILayout.Width(120f));
                 GUILayout.Label("ObjectType", GUILayout.Width(120f));
-                GUILayout.Label("UiName", GUILayout.Width(130f));
+                GUILayout.Label("Localized Name", GUILayout.Width(130f));
                 GUILayout.Label("Prefab", GUILayout.Width(150f));
                 GUILayout.Label("BuildingDef", GUILayout.Width(150f));
                 GUILayout.Label("Size", GUILayout.Width(70f));
@@ -124,6 +124,7 @@ namespace _Project.Scripts.Editor
         private static void DrawRow(EquipmentRow row)
         {
             BuildingDef buildingDef = row.BuildingDef;
+            string localizedName = buildingDef.GetLocalizedName().GetLocalizedString();
             using (new EditorGUILayout.HorizontalScope(EditorStyles.textArea))
             {
                 using (new EditorGUILayout.HorizontalScope(GUILayout.Width(120f)))
@@ -145,7 +146,7 @@ namespace _Project.Scripts.Editor
                 }
 
                 GUILayout.Label(buildingDef.ObjectType.ToString(), GUILayout.Width(120f));
-                GUILayout.Label(string.IsNullOrWhiteSpace(buildingDef.UiName) ? "<empty>" : buildingDef.UiName, GUILayout.Width(130f));
+                GUILayout.Label(localizedName, GUILayout.Width(130f));
                 GUILayout.Label(row.ViewPrefab != null ? row.ViewPrefab.name : "<missing>", GUILayout.Width(150f));
                 GUILayout.Label(buildingDef.name, GUILayout.Width(150f));
                 GUILayout.Label($"{Mathf.Max(1, buildingDef.Width)}x{Mathf.Max(1, buildingDef.Height)}", GUILayout.Width(70f));
@@ -191,8 +192,8 @@ namespace _Project.Scripts.Editor
             BuildingDef buildingDef = row.BuildingDef;
             if (ContainsIgnoreCase(buildingDef.name, needle)
                 || ContainsIgnoreCase(buildingDef.ObjectType.ToString(), needle)
-                || ContainsIgnoreCase(buildingDef.UiName, needle)
-                || ContainsIgnoreCase(buildingDef.UiDescription, needle)
+                || ContainsIgnoreCase(buildingDef.GetLocalizedName().GetLocalizedString(), needle)
+                || ContainsIgnoreCase(buildingDef.GetLocalizedDescription().GetLocalizedString(), needle)
                 || ContainsIgnoreCase(row.ViewPrefab != null ? row.ViewPrefab.name : string.Empty, needle)
                 )
             {

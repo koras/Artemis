@@ -2764,6 +2764,166 @@ MonoBehaviour:
     m_Localized: Астрологи предсказали усиленную солнечную активность. Сегодня выработка энергии выше, но радиационный фон растёт.
     m_Metadata:
       m_Items: []
+  - m_Id: 3220168801
+    m_Localized: Электрическая батарея
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168802
+    m_Localized: Хранит электрическую энергию для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168803
+    m_Localized: Мост
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168804
+    m_Localized: Соединяет раздельные участки колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168805
+    m_Localized: Лестница
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168806
+    m_Localized: Лестница для вертикального перемещения.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168807
+    m_Localized: Столовая
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168808
+    m_Localized: Место для питания жителей колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168809
+    m_Localized: Большой цветок
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168810
+    m_Localized: Декоративный цветок для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168811
+    m_Localized: Большой цветок II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168812
+    m_Localized: Декоративный цветок для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168813
+    m_Localized: Маленький цветок
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168814
+    m_Localized: Декоративный цветок для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168815
+    m_Localized: Маленький цветок II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168816
+    m_Localized: Декоративный цветок для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168817
+    m_Localized: Картина с астронавтом
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168818
+    m_Localized: Декоративная картина для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168819
+    m_Localized: Картина с планетой
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168820
+    m_Localized: Декоративная картина для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168821
+    m_Localized: Картина с ракетой
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168822
+    m_Localized: Декоративная картина для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168823
+    m_Localized: Душ
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168824
+    m_Localized: Душ для жителей колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168825
+    m_Localized: Модуль сна
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168826
+    m_Localized: Обеспечивает жителей колонии спальными местами.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168827
+    m_Localized: Установка переработки кислорода
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168828
+    m_Localized: Перерабатывает кислород для сети колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168829
+    m_Localized: Станция хранения кислорода
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168830
+    m_Localized: Хранит и распределяет пригодный для дыхания кислород.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168831
+    m_Localized: Установка переработки реголита
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168832
+    m_Localized: Перерабатывает реголит для производства в колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168833
+    m_Localized: Солнечная панель
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168834
+    m_Localized: Вырабатывает электричество из солнечного света.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168835
+    m_Localized: Хранилище
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168836
+    m_Localized: Хранит ресурсы для колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168837
+    m_Localized: Установка переработки воды
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168838
+    m_Localized: Перерабатывает воду для сети колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168839
+    m_Localized: Станция очистки воды
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168840
+    m_Localized: Очищает использованную воду и хранит чистые запасы.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PaintAstroBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 24
-  UiName: PaintAstro
-  UiDescription: A functional food service point for daily meals and short breaks
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: -7210986633277952844, guid: 8552f34c3901f5041b18318a45569a8d, type: 3}
   BuiltSprite: {fileID: -2790463558150694850, guid: 8552f34c3901f5041b18318a45569a8d, type: 3}
   Width: 1

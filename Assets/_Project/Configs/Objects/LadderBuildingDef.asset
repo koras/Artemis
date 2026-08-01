@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: LadderBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 1
-  UiName: "\u041B\u0435\u0441\u0442\u043D\u0438\u0446\u0430"
-  UiDescription: "\u041B\u0435\u0441\u0442\u043D\u0438\u0446\u0430 \u0434\u043B\u044F
-    \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F"
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: -1942671465, guid: e45bc713b97cd504d8c955fe23c36142, type: 3}
   BuiltSprite: {fileID: 1637759510, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
   LadderBottomBuiltSprite: {fileID: -746511139, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}

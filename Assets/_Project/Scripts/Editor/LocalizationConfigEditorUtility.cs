@@ -117,7 +117,7 @@ namespace _Project.Scripts.Editor
             SerializedProperty idProperty,
             List<string> idOptions)
         {
-            string currentId = idProperty.stringValue.Trim();
+            string currentId = GetIdValue(idProperty);
             int selectedIndex = idOptions.IndexOf(currentId);
             bool currentIdMissing = selectedIndex < 0;
             string[] popupOptions = idOptions.ToArray();
@@ -146,8 +146,37 @@ namespace _Project.Scripts.Editor
 
             if (nextIndex != selectedIndex && !(currentIdMissing && nextIndex == 0))
             {
-                idProperty.stringValue = popupOptions[nextIndex];
+                SetIdValue(idProperty, popupOptions[nextIndex]);
             }
+        }
+
+        private static string GetIdValue(SerializedProperty property)
+        {
+            if (property.propertyType == SerializedPropertyType.Enum)
+            {
+                return property.enumNames[property.enumValueIndex].ToLowerInvariant();
+            }
+
+            return property.stringValue.Trim();
+        }
+
+        private static void SetIdValue(SerializedProperty property, string value)
+        {
+            if (property.propertyType == SerializedPropertyType.Enum)
+            {
+                for (int i = 0; i < property.enumNames.Length; i++)
+                {
+                    if (string.Equals(property.enumNames[i], value, StringComparison.OrdinalIgnoreCase))
+                    {
+                        property.enumValueIndex = i;
+                        return;
+                    }
+                }
+
+                return;
+            }
+
+            property.stringValue = value;
         }
 
         private static List<string> GetScopeIds(
@@ -295,7 +324,9 @@ namespace _Project.Scripts.Editor
             LocalizationNamespaceAttribute metadata = GetMetadata(target);
 
             object scopeValue = GetMemberValue(target, metadata.ScopeMemberName);
-            string section = (string)scopeValue;
+            string section = scopeValue is Enum
+                ? scopeValue.ToString().ToLowerInvariant()
+                : scopeValue.ToString();
             return $"{metadata.NamespaceName.Trim('.')}.{section.Trim('.')}";
         }
 

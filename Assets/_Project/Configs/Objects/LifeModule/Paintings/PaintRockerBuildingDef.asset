@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PaintRockerBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 26
-  UiName: PaintRocket
-  UiDescription: A functional food service point for daily meals and short breaks
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: -1459815913443786198, guid: 739cb0adc477be448b3d2541f73f2596, type: 3}
   BuiltSprite: {fileID: 5930355110272969125, guid: 739cb0adc477be448b3d2541f73f2596, type: 3}
   Width: 1

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StorageBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 5
-  UiName: "\u0425\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0435"
-  UiDescription: "\u0425\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0435 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u043E\u0432"
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 2534334833520402907, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
   BuiltSprite: {fileID: 1468188608, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
   Width: 4

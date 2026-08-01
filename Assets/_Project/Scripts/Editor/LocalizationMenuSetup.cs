@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Project.Scripts.Data.ColonyEvents;
+using _Project.Scripts.Data.Construction;
 using _Project.Scripts.Data.Offers;
 using UnityEditor;
 using UnityEditor.Localization;
@@ -36,6 +37,7 @@ namespace _Project.Scripts.Editor
             SetRussianAsDefault(russianLocale);
 
             StringTableCollection collection = LocalizationEditorSettings.GetStringTableCollection(TableName);
+
             if (collection == null)
             {
                 collection = LocalizationEditorSettings.CreateStringTableCollection(
@@ -50,6 +52,7 @@ namespace _Project.Scripts.Editor
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_en.asset", ImportAssetOptions.ForceUpdate);
             AddMenuEntries(collection);
             AddCustomerEntries(collection);
+            AddBuildingEntries(collection);
             AddOfferEntries(collection);
             AddColonyEventEntries(collection);
 
@@ -63,6 +66,7 @@ namespace _Project.Scripts.Editor
         private static LocalizationSettings GetOrCreateSettings()
         {
             LocalizationSettings settings = AssetDatabase.LoadAssetAtPath<LocalizationSettings>(SettingsPath);
+
             if (settings != null)
             {
                 return settings;
@@ -77,6 +81,7 @@ namespace _Project.Scripts.Editor
         private static Locale GetOrCreateLocale(string code, string displayName)
         {
             Locale locale = LocalizationEditorSettings.GetLocale(code);
+
             if (locale == null)
             {
                 locale = Locale.CreateLocale(code);
@@ -94,6 +99,7 @@ namespace _Project.Scripts.Editor
 
             // Явно выбираем русский при старте, не полагаясь на язык ОС игрока.
             LocalizationSettings.StartupLocaleSelectors.Clear();
+
             LocalizationSettings.StartupLocaleSelectors.Add(new SpecificLocaleSelector
             {
                 LocaleId = russianLocale.Identifier
@@ -158,7 +164,10 @@ namespace _Project.Scripts.Editor
                 { "shop.order", ("Заказать", "Order") },
                 { "shop.cancel", ("Отмена", "Cancel") },
                 { "shop.no.products", ("Нет доступных товаров.", "No products available.") },
-                { "shop.no.filtered.products", ("Нет товаров в выбранной категории.", "No products for selected category.") },
+                {
+                    "shop.no.filtered.products",
+                    ("Нет товаров в выбранной категории.", "No products for selected category.")
+                },
                 { "shop.no.orders", ("Нет активных заказов.", "No active orders.") },
             };
 
@@ -202,6 +211,29 @@ namespace _Project.Scripts.Editor
             }
         }
 
+        private static void AddBuildingEntries(StringTableCollection collection)
+        {
+            StringTable russianTable = GetOrCreateTable(collection, "ru");
+            StringTable englishTable = GetOrCreateTable(collection, "en");
+            string[] guids = AssetDatabase.FindAssets("t:BuildingDef");
+
+            for (int assetIndex = 0; assetIndex < guids.Length; assetIndex++)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guids[assetIndex]);
+                BuildingDef building = AssetDatabase.LoadAssetAtPath<BuildingDef>(assetPath);
+
+                if (building == null)
+                {
+                    continue;
+                }
+
+                EnsureEntry(englishTable, building.NameLocalizationKey);
+                EnsureEntry(englishTable, building.DescriptionLocalizationKey);
+                EnsureEntry(russianTable, building.NameLocalizationKey);
+                EnsureEntry(russianTable, building.DescriptionLocalizationKey);
+            }
+        }
+
         private static void EnsureEntry(StringTable table, string key)
         {
             if (table.GetEntry(key) == null)
@@ -240,6 +272,7 @@ namespace _Project.Scripts.Editor
                 string assetPath = AssetDatabase.GUIDToAssetPath(guids[assetIndex]);
                 AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
                 OfferDefinition definition = AssetDatabase.LoadAssetAtPath<OfferDefinition>(assetPath);
+
                 if (definition == null || string.IsNullOrWhiteSpace(definition.OfferId))
                 {
                     continue;
@@ -259,13 +292,18 @@ namespace _Project.Scripts.Editor
                     for (int stageIndex = 0; stageIndex < definition.Stages.Length; stageIndex++)
                     {
                         OfferStageDefinition stage = definition.Stages[stageIndex];
+
                         if (stage == null)
                         {
                             continue;
                         }
 
-                        AddOfferEntry(collection, OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "title"), stage.Title);
-                        AddOfferEntry(collection, OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "description"), stage.Description);
+                        AddOfferEntry(collection, OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "title"),
+                            stage.Title);
+
+                        AddOfferEntry(collection,
+                            OfferLocalizationKeys.Stage(definition.OfferId, stageIndex, "description"),
+                            stage.Description);
 
                         if (stage.Objectives == null)
                         {
@@ -275,9 +313,12 @@ namespace _Project.Scripts.Editor
                         for (int objectiveIndex = 0; objectiveIndex < stage.Objectives.Length; objectiveIndex++)
                         {
                             OfferObjectiveDefinition objective = stage.Objectives[objectiveIndex];
+
                             if (objective != null)
                             {
-                                AddOfferEntry(collection, OfferLocalizationKeys.Objective(definition.OfferId, stageIndex, objectiveIndex), objective.Description);
+                                AddOfferEntry(collection,
+                                    OfferLocalizationKeys.Objective(definition.OfferId, stageIndex, objectiveIndex),
+                                    objective.Description);
                             }
                         }
                     }
@@ -285,7 +326,9 @@ namespace _Project.Scripts.Editor
 
                 if (definition.ExtraUnlockConditions != null)
                 {
-                    for (int conditionIndex = 0; conditionIndex < definition.ExtraUnlockConditions.Length; conditionIndex++)
+                    for (int conditionIndex = 0;
+                         conditionIndex < definition.ExtraUnlockConditions.Length;
+                         conditionIndex++)
                     {
                         AddOfferEntry(
                             collection,
@@ -336,6 +379,7 @@ namespace _Project.Scripts.Editor
             StringTable englishTable = GetOrCreateTable(collection, "en");
             // Не перезаписываем уже переведённые строки при повторном запуске генератора.
             StringTableEntry russianEntry = russianTable.GetEntry(key);
+
             if (russianEntry == null)
             {
                 Debug.LogWarning($"[Localization] Missing Russian translation for '{key}'.");
@@ -384,11 +428,13 @@ namespace _Project.Scripts.Editor
                 new[] { "Assets/_Project/Resources/ColonyEvents" });
 
             int scannedEvents = 0;
+
             for (int assetIndex = 0; assetIndex < guids.Length; assetIndex++)
             {
                 string assetPath = AssetDatabase.GUIDToAssetPath(guids[assetIndex]);
                 AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
                 ColonyEventDefinition definition = AssetDatabase.LoadAssetAtPath<ColonyEventDefinition>(assetPath);
+
                 if (definition == null || string.IsNullOrWhiteSpace(definition.EventId))
                 {
                     continue;
@@ -396,14 +442,17 @@ namespace _Project.Scripts.Editor
 
                 scannedEvents++;
                 string eventId = definition.EventId;
+
                 string russianTitle = string.IsNullOrWhiteSpace(definition.Title)
                     ? eventId
                     : definition.Title;
+
                 string russianDescription = definition.Description ?? string.Empty;
                 string englishTitle = russianTitle;
                 string englishDescription = russianDescription;
 
-                if (translations.TryGetValue(eventId, out (string Russian, string EnglishTitle, string EnglishDescription) translation))
+                if (translations.TryGetValue(eventId,
+                        out (string Russian, string EnglishTitle, string EnglishDescription) translation))
                 {
                     russianTitle = translation.Russian;
                     englishTitle = translation.EnglishTitle;
@@ -411,7 +460,9 @@ namespace _Project.Scripts.Editor
                 }
 
                 AddLocalizationEntry(collection, $"event.{eventId}.title", russianTitle, englishTitle);
-                AddLocalizationEntry(collection, $"event.{eventId}.description", russianDescription, englishDescription);
+
+                AddLocalizationEntry(collection, $"event.{eventId}.description", russianDescription,
+                    englishDescription);
             }
 
             Debug.Log($"[Localization] ColonyEventDefinition assets scanned: {scannedEvents}/{guids.Length}.");

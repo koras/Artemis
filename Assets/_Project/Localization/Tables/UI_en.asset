@@ -3488,6 +3488,166 @@ MonoBehaviour:
     m_Localized: Pass the inspection review.
     m_Metadata:
       m_Items: []
+  - m_Id: 3220168801
+    m_Localized: Electric Battery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168802
+    m_Localized: Stores electrical energy for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168803
+    m_Localized: Bridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168804
+    m_Localized: Connects separated sections of the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168805
+    m_Localized: Ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168806
+    m_Localized: Ladder for vertical movement.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168807
+    m_Localized: Dining Station
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168808
+    m_Localized: Provides a place for colony residents to eat.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168809
+    m_Localized: Large Flower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168810
+    m_Localized: Decorative flower for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168811
+    m_Localized: Large Flower II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168812
+    m_Localized: Decorative flower for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168813
+    m_Localized: Small Flower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168814
+    m_Localized: Decorative flower for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168815
+    m_Localized: Small Flower II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168816
+    m_Localized: Decorative flower for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168817
+    m_Localized: Astronaut Painting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168818
+    m_Localized: A decorative painting for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168819
+    m_Localized: Planet Painting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168820
+    m_Localized: A decorative painting for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168821
+    m_Localized: Rocket Painting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168822
+    m_Localized: A decorative painting for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168823
+    m_Localized: Shower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168824
+    m_Localized: A shower for colony residents.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168825
+    m_Localized: Sleep Module
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168826
+    m_Localized: Provides sleeping space for colony residents.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168827
+    m_Localized: Oxygen Processing Unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168828
+    m_Localized: Processes oxygen for the colony network.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168829
+    m_Localized: Oxygen Storage Station
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168830
+    m_Localized: Stores and distributes breathable oxygen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168831
+    m_Localized: Regolith Processing Unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168832
+    m_Localized: Processes regolith for colony production.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168833
+    m_Localized: Solar Panel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168834
+    m_Localized: Generates electricity from sunlight.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168835
+    m_Localized: Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168836
+    m_Localized: Stores resources for the colony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168837
+    m_Localized: Water Processing Unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168838
+    m_Localized: Processes water for the colony network.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168839
+    m_Localized: Water Reclamation Station
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168840
+    m_Localized: Purifies used water and stores clean reserves.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BridgeBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 14
-  UiName: Bridge
-  UiDescription: Bridge
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: dc08252b5f5c6fb4a8a0e8a6515249de, type: 3}
   BuiltSprite: {fileID: 21300000, guid: aaf14fd9056e82049bc013140fd29c1a, type: 3}
   Width: 1

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SleepModuleBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 9
-  UiName: Sleep module
-  UiDescription: Sleep module
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: a31ed5de1554918439d9289b35b5b75a, type: 3}
   BuiltSprite: {fileID: 21300000, guid: 5ca2416b789c3b24daef56fe7012f221, type: 3}
   Width: 4

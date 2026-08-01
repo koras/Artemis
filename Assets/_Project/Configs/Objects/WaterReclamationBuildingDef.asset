@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: WaterReclamationBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 11
-  UiName: Water Reclamation Station
-  UiDescription: A treatment station that purifies used water and stores clean reserves
-    for base operations
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: 9ebfb7c6024eea64a9fbbba6a3826bb9, type: 3}
   BuiltSprite: {fileID: 21300000, guid: ea5c5c3166d6657488cfcc33defd963e, type: 3}
   Width: 3

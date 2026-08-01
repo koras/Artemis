@@ -43,6 +43,166 @@ MonoBehaviour:
     m_Key: building.ladder
     m_Metadata:
       m_Items: []
+  - m_Id: 3220168801
+    m_Key: building.battery.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168802
+    m_Key: building.battery.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168803
+    m_Key: building.bridge.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168804
+    m_Key: building.bridge.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168805
+    m_Key: building.ladder.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168806
+    m_Key: building.ladder.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168807
+    m_Key: building.dinnerstation.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168808
+    m_Key: building.dinnerstation.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168809
+    m_Key: building.flowerbig1.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168810
+    m_Key: building.flowerbig1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168811
+    m_Key: building.flowerbig2.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168812
+    m_Key: building.flowerbig2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168813
+    m_Key: building.flowersmall1.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168814
+    m_Key: building.flowersmall1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168815
+    m_Key: building.flowersmall2.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168816
+    m_Key: building.flowersmall2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168817
+    m_Key: building.paintastro.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168818
+    m_Key: building.paintastro.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168819
+    m_Key: building.paintplanet.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168820
+    m_Key: building.paintplanet.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168821
+    m_Key: building.paintrocket.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168822
+    m_Key: building.paintrocket.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168823
+    m_Key: building.shower.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168824
+    m_Key: building.shower.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168825
+    m_Key: building.sleepmodule.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168826
+    m_Key: building.sleepmodule.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168827
+    m_Key: building.oxigenprocessingunit.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168828
+    m_Key: building.oxigenprocessingunit.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168829
+    m_Key: building.oxygenstation.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168830
+    m_Key: building.oxygenstation.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168831
+    m_Key: building.regolithprocessingunit.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168832
+    m_Key: building.regolithprocessingunit.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168833
+    m_Key: building.solarpanel.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168834
+    m_Key: building.solarpanel.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168835
+    m_Key: building.storage.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168836
+    m_Key: building.storage.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168837
+    m_Key: building.waterprocessingunit.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168838
+    m_Key: building.waterprocessingunit.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168839
+    m_Key: building.waterreclamation.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168840
+    m_Key: building.waterreclamation.description
+    m_Metadata:
+      m_Items: []
   - m_Id: 3220168707
     m_Key: action.destroy
     m_Metadata:

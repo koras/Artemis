@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FlowerSmall1BuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 22
-  UiName: FlowerSmall1
-  UiDescription: A functional food service point for daily meals and short breaks
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: c5f8dcabda6331248b4ea351e2177067, type: 3}
   BuiltSprite: {fileID: 21300000, guid: c5f8dcabda6331248b4ea351e2177067, type: 3}
   Width: 1

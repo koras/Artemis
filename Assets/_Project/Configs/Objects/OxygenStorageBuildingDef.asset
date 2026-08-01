@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: OxygenStorageBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 13
-  UiName: Oxygen Storage Station
-  UiDescription: A reinforced station that stores and distributes breathable oxygen
-    for nearby facilities
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: 5320769ee7978a7409eb522521bdf68e, type: 3}
   BuiltSprite: {fileID: 21300000, guid: d48da75e3ffd3e14e87e776490ea4d7f, type: 3}
   Width: 3

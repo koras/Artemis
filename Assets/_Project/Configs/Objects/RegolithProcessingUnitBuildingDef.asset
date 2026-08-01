@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RegolithProcessingUnitBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 7
-  UiName: "\u0425\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0435"
-  UiDescription: "\u0425\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0435 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u043E\u0432"
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: 54b37820d15a1df4aa358eb20838d0cb, type: 3}
   BuiltSprite: {fileID: 21300000, guid: edd15457ec5583f4cb95981427c6bf29, type: 3}
   Width: 3
