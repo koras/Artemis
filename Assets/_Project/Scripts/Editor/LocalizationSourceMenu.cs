@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEditor.Localization;
 using UnityEditor.Localization.Plugins.CSV;
+using UnityEditor.Localization.Plugins.CSV.Columns;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 
 namespace _Project.Scripts.Editor
@@ -104,7 +107,8 @@ namespace _Project.Scripts.Editor
 
 			using (StreamReader reader = new StreamReader(sourcePath, Encoding.UTF8, true))
 			{
-				Csv.ImportInto(reader, collection, true, null, false);
+				var sourceColumnMappings = CreateSourceColumnMappings();
+				Csv.ImportInto(reader, collection, sourceColumnMappings, true, null, false);
 			}
 
 			LocalizationMenuSetup.EnsureAllKnownEntriesInAllTables(collection);
@@ -118,6 +122,29 @@ namespace _Project.Scripts.Editor
 			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Сопоставляет колонки CSV локалям проекта по схеме &lt;имя локали&gt;(&lt;код&gt;).
+		/// Например: English(en), Russian(ru).
+		/// </summary>
+		private static List<CsvColumns> CreateSourceColumnMappings()
+		{
+			var columns = new List<CsvColumns>
+			{
+				new KeyIdColumns()
+			};
+
+			foreach (Locale locale in LocalizationEditorSettings.GetLocales())
+			{
+				columns.Add(new LocaleColumns
+				{
+					LocaleIdentifier = locale.Identifier,
+					FieldName = $"{locale.name}({locale.Identifier.Code})"
+				});
+			}
+
+			return columns;
 		}
 
 		private static string GetSourcePath()

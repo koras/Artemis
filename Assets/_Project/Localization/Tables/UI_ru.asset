@@ -443,932 +443,895 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613965
-    m_Localized: 'The second request wants more than ore: it wants a backbone of
-      storage, power, and processing that can survive stress.'
+    m_Localized: "Второй запрос требует не только руды: нужна основа из хранилищ, энергии и переработки, способная выдержать нагрузку."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613966
-    m_Localized: The buyers now care about discipline, not just tonnage.
+    m_Localized: Теперь покупателям важен порядок, а не только тоннаж.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613967
-    m_Localized: Build the backbone and keep it stable long enough to earn trust.
+    m_Localized: Создайте эту основу и поддерживайте её стабильность, чтобы заслужить доверие.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613968
-    m_Localized: The backbone held and pushed the contract into security territory.
+    m_Localized: Основа выдержала нагрузку и перевела контракт в зону безопасности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613969
-    m_Localized: The backbone looked too weak for long-term heavy work.
+    m_Localized: Основа оказалась слишком слабой для длительной тяжёлой работы.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613970
-    m_Localized: Mining Backbone
+    m_Localized: Горнодобывающий каркас
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613971
-    m_Localized: Add storage and a processing unit for the deeper mining program.
+    m_Localized: Добавьте хранилища и перерабатывающую установку для углублённой добычи.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613972
-    m_Localized: Build 2 Storage buildings.
+    m_Localized: Постройте 2 хранилища.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613973
-    m_Localized: Build 1 Regolith Processing Unit.
+    m_Localized: Постройте 1 установку переработки реголита.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613974
-    m_Localized: Efficiency Audit
+    m_Localized: Проверка эффективности
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613975
-    m_Localized: 'The final Chinese step is managerial: keep capital visible, widen
-      the colony, and survive a hard efficiency audit.'
+    m_Localized: "Последний китайский этап носит управленческий характер: держите капитал под контролем, расширяйте колонию и выдержите строгую проверку эффективности."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613976
-    m_Localized: The audit team does not care about your excuses, only your ratios.
+    m_Localized: Команду аудиторов не интересуют оправдания — только ваши показатели.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613977
-    m_Localized: Prepare the colony for a cold efficiency review.
+    m_Localized: Подготовьте колонию к беспристрастной проверке эффективности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613978
-    m_Localized: The audit cleared the colony for industrial expansion.
+    m_Localized: Аудит подтвердил готовность колонии к промышленному расширению.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613979
-    m_Localized: The review found too much slack in the system.
+    m_Localized: Проверка выявила слишком много неиспользуемых ресурсов.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613980
-    m_Localized: Efficiency Buffer
+    m_Localized: Резерв эффективности
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613981
-    m_Localized: Keep enough gold on hand and widen the habitat spine.
+    m_Localized: Держите достаточно золота в запасе и расширьте жилой каркас.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613982
-    m_Localized: Reach 250 stored Gold.
+    m_Localized: Накопите 250 единиц золота.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613983
-    m_Localized: Reach life-module width 8.
+    m_Localized: Достигните ширины жилого модуля 8.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613984
-    m_Localized: Second Production Line
+    m_Localized: Вторая производственная линия
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613985
-    m_Localized: 'With bulk extraction proven, the next demand is a tougher one:
-      add a second processing backbone and keep it stable under load.'
+    m_Localized: "После подтверждения массовой добычи следующий вызов сложнее: добавьте второй контур переработки и поддерживайте его стабильность под нагрузкой."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613986
-    m_Localized: This is the point where scale turns into systems engineering.
+    m_Localized: На этом этапе масштаб превращается в инженерную задачу.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613987
-    m_Localized: Build the line, store the output, and hold power steady.
+    m_Localized: Постройте линию, накопите продукцию и удерживайте стабильную подачу энергии.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613988
-    m_Localized: The second line held and moved the program into audit phase.
+    m_Localized: Вторая линия выдержала нагрузку и перевела программу к этапу аудита.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613989
-    m_Localized: The line buckled before it could be trusted.
+    m_Localized: Линия не выдержала, прежде чем заслужила доверие.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613990
-    m_Localized: Second Line
+    m_Localized: Вторая линия
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613991
-    m_Localized: Add a new regolith processor and enough storage to feed it.
+    m_Localized: Добавьте новый перерабатывающий модуль и достаточно хранилищ для его снабжения.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613992
-    m_Localized: Build 1 Regolith Processing Unit.
+    m_Localized: Постройте 1 установку переработки реголита.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613993
-    m_Localized: Build 2 Storage buildings.
+    m_Localized: Постройте 2 хранилища.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613994
-    m_Localized: Industrial Scale Trial
+    m_Localized: Испытание промышленного масштаба
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613995
-    m_Localized: Chinese buyers want proof that the moon base can move raw material
-      in bulk, not just in curated science lots.
+    m_Localized: Китайским покупателям нужно доказательство, что лунная база может перемещать сырьё большими партиями, а не только отобранными научными образцами.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613996
-    m_Localized: 'The request is blunt: scale matters more than elegance.'
+    m_Localized: "Запрос предельно прямолинеен: масштаб важнее изящества."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613997
-    m_Localized: Fill the stockpile and send the first heavy batch.
+    m_Localized: Заполните запас и отправьте первую крупную партию.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613998
-    m_Localized: The industrial desk approved a larger expansion package.
+    m_Localized: Промышленный отдел одобрил расширенный пакет развития.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927613999
-    m_Localized: The batch never reached the scale benchmark.
+    m_Localized: Партия не достигла требуемого промышленного масштаба.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614000
-    m_Localized: Bulk Extraction
+    m_Localized: Массовая добыча
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614001
-    m_Localized: Pull enough titan to make the industrial buyers take the base seriously.
+    m_Localized: Добудьте достаточно титана, чтобы промышленные покупатели отнеслись к базе серьёзно.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614002
-    m_Localized: Accumulate 20 Titan.
+    m_Localized: Накопите 20 единиц титана.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614003
-    m_Localized: Stability Program Review
+    m_Localized: Проверка программы стабильности
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614004
-    m_Localized: 'The final Ethiopian request turns your humane base into a public
-      program: prove it can stay kind without becoming weak.'
+    m_Localized: "Последний эфиопский запрос превращает гуманную базу в общественную программу: докажите, что она может оставаться заботливой, не становясь слабой."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614005
-    m_Localized: This review will decide whether the colony can be sold as a stable
-      community, not just a mine.
+    m_Localized: Эта проверка решит, можно ли представить колонию как стабильное сообщество, а не просто рудник.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614006
-    m_Localized: Keep beds ready, hold a gold buffer, and pass the program review.
+    m_Localized: Подготовьте спальные места, создайте резерв золота и пройдите проверку программы.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614007
-    m_Localized: The program review concluded that the colony can sustain more civilian
-      life.
+    m_Localized: Проверка программы показала, что колония готова поддерживать больше гражданских жителей.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614008
-    m_Localized: The review judged the colony too brittle for expansion.
+    m_Localized: Проверка признала колонию слишком хрупкой для расширения.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614009
-    m_Localized: Program Readiness
+    m_Localized: Готовность программы
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614010
-    m_Localized: Add beds and keep enough funding for a longer support cycle.
+    m_Localized: Добавьте спальные места и обеспечьте достаточное финансирование для длительного цикла поддержки.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614011
-    m_Localized: Build 2 Sleep Modules.
+    m_Localized: Постройте 2 модуля сна.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614012
-    m_Localized: Reach 200 stored Gold.
+    m_Localized: Накопите 200 единиц золота.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614013
-    m_Localized: Rest Zone Program
+    m_Localized: Программа зоны отдыха
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614014
-    m_Localized: 'The next phase wants the base to feel humane: food, rest, and a
-      recovery loop that can stay calm under pressure.'
+    m_Localized: "Следующий этап должен сделать базу более человечной: еда, отдых и восстановление, сохраняющие спокойствие под нагрузкой."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614015
-    m_Localized: A stable base is measured by how people recover, not just how they
-      mine.
+    m_Localized: Стабильность базы определяется тем, как люди восстанавливаются, а не только тем, как они добывают ресурсы.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614016
-    m_Localized: Build the rest zone and keep its utilities healthy.
+    m_Localized: Постройте зону отдыха и поддерживайте её коммунальные системы в рабочем состоянии.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614017
-    m_Localized: The rest zone proved the colony can care for its people.
+    m_Localized: Зона отдыха доказала, что колония способна заботиться о своих людях.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614018
-    m_Localized: The support loop never looked steady enough to trust.
+    m_Localized: Цикл поддержки так и не стал достаточно стабильным, чтобы ему доверять.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614019
-    m_Localized: Rest Zone
+    m_Localized: Зона отдыха
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614020
-    m_Localized: Expand the habitat and add a dinner space for the relief program.
+    m_Localized: Расширьте жилой модуль и добавьте столовую для программы восстановления.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614021
-    m_Localized: Reach life-module width 8.
+    m_Localized: Достигните ширины жилого модуля 8.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614022
-    m_Localized: Build 1 Dinner Station.
+    m_Localized: Постройте 1 обеденную станцию.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614023
-    m_Localized: Sustainment Goods
+    m_Localized: Товары жизнеобеспечения
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614024
-    m_Localized: The first Ethiopian request focuses on dependable sustainment cargo
-      for a colony that still feels exposed.
+    m_Localized: Первый эфиопский запрос посвящён надёжному грузу жизнеобеспечения для колонии, которая всё ещё уязвима.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614025
-    m_Localized: The cargo is modest, but the promise behind it matters.
+    m_Localized: Груз невелик, но важна цель, которую он поддерживает.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614026
-    m_Localized: Prepare the sustainment batch and deliver it on schedule.
+    m_Localized: Подготовьте партию жизнеобеспечения и доставьте её по графику.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614027
-    m_Localized: The sustainment goods arrived and opened a broader stability program.
+    m_Localized: Товары жизнеобеспечения прибыли и открыли более широкую программу стабильности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614028
-    m_Localized: The sustainment program stumbled before it started.
+    m_Localized: Программа жизнеобеспечения сорвалась, едва начавшись.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614029
-    m_Localized: Relief Stock
+    m_Localized: Резерв помощи
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614030
-    m_Localized: Gather aluminium for the sustainment package.
+    m_Localized: Соберите алюминий для пакета жизнеобеспечения.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614031
-    m_Localized: Accumulate 10 aluminium.
+    m_Localized: Накопите 10 единиц алюминия.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614032
-    m_Localized: Habitat Certification Wing
+    m_Localized: Крыло сертификации жилого модуля
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614033
-    m_Localized: With samples secured, the bureau now wants a proper scientific habitat
-      with reliable life support.
+    m_Localized: После сбора образцов бюро требует полноценный научный жилой модуль с надёжной системой жизнеобеспечения.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614034
-    m_Localized: Engineers from Europe drafted a certification checklist.
+    m_Localized: Европейские инженеры составили контрольный список для сертификации.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614035
-    m_Localized: Extend the habitat and keep the utility line stable long enough
-      for sign-off.
+    m_Localized: Расширьте жилой модуль и достаточно долго поддерживайте стабильность коммунальных систем для сертификации.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614036
-    m_Localized: The wing passed structural certification.
+    m_Localized: Крыло прошло структурную сертификацию.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614037
-    m_Localized: Certification failed before the observers arrived.
+    m_Localized: Сертификация провалилась ещё до прибытия наблюдателей.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614038
-    m_Localized: Research Habitat
+    m_Localized: Исследовательский модуль
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614039
-    m_Localized: Expand the living band and add sleeping capacity for the visiting
-      team.
+    m_Localized: Расширьте жилую зону и добавьте спальные места для прибывающей команды.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614040
-    m_Localized: Reach life-module width 10.
+    m_Localized: Достигните ширины жилого модуля 10.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614041
-    m_Localized: Build 1 Sleep Module.
+    m_Localized: Постройте 1 модуль сна.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614042
-    m_Localized: European Colony Inspection
+    m_Localized: Проверка европейской колонии
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614043
-    m_Localized: 'The final French request is ceremonial and political: host an official
-      inspection without letting the base look improvised.'
+    m_Localized: "Последний французский запрос носит церемониальный и политический характер: примите официальную инспекцию, не показывая, что база собрана наспех."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614044
-    m_Localized: The inspectors want a colony that feels permanent, not lucky.
+    m_Localized: Инспекторам нужна постоянная колония, а не случайно выживший лагерь.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614045
-    m_Localized: Prepare a dining space, keep a cash reserve, and welcome the inspection
-      convoy.
+    m_Localized: Подготовьте столовую, сохраните денежный резерв и встретьте инспекционный конвой.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614046
-    m_Localized: The European review stamped the colony as a serious scientific outpost.
+    m_Localized: Европейская проверка признала колонию серьёзным научным форпостом.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614047
-    m_Localized: The inspectors saw too much improvisation.
+    m_Localized: Инспекторы заметили слишком много импровизации.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614048
-    m_Localized: Inspection Window
+    m_Localized: Окно инспекции
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614049
-    m_Localized: Set up a dignified host space and keep funding visible.
+    m_Localized: Создайте достойное пространство для гостей и обеспечьте прозрачный финансовый резерв.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614050
-    m_Localized: Build 1 Dinner Station.
+    m_Localized: Постройте 1 обеденную станцию.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614051
-    m_Localized: Reach 220 stored Gold.
+    m_Localized: Накопите 220 единиц золота.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614052
-    m_Localized: Regolith for Research
+    m_Localized: Реголит для исследований
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614053
-    m_Localized: French labs want clean regolith shipments to justify a larger scientific
-      station on the moon.
+    m_Localized: Французским лабораториям нужны чистые поставки реголита, чтобы обосновать расширение научной станции на Луне.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614054
-    m_Localized: The first batch is meant for a fragile research window.
+    m_Localized: Первая партия предназначена для короткого и уязвимого исследовательского окна.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614055
-    m_Localized: Secure the regolith and send it before the science slot expires.
+    m_Localized: Соберите реголит и отправьте его до окончания научного окна.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614056
-    m_Localized: The laboratory shipment impressed the bureau.
+    m_Localized: Лабораторная поставка впечатлила бюро.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614057
-    m_Localized: The regolith never reached the scientists in time.
+    m_Localized: Реголит не успел попасть к учёным.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614058
-    m_Localized: Research Stockpile
+    m_Localized: Исследовательский запас
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614059
-    m_Localized: Gather regolith fit for laboratory use.
+    m_Localized: Соберите реголит, пригодный для лабораторного использования.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614060
-    m_Localized: Accumulate 12 Rogalite.
+    m_Localized: Накопите 12 единиц рогалита.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614061
-    m_Localized: Civic Guest Program
+    m_Localized: Программа гражданских гостей
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614062
-    m_Localized: 'The final Indian request is a public-facing one: open the first
-      civic guest module and prove the colony can welcome non-specialists.'
+    m_Localized: "Последний индийский запрос обращён к обществу: откройте первый гражданский модуль и докажите, что колония готова принимать неспециалистов."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614063
-    m_Localized: The guest program is meant to humanize the colony, not just fund
-      it.
+    m_Localized: Программа приёма гостей должна очеловечить колонию, а не только финансировать её.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614064
-    m_Localized: Finish the public-facing module and pass the final visit.
+    m_Localized: Завершите модуль для гостей и пройдите финальный визит.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614065
-    m_Localized: The guest program launched and broadened the colony's reputation.
+    m_Localized: Программа приёма гостей запущена и укрепила репутацию колонии.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614066
-    m_Localized: The visit made the colony feel too improvised for civilians.
+    m_Localized: После визита колония показалась слишком непродуманной для гражданских гостей.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614067
-    m_Localized: Public Module
+    m_Localized: Гражданский модуль
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614068
-    m_Localized: Add water support and keep a visible cash reserve for the public
-      launch.
+    m_Localized: Добавьте систему водоснабжения и сохраните заметный денежный резерв к открытию модуля.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614069
-    m_Localized: Build 1 Water Reclamation unit.
+    m_Localized: Постройте 1 установку восстановления воды.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614070
-    m_Localized: Reach 220 stored Gold.
+    m_Localized: Накопите 220 единиц золота.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614071
-    m_Localized: Delegation Habitat
+    m_Localized: Жилой модуль делегации
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614072
-    m_Localized: 'The next phase is social as much as technical: create a larger,
-      calmer habitat for a civilian delegation.'
+    m_Localized: "Следующий этап одновременно социальный и технический: создайте просторный спокойный жилой модуль для гражданской делегации."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614073
-    m_Localized: A civilian delegation needs more than a miner bunk.
+    m_Localized: Гражданской делегации нужно больше, чем койки шахтёров.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614074
-    m_Localized: Expand the habitat and keep the daily support loop visible.
+    m_Localized: Расширьте жилой модуль и обеспечьте прозрачную ежедневную поддержку.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614075
-    m_Localized: The habitat is ready for a formal delegation.
+    m_Localized: Жилой модуль готов к официальной делегации.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614076
-    m_Localized: The delegation wing never felt stable enough.
+    m_Localized: Крыло делегации так и не стало достаточно стабильным.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614077
-    m_Localized: Delegation Quarters
+    m_Localized: Кварталы делегации
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614078
-    m_Localized: Widen the habitat and add sleeping capacity for official guests.
+    m_Localized: Расширьте жилой модуль и добавьте спальные места для официальных гостей.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614079
-    m_Localized: Reach life-module width 12.
+    m_Localized: Достигните ширины жилого модуля 12.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614080
-    m_Localized: Build 2 Sleep Modules.
+    m_Localized: Постройте 2 модуля сна.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614081
-    m_Localized: Civil Supply Bridge
+    m_Localized: Мост гражданских поставок
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614082
-    m_Localized: 'India wants a dependable civil supply bridge first: practical materials,
-      predictable timing, no heroic improvisation.'
+    m_Localized: "Индии сначала нужен надёжный мост гражданских поставок: практичные материалы, предсказуемые сроки и никакой героической импровизации."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614083
-    m_Localized: The first request is about trust, not spectacle.
+    m_Localized: Первый запрос — о доверии, а не о зрелищности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614084
-    m_Localized: Prepare the base materials package and send it on time.
+    m_Localized: Подготовьте пакет базовых материалов и отправьте его вовремя.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614085
-    m_Localized: The bridge held and the delegation planners moved forward.
+    m_Localized: Мост выдержал, и планировщики делегации перешли к следующему этапу.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614086
-    m_Localized: The materials package slipped before the first delegation even launched.
+    m_Localized: Поставка материалов сорвалась ещё до отправления первой делегации.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614087
-    m_Localized: Common Stock
+    m_Localized: Общий запас
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614088
-    m_Localized: Gather aluminium for the civil supply package.
+    m_Localized: Соберите алюминий для пакета гражданских поставок.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614089
-    m_Localized: Accumulate 14 aluminium.
+    m_Localized: Накопите 14 единиц алюминия.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614090
-    m_Localized: Base Celebration
+    m_Localized: Праздник на базе
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614091
-    m_Localized: 'The final request turns the colony into a stage: hold a visible
-      event without exposing how thin your support margins are.'
+    m_Localized: "Последний запрос превращает колонию в сцену: проведите заметное мероприятие, не показывая, насколько мал ваш запас поддержки."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614092
-    m_Localized: A public event can sell a story faster than any shipment manifest.
+    m_Localized: Публичное мероприятие продаёт историю быстрее любого грузового манифеста.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614093
-    m_Localized: Build the event buffer, keep funding on hand, and pass the final
-      review.
+    m_Localized: Создайте резерв для мероприятия, держите финансирование под рукой и пройдите финальную проверку.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614094
-    m_Localized: The celebration landed and turned the colony into a destination.
+    m_Localized: Праздник удался и превратил колонию в новое место назначения.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614095
-    m_Localized: The event exposed more fragility than charm.
+    m_Localized: Мероприятие выявило больше хрупкости, чем обаяния.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614096
-    m_Localized: Event Budget
+    m_Localized: Бюджет мероприятия
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614097
-    m_Localized: Widen the habitat and keep enough gold for a visible event.
+    m_Localized: Расширьте жилой модуль и сохраните достаточно золота для заметного мероприятия.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614098
-    m_Localized: Reach life-module width 8.
+    m_Localized: Достигните ширины жилого модуля 8.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614099
-    m_Localized: Reach 180 stored Gold.
+    m_Localized: Накопите 180 единиц золота.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614100
-    m_Localized: Mess Hall Service Wing
+    m_Localized: Сервисное крыло столовой
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614101
-    m_Localized: 'With dispatches working, the next task is service quality inside
-      the colony: food, flow, and practical support under load.'
+    m_Localized: "После налаживания отправок следующая задача — качество обслуживания внутри колонии: еда, поток людей и практическая поддержка под нагрузкой."
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614102
-    m_Localized: A colony that can sell goods should also know how to host people.
+    m_Localized: Колония, способная продавать товары, должна уметь и принимать людей.
     m_Metadata:
       m_Items: []
   - m_Id: 51638927614103
-    m_Localized: Build the service wing and keep it operating for a full cycle.
+    m_Localized: Постройте сервисное крыло и поддерживайте его работу полный цикл.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808256
-    m_Localized: The service wing proved the base can host a steady crowd.
+    m_Localized: Сервисное крыло доказало, что база может принимать устойчивый поток посетителей.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808257
-    m_Localized: The wing never looked ready for real traffic.
+    m_Localized: Крыло так и не оказалось готовым к реальному потоку.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808258
-    m_Localized: Service Wing
+    m_Localized: Сервисное крыло
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808259
-    m_Localized: Add dining capacity and reinforce the logistics spine behind it.
+    m_Localized: Добавьте места для питания и укрепите поддерживающий его логистический контур.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808260
-    m_Localized: Build 1 Dinner Station.
+    m_Localized: Постройте 1 обеденную станцию.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808261
-    m_Localized: Build 2 Storage buildings.
+    m_Localized: Постройте 2 хранилища.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808262
-    m_Localized: Service Supply Loop
+    m_Localized: Контур сервисных поставок
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808263
-    m_Localized: 'Mexico wants a smaller but reliable service loop: repeatable dispatches
-      that prove the base can support daily commerce.'
+    m_Localized: "Мексике нужен небольшой, но надёжный сервисный контур: повторяемые отправки, доказывающие способность базы поддерживать ежедневную торговлю."
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808264
-    m_Localized: This is the kind of contract that looks easy until your base gets
-      busy.
+    m_Localized: Такой контракт кажется простым, пока база не начинает работать на пределе.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808265
-    m_Localized: Prepare the first service batch and send it without delay.
+    m_Localized: Подготовьте первую сервисную партию и отправьте её без задержки.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808266
-    m_Localized: The service loop started cleanly and opened the next request.
+    m_Localized: Сервисный контур запустился без сбоев и открыл следующий запрос.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808267
-    m_Localized: The service loop stalled before trust could build.
+    m_Localized: Сервисный контур остановился, прежде чем успел завоевать доверие.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808268
-    m_Localized: Local Stock
+    m_Localized: Местный запас
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808269
-    m_Localized: Gather regolith for the fast service dispatch.
+    m_Localized: Соберите реголит для срочной сервисной отправки.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808270
-    m_Localized: Accumulate 10 Rogalite.
+    m_Localized: Накопите 10 единиц рогалита.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808271
-    m_Localized: Fair Trade Sample
+    m_Localized: Образец честной торговли
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808272
-    m_Localized: The cooperative wants proof that your extraction can respect limits
-      and still keep a promise.
+    m_Localized: Кооперативу нужно доказательство, что ваша добыча может соблюдать ограничения и всё же выполнять обещания.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808273
-    m_Localized: This contract is small by design. Trust matters more than volume.
+    m_Localized: Этот контракт намеренно небольшой. Доверие важнее объёма.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808274
-    m_Localized: Prepare the fair-trade sample and send it without diluting its value.
+    m_Localized: Подготовьте образец честной торговли и отправьте его, не снижая его ценности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808275
-    m_Localized: The sample shipment built trust with the cooperative.
+    m_Localized: Поставка образца укрепила доверие кооператива.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808276
-    m_Localized: The sample never made it through the trust test.
+    m_Localized: Образец не прошёл проверку на доверие.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808277
-    m_Localized: Careful Reserve
+    m_Localized: Осторожный резерв
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808278
-    m_Localized: Gather a modest regolith sample without turning the request into
-      bulk mining.
+    m_Localized: Соберите небольшой образец реголита, не превращая запрос в массовую добычу.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808279
-    m_Localized: Accumulate 8 Rogalite.
+    m_Localized: Накопите 8 единиц рогалита.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808280
-    m_Localized: Cultural Habitat
+    m_Localized: Культурный жилой модуль
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808281
-    m_Localized: 'The next request asks for space, not cargo: a visible cultural
-      and memorial wing inside the colony.'
+    m_Localized: "Следующий запрос требует пространства, а не груза: заметного культурного и мемориального крыла внутри колонии."
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808282
-    m_Localized: A colony without memory looks temporary, no matter how rich it becomes.
+    m_Localized: Колония без памяти выглядит временной, каким бы богатым ни было её развитие.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808283
-    m_Localized: Build the cultural wing and keep the essentials stable.
+    m_Localized: Постройте культурное крыло и поддерживайте основные системы в стабильном состоянии.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808284
-    m_Localized: The memorial wing gave the colony a sense of continuity.
+    m_Localized: Мемориальное крыло придало колонии ощущение преемственности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808285
-    m_Localized: The space felt too thin to carry the meaning it needed.
+    m_Localized: Пространство оказалось слишком скромным для возложенного на него смысла.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808286
-    m_Localized: Cultural Space
+    m_Localized: Культурное пространство
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808287
-    m_Localized: Expand the habitat and add a visible landmark path.
+    m_Localized: Расширьте жилой модуль и добавьте заметный маршрут к достопримечательности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808288
-    m_Localized: Reach life-module width 8.
+    m_Localized: Достигните ширины жилого модуля 8.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808289
-    m_Localized: Build 1 Bridge section.
+    m_Localized: Постройте 1 секцию моста.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808290
-    m_Localized: Stewardship Review
+    m_Localized: Проверка ответственного развития
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808291
-    m_Localized: 'The final cooperative step is philosophical and practical: keep
-      a buffer, show restraint, and pass a stewardship review.'
+    m_Localized: "Последний этап кооператива одновременно философский и практический: держите резерв, проявите сдержанность и пройдите проверку ответственного развития."
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808292
-    m_Localized: This review asks whether your colony can grow without losing its
-      judgment.
+    m_Localized: Проверка покажет, может ли колония расти, не теряя рассудительности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808293
-    m_Localized: Keep a reserve, add living capacity, and pass the stewardship review.
+    m_Localized: Сохраните резерв, добавьте жилые места и пройдите проверку ответственного развития.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808294
-    m_Localized: The cooperative endorsed the colony's quieter path forward.
+    m_Localized: Кооператив одобрил более спокойный путь развития колонии.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808295
-    m_Localized: The review judged the colony too extractive and too thinly buffered.
+    m_Localized: Проверка признала колонию слишком ориентированной на добычу и плохо защищённой резервами.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808296
-    m_Localized: Stewardship Buffer
+    m_Localized: Резерв развития
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808297
-    m_Localized: Hold a gold reserve and add another calm sleeping space.
+    m_Localized: Сохраните запас золота и добавьте ещё одно спокойное спальное место.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808298
-    m_Localized: Reach 160 stored Gold.
+    m_Localized: Накопите 160 единиц золота.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808299
-    m_Localized: Build 1 Sleep Module.
+    m_Localized: Постройте 1 модуль сна.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808300
-    m_Localized: Orbital Guest Corridor
+    m_Localized: Орбитальный коридор для гостей
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808301
-    m_Localized: Now SpaceX wants the base to look like a real transfer stop, not
-      a mining camp with a lucky launch pad.
+    m_Localized: Теперь SpaceX хочет, чтобы база выглядела настоящей перевалочной станцией, а не шахтёрским лагерем со случайно удачной стартовой площадкой.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808302
-    m_Localized: Commercial planners are testing whether your base can host transit
-      traffic.
+    m_Localized: Коммерческие планировщики проверяют, сможет ли база принимать транзитный поток.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808303
-    m_Localized: Expand the guest corridor and make it inspection-safe.
+    m_Localized: Расширьте гостевой коридор и подготовьте его к проверке.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808304
-    m_Localized: The corridor passed SpaceX review and unlocked the tourism pilot.
+    m_Localized: Коридор прошёл проверку SpaceX и открыл пилотный туристический проект.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808305
-    m_Localized: The corridor looked temporary and under-serviced.
+    m_Localized: Коридор выглядел временным и плохо обслуживаемым.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808306
-    m_Localized: Orbital Expansion
+    m_Localized: Орбитальное расширение
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808307
-    m_Localized: Add storage and a wider habitat spine for transfer crews.
+    m_Localized: Добавьте хранилища и расширьте жилой каркас для транзитных экипажей.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808308
-    m_Localized: Build 2 Storage buildings.
+    m_Localized: Постройте 2 хранилища.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808309
-    m_Localized: Reach life-module width 10.
+    m_Localized: Достигните ширины жилого модуля 10.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808310
-    m_Localized: Dock Ring Metals
+    m_Localized: Металлы для стыковочного кольца
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808311
-    m_Localized: SpaceX wants a clean, fast metals route before committing to a permanent
-      orbital exchange hub.
+    m_Localized: SpaceX нужен чистый и быстрый маршрут поставки металлов перед запуском постоянного орбитального узла обмена.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808312
-    m_Localized: A launch slot is open, but only for a team that can move metal fast.
+    m_Localized: Стартовое окно открыто, но только для команды, способной быстро перемещать металл.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808313
-    m_Localized: Stock the ring metals and push them out on the next mission.
+    m_Localized: Соберите металлы для кольца и отправьте их следующей миссией.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808314
-    m_Localized: The first hub shipment reached orbit intact.
+    m_Localized: Первая поставка для узла без повреждений достигла орбиты.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808315
-    m_Localized: The launch window closed before the ring shipment moved.
+    m_Localized: Стартовое окно закрылось до отправки груза для кольца.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808316
-    m_Localized: Metal Stockpile
+    m_Localized: Запас металлов
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808317
-    m_Localized: Gather titan and aluminium for the docking ring package.
+    m_Localized: Соберите титан и алюминий для пакета стыковочного кольца.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808318
-    m_Localized: Accumulate 18 Titan.
+    m_Localized: Накопите 18 единиц титана.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808319
-    m_Localized: Accumulate 12 aluminium.
+    m_Localized: Накопите 12 единиц алюминия.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808320
-    m_Localized: First Tourist Wave
+    m_Localized: Первая волна туристов
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808321
-    m_Localized: 'The final SpaceX test is simple to say and hard to fake: host the
-      first paying tourists without the base feeling fragile.'
+    m_Localized: "Финальное испытание SpaceX легко сформулировать, но сложно подделать: примите первых платных туристов, чтобы база не выглядела хрупкой."
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808322
-    m_Localized: A tourism pilot is pencilled into the launch board.
+    m_Localized: Туристический пилотный проект уже внесён в план запусков.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808323
-    m_Localized: Build the guest experience, keep support online, and pass the final
-      welcome inspection.
+    m_Localized: Создайте условия для гостей, поддерживайте системы онлайн и пройдите финальную проверку приёма.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808324
-    m_Localized: The first tourist wave left glowing reports and opened a new market.
+    m_Localized: Первая волна туристов оставила восторженные отзывы и открыла новый рынок.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808325
-    m_Localized: The guests saw too much mining camp and not enough colony.
+    m_Localized: Гости увидели слишком много шахтёрского лагеря и слишком мало колонии.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808326
-    m_Localized: Guest Experience
+    m_Localized: Условия для гостей
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808327
-    m_Localized: Add hospitality and keep oxygen stable for a full sol.
+    m_Localized: Добавьте сервис для гостей и поддерживайте стабильный уровень кислорода полный сол.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808328
-    m_Localized: Build 1 Dinner Station.
+    m_Localized: Постройте 1 обеденную станцию.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808329
-    m_Localized: Maintain 1 operational Oxygen Station for 1 sol.
+    m_Localized: Поддерживайте 1 работающую кислородную станцию в течение 1 сола.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808330
-    m_Localized: Containment Block Review
+    m_Localized: Проверка блока содержания
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808331
-    m_Localized: 'The last request is political: build an isolated holding block
-      for security incidents without destabilizing the colony economy.'
+    m_Localized: "Последний запрос политический: постройте изолированный блок содержания для инцидентов безопасности, не расшатав экономику колонии."
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808332
-    m_Localized: Security planners want an answer before the next policy hearing.
+    m_Localized: Специалисты по безопасности хотят получить ответ до следующих политических слушаний.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808333
-    m_Localized: Create a detention-ready wing with food, beds, and buffer funding.
+    m_Localized: Создайте крыло, готовое к содержанию, с едой, спальными местами и финансовым резервом.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808334
-    m_Localized: The review board approved the moon security program.
+    m_Localized: Комиссия одобрила лунную программу безопасности.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808335
-    m_Localized: The block was judged too weak or too expensive to trust.
+    m_Localized: Блок признали слишком слабым или слишком дорогим для доверия.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808336
-    m_Localized: Containment Prep
+    m_Localized: Подготовка блока содержания
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808337
-    m_Localized: Lay down the isolated support block and give it enough beds to function.
+    m_Localized: Разместите изолированный блок поддержки и добавьте достаточно спальных мест для работы.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808338
-    m_Localized: Build 3 Storage buildings.
+    m_Localized: Постройте 3 хранилища.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808339
-    m_Localized: Build 2 Sleep Modules.
+    m_Localized: Постройте 2 модуля сна.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808340
@@ -1376,78 +1339,75 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808341
-    m_Localized: A pressure test for American logistics. Build a reliable first shipment
-      lane before regulators start asking questions.
+    m_Localized: Проверка американской логистики на прочность. Создайте надёжный первый маршрут поставки, пока регуляторы не начали задавать вопросы.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808342
-    m_Localized: Washington wants proof that your moon base can move freight on schedule.
+    m_Localized: Вашингтону нужно доказательство, что лунная база умеет перевозить грузы по расписанию.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808343
-    m_Localized: A fast launch slot has been reserved. Do not waste it.
+    m_Localized: Быстрое стартовое окно уже зарезервировано. Не упустите его.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808344
-    m_Localized: The shipment landed cleanly and the logistics desk wants more.
+    m_Localized: Поставка прибыла без сбоев, и логистический отдел хочет продолжения.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808345
-    m_Localized: The lane broke down before the first audit even began.
+    m_Localized: Маршрут разрушился ещё до начала первого аудита.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808346
-    m_Localized: Logistics Stockpile
+    m_Localized: Запас для логистики
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808347
-    m_Localized: Pull enough titan into storage so the launch team can assemble the
-      first rush convoy.
+    m_Localized: Накопите достаточно титана в хранилищах, чтобы команда запуска собрала первый срочный конвой.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808348
-    m_Localized: Accumulate 10 Titan in storage.
+    m_Localized: Накопите 10 единиц титана в хранилище.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808349
-    m_Localized: Federal Safety Audit
+    m_Localized: Федеральный аудит безопасности
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808350
-    m_Localized: The logistics lane is open. Now the federal observer wants a safer
-      and wider storage wing before granting security clearance.
+    m_Localized: Логистический маршрут открыт. Теперь федеральный наблюдатель требует более безопасного и просторного крыла хранения для допуска к работе.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808351
-    m_Localized: A federal safety office is preparing a surprise visit.
+    m_Localized: Федеральная служба безопасности готовит внезапный визит.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808352
-    m_Localized: Expand the storage wing and prove the oxygen line can stay stable.
+    m_Localized: Расширьте крыло хранения и докажите, что кислородная линия останется стабильной.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808353
-    m_Localized: The audit signed off and unlocked the next control package.
+    m_Localized: Аудит завершён успешно и открыл следующий пакет управления.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808354
-    m_Localized: The inspector found a weak point in your support wing.
+    m_Localized: Инспектор обнаружил слабое место в крыле поддержки.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808355
-    m_Localized: Storage Wing
+    m_Localized: Крыло хранения
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808356
-    m_Localized: Add more storage and expand the habitat spine around it.
+    m_Localized: Добавьте хранилища и расширьте жилой каркас вокруг них.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808357
-    m_Localized: Build 2 Storage buildings.
+    m_Localized: Постройте 2 хранилища.
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808358
-    m_Localized: Reach life-module width 8.
+    m_Localized: Достигните ширины жилого модуля 8.
     m_Metadata:
       m_Items: []
   - m_Id: 56025469149184
