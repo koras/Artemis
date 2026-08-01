@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: menu.shop
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001120
+    m_Key: menu.decoration
+    m_Metadata:
+      m_Items: []
   - m_Id: 3211780096
     m_Key: resource.electricity
     m_Metadata:
@@ -585,6 +589,66 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 3220168712
     m_Key: action.oxygen.exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001121
+    m_Key: action.cable.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001122
+    m_Key: action.cable.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001123
+    m_Key: action.water.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001124
+    m_Key: action.water.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001125
+    m_Key: action.oxygen.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001126
+    m_Key: action.oxygen.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001127
+    m_Key: action.life_module.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001128
+    m_Key: action.life_module.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001129
+    m_Key: decoration.flower.winter_garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001130
+    m_Key: decoration.flower.oblivion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001131
+    m_Key: decoration.flower.hope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001132
+    m_Key: decoration.flower.summer_garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001133
+    m_Key: decoration.paint.astronaut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001134
+    m_Key: decoration.paint.planet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001135
+    m_Key: decoration.paint.rocket
     m_Metadata:
       m_Items: []
   - m_Id: 4000000001

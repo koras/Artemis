@@ -1,11 +1,19 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:l="UnityEngine.Localization" editor-extension-mode="False">
     <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
     <ui:VisualElement name="bottom-popup-energy" class="bottom-popup-panel">
         <ui:VisualElement class="bottom-popup-row">
-            <ui:Button name="solar-panel-btn" text="Solar Panel" class="menu-icon-btn"/>
-            <ui:Button name="battery-btn" text="Battery" class="menu-icon-btn"/>
-            <ui:Button name="build-cable-btn" text="Cable Build" class="menu-icon-btn"/>
-            <ui:Button name="cancel-cable-btn" text="Cable Cancel" class="menu-icon-btn"/>
+            <ui:Button name="solar-panel-btn" text="Solar Panel" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="building.solarpanel.name" /></Bindings>
+            </ui:Button>
+            <ui:Button name="battery-btn" text="Battery" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="building.electricbattery.name" /></Bindings>
+            </ui:Button>
+            <ui:Button name="build-cable-btn" text="Build Cable" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="action.cable.build" /></Bindings>
+            </ui:Button>
+            <ui:Button name="cancel-cable-btn" text="Cancel Cable" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="action.cable.cancel" /></Bindings>
+            </ui:Button>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

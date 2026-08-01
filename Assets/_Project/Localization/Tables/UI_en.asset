@@ -4344,6 +4344,70 @@ MonoBehaviour:
     m_Localized: Dawn
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001120
+    m_Localized: Decoration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001121
+    m_Localized: Build Cable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001122
+    m_Localized: Cancel Cable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001123
+    m_Localized: Build Water Pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001124
+    m_Localized: Cancel Water Pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001125
+    m_Localized: Build Oxygen Pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001126
+    m_Localized: Cancel Oxygen Pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001127
+    m_Localized: Build Life Module
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001128
+    m_Localized: Cancel Life Module
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001129
+    m_Localized: Flower, "Winter Garden"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001130
+    m_Localized: Flower, "Oblivion"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001131
+    m_Localized: Flower, "Hope"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001132
+    m_Localized: Flower, "Summer Garden"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001133
+    m_Localized: Painting, "Astronaut"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001134
+    m_Localized: Painting, "Planet"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001135
+    m_Localized: Painting, "Rocket"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

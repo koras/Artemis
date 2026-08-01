@@ -3931,6 +3931,70 @@ MonoBehaviour:
     m_Localized: Доун
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001120
+    m_Localized: Декор
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001121
+    m_Localized: Построить кабель
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001122
+    m_Localized: Отменить кабель
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001123
+    m_Localized: Построить водяную трубу
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001124
+    m_Localized: Отменить водяную трубу
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001125
+    m_Localized: Построить кислородную трубу
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001126
+    m_Localized: Отменить кислородную трубу
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001127
+    m_Localized: Построить жилой модуль
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001128
+    m_Localized: Отменить жилой модуль
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001129
+    m_Localized: "Цветок, \"Зимний сад\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001130
+    m_Localized: "Цветок, \"Забвение\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001131
+    m_Localized: "Цветок, \"Надежда\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001132
+    m_Localized: "Цветок, \"Летний сад\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001133
+    m_Localized: "Картина, \"Астронавта\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001134
+    m_Localized: "Картина, \"Планета\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001135
+    m_Localized: "Картина, \"Ракеты\""
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

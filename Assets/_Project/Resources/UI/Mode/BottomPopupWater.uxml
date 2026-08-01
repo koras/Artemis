@@ -1,11 +1,19 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:l="UnityEngine.Localization" editor-extension-mode="False">
     <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
     <ui:VisualElement name="bottom-popup-water" class="bottom-popup-panel">
         <ui:VisualElement class="bottom-popup-row">
-            <ui:Button name="water-reclamation-btn" text="Water Reclamation" class="menu-icon-btn"/>
-            <ui:Button name="water-processing-btn" text="Water Proc Unit" class="menu-icon-btn"/>
-            <ui:Button name="cancel-water-btn" text="Water Cancel" class="menu-icon-btn"/>
-            <ui:Button name="build-water-btn" text="Water Build" class="menu-icon-btn"/>
+            <ui:Button name="water-reclamation-btn" text="Water Reclamation" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="building.waterreclamation.name" /></Bindings>
+            </ui:Button>
+            <ui:Button name="water-processing-btn" text="Water Processing" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="building.waterprocessingunit.name" /></Bindings>
+            </ui:Button>
+            <ui:Button name="cancel-water-btn" text="Cancel Water Pipe" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="action.water.cancel" /></Bindings>
+            </ui:Button>
+            <ui:Button name="build-water-btn" text="Build Water Pipe" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="action.water.build" /></Bindings>
+            </ui:Button>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

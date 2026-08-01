@@ -1,16 +1,30 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:l="UnityEngine.Localization" editor-extension-mode="False">
     <Style src="project://database/Assets/_Project/UI/Mode/GameHud.uss?fileID=7433441132597879392&amp;guid=cbf0a011acfc40458ef813093b593558&amp;type=3#GameHud"/>
     <ui:VisualElement name="bottom-popup-decoration" class="bottom-popup-panel">
         <ui:VisualElement class="bottom-popup-row">
-            <ui:Button name="build-flower-small1-btn" text="Цветок, &quot;Зимний сад&quot;" class="menu-icon-btn"/>
-            <ui:Button name="build-flower-small-btn" text="Цветок, &quot;Забвение&quot;" class="menu-icon-btn"/>
-            <ui:Button name="build-flower-big2-btn" text="Цветок, &quot;Надежда&quot;" class="menu-icon-btn"/>
-            <ui:Button name="build-flower-big1-btn" text="Цветок, &quot;Летний сад&quot;" class="menu-icon-btn"/>
+            <ui:Button name="build-flower-small1-btn" text="Flower, &quot;Winter Garden&quot;" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="decoration.flower.winter_garden" /></Bindings>
+            </ui:Button>
+            <ui:Button name="build-flower-small-btn" text="Flower, &quot;Oblivion&quot;" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="decoration.flower.oblivion" /></Bindings>
+            </ui:Button>
+            <ui:Button name="build-flower-big2-btn" text="Flower, &quot;Hope&quot;" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="decoration.flower.hope" /></Bindings>
+            </ui:Button>
+            <ui:Button name="build-flower-big1-btn" text="Flower, &quot;Summer Garden&quot;" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="decoration.flower.summer_garden" /></Bindings>
+            </ui:Button>
         </ui:VisualElement>
         <ui:VisualElement class="bottom-popup-row">
-            <ui:Button name="build-paint-astro-btn" text="Картина, &quot;Астронавта&quot;" class="menu-icon-btn"/>
-            <ui:Button name="build-paint-planet-btn" text="Картина, &quot;Планета&quot;" class="menu-icon-btn"/>
-            <ui:Button name="build-paint-rocker-btn" text="Картина, &quot;Ракеты&quot;" class="menu-icon-btn"/>
+            <ui:Button name="build-paint-astro-btn" text="Painting, &quot;Astronaut&quot;" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="decoration.paint.astronaut" /></Bindings>
+            </ui:Button>
+            <ui:Button name="build-paint-planet-btn" text="Painting, &quot;Planet&quot;" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="decoration.paint.planet" /></Bindings>
+            </ui:Button>
+            <ui:Button name="build-paint-rocker-btn" text="Painting, &quot;Rocket&quot;" class="menu-icon-btn">
+                <Bindings><l:LocalizedString property="text" table="UI" entry="decoration.paint.rocket" /></Bindings>
+            </ui:Button>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
