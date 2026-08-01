@@ -3976,6 +3976,78 @@ MonoBehaviour:
     m_Localized: Closes the offers panel.
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000044
+    m_Localized: Your resources
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000045
+    m_Localized: Iron
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000046
+    m_Localized: Titan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000047
+    m_Localized: Rogalite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000048
+    m_Localized: Aluminium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000049
+    m_Localized: Ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000050
+    m_Localized: Employee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000051
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000052
+    m_Localized: Vegetables
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000053
+    m_Localized: Meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000054
+    m_Localized: Beer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000055
+    m_Localized: Fish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000056
+    m_Localized: Medicines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000057
+    m_Localized: Tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000058
+    m_Localized: Cable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000059
+    m_Localized: Water Pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000060
+    m_Localized: Oxygen Pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000061
+    m_Localized: Dropped Prefabs
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

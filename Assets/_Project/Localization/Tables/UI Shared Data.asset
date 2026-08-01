@@ -39,6 +39,78 @@ MonoBehaviour:
     m_Key: resource.module
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000044
+    m_Key: resource.inventory.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000045
+    m_Key: resource.item.iron
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000046
+    m_Key: resource.item.titan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000047
+    m_Key: resource.item.rogalite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000048
+    m_Key: resource.item.aluminium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000049
+    m_Key: resource.item.ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000050
+    m_Key: resource.item.employee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000051
+    m_Key: resource.item.gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000052
+    m_Key: resource.item.vegetables
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000053
+    m_Key: resource.item.meet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000054
+    m_Key: resource.item.beer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000055
+    m_Key: resource.item.fish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000056
+    m_Key: resource.item.medicines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000057
+    m_Key: resource.item.tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000058
+    m_Key: resource.item.cable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000059
+    m_Key: resource.item.water_pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000060
+    m_Key: resource.item.oxygen_pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000061
+    m_Key: resource.dropped_prefabs
+    m_Metadata:
+      m_Items: []
   - m_Id: 3220168706
     m_Key: building.ladder
     m_Metadata:

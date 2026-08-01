@@ -3648,6 +3648,78 @@ MonoBehaviour:
     m_Localized: Закрывает панель предложений.
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000044
+    m_Localized: Ваши ресурсы
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000045
+    m_Localized: Железо
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000046
+    m_Localized: Титан
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000047
+    m_Localized: Рогалит
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000048
+    m_Localized: Алюминий
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000049
+    m_Localized: Лестница
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000050
+    m_Localized: Сотрудник
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000051
+    m_Localized: Золото
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000052
+    m_Localized: Овощи
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000053
+    m_Localized: Мясо
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000054
+    m_Localized: Пиво
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000055
+    m_Localized: Рыба
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000056
+    m_Localized: Медикаменты
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000057
+    m_Localized: Дерево
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000058
+    m_Localized: Кабель
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000059
+    m_Localized: Водяная труба
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000060
+    m_Localized: Кислородная труба
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000061
+    m_Localized: Сброшенные префабы
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

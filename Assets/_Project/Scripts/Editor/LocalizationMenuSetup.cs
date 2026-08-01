@@ -4,6 +4,7 @@ using _Project.Scripts.Data.Construction;
 using _Project.Scripts.Data.Offers;
 using _Project.Scripts.Data.Shop;
 using _Project.Scripts.Presentation.UI;
+using _Project.Scripts.Systems.Resources;
 using UnityEditor;
 using UnityEditor.Localization;
 using UnityEngine;
@@ -53,6 +54,7 @@ namespace _Project.Scripts.Editor
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_ru.asset", ImportAssetOptions.ForceUpdate);
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_en.asset", ImportAssetOptions.ForceUpdate);
             AddMenuEntries(collection);
+            AddResourceEntries(collection);
             AddHudMenuEntries(collection);
             AddShopProductEntries(collection);
             AddCustomerEntries(collection);
@@ -268,6 +270,16 @@ namespace _Project.Scripts.Editor
 
                     EnsureEntryInAllTables(collection, definition.DescriptionLocalizationKey);
                 }
+            }
+        }
+
+        private static void AddResourceEntries(StringTableCollection collection)
+        {
+            EnsureEntryInAllTables(collection, ResourceLocalizationKeys.InventoryTitle);
+
+            foreach (string resourceId in ResourceLocalizationKeys.GetKnownResourceIds())
+            {
+                EnsureEntryInAllTables(collection, ResourceLocalizationKeys.Name(resourceId));
             }
         }
 
