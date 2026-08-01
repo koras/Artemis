@@ -1372,7 +1372,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808340
-    m_Localized: Lunar Logistics Rush
+    m_Localized: Лунная логистическая гонка
     m_Metadata:
       m_Items: []
   - m_Id: 51638931808341
@@ -3993,6 +3993,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4000001135
     m_Localized: "Картина, \"Ракеты\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001136
+    m_Localized: ЗОЛОТО
     m_Metadata:
       m_Items: []
   references:

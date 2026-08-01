@@ -279,7 +279,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             header.AddToClassList("offer-table-header");
             header.Add(BuildLocalizedTableCell("offers.task", "offer-col-title"));
             header.Add(BuildLocalizedTableCell("offers.customer", "offer-col-customer"));
-            header.Add(BuildTableCell("G", "offer-col-gold"));
+            header.Add(BuildLocalizedTableCell("offers.gold_header", "offer-col-gold"));
             header.Add(BuildLocalizedTableCell("offers.reputation", "offer-col-reputation"));
             header.Add(BuildLocalizedTableCell("offers.resources", "offer-col-requirements"));
             header.Add(BuildLocalizedTableCell("offers.deadline", "offer-col-deadline"));

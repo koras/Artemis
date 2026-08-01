@@ -4408,6 +4408,10 @@ MonoBehaviour:
     m_Localized: Painting, "Rocket"
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001136
+    m_Localized: GOLD
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
