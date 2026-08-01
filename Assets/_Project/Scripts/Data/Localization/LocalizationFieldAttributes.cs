@@ -37,16 +37,19 @@ namespace _Project.Scripts.Data.Localization
 
     /// <summary>
     /// Marks a serialized collection as a localization key path segment.
-    /// The editor adds segment and collection index to the parent localization scope.
+    /// The editor adds segment and either the collection index or the element ID
+    /// to the parent localization scope.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public sealed class LocalizationCollectionAttribute : Attribute
     {
         public string Segment { get; }
+        public string IdMemberName { get; }
 
-        public LocalizationCollectionAttribute(string segment)
+        public LocalizationCollectionAttribute(string segment, string idMemberName = null)
         {
             Segment = segment;
+            IdMemberName = idMemberName;
         }
     }
 }

@@ -3,6 +3,7 @@ using _Project.Scripts.Data.ColonyEvents;
 using _Project.Scripts.Data.Construction;
 using _Project.Scripts.Data.Offers;
 using _Project.Scripts.Data.Shop;
+using _Project.Scripts.Presentation.UI;
 using UnityEditor;
 using UnityEditor.Localization;
 using UnityEngine;
@@ -52,6 +53,7 @@ namespace _Project.Scripts.Editor
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_ru.asset", ImportAssetOptions.ForceUpdate);
             AssetDatabase.ImportAsset($"{TableDirectory}/UI_en.asset", ImportAssetOptions.ForceUpdate);
             AddMenuEntries(collection);
+            AddHudMenuEntries(collection);
             AddShopProductEntries(collection);
             AddCustomerEntries(collection);
             AddBuildingEntries(collection);
@@ -242,6 +244,30 @@ namespace _Project.Scripts.Editor
 
                 EnsureEntryInAllTables(collection, product.NameLocalizationKey);
                 EnsureEntryInAllTables(collection, product.DescriptionLocalizationKey);
+            }
+        }
+
+        private static void AddHudMenuEntries(StringTableCollection collection)
+        {
+            string[] guids = AssetDatabase.FindAssets("t:HudMenuIconSet");
+
+            for (int assetIndex = 0; assetIndex < guids.Length; assetIndex++)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guids[assetIndex]);
+                HudMenuIconSet menuIconSet = AssetDatabase.LoadAssetAtPath<HudMenuIconSet>(assetPath);
+                HudMenuButtonDefinition[] definitions = menuIconSet.MenuButtonDefinitions;
+
+                for (int definitionIndex = 0; definitionIndex < definitions.Length; definitionIndex++)
+                {
+                    HudMenuButtonDefinition definition = definitions[definitionIndex];
+
+                    if (string.IsNullOrWhiteSpace(definition.ButtonId))
+                    {
+                        continue;
+                    }
+
+                    EnsureEntryInAllTables(collection, definition.DescriptionLocalizationKey);
+                }
             }
         }
 

@@ -399,6 +399,238 @@ MonoBehaviour:
     m_Key: shop.no.orders
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000301
+    m_Key: hud.menu.button.animal-diagnostics-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000302
+    m_Key: hud.menu.button.battery-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000303
+    m_Key: hud.menu.button.shower-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000304
+    m_Key: hud.menu.button.bottom-menu-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000305
+    m_Key: hud.menu.button.build-bridge-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000306
+    m_Key: hud.menu.button.dinner-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000307
+    m_Key: hud.menu.button.bottom-menu-energy-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000308
+    m_Key: hud.menu.button.build-cable-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000309
+    m_Key: hud.menu.button.build-ladder-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000310
+    m_Key: hud.menu.button.build-life-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000311
+    m_Key: hud.menu.button.build-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000312
+    m_Key: hud.menu.button.build-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000313
+    m_Key: hud.menu.button.cancel-cable-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000314
+    m_Key: hud.menu.button.build-storage-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000315
+    m_Key: hud.menu.button.water-processing-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000316
+    m_Key: hud.menu.button.water-reclamation-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000317
+    m_Key: hud.menu.button.sleep-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000318
+    m_Key: hud.menu.button.solar-panel-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000319
+    m_Key: hud.menu.button.time-pause-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000320
+    m_Key: hud.menu.button.time-play-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000321
+    m_Key: hud.menu.button.time-speed-x1-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000322
+    m_Key: hud.menu.button.time-speed-x10-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000323
+    m_Key: hud.menu.button.time-speed-x20-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000324
+    m_Key: hud.menu.button.time-speed-x5-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000325
+    m_Key: hud.menu.button.shovel-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000326
+    m_Key: hud.menu.button.shop-tab-orders.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000327
+    m_Key: hud.menu.button.shop-row-plus.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000328
+    m_Key: hud.menu.button.shop-row-order.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000329
+    m_Key: hud.menu.button.shop-row-minus.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000330
+    m_Key: hud.menu.button.shop-open-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000331
+    m_Key: hud.menu.button.shop-filter-personnel.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000332
+    m_Key: hud.menu.button.shop-filter-food.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000333
+    m_Key: hud.menu.button.shop-filter-all.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000334
+    m_Key: hud.menu.button.shop-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000335
+    m_Key: hud.menu.button.regolith-processing-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000336
+    m_Key: hud.menu.button.oxygen-storage-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000337
+    m_Key: hud.menu.button.oxygen-processing-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000338
+    m_Key: hud.menu.button.offers-tab-new.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000339
+    m_Key: hud.menu.button.offers-tab-accepted.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000340
+    m_Key: hud.menu.button.offers-open-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000341
+    m_Key: hud.menu.button.shop-filter-equipment.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000342
+    m_Key: hud.menu.button.bottom-menu-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000343
+    m_Key: hud.menu.button.bottom-menu-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000344
+    m_Key: hud.menu.button.cancel-life-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000345
+    m_Key: hud.menu.button.cancel-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000346
+    m_Key: hud.menu.button.cancel-shovel-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000347
+    m_Key: hud.menu.button.cancel-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000348
+    m_Key: hud.menu.button.character-diagnostics-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000349
+    m_Key: hud.menu.button.colony-event-ack-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000350
+    m_Key: hud.menu.button.destruction-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000351
+    m_Key: hud.menu.button.exit-cable-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000352
+    m_Key: hud.menu.button.offer-tooltip-reject-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000353
+    m_Key: hud.menu.button.offer-tooltip-header-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000354
+    m_Key: hud.menu.button.offer-tooltip-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000355
+    m_Key: hud.menu.button.offer-tooltip-accept-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000356
+    m_Key: hud.menu.button.exit-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000357
+    m_Key: hud.menu.button.exit-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000358
+    m_Key: hud.menu.button.offers-close-btn.description
+    m_Metadata:
+      m_Items: []
   - m_Id: 4000000201
     m_Key: shop.product.beer.name
     m_Metadata:

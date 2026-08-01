@@ -256,7 +256,26 @@ namespace _Project.Scripts.Editor
                     }
 
                     pathSegments.Add(collectionAttribute.Segment);
-                    pathSegments.Add(arrayIndex.ToString());
+
+                    if (string.IsNullOrWhiteSpace(collectionAttribute.IdMemberName))
+                    {
+                        pathSegments.Add(arrayIndex.ToString());
+                    }
+                    else
+                    {
+                        string elementPath = string.Join(".", pathParts, 0, pathIndex + 3);
+                        SerializedProperty elementProperty = property.serializedObject.FindProperty(elementPath);
+                        SerializedProperty idProperty = elementProperty.FindPropertyRelative(
+                            collectionAttribute.IdMemberName);
+
+                        if (string.IsNullOrWhiteSpace(idProperty.stringValue))
+                        {
+                            return false;
+                        }
+
+                        pathSegments.Add(idProperty.stringValue.Trim());
+                    }
+
                     currentType = GetElementType(field.FieldType);
                     pathIndex += 2;
                     continue;

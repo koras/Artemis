@@ -3416,6 +3416,238 @@ MonoBehaviour:
     m_Localized: Передаёт воду между соединёнными системами.
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000301
+    m_Localized: Закрывает диагностику животных.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000302
+    m_Localized: Строит батарею.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000303
+    m_Localized: Строит душ.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000304
+    m_Localized: Открывает инструменты воды.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000305
+    m_Localized: Строит мост.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000306
+    m_Localized: Строит столовую.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000307
+    m_Localized: Открывает энергетические инструменты.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000308
+    m_Localized: Строит кабель.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000309
+    m_Localized: Строит лестницу.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000310
+    m_Localized: Строит жилой модуль.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000311
+    m_Localized: Строит кислородную трубу.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000312
+    m_Localized: Строит водяную трубу.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000313
+    m_Localized: Отменяет прокладку кабеля.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000314
+    m_Localized: Строит складской модуль.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000315
+    m_Localized: Строит установку обработки воды.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000316
+    m_Localized: Строит установку очистки воды.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000317
+    m_Localized: Строит спальный модуль.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000318
+    m_Localized: Строит солнечную панель.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000319
+    m_Localized: Приостанавливает время колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000320
+    m_Localized: Возобновляет время колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000321
+    m_Localized: Устанавливает обычную скорость времени.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000322
+    m_Localized: Устанавливает скорость времени 10x.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000323
+    m_Localized: Устанавливает скорость времени 20x.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000324
+    m_Localized: Устанавливает скорость времени 5x.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000325
+    m_Localized: Выбирает инструмент лопаты.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000326
+    m_Localized: Открывает активные заказы магазина.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000327
+    m_Localized: Увеличивает количество заказа.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000328
+    m_Localized: Оформляет выбранный заказ.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000329
+    m_Localized: Уменьшает количество заказа.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000330
+    m_Localized: Открывает магазин.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000331
+    m_Localized: Показывает товары для персонала.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000332
+    m_Localized: Показывает продукты питания.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000333
+    m_Localized: Показывает все товары.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000334
+    m_Localized: Закрывает магазин.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000335
+    m_Localized: Строит установку обработки реголита.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000336
+    m_Localized: Строит хранилище кислорода.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000337
+    m_Localized: Строит установку обработки кислорода.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000338
+    m_Localized: Показывает новые предложения.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000339
+    m_Localized: Показывает принятые предложения.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000340
+    m_Localized: Открывает панель предложений.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000341
+    m_Localized: Показывает оборудование.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000342
+    m_Localized: Открывает инструменты кислорода.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000343
+    m_Localized: Открывает инструменты модулей.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000344
+    m_Localized: Отменяет размещение жилого модуля.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000345
+    m_Localized: Отменяет прокладку кислородной трубы.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000346
+    m_Localized: Выходит из режима лопаты.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000347
+    m_Localized: Отменяет прокладку водяной трубы.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000348
+    m_Localized: Закрывает диагностику персонажа.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000349
+    m_Localized: Подтверждает событие колонии.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000350
+    m_Localized: Включает режим разрушения.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000351
+    m_Localized: Выходит из режима кабеля.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000352
+    m_Localized: Отклоняет текущее предложение.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000353
+    m_Localized: Закрывает окно предложения.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000354
+    m_Localized: Закрывает детали предложения.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000355
+    m_Localized: Принимает текущее предложение.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000356
+    m_Localized: Выходит из режима воды.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000357
+    m_Localized: Выходит из режима кислорода.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000358
+    m_Localized: Закрывает панель предложений.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

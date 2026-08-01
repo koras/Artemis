@@ -3744,6 +3744,238 @@ MonoBehaviour:
     m_Localized: Moves water between connected systems.
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000301
+    m_Localized: Closes animal diagnostics.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000302
+    m_Localized: Builds a battery.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000303
+    m_Localized: Builds a shower.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000304
+    m_Localized: Opens water tools.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000305
+    m_Localized: Builds a bridge.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000306
+    m_Localized: Builds a dining station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000307
+    m_Localized: Opens energy tools.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000308
+    m_Localized: Builds a cable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000309
+    m_Localized: Builds a ladder.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000310
+    m_Localized: Builds a life module.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000311
+    m_Localized: Builds an oxygen pipe.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000312
+    m_Localized: Builds a water pipe.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000313
+    m_Localized: Cancels cable placement.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000314
+    m_Localized: Builds a storage module.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000315
+    m_Localized: Builds a water processing unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000316
+    m_Localized: Builds a water reclamation unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000317
+    m_Localized: Builds a sleep module.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000318
+    m_Localized: Builds a solar panel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000319
+    m_Localized: Pauses colony time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000320
+    m_Localized: Resumes colony time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000321
+    m_Localized: Sets normal time speed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000322
+    m_Localized: Sets time speed to 10x.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000323
+    m_Localized: Sets time speed to 20x.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000324
+    m_Localized: Sets time speed to 5x.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000325
+    m_Localized: Selects the shovel tool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000326
+    m_Localized: Opens active shop orders.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000327
+    m_Localized: Increases order quantity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000328
+    m_Localized: Places the selected order.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000329
+    m_Localized: Decreases order quantity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000330
+    m_Localized: Opens the shop.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000331
+    m_Localized: Shows personnel products.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000332
+    m_Localized: Shows food products.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000333
+    m_Localized: Shows all products.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000334
+    m_Localized: Closes the shop.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000335
+    m_Localized: Builds a regolith processing unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000336
+    m_Localized: Builds an oxygen storage unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000337
+    m_Localized: Builds an oxygen processing unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000338
+    m_Localized: Shows new offers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000339
+    m_Localized: Shows accepted offers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000340
+    m_Localized: Opens the offers panel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000341
+    m_Localized: Shows equipment products.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000342
+    m_Localized: Opens oxygen tools.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000343
+    m_Localized: Opens module tools.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000344
+    m_Localized: Cancels life module placement.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000345
+    m_Localized: Cancels oxygen pipe placement.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000346
+    m_Localized: Exits the shovel tool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000347
+    m_Localized: Cancels water pipe placement.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000348
+    m_Localized: Closes character diagnostics.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000349
+    m_Localized: Acknowledges the colony event.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000350
+    m_Localized: Enters destruction mode.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000351
+    m_Localized: Exits the cable tool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000352
+    m_Localized: Rejects the current offer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000353
+    m_Localized: Closes the offer window.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000354
+    m_Localized: Closes the offer details.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000355
+    m_Localized: Accepts the current offer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000356
+    m_Localized: Exits the water tool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000357
+    m_Localized: Exits the oxygen tool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000358
+    m_Localized: Closes the offers panel.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
