@@ -23,6 +23,9 @@ namespace _Project.Scripts.Editor
 		private static readonly Regex _localizedValueRegex =
 			new(@"(?ms)^(?<prefix>[ \t]+m_Localized:[ \t]*)""(?<value>(?:\\.|[^""\\])*)""", RegexOptions.Compiled);
 
+		private static readonly Regex _unquotedLocalizedValueEndingWithColonRegex =
+			new(@"(?m)^(?<prefix>[ \t]+m_Localized:[ \t]*)(?<value>[^""\r\n]*:)[ \t]*$", RegexOptions.Compiled);
+
 		private static readonly Regex _unicodeEscapeRegex =
 			new Regex(@"\\u(?<code>[0-9a-fA-F]{4})", RegexOptions.Compiled);
 
@@ -269,7 +272,7 @@ namespace _Project.Scripts.Editor
 
 		private static string NormalizeLocalizedValue(string entry)
 		{
-			return _localizedValueRegex.Replace(entry, match =>
+			string normalizedEntry = _localizedValueRegex.Replace(entry, match =>
 			{
 				string value = match.Groups["value"].Value;
 				value = Regex.Replace(value, @"\r?\n[ \t]+", " ");
@@ -285,6 +288,12 @@ namespace _Project.Scripts.Editor
 
 				return match.Groups["prefix"].Value + FormatYamlValue(value);
 			});
+
+			return _unquotedLocalizedValueEndingWithColonRegex.Replace(normalizedEntry, match =>
+			{
+				string value = match.Groups["value"].Value.TrimEnd();
+				return match.Groups["prefix"].Value + FormatYamlValue(value);
+			});
 		}
 
 		private static string FormatYamlValue(string value)
@@ -295,7 +304,7 @@ namespace _Project.Scripts.Editor
 			                        && !value.Contains("\n")
 			                        && !value.Contains("\"")
 			                        && !value.Contains("\\")
-			                        && !value.Contains(": ")
+			                        && !value.Contains(":")
 			                        && !value.Contains(" #")
 			                        && !"-?:,[]{}#&*!|>'\"%@`".Contains(value[0])
 			                        && value != "null"

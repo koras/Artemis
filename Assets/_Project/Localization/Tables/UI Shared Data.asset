@@ -735,6 +735,166 @@ MonoBehaviour:
     m_Key: offers.reject
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001140
+    m_Key: offers.tooltip.category
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001141
+    m_Key: offers.tooltip.type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001142
+    m_Key: offers.tooltip.stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001143
+    m_Key: offers.tooltip.stage_without_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001144
+    m_Key: offers.tooltip.stage_fallback
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001145
+    m_Key: offers.tooltip.resources
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001146
+    m_Key: offers.tooltip.objectives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001147
+    m_Key: offers.tooltip.no_objectives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001148
+    m_Key: offers.tooltip.shipment_rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001149
+    m_Key: offers.tooltip.stage_rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001150
+    m_Key: offers.tooltip.chain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001151
+    m_Key: offers.tooltip.chain_standalone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001152
+    m_Key: offers.tooltip.mining_deadline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001153
+    m_Key: offers.tooltip.mining_deadline_unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001154
+    m_Key: offers.tooltip.source
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001155
+    m_Key: offers.tooltip.cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001156
+    m_Key: offers.tooltip.fast_reserve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001157
+    m_Key: offers.tooltip.fast_bonus.none
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001158
+    m_Key: offers.tooltip.fast_bonus.secured
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001159
+    m_Key: offers.tooltip.fast_bonus.available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001160
+    m_Key: offers.tooltip.fast_bonus.expired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001161
+    m_Key: offers.status.ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001162
+    m_Key: offers.status.single
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001163
+    m_Key: offers.status.pending
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001164
+    m_Key: offers.status.claimed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001165
+    m_Key: offers.status.done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001166
+    m_Key: offers.status.expired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001167
+    m_Key: offers.source.time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001168
+    m_Key: offers.source.resource_event
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001169
+    m_Key: offers.source.manual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001170
+    m_Key: offers.category.economic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001171
+    m_Key: offers.category.story
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001172
+    m_Key: offers.category.inspection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001173
+    m_Key: offers.category.colony_program
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001174
+    m_Key: offers.type.bulk_export
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001175
+    m_Key: offers.type.emergency_request
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001176
+    m_Key: offers.type.progressive_contract
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001177
+    m_Key: offers.type.opportunistic_deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001178
+    m_Key: offers.tooltip.mission_short
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001179
+    m_Key: offers.tooltip.cooldown_minutes
+    m_Metadata:
+      m_Items: []
   - m_Id: 4000000021
     m_Key: shop.title
     m_Metadata:

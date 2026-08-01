@@ -4412,6 +4412,167 @@ MonoBehaviour:
     m_Localized: GOLD
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001140
+    m_Localized: 'Category: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001141
+    m_Localized: 'Type: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001142
+    m_Localized: 'Stage {0}/{1}: {2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001143
+    m_Localized: Stage {0}/{1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001144
+    m_Localized: Stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001145
+    m_Localized: 'Resources: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001146
+    m_Localized: 'Objectives:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001147
+    m_Localized: No objectives.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001148
+    m_Localized: 'Shipment rule: only 100% reserve counts. Partial reserve fails
+      the contract.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001149
+    m_Localized: 'Stage rule: this step resolves from base state and story progression.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001150
+    m_Localized: 'Chain: {0} step {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001151
+    m_Localized: 'Chain: standalone'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001152
+    m_Localized: 'Mining deadline: until sol {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001153
+    m_Localized: 'Mining deadline: unlimited'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001154
+    m_Localized: 'Source: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001155
+    m_Localized: 'Cooldown: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001156
+    m_Localized: 'Fast reserve: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001157
+    m_Localized: 'Fast bonus: none'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001158
+    m_Localized: 'Fast bonus: +{0} gold secured'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001159
+    m_Localized: 'Fast bonus: +{0} gold if accepted now'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001160
+    m_Localized: 'Fast bonus: expired'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001161
+    m_Localized: ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001162
+    m_Localized: single
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001163
+    m_Localized: pending
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001164
+    m_Localized: claimed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001165
+    m_Localized: done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001166
+    m_Localized: expired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001167
+    m_Localized: Time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001168
+    m_Localized: ResourceEvent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001169
+    m_Localized: Manual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001170
+    m_Localized: Economic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001171
+    m_Localized: Story
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001172
+    m_Localized: Inspection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001173
+    m_Localized: ColonyProgram
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001174
+    m_Localized: BulkExport
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001175
+    m_Localized: EmergencyRequest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001176
+    m_Localized: ProgressiveContract
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001177
+    m_Localized: OpportunisticDeal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001178
+    m_Localized: M#{0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001179
+    m_Localized: '{0} min'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

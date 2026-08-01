@@ -3959,6 +3959,166 @@ MonoBehaviour:
     m_Localized: ЗОЛОТО
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001140
+    m_Localized: "Категория: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001141
+    m_Localized: "Тип: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001142
+    m_Localized: "Этап {0}/{1}: {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001143
+    m_Localized: Этап {0}/{1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001144
+    m_Localized: Этап
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001145
+    m_Localized: "Ресурсы: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001146
+    m_Localized: "Цели:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001147
+    m_Localized: Целей нет.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001148
+    m_Localized: "Правило отправки: засчитывается только резерв 100%. Частичный резерв нарушает условия контракта."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001149
+    m_Localized: "Правило этапа: этот шаг определяется состоянием базы и развитием сюжета."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001150
+    m_Localized: "Цепочка: {0}, шаг {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001151
+    m_Localized: "Цепочка: отдельное задание"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001152
+    m_Localized: "Срок добычи: до {0}-го сола"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001153
+    m_Localized: "Срок добычи: без ограничения"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001154
+    m_Localized: "Источник: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001155
+    m_Localized: "Перезарядка: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001156
+    m_Localized: "Быстрый резерв: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001157
+    m_Localized: "Быстрый бонус: нет"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001158
+    m_Localized: "Быстрый бонус: +{0} золота получено"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001159
+    m_Localized: "Быстрый бонус: +{0} золота при принятии сейчас"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001160
+    m_Localized: "Быстрый бонус: истёк"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001161
+    m_Localized: готово
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001162
+    m_Localized: одноразовый
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001163
+    m_Localized: ожидает
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001164
+    m_Localized: получен
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001165
+    m_Localized: выполнено
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001166
+    m_Localized: истёк
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001167
+    m_Localized: Время
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001168
+    m_Localized: Событие ресурса
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001169
+    m_Localized: Вручную
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001170
+    m_Localized: Экономика
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001171
+    m_Localized: Сюжет
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001172
+    m_Localized: Проверка
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001173
+    m_Localized: Программа колонии
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001174
+    m_Localized: Массовая поставка
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001175
+    m_Localized: Срочный запрос
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001176
+    m_Localized: Прогрессивный контракт
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001177
+    m_Localized: Выгодная сделка
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001178
+    m_Localized: Миссия №{0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001179
+    m_Localized: "{0} мин"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
