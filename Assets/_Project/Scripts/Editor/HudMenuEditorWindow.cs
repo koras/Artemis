@@ -108,8 +108,8 @@ namespace _Project.Scripts.Editor
         private void DrawButtonRow(HudButtonRow row, bool evenRow)
         {
             HudMenuButtonDefinition definition = FindDefinition(row.ButtonId);
-            string description = definition != null && !string.IsNullOrWhiteSpace(definition.Description)
-                ? definition.Description
+            string description = definition != null
+                ? definition.GetLocalizedDescription().GetLocalizedString()
                 : "Описание не задано";
 
             Color previousColor = GUI.backgroundColor;
@@ -132,16 +132,12 @@ namespace _Project.Scripts.Editor
                 }
 
                 SerializedProperty definitionProperty = FindSerializedDefinition(row.ButtonId);
-                SerializedProperty descriptionProperty = definitionProperty.FindPropertyRelative("Description");
                 SerializedProperty unlockTypeProperty = definitionProperty.FindPropertyRelative("UnlockType");
                 SerializedProperty buildingProperty = definitionProperty.FindPropertyRelative("RequiredBuildingDef");
                 SerializedProperty offerProperty = definitionProperty.FindPropertyRelative("RequiredOfferDefinition");
                 SerializedProperty lifeModuleProperty = definitionProperty.FindPropertyRelative("RequiresLifeModuleBuilt");
 
-                descriptionProperty.stringValue = EditorGUILayout.TextField(
-                    GUIContent.none,
-                    descriptionProperty.stringValue,
-                    GUILayout.Width(260f));
+                EditorGUILayout.LabelField(description, GUILayout.Width(260f));
                 EditorGUILayout.PropertyField(unlockTypeProperty, GUIContent.none, GUILayout.Width(170f));
 
                 if (unlockTypeProperty.enumValueIndex == (int)HudMenuButtonUnlockType.BuildingViewCreated)
@@ -198,7 +194,7 @@ namespace _Project.Scripts.Editor
             definitionsProperty.InsertArrayElementAtIndex(definitionsProperty.arraySize);
             SerializedProperty definitionProperty = definitionsProperty.GetArrayElementAtIndex(definitionsProperty.arraySize - 1);
             definitionProperty.FindPropertyRelative("ButtonId").stringValue = buttonId;
-            definitionProperty.FindPropertyRelative("Description").stringValue = string.Empty;
+            definitionProperty.FindPropertyRelative("_descriptionLocalizationKey").stringValue = "description";
             definitionProperty.FindPropertyRelative("UnlockType").enumValueIndex = (int)HudMenuButtonUnlockType.AlwaysVisible;
             definitionProperty.FindPropertyRelative("RequiredBuildingDef").objectReferenceValue = null;
             definitionProperty.FindPropertyRelative("RequiredOfferDefinition").objectReferenceValue = null;

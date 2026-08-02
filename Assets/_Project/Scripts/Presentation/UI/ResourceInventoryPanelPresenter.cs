@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using _Project.Scripts.Systems.Resources;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 namespace _Project.Scripts.Presentation.UI
@@ -12,11 +14,12 @@ namespace _Project.Scripts.Presentation.UI
     public sealed class ResourceInventoryPanelPresenter : IDisposable
     {
         private const string PANEL_TEMPLATE_PATH = "UI/Mode/ResourceInventoryPanel";
+
         private static readonly string[] DefaultResourceIds =
         {
-           ResourceInventoryService.GOLD_RESOURCE_ID, "Cable", "Water Pipe", "Oxygen Pipe", "Ladder", "Iron", "Titan", "aluminium", "Rogalite"
+            ResourceInventoryService.GOLD_RESOURCE_ID, "Cable", "Water Pipe", "Oxygen Pipe", "Ladder", "Iron", "Titan",
+            "aluminium", "Rogalite"
         };
-        private const string DroppedPrefabsLabel = "Dropped Prefabs";
 
         private readonly VisualElement _resourceList;
         private readonly VisualElement _resourceTooltip;
@@ -24,6 +27,7 @@ namespace _Project.Scripts.Presentation.UI
         private readonly ResourceInventoryService _resourceInventoryService;
         private readonly SceneResourceObjectService _sceneResourceObjectService;
         private readonly Dictionary<string, Texture2D> _resourceIconCache = new Dictionary<string, Texture2D>();
+
         private readonly Dictionary<string, ResourceRowView> _resourceRowsById =
             new Dictionary<string, ResourceRowView>(StringComparer.Ordinal);
 
@@ -36,8 +40,14 @@ namespace _Project.Scripts.Presentation.UI
             _resourceList = root?.Q<VisualElement>("resource-inventory-list");
             _resourceTooltip = root?.Q<VisualElement>("resource-tooltip");
             _resourceTooltipLabel = root?.Q<Label>("resource-tooltip-label");
+            Label resourceInventoryTitle = root?.Q<Label>("resource-inventory-title");
+
+            var localizedInventoryTitle = new LocalizedString("UI", ResourceLocalizationKeys.InventoryTitle);
+            resourceInventoryTitle?.SetBinding("text", localizedInventoryTitle);
+
             _resourceInventoryService = resourceInventoryService;
             _sceneResourceObjectService = sceneResourceObjectService;
+            LocalizationSettings.SelectedLocaleChanged += OnSelectedLocaleChanged;
 
             if (_resourceInventoryService != null)
             {
@@ -54,6 +64,8 @@ namespace _Project.Scripts.Presentation.UI
                 _resourceInventoryService.ResourceAmountChanged -= OnResourceAmountChanged;
             }
 
+            LocalizationSettings.SelectedLocaleChanged -= OnSelectedLocaleChanged;
+
             foreach (ResourceRowView rowView in _resourceRowsById.Values)
             {
                 UnregisterTooltipCallbacks(rowView.Row);
@@ -68,19 +80,23 @@ namespace _Project.Scripts.Presentation.UI
             if (_resourceList == null) return;
 
             List<string> resourceIds = BuildResourceIds();
+
             for (int i = 0; i < resourceIds.Count; i++)
             {
                 string resourceId = resourceIds[i];
+
                 int amount = _resourceInventoryService != null
                     ? _resourceInventoryService.GetAmount(resourceId)
                     : 0;
+
                 UpdateResourceItem(resourceId, amount);
             }
 
             int droppedPrefabs = _sceneResourceObjectService != null
                 ? _sceneResourceObjectService.GetTotalDroppedPrefabCount()
                 : 0;
-            UpdateResourceItem(DroppedPrefabsLabel, droppedPrefabs);
+
+            UpdateResourceItem(ResourceLocalizationKeys.DroppedPrefabsId, droppedPrefabs);
         }
 
         private List<string> BuildResourceIds()
@@ -90,6 +106,7 @@ namespace _Project.Scripts.Presentation.UI
             if (_resourceInventoryService == null) return resourceIds;
 
             Dictionary<string, int> snapshot = _resourceInventoryService.GetAmountsSnapshot();
+
             foreach (string resourceId in snapshot.Keys)
             {
                 if (resourceIds.Contains(resourceId)) continue;
@@ -106,14 +123,14 @@ namespace _Project.Scripts.Presentation.UI
             var row = new VisualElement();
             row.AddToClassList("resource-row");
 
-            string iconText = string.IsNullOrWhiteSpace(resourceId)
-                ? "?"
-                : resourceId.Substring(0, 1).ToUpperInvariant();
+            var localizedResourceName = new LocalizedString("UI", ResourceLocalizationKeys.Name(resourceId));
+            string iconText = GetResourceIconText(localizedResourceName.GetLocalizedString());
+
             var iconLabel = new Label(iconText);
             iconLabel.AddToClassList("resource-icon");
-            TryApplyIconTexture(iconLabel, resourceId);
 
-            var nameLabel = new Label(resourceId);
+            var nameLabel = new Label();
+            nameLabel.SetBinding("text", localizedResourceName);
             nameLabel.AddToClassList("resource-row-name");
 
             var amountLabel = new Label();
@@ -143,14 +160,42 @@ namespace _Project.Scripts.Presentation.UI
                 _resourceList.Add(rowView.Row);
             }
 
+            UpdateResourceIcon(rowView, resourceId);
             rowView.Amount = amount;
             rowView.AmountLabel.text = amount.ToString();
             rowView.IconLabel.tooltip = BuildTooltipText(resourceId, amount);
         }
 
+        private void OnSelectedLocaleChanged(Locale _)
+        {
+            Render();
+        }
+
+        private void UpdateResourceIcon(ResourceRowView rowView, string resourceId)
+        {
+            string localizedResourceName = new LocalizedString(
+                "UI",
+                ResourceLocalizationKeys.Name(resourceId)).GetLocalizedString();
+
+            rowView.IconLabel.text = GetResourceIconText(localizedResourceName);
+            TryApplyIconTexture(rowView.IconLabel, resourceId);
+        }
+
+        private static string GetResourceIconText(string localizedResourceName)
+        {
+            return string.IsNullOrWhiteSpace(localizedResourceName)
+                ? "?"
+                : localizedResourceName.Substring(0, 1).ToUpperInvariant();
+        }
+
         private static string BuildTooltipText(string resourceId, int amount)
         {
-            return $"{resourceId}\nAmount: {amount}";
+            string resourceName = new LocalizedString(
+                "UI",
+                ResourceLocalizationKeys.Name(resourceId)).GetLocalizedString();
+
+            string amountLabel = new LocalizedString("UI", "shop.amount").GetLocalizedString();
+            return $"{resourceName}\n{amountLabel}: {amount}";
         }
 
         private void TryApplyIconTexture(Label iconLabel, string resourceId)
@@ -251,17 +296,23 @@ namespace _Project.Scripts.Presentation.UI
             }
 
             VisualTreeAsset panelTemplate = Resources.Load<VisualTreeAsset>(PANEL_TEMPLATE_PATH);
+
             if (panelTemplate == null)
             {
-                Debug.LogWarning($"[ResourceInventoryPanelPresenter] Resource panel template not found at Resources/{PANEL_TEMPLATE_PATH}.uxml");
+                Debug.LogWarning(
+                    $"[ResourceInventoryPanelPresenter] Resource panel template not found at Resources/{PANEL_TEMPLATE_PATH}.uxml");
+
                 return;
             }
 
             VisualElement panelTree = panelTemplate.Instantiate();
             VisualElement panel = panelTree.Q<VisualElement>("resource-inventory-panel");
+
             if (panel == null)
             {
-                Debug.LogWarning("[ResourceInventoryPanelPresenter] resource-inventory-panel was not found inside template.");
+                Debug.LogWarning(
+                    "[ResourceInventoryPanelPresenter] resource-inventory-panel was not found inside template.");
+
                 return;
             }
 

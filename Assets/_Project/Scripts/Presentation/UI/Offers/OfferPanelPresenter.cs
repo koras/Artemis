@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Data.Offers;
-using _Project.Scripts.Presentation.UI;
 using _Project.Scripts.Systems.Offers;
+using _Project.Scripts.Systems.Resources;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -82,9 +82,15 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             _tooltipPanel = FindElement<VisualElement>(root, "offer-tooltip-panel", "offer-tooltip-panel");
             _tooltipPortrait = FindElement<Image>(root, "offer-tooltip-portrait", "offer-tooltip-portrait");
-            _tooltipCustomerName = FindElement<Label>(root, "offer-tooltip-customer-name", "offer-tooltip-customer-name");
+
+            _tooltipCustomerName =
+                FindElement<Label>(root, "offer-tooltip-customer-name", "offer-tooltip-customer-name");
+
             _tooltipCompanyName = FindElement<Label>(root, "offer-tooltip-company-name", "offer-tooltip-company-name");
-            _tooltipCompanyDescription = FindElement<Label>(root, "offer-tooltip-company-description", "offer-tooltip-company-description");
+
+            _tooltipCompanyDescription = FindElement<Label>(root, "offer-tooltip-company-description",
+                "offer-tooltip-company-description");
+
             _tooltipTitle = FindElement<Label>(root, "offer-tooltip-title", "offer-tooltip-title");
             _tooltipDescription = FindElement<Label>(root, "offer-tooltip-description", "offer-tooltip-description");
             _tooltipRequirements = FindElement<Label>(root, "offer-tooltip-requirements", "offer-tooltip-requirements");
@@ -96,6 +102,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             // Держим кнопку OFFERS в правой части верхней панели HUD.
             VisualElement hudRightControls = root?.Q<VisualElement>("hud-right-controls");
+
             if (hudRightControls != null && _openButton != null)
             {
                 _openButton.RemoveFromHierarchy();
@@ -202,7 +209,10 @@ namespace _Project.Scripts.Presentation.UI.Offers
         {
             OfferDefinition definition = record.Definition;
             bool isReservedForShipment = record.IsReservedForShipment;
-            int goldReward = _offerSystemService != null ? _offerSystemService.GetGoldReward(record) : definition.GoldReward;
+
+            int goldReward = _offerSystemService != null
+                ? _offerSystemService.GetGoldReward(record)
+                : definition.GoldReward;
 
             var row = new VisualElement();
             row.AddToClassList("offer-table-row");
@@ -211,45 +221,54 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             row.Add(BuildLocalizedTableCell(
                 definition.GetLocalizedTitle(),
-                definition.Title,
                 "offer-col-title"));
+
             row.Add(BuildLocalizedTableCell(
                 definition.Customer.GetLocalizedFullName(),
                 "offer-col-customer"));
+
             row.Add(BuildTableCell(goldReward.ToString(), "offer-col-gold"));
             row.Add(BuildTableCell($"+{definition.ReputationReward}", "offer-col-reputation"));
             row.Add(BuildTableCell(BuildStageSummary(stageProgress, definition), "offer-col-requirements"));
-            string deadlineText = record.DeadlineSol.HasValue ? $"{record.DeadlineSol.Value} sol" : "-";
+            string solText = Localize("time.sol");
+            string deadlineText = record.DeadlineSol.HasValue ? $"{record.DeadlineSol.Value} {solText}" : "-";
+
             if (isActive && record.ShipmentMissionTarget > 0)
             {
-                deadlineText = $"{deadlineText} / M#{record.ShipmentMissionTarget}";
+                string missionText = Localize("offers.tooltip.mission_short", record.ShipmentMissionTarget);
+                deadlineText = $"{deadlineText} / {missionText}";
             }
 
             row.Add(BuildTableCell(deadlineText, "offer-col-deadline"));
-           // row.Add(BuildTableCell(record.Source.ToString(), "offer-col-source"));
+            // row.Add(BuildTableCell(record.Source.ToString(), "offer-col-source"));
             row.Add(BuildTableCell(BuildCooldownCellText(definition), "offer-col-cooldown"));
 
             var actions = new VisualElement();
             actions.AddToClassList("offer-table-cell");
             actions.AddToClassList("offer-col-actions");
             actions.Add(CreateLocalizedButton(() => OpenTooltip(record), "offers.details"));
+
             if (isActive)
             {
                 if (_offerSystemService.CurrentStageHasDeliverObjectives(record))
                 {
                     if (isReservedForShipment)
                     {
-                        actions.Add(CreateLocalizedButton(() => _offerSystemService.CancelOfferReservation(record.RuntimeId), "offers.unreserve"));
+                        actions.Add(CreateLocalizedButton(
+                            () => _offerSystemService.CancelOfferReservation(record.RuntimeId), "offers.unreserve"));
                     }
                     else
                     {
-                        actions.Add(CreateLocalizedButton(() => _offerSystemService.TryReserveOfferForNextMission(record.RuntimeId, 0), "offers.reserve"));
+                        actions.Add(CreateLocalizedButton(
+                            () => _offerSystemService.TryReserveOfferForNextMission(record.RuntimeId, 0),
+                            "offers.reserve"));
                     }
                 }
             }
             else
             {
-                actions.Add(CreateLocalizedButton(() => _offerSystemService.AcceptOffer(record.RuntimeId), "offers.accept"));
+                actions.Add(CreateLocalizedButton(() => _offerSystemService.AcceptOffer(record.RuntimeId),
+                    "offers.accept"));
             }
 
             row.Add(actions);
@@ -262,17 +281,20 @@ namespace _Project.Scripts.Presentation.UI.Offers
             header.AddToClassList("offer-table-header");
             header.Add(BuildLocalizedTableCell("offers.task", "offer-col-title"));
             header.Add(BuildLocalizedTableCell("offers.customer", "offer-col-customer"));
-            header.Add(BuildTableCell("G", "offer-col-gold"));
+            header.Add(BuildLocalizedTableCell("offers.gold_header", "offer-col-gold"));
             header.Add(BuildLocalizedTableCell("offers.reputation", "offer-col-reputation"));
             header.Add(BuildLocalizedTableCell("offers.resources", "offer-col-requirements"));
             header.Add(BuildLocalizedTableCell("offers.deadline", "offer-col-deadline"));
-         //   header.Add(BuildTableCell("SOURCE", "offer-col-source"));
+            //   header.Add(BuildTableCell("SOURCE", "offer-col-source"));
             header.Add(BuildLocalizedTableCell("offers.cooldown", "offer-col-cooldown"));
-            header.Add(BuildLocalizedTableCell(isActive ? "offers.actions" : "offers.decision", "offer-col-actions-title"));
+
+            header.Add(BuildLocalizedTableCell(isActive ? "offers.actions" : "offers.decision",
+                "offer-col-actions-title"));
+
             return header;
         }
 
-        private static Button CreateLocalizedButton(System.Action action, string key)
+        private static Button CreateLocalizedButton(Action action, string key)
         {
             var button = new Button(action);
             button.SetBinding("text", new LocalizedString("UI", key));
@@ -301,41 +323,6 @@ namespace _Project.Scripts.Presentation.UI.Offers
             label.AddToClassList("offer-table-cell");
             label.AddToClassList(className);
             return label;
-        }
-
-        private static Label BuildLocalizedTableCell(
-            LocalizedString localizedString,
-            string fallback,
-            string className)
-        {
-            var label = new Label();
-            BindLocalizedLabel(label, localizedString, fallback);
-            label.AddToClassList("offer-table-cell");
-            label.AddToClassList(className);
-            return label;
-        }
-
-        /// <summary>
-        /// Показывает исходный текст, если ключ OfferDefinition ещё не добавлен в таблицу.
-        /// Это защищает UI от пустых подписей и отображения технического ключа.
-        /// </summary>
-        private static void BindLocalizedLabel(Label label, LocalizedString localizedString, string fallback)
-        {
-            if (label == null)
-            {
-                return;
-            }
-
-            // Сначала показываем source-текст, затем binding обновит его после загрузки локали.
-            label.text = fallback;
-            label.SetBinding("text", localizedString);
-        }
-
-        private static bool IsMissingOfferLocalization(string value)
-        {
-            return string.IsNullOrWhiteSpace(value) ||
-                   value.StartsWith("offer.") ||
-                   value.IndexOf("translation", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         private void OnSelectedLocaleChanged(Locale _)
@@ -373,6 +360,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             if (_selectedOffer == null) return;
 
             OfferDefinition definition = _selectedOffer.Definition;
+
             if (definition == null || definition.Customer == null)
             {
                 _tooltipPanel.style.display = DisplayStyle.None;
@@ -383,26 +371,32 @@ namespace _Project.Scripts.Presentation.UI.Offers
             _tooltipCustomerName.SetBinding("text", definition.Customer.GetLocalizedFullName());
             _tooltipCompanyName.SetBinding("text", definition.Customer.GetLocalizedCompanyName());
             _tooltipCompanyDescription.SetBinding("text", definition.Customer.GetLocalizedCompanyDescription());
-            BindLocalizedLabel(_tooltipTitle, definition.GetLocalizedTitle(), definition.Title);
-            BindLocalizedLabel(_tooltipDescription, definition.GetLocalizedDescription(), definition.Description);
+            _tooltipTitle.SetBinding("text", definition.GetLocalizedTitle());
+            _tooltipDescription.SetBinding("text", definition.GetLocalizedDescription());
             OfferStageProgressSnapshot stageProgress = _offerSystemService.GetStageProgress(_selectedOffer);
             bool hasDeliverObjectives = _offerSystemService.CurrentStageHasDeliverObjectives(_selectedOffer);
+
             string shipmentRuleText = hasDeliverObjectives
-                ? "Shipment rule: only 100% reserve counts. Partial reserve fails the contract."
-                : "Stage rule: this step resolves from base state and story progression.";
+                ? Localize("offers.tooltip.shipment_rule")
+                : Localize("offers.tooltip.stage_rule");
+
             string chainText = BuildChainText(definition);
             string fastBonusText = BuildFastBonusText(_selectedOffer);
+
             _tooltipRequirements.text =
-                $"Category: {definition.Category}\n" +
-                $"Type: {definition.Archetype}\n" +
+                $"{Localize("offers.tooltip.category", GetLocalizedCategory(definition.Category))}\n" +
+                $"{Localize("offers.tooltip.type", GetLocalizedArchetype(definition.Archetype))}\n" +
                 $"{BuildStageTooltip(stageProgress, definition)}\n" +
                 $"{chainText}\n" +
                 $"{fastBonusText}\n" +
                 $"{shipmentRuleText}";
+
             int cooldownRemainingMinutes = _offerSystemService.GetCooldownRemainingMinutes(definition);
+
             string cooldownText = cooldownRemainingMinutes > 0
-                ? $"{cooldownRemainingMinutes} min"
-                : "ready";
+                ? Localize("offers.tooltip.cooldown_minutes", cooldownRemainingMinutes)
+                : Localize("offers.status.ready");
+
             _tooltipDeadline.text = BuildDebugMetaText(_selectedOffer, cooldownText);
 
             bool isAvailable = ContainsRuntimeId(_offerSystemService.AvailableOffers, _selectedOffer.RuntimeId);
@@ -410,19 +404,23 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             _tooltipAcceptButton.style.display = isAvailable ? DisplayStyle.Flex : DisplayStyle.None;
             _tooltipRejectButton.style.display = isAvailable ? DisplayStyle.Flex : DisplayStyle.None;
+
             if (isActive)
             {
                 if (hasDeliverObjectives)
                 {
-                        _tooltipAcceptButton.SetBinding(
-                            "text",
-                            new LocalizedString("UI", _selectedOffer.IsReservedForShipment ? "offers.unreserve" : "offers.reserve"));
+                    _tooltipAcceptButton.SetBinding(
+                        "text",
+                        new LocalizedString("UI",
+                            _selectedOffer.IsReservedForShipment ? "offers.unreserve" : "offers.reserve"));
+
                     _tooltipAcceptButton.style.display = DisplayStyle.Flex;
                 }
                 else
                 {
                     _tooltipAcceptButton.style.display = DisplayStyle.None;
                 }
+
                 _tooltipRejectButton.style.display = DisplayStyle.None;
             }
             else
@@ -435,6 +433,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
         {
             if (_offerSystemService == null) return;
             var currentAvailableIds = new HashSet<string>();
+
             for (int i = 0; i < _offerSystemService.AvailableOffers.Count; i++)
             {
                 string runtimeId = _offerSystemService.AvailableOffers[i].RuntimeId;
@@ -462,6 +461,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
                 _blinkSchedule = _openButton.schedule.Execute(() =>
                 {
                     _blinkOn = !_blinkOn;
+
                     if (_blinkOn) _openButton.AddToClassList("blink");
                     else _openButton.RemoveFromClassList("blink");
                 }).Every(450);
@@ -472,14 +472,90 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
         }
 
+        private static string Localize(string key, params object[] arguments)
+        {
+            var localizedString = new LocalizedString("UI", key)
+            {
+                Arguments = arguments
+            };
+
+            return localizedString.GetLocalizedString();
+        }
+
+        private static string GetLocalizedResourceName(string resourceId)
+        {
+            return Localize(ResourceLocalizationKeys.Name(resourceId));
+        }
+
+        private static string GetLocalizedCategory(OfferCategory category)
+        {
+            switch (category)
+            {
+                case OfferCategory.Economic:
+                    return Localize("offers.category.economic");
+
+                case OfferCategory.Story:
+                    return Localize("offers.category.story");
+
+                case OfferCategory.Inspection:
+                    return Localize("offers.category.inspection");
+
+                case OfferCategory.ColonyProgram:
+                    return Localize("offers.category.colony_program");
+
+                default:
+                    return category.ToString();
+            }
+        }
+
+        private static string GetLocalizedArchetype(OfferArchetype archetype)
+        {
+            switch (archetype)
+            {
+                case OfferArchetype.BulkExport:
+                    return Localize("offers.type.bulk_export");
+
+                case OfferArchetype.EmergencyRequest:
+                    return Localize("offers.type.emergency_request");
+
+                case OfferArchetype.ProgressiveContract:
+                    return Localize("offers.type.progressive_contract");
+
+                case OfferArchetype.OpportunisticDeal:
+                    return Localize("offers.type.opportunistic_deal");
+
+                default:
+                    return archetype.ToString();
+            }
+        }
+
+        private static string GetLocalizedTriggerSource(OfferTriggerSource source)
+        {
+            switch (source)
+            {
+                case OfferTriggerSource.Time:
+                    return Localize("offers.source.time");
+
+                case OfferTriggerSource.ResourceEvent:
+                    return Localize("offers.source.resource_event");
+
+                case OfferTriggerSource.Manual:
+                    return Localize("offers.source.manual");
+
+                default:
+                    return source.ToString();
+            }
+        }
+
         private static string BuildRequirementsText(OfferResourceAmount[] requirements)
         {
             if (requirements == null || requirements.Length == 0) return "-";
             string result = string.Empty;
+
             for (int i = 0; i < requirements.Length; i++)
             {
                 if (i > 0) result += ", ";
-                result += $"{requirements[i].Amount} {requirements[i].ResourceId}";
+                result += $"{requirements[i].Amount} {GetLocalizedResourceName(requirements[i].ResourceId)}";
             }
 
             return result;
@@ -493,6 +569,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
 
             int completed = 0;
+
             for (int i = 0; i < stageProgress.Objectives.Length; i++)
             {
                 if (stageProgress.Objectives[i] != null && stageProgress.Objectives[i].IsCompleted)
@@ -501,7 +578,13 @@ namespace _Project.Scripts.Presentation.UI.Offers
                 }
             }
 
-            return $"{stageProgress.Stage?.Title ?? "Stage"} {completed}/{stageProgress.Objectives.Length}";
+            string stageTitle = stageProgress.Stage != null
+                ? definition.HasStages
+                    ? definition.GetLocalizedStageField(stageProgress.StageIndex, "title").GetLocalizedString()
+                    : definition.GetLocalizedTitle().GetLocalizedString()
+                : Localize("offers.tooltip.stage_fallback");
+
+            return $"{stageTitle} {completed}/{stageProgress.Objectives.Length}";
         }
 
         private string BuildCooldownCellText(OfferDefinition definition)
@@ -513,11 +596,14 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             if (!definition.IsRepeatable)
             {
-                return "single";
+                return Localize("offers.status.single");
             }
 
             int cooldownRemainingMinutes = _offerSystemService.GetCooldownRemainingMinutes(definition);
-            return cooldownRemainingMinutes > 0 ? $"{cooldownRemainingMinutes}m" : "ready";
+
+            return cooldownRemainingMinutes > 0
+                ? Localize("offers.tooltip.cooldown_minutes", cooldownRemainingMinutes)
+                : Localize("offers.status.ready");
         }
 
         private static bool ContainsRuntimeId(IReadOnlyList<OfferRuntimeRecord> list, string runtimeId)
@@ -530,7 +616,8 @@ namespace _Project.Scripts.Presentation.UI.Offers
             return false;
         }
 
-        private static T FindElement<T>(VisualElement root, string name, string className = null) where T : VisualElement
+        private static T FindElement<T>(VisualElement root, string name, string className = null)
+            where T : VisualElement
         {
             if (root == null) return null;
             T byName = root.Q<T>(name);
@@ -542,53 +629,70 @@ namespace _Project.Scripts.Presentation.UI.Offers
         private static string BuildDebugMetaText(OfferRuntimeRecord record, string cooldownText)
         {
             string deadlineText = record.DeadlineSol.HasValue
-                ? $"Mining deadline: until sol {record.DeadlineSol.Value}"
-                : "Mining deadline: unlimited";
-            string fastReserveState = record.FastReserveBonusGranted ? "claimed" : "pending";
-            return $"{deadlineText}\nSource: {record.Source}\nCooldown: {cooldownText}\nFast reserve: {fastReserveState}";
+                ? Localize("offers.tooltip.mining_deadline", record.DeadlineSol.Value)
+                : Localize("offers.tooltip.mining_deadline_unlimited");
+
+            string fastReserveState = record.FastReserveBonusGranted
+                ? Localize("offers.status.claimed")
+                : Localize("offers.status.pending");
+
+            return
+                $"{deadlineText}\n" +
+                $"{Localize("offers.tooltip.source", GetLocalizedTriggerSource(record.Source))}\n" +
+                $"{Localize("offers.tooltip.cooldown", cooldownText)}\n" +
+                $"{Localize("offers.tooltip.fast_reserve", fastReserveState)}";
         }
 
         private static string BuildChainText(OfferDefinition definition)
         {
             if (definition == null || string.IsNullOrWhiteSpace(definition.ChainId) || definition.ChainStep <= 0)
             {
-                return "Chain: standalone";
+                return Localize("offers.tooltip.chain_standalone");
             }
 
-            return $"Chain: {definition.ChainId} step {definition.ChainStep}";
+            return Localize("offers.tooltip.chain", definition.ChainId, definition.ChainStep);
         }
 
         private string BuildFastBonusText(OfferRuntimeRecord record)
         {
             if (record?.Definition == null || record.Definition.FastReserveBonusGold <= 0)
             {
-                return "Fast bonus: none";
+                return Localize("offers.tooltip.fast_bonus.none");
             }
 
             if (record.FastReserveBonusGranted)
             {
-                return $"Fast bonus: +{record.Definition.FastReserveBonusGold} gold secured";
+                return Localize("offers.tooltip.fast_bonus.secured", record.Definition.FastReserveBonusGold);
             }
 
             bool isWindowOpen = _offerSystemService != null && _offerSystemService.IsFastReserveWindowOpen(record);
+
             return isWindowOpen
-                ? $"Fast bonus: +{record.Definition.FastReserveBonusGold} gold if accepted now"
-                : "Fast bonus: expired";
+                ? Localize("offers.tooltip.fast_bonus.available", record.Definition.FastReserveBonusGold)
+                : Localize("offers.tooltip.fast_bonus.expired");
         }
 
         private static string BuildStageTooltip(OfferStageProgressSnapshot stageProgress, OfferDefinition definition)
         {
             if (stageProgress == null)
             {
-                return $"Resources: {BuildRequirementsText(definition?.CompletionRequirements)}";
+                return Localize("offers.tooltip.resources", BuildRequirementsText(definition?.CompletionRequirements));
             }
 
+            int totalStages = Mathf.Max(1, stageProgress.TotalStages);
+
             string title = stageProgress.Stage != null
-                ? $"Stage {stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}: {GetLocalizedStageText(definition, stageProgress.StageIndex, "title", stageProgress.Stage.Title)}"
-                : $"Stage {stageProgress.StageIndex + 1}/{Mathf.Max(1, stageProgress.TotalStages)}";
-            string description = stageProgress.Stage != null && !string.IsNullOrWhiteSpace(stageProgress.Stage.Description)
-                ? GetLocalizedStageText(definition, stageProgress.StageIndex, "description", stageProgress.Stage.Description)
+                ? Localize(
+                    "offers.tooltip.stage",
+                    stageProgress.StageIndex + 1,
+                    totalStages,
+                    GetLocalizedStageTitle(definition, stageProgress.StageIndex))
+                : Localize("offers.tooltip.stage_without_title", stageProgress.StageIndex + 1, totalStages);
+
+            string description = stageProgress.Stage != null
+                ? GetLocalizedStageDescription(definition, stageProgress.StageIndex)
                 : string.Empty;
+
             string objectives = BuildObjectiveLines(stageProgress.Objectives, definition, stageProgress.StageIndex);
 
             if (string.IsNullOrWhiteSpace(description))
@@ -599,6 +703,20 @@ namespace _Project.Scripts.Presentation.UI.Offers
             return $"{title}\n{description}\n{objectives}";
         }
 
+        private static string GetLocalizedStageTitle(OfferDefinition definition, int stageIndex)
+        {
+            return definition.HasStages
+                ? definition.GetLocalizedStageField(stageIndex, "title").GetLocalizedString()
+                : definition.GetLocalizedTitle().GetLocalizedString();
+        }
+
+        private static string GetLocalizedStageDescription(OfferDefinition definition, int stageIndex)
+        {
+            return definition.HasStages
+                ? definition.GetLocalizedStageField(stageIndex, "description").GetLocalizedString()
+                : definition.GetLocalizedDescription().GetLocalizedString();
+        }
+
         private static string BuildObjectiveLines(
             OfferObjectiveProgressSnapshot[] objectives,
             OfferDefinition definition,
@@ -606,69 +724,35 @@ namespace _Project.Scripts.Presentation.UI.Offers
         {
             if (objectives == null || objectives.Length == 0)
             {
-                return "No objectives.";
+                return Localize("offers.tooltip.no_objectives");
             }
 
-            string result = "Objectives:";
+            string result = Localize("offers.tooltip.objectives");
+
             for (int i = 0; i < objectives.Length; i++)
             {
                 OfferObjectiveProgressSnapshot objective = objectives[i];
+
                 if (objective?.Objective == null)
                 {
                     continue;
                 }
 
-                string description = !string.IsNullOrWhiteSpace(objective.Objective.Description)
-                    ? GetLocalizedObjectiveText(definition, stageIndex, i, objective.Objective.Description)
-                    : objective.Objective.ObjectiveType.ToString();
+                string description = definition.HasStages
+                    ? definition.GetLocalizedObjectiveDescription(stageIndex, i).GetLocalizedString()
+                    : $"{objective.Objective.RequiredAmount} {GetLocalizedResourceName(objective.Objective.ResourceId)}";
+
                 string progress = objective.TargetValue > 0
                     ? $"{objective.CurrentValue}/{objective.TargetValue}"
-                    : (objective.IsCompleted ? "done" : "pending");
+                    : (objective.IsCompleted
+                        ? Localize("offers.status.done")
+                        : Localize("offers.status.pending"));
+
                 string marker = objective.IsCompleted ? "[x]" : "[ ]";
                 result += $"\n{marker} {description} ({progress})";
             }
 
             return result;
-        }
-
-        private static string GetLocalizedStageText(
-            OfferDefinition definition,
-            int stageIndex,
-            string field,
-            string fallback)
-        {
-            if (definition == null)
-            {
-                return fallback;
-            }
-
-            if (LocalizationSettings.SelectedLocale == null)
-            {
-                return fallback;
-            }
-
-            string localized = definition.GetLocalizedStageField(stageIndex, field).GetLocalizedString();
-            return IsMissingOfferLocalization(localized) ? fallback : localized;
-        }
-
-        private static string GetLocalizedObjectiveText(
-            OfferDefinition definition,
-            int stageIndex,
-            int objectiveIndex,
-            string fallback)
-        {
-            if (definition == null)
-            {
-                return fallback;
-            }
-
-            if (LocalizationSettings.SelectedLocale == null)
-            {
-                return fallback;
-            }
-
-            string localized = definition.GetLocalizedObjectiveDescription(stageIndex, objectiveIndex).GetLocalizedString();
-            return IsMissingOfferLocalization(localized) ? fallback : localized;
         }
 
         private void OnOpenClicked(ClickEvent _)
@@ -692,6 +776,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
 
             _renderQueued = true;
+
             _renderSchedule = _root.schedule.Execute(() =>
             {
                 _renderSchedule = null;
@@ -734,7 +819,8 @@ namespace _Project.Scripts.Presentation.UI.Offers
             if (isAvailable) _offerSystemService.AcceptOffer(_selectedOffer.RuntimeId);
             else if (isActive)
             {
-                if (_selectedOffer.IsReservedForShipment) _offerSystemService.CancelOfferReservation(_selectedOffer.RuntimeId);
+                if (_selectedOffer.IsReservedForShipment)
+                    _offerSystemService.CancelOfferReservation(_selectedOffer.RuntimeId);
                 else _offerSystemService.TryReserveOfferForNextMission(_selectedOffer.RuntimeId, 0);
             }
 
@@ -758,6 +844,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             {
                 bool stillExists = ContainsRuntimeId(_offerSystemService.AvailableOffers, _selectedOffer.RuntimeId) ||
                                    ContainsRuntimeId(_offerSystemService.ActiveOffers, _selectedOffer.RuntimeId);
+
                 if (!stillExists)
                 {
                     _selectedOffer = null;
@@ -777,6 +864,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
 
             _panel = EnsurePanelCreated(_root);
+
             if (_panel == null)
             {
                 return;
@@ -803,6 +891,7 @@ namespace _Project.Scripts.Presentation.UI.Offers
             }
 
             VisualElement existingPanel = root.Q<VisualElement>("offers-panel");
+
             if (existingPanel != null)
             {
                 return existingPanel;
@@ -810,12 +899,15 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             if (_panelTemplate == null)
             {
-                Debug.LogWarning($"[OfferPanelPresenter] Offers panel template not found at Resources/{PANEL_TEMPLATE_PATH}.uxml");
+                Debug.LogWarning(
+                    $"[OfferPanelPresenter] Offers panel template not found at Resources/{PANEL_TEMPLATE_PATH}.uxml");
+
                 return null;
             }
 
             VisualElement panelTree = _panelTemplate.Instantiate();
             VisualElement instantiatedPanel = panelTree.Q<VisualElement>("offers-panel");
+
             if (instantiatedPanel == null)
             {
                 Debug.LogWarning("[OfferPanelPresenter] offers-panel was not found inside template.");
@@ -841,12 +933,15 @@ namespace _Project.Scripts.Presentation.UI.Offers
 
             if (_tooltipTemplate == null)
             {
-                Debug.LogWarning($"[OfferPanelPresenter] Offer tooltip template not found at Resources/{TOOLTIP_TEMPLATE_PATH}.uxml");
+                Debug.LogWarning(
+                    $"[OfferPanelPresenter] Offer tooltip template not found at Resources/{TOOLTIP_TEMPLATE_PATH}.uxml");
+
                 return;
             }
 
             VisualElement tooltipTree = _tooltipTemplate.Instantiate();
             VisualElement tooltipPanel = tooltipTree.Q<VisualElement>("offer-tooltip-panel");
+
             if (tooltipPanel == null)
             {
                 Debug.LogWarning("[OfferPanelPresenter] offer-tooltip-panel was not found inside tooltip template.");

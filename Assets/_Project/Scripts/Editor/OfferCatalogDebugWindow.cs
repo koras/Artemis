@@ -86,8 +86,8 @@ namespace _Project.Scripts.Editor
                 using (new EditorGUILayout.HorizontalScope(EditorStyles.textArea))
                 {
                     GUILayout.Label(offer.OfferId, GUILayout.Width(160f));
-                    GUILayout.Label(offer.Title, GUILayout.Width(180f));
-                    GUILayout.Label(offer.Customer != null ? offer.Customer.FullName : "<missing>", GUILayout.Width(160f));
+                    GUILayout.Label(offer.GetLocalizedTitle().GetLocalizedString(), GUILayout.Width(180f));
+                    GUILayout.Label(offer.Customer != null ? offer.Customer.LocalizationId : "<missing>", GUILayout.Width(160f));
                     GUILayout.Label(offer.TriggerTypes.ToString(), GUILayout.Width(140f));
                     GUILayout.Label(offer.IsRepeatable ? "Yes" : "No", GUILayout.Width(80f));
                     GUILayout.Label(offer.CooldownGameMinutes.ToString(), GUILayout.Width(80f));
@@ -118,12 +118,15 @@ namespace _Project.Scripts.Editor
                 return true;
             }
 
-            if (!string.IsNullOrWhiteSpace(offer.Title) && offer.Title.ToLowerInvariant().Contains(needle))
+            string localizedTitle = offer.GetLocalizedTitle().GetLocalizedString();
+            if (!string.IsNullOrWhiteSpace(localizedTitle) && localizedTitle.ToLowerInvariant().Contains(needle))
             {
                 return true;
             }
 
-            if (offer.Customer != null && !string.IsNullOrWhiteSpace(offer.Customer.FullName) && offer.Customer.FullName.ToLowerInvariant().Contains(needle))
+            if (offer.Customer != null
+                && !string.IsNullOrWhiteSpace(offer.Customer.LocalizationId)
+                && offer.Customer.LocalizationId.ToLowerInvariant().Contains(needle))
             {
                 return true;
             }

@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-france-03
   Customer: {fileID: 11400000, guid: 89fc6c8f2735d3742a69ebd167d403ee, type: 2}
-  Title: "European Colony Inspection"
-  Description: "The final French request is ceremonial and political: host an official inspection without letting the base look improvised."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 2
   OfferAffinityTag: Science
-  IntroMessage: "The inspectors want a colony that feels permanent, not lucky."
-  AcceptMessage: "Prepare a dining space, keep a cash reserve, and welcome the inspection convoy."
-  CompleteMessage: "The European review stamped the colony as a serious scientific outpost."
-  FailMessage: "The inspectors saw too much improvisation."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1560
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: france-inspection-ready
-    Title: "Inspection Window"
-    Description: "Set up a dignified host space and keep funding visible."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: france-inspect-dinner
       ObjectiveType: 3
-      Description: "Build 1 Dinner Station."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 12
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: france-inspect-gold
       ObjectiveType: 7
-      Description: "Reach 220 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 220
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: france-inspection-pass
-    Title: "European Audit"
-    Description: "Receive the inspection delegation and pass the final review."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: france-inspect-pass
       ObjectiveType: 10
-      Description: "Pass the European inspection."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

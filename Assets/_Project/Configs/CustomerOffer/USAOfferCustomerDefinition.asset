@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829fb78073e4dd19595dd7b60f15bfc, type: 3}
   m_Name: USAOfferCustomerDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferCustomerDefinition
-  FirstName: Mr
-  LastName: Donald
-  CompanyName: American businessman
-  CompanyDescription: The Company That Ended 50 Wars
+  CustomerId: usa
   OfferAffinityTag: Industry
+  _fullNameLocalizationKey: full_name
+  _companyNameLocalizationKey: company_name
+  _companyDescriptionLocalizationKey: company_description
   KindPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
   NeutralPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}
   AngryPortrait: {fileID: 21300000, guid: 98416b6f8d11da7438ff3ccdde4b2fc1, type: 3}

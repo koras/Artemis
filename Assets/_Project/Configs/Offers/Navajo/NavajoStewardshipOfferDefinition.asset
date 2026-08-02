@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-navajo-03
   Customer: {fileID: 11400000, guid: 8c3ff65201b60d848aeb871837c9b828, type: 2}
-  Title: "Stewardship Review"
-  Description: "The final cooperative step is philosophical and practical: keep a buffer, show restraint, and pass a stewardship review."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 2
   OfferAffinityTag: IndustryNavajo
-  IntroMessage: "This review asks whether your colony can grow without losing its judgment."
-  AcceptMessage: "Keep a reserve, add living capacity, and pass the stewardship review."
-  CompleteMessage: "The cooperative endorsed the colony's quieter path forward."
-  FailMessage: "The review judged the colony too extractive and too thinly buffered."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1680
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: navajo-stewardship-buffer
-    Title: "Stewardship Buffer"
-    Description: "Hold a gold reserve and add another calm sleeping space."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: navajo-stewardship-gold
       ObjectiveType: 7
-      Description: "Reach 160 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 160
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: navajo-stewardship-sleep
       ObjectiveType: 3
-      Description: "Build 1 Sleep Module."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 9
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: navajo-stewardship-pass
-    Title: "Respect Review"
-    Description: "Receive the stewardship observers and pass the final review."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: navajo-stewardship-pass
       ObjectiveType: 10
-      Description: "Pass the stewardship inspection."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

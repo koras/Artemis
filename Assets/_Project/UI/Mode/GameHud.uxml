@@ -11,7 +11,7 @@
                 <ui:Button name="time-speed-x20-btn" text="x20" class="time-control-btn"/>
             </ui:VisualElement>
             <ui:VisualElement name="game-time-panel" class="game-time-panel">
-                <ui:Label name="game-time-label" text="00:00 / 1 sol"/>
+                <ui:Label name="game-time-label" text="00:00"/>
             </ui:VisualElement>
             <ui:VisualElement name="hud-right-controls" class="hud-right-controls">
                 <ui:Button name="offers-open-btn" text="Offers" class="offers-open-btn" style="height: 37px; width: 166px;">
@@ -37,7 +37,9 @@
                     <ui:Button name="bottom-menu-module-btn" text="Module" class="bottom-menu-btn menu-icon-btn">
                         <Bindings><l:LocalizedString property="text" table="UI" entry="resource.module" /></Bindings>
                     </ui:Button>
-                    <ui:Button name="bottom-menu-decoration-btn" text="Декор" class="bottom-menu-btn menu-icon-btn"/>
+                    <ui:Button name="bottom-menu-decoration-btn" text="Decoration" class="bottom-menu-btn menu-icon-btn">
+                        <Bindings><l:LocalizedString property="text" table="UI" entry="menu.decoration" /></Bindings>
+                    </ui:Button>
                 </ui:VisualElement>
                 <ui:VisualElement class="bottom-bar-right">
                     <ui:Button name="build-ladder-btn" text="Ladder" class="menu-icon-btn">

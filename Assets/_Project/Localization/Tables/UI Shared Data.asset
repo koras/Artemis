@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: menu.shop
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001120
+    m_Key: menu.decoration
+    m_Metadata:
+      m_Items: []
   - m_Id: 3211780096
     m_Key: resource.electricity
     m_Metadata:
@@ -39,8 +43,528 @@ MonoBehaviour:
     m_Key: resource.module
     m_Metadata:
       m_Items: []
+  - m_Id: 4000000044
+    m_Key: resource.inventory.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000045
+    m_Key: resource.item.iron
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000046
+    m_Key: resource.item.titan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000047
+    m_Key: resource.item.rogalite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000048
+    m_Key: resource.item.aluminium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000049
+    m_Key: resource.item.ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000050
+    m_Key: resource.item.employee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000051
+    m_Key: resource.item.gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000052
+    m_Key: resource.item.vegetables
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000053
+    m_Key: resource.item.meet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000054
+    m_Key: resource.item.beer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000055
+    m_Key: resource.item.fish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000056
+    m_Key: resource.item.medicines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000057
+    m_Key: resource.item.tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000058
+    m_Key: resource.item.cable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000059
+    m_Key: resource.item.water_pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000060
+    m_Key: resource.item.oxygen_pipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000061
+    m_Key: resource.dropped_prefabs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000062
+    m_Key: time.sol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000063
+    m_Key: time.day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000064
+    m_Key: time.night
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001000
+    m_Key: character.diagnostics.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001001
+    m_Key: character.diagnostics.no_characters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001002
+    m_Key: character.diagnostics.name_key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001003
+    m_Key: character.diagnostics.state
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001004
+    m_Key: character.diagnostics.local
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001005
+    m_Key: character.diagnostics.work_decision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001006
+    m_Key: character.diagnostics.task_block_reason
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001007
+    m_Key: character.diagnostics.food_preferences
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001008
+    m_Key: character.diagnostics.movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001009
+    m_Key: character.diagnostics.animation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001010
+    m_Key: character.diagnostics.hunger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001011
+    m_Key: character.diagnostics.sleep_desire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001012
+    m_Key: character.diagnostics.mood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001013
+    m_Key: character.diagnostics.sleep_cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001014
+    m_Key: character.diagnostics.eat_cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001015
+    m_Key: character.diagnostics.work_24h
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001016
+    m_Key: character.diagnostics.rest_cycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001017
+    m_Key: character.diagnostics.cycle.done_left_total
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001018
+    m_Key: character.diagnostics.cycle.done_left_current_eat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001019
+    m_Key: character.diagnostics.cycle.done_left_target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001020
+    m_Key: character.diagnostics.state.idle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001021
+    m_Key: character.diagnostics.state.moving
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001022
+    m_Key: character.diagnostics.state.working
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001023
+    m_Key: character.diagnostics.state.need_override
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001024
+    m_Key: character.diagnostics.state.delivering_resource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001025
+    m_Key: character.diagnostics.state.sleeping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001026
+    m_Key: character.diagnostics.state.eating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001027
+    m_Key: character.diagnostics.state.resting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001028
+    m_Key: character.diagnostics.local.none
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001029
+    m_Key: character.diagnostics.local.sleep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001030
+    m_Key: character.diagnostics.local.eat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001031
+    m_Key: character.diagnostics.local.rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001032
+    m_Key: character.diagnostics.work_decision.yes_already
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001033
+    m_Key: character.diagnostics.work_decision.no_local_need
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001034
+    m_Key: character.diagnostics.work_decision.no_quota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001035
+    m_Key: character.diagnostics.work_decision.yes_will_take
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001036
+    m_Key: character.diagnostics.reason.idle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001037
+    m_Key: character.diagnostics.reason.manual_move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001038
+    m_Key: character.diagnostics.reason.local_need_flow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001039
+    m_Key: character.diagnostics.reason.local_need
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001040
+    m_Key: character.diagnostics.reason.delivering_resource
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001041
+    m_Key: character.diagnostics.reason.already_has_task
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001042
+    m_Key: character.diagnostics.reason.task_acquired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001043
+    m_Key: character.diagnostics.reason.unknown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001044
+    m_Key: character.diagnostics.reason.idle_wandering
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001045
+    m_Key: character.diagnostics.reason.idle_wander_settle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001046
+    m_Key: character.diagnostics.reason.idle_wander_wait
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001047
+    m_Key: character.diagnostics.reason.idle_wander_retry_pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001048
+    m_Key: resource.item.meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001100
+    m_Key: character.name.prefix.astra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001101
+    m_Key: character.name.prefix.luna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001102
+    m_Key: character.name.prefix.nova
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001103
+    m_Key: character.name.prefix.orion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001104
+    m_Key: character.name.prefix.vega
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001105
+    m_Key: character.name.prefix.argo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001106
+    m_Key: character.name.prefix.helios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001107
+    m_Key: character.name.prefix.rhea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001108
+    m_Key: character.name.prefix.atlas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001109
+    m_Key: character.name.prefix.nix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001110
+    m_Key: character.name.suffix.stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001111
+    m_Key: character.name.suffix.vale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001112
+    m_Key: character.name.suffix.ray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001113
+    m_Key: character.name.suffix.drift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001114
+    m_Key: character.name.suffix.ward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001115
+    m_Key: character.name.suffix.flint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001116
+    m_Key: character.name.suffix.brook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001117
+    m_Key: character.name.suffix.quill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001118
+    m_Key: character.name.suffix.frost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001119
+    m_Key: character.name.suffix.dawn
+    m_Metadata:
+      m_Items: []
   - m_Id: 3220168706
     m_Key: building.ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168801
+    m_Key: building.battery.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168802
+    m_Key: building.battery.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168803
+    m_Key: building.bridge.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168804
+    m_Key: building.bridge.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168805
+    m_Key: building.ladder.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168806
+    m_Key: building.ladder.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168807
+    m_Key: building.dinnerstation.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168808
+    m_Key: building.dinnerstation.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168809
+    m_Key: building.flowerbig1.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168810
+    m_Key: building.flowerbig1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168811
+    m_Key: building.flowerbig2.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168812
+    m_Key: building.flowerbig2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168813
+    m_Key: building.flowersmall1.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168814
+    m_Key: building.flowersmall1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168815
+    m_Key: building.flowersmall2.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168816
+    m_Key: building.flowersmall2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168817
+    m_Key: building.paintastro.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168818
+    m_Key: building.paintastro.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168819
+    m_Key: building.paintplanet.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168820
+    m_Key: building.paintplanet.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168821
+    m_Key: building.paintrocket.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168822
+    m_Key: building.paintrocket.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168823
+    m_Key: building.shower.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168824
+    m_Key: building.shower.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168825
+    m_Key: building.sleepmodule.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168826
+    m_Key: building.sleepmodule.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168827
+    m_Key: building.oxigenprocessingunit.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168828
+    m_Key: building.oxigenprocessingunit.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168829
+    m_Key: building.oxygenstation.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168830
+    m_Key: building.oxygenstation.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168831
+    m_Key: building.regolithprocessingunit.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168832
+    m_Key: building.regolithprocessingunit.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168833
+    m_Key: building.solarpanel.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168834
+    m_Key: building.solarpanel.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168835
+    m_Key: building.storage.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168836
+    m_Key: building.storage.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168837
+    m_Key: building.waterprocessingunit.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168838
+    m_Key: building.waterprocessingunit.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168839
+    m_Key: building.waterreclamation.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220168840
+    m_Key: building.waterreclamation.description
     m_Metadata:
       m_Items: []
   - m_Id: 3220168707
@@ -67,6 +591,66 @@ MonoBehaviour:
     m_Key: action.oxygen.exit
     m_Metadata:
       m_Items: []
+  - m_Id: 4000001121
+    m_Key: action.cable.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001122
+    m_Key: action.cable.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001123
+    m_Key: action.water.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001124
+    m_Key: action.water.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001125
+    m_Key: action.oxygen.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001126
+    m_Key: action.oxygen.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001127
+    m_Key: action.life_module.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001128
+    m_Key: action.life_module.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001129
+    m_Key: decoration.flower.winter_garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001130
+    m_Key: decoration.flower.oblivion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001131
+    m_Key: decoration.flower.hope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001132
+    m_Key: decoration.flower.summer_garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001133
+    m_Key: decoration.paint.astronaut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001134
+    m_Key: decoration.paint.planet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001135
+    m_Key: decoration.paint.rocket
+    m_Metadata:
+      m_Items: []
   - m_Id: 4000000001
     m_Key: offers.title
     m_Metadata:
@@ -81,6 +665,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4000000004
     m_Key: offers.gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001136
+    m_Key: offers.gold_header
     m_Metadata:
       m_Items: []
   - m_Id: 4000000005
@@ -145,6 +733,166 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4000000020
     m_Key: offers.reject
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001140
+    m_Key: offers.tooltip.category
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001141
+    m_Key: offers.tooltip.type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001142
+    m_Key: offers.tooltip.stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001143
+    m_Key: offers.tooltip.stage_without_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001144
+    m_Key: offers.tooltip.stage_fallback
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001145
+    m_Key: offers.tooltip.resources
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001146
+    m_Key: offers.tooltip.objectives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001147
+    m_Key: offers.tooltip.no_objectives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001148
+    m_Key: offers.tooltip.shipment_rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001149
+    m_Key: offers.tooltip.stage_rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001150
+    m_Key: offers.tooltip.chain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001151
+    m_Key: offers.tooltip.chain_standalone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001152
+    m_Key: offers.tooltip.mining_deadline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001153
+    m_Key: offers.tooltip.mining_deadline_unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001154
+    m_Key: offers.tooltip.source
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001155
+    m_Key: offers.tooltip.cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001156
+    m_Key: offers.tooltip.fast_reserve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001157
+    m_Key: offers.tooltip.fast_bonus.none
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001158
+    m_Key: offers.tooltip.fast_bonus.secured
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001159
+    m_Key: offers.tooltip.fast_bonus.available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001160
+    m_Key: offers.tooltip.fast_bonus.expired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001161
+    m_Key: offers.status.ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001162
+    m_Key: offers.status.single
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001163
+    m_Key: offers.status.pending
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001164
+    m_Key: offers.status.claimed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001165
+    m_Key: offers.status.done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001166
+    m_Key: offers.status.expired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001167
+    m_Key: offers.source.time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001168
+    m_Key: offers.source.resource_event
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001169
+    m_Key: offers.source.manual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001170
+    m_Key: offers.category.economic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001171
+    m_Key: offers.category.story
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001172
+    m_Key: offers.category.inspection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001173
+    m_Key: offers.category.colony_program
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001174
+    m_Key: offers.type.bulk_export
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001175
+    m_Key: offers.type.emergency_request
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001176
+    m_Key: offers.type.progressive_contract
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001177
+    m_Key: offers.type.opportunistic_deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001178
+    m_Key: offers.tooltip.mission_short
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000001179
+    m_Key: offers.tooltip.cooldown_minutes
     m_Metadata:
       m_Items: []
   - m_Id: 4000000021
@@ -237,6 +985,334 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4000000043
     m_Key: shop.no.orders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000301
+    m_Key: hud.menu.button.animal-diagnostics-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000302
+    m_Key: hud.menu.button.battery-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000303
+    m_Key: hud.menu.button.shower-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000304
+    m_Key: hud.menu.button.bottom-menu-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000305
+    m_Key: hud.menu.button.build-bridge-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000306
+    m_Key: hud.menu.button.dinner-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000307
+    m_Key: hud.menu.button.bottom-menu-energy-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000308
+    m_Key: hud.menu.button.build-cable-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000309
+    m_Key: hud.menu.button.build-ladder-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000310
+    m_Key: hud.menu.button.build-life-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000311
+    m_Key: hud.menu.button.build-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000312
+    m_Key: hud.menu.button.build-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000313
+    m_Key: hud.menu.button.cancel-cable-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000314
+    m_Key: hud.menu.button.build-storage-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000315
+    m_Key: hud.menu.button.water-processing-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000316
+    m_Key: hud.menu.button.water-reclamation-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000317
+    m_Key: hud.menu.button.sleep-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000318
+    m_Key: hud.menu.button.solar-panel-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000319
+    m_Key: hud.menu.button.time-pause-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000320
+    m_Key: hud.menu.button.time-play-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000321
+    m_Key: hud.menu.button.time-speed-x1-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000322
+    m_Key: hud.menu.button.time-speed-x10-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000323
+    m_Key: hud.menu.button.time-speed-x20-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000324
+    m_Key: hud.menu.button.time-speed-x5-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000325
+    m_Key: hud.menu.button.shovel-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000326
+    m_Key: hud.menu.button.shop-tab-orders.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000327
+    m_Key: hud.menu.button.shop-row-plus.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000328
+    m_Key: hud.menu.button.shop-row-order.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000329
+    m_Key: hud.menu.button.shop-row-minus.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000330
+    m_Key: hud.menu.button.shop-open-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000331
+    m_Key: hud.menu.button.shop-filter-personnel.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000332
+    m_Key: hud.menu.button.shop-filter-food.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000333
+    m_Key: hud.menu.button.shop-filter-all.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000334
+    m_Key: hud.menu.button.shop-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000335
+    m_Key: hud.menu.button.regolith-processing-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000336
+    m_Key: hud.menu.button.oxygen-storage-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000337
+    m_Key: hud.menu.button.oxygen-processing-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000338
+    m_Key: hud.menu.button.offers-tab-new.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000339
+    m_Key: hud.menu.button.offers-tab-accepted.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000340
+    m_Key: hud.menu.button.offers-open-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000341
+    m_Key: hud.menu.button.shop-filter-equipment.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000342
+    m_Key: hud.menu.button.bottom-menu-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000343
+    m_Key: hud.menu.button.bottom-menu-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000344
+    m_Key: hud.menu.button.cancel-life-module-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000345
+    m_Key: hud.menu.button.cancel-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000346
+    m_Key: hud.menu.button.cancel-shovel-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000347
+    m_Key: hud.menu.button.cancel-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000348
+    m_Key: hud.menu.button.character-diagnostics-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000349
+    m_Key: hud.menu.button.colony-event-ack-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000350
+    m_Key: hud.menu.button.destruction-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000351
+    m_Key: hud.menu.button.exit-cable-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000352
+    m_Key: hud.menu.button.offer-tooltip-reject-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000353
+    m_Key: hud.menu.button.offer-tooltip-header-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000354
+    m_Key: hud.menu.button.offer-tooltip-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000355
+    m_Key: hud.menu.button.offer-tooltip-accept-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000356
+    m_Key: hud.menu.button.exit-water-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000357
+    m_Key: hud.menu.button.exit-oxygen-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000358
+    m_Key: hud.menu.button.offers-close-btn.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000201
+    m_Key: shop.product.beer.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000202
+    m_Key: shop.product.beer.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000203
+    m_Key: shop.product.cable.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000204
+    m_Key: shop.product.cable.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000205
+    m_Key: shop.product.product-human-employee.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000206
+    m_Key: shop.product.product-human-employee.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000207
+    m_Key: shop.product.fish.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000208
+    m_Key: shop.product.fish.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000209
+    m_Key: shop.product.gold.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000210
+    m_Key: shop.product.gold.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000211
+    m_Key: shop.product.ladder.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000212
+    m_Key: shop.product.ladder.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000213
+    m_Key: shop.product.medicines.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000214
+    m_Key: shop.product.medicines.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000215
+    m_Key: shop.product.meat.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000216
+    m_Key: shop.product.meat.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000217
+    m_Key: shop.product.oxygen-pipe.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000218
+    m_Key: shop.product.oxygen-pipe.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000219
+    m_Key: shop.product.tree.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000220
+    m_Key: shop.product.tree.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000221
+    m_Key: shop.product.vegetables.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000222
+    m_Key: shop.product.vegetables.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000223
+    m_Key: shop.product.water-pipe.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4000000224
+    m_Key: shop.product.water-pipe.description
     m_Metadata:
       m_Items: []
   - m_Id: 4000000101
@@ -1437,6 +2513,410 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7000000008
     m_Key: event.solar-activity.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463427612672
+    m_Key: offer.offer-southafrica-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167104
+    m_Key: offer.offer-southafrica-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167105
+    m_Key: offer.offer-southafrica-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463461167106
+    m_Key: offer.offer-southafrica-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351296
+    m_Key: offer.offer-southafrica-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351297
+    m_Key: offer.offer-southafrica-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351298
+    m_Key: offer.offer-southafrica-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675463767351299
+    m_Key: offer.offer-southafrica-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535488
+    m_Key: offer.offer-china-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535489
+    m_Key: offer.offer-china-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464073535490
+    m_Key: offer.offer-china-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719680
+    m_Key: offer.offer-china-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719681
+    m_Key: offer.offer-china-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719682
+    m_Key: offer.offer-china-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464379719683
+    m_Key: offer.offer-china-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486784
+    m_Key: offer.offer-china-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486785
+    m_Key: offer.offer-china-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486786
+    m_Key: offer.offer-china-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675464698486787
+    m_Key: offer.offer-china-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865280
+    m_Key: offer.offer-ethiopian-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865281
+    m_Key: offer.offer-ethiopian-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465008865282
+    m_Key: offer.offer-ethiopian-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855168
+    m_Key: offer.offer-ethiopian-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855169
+    m_Key: offer.offer-ethiopian-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855170
+    m_Key: offer.offer-ethiopian-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465310855171
+    m_Key: offer.offer-ethiopian-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465621233664
+    m_Key: offer.offer-ethiopian-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427968
+    m_Key: offer.offer-ethiopian-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427969
+    m_Key: offer.offer-ethiopian-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465625427970
+    m_Key: offer.offer-ethiopian-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223552
+    m_Key: offer.offer-france-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223553
+    m_Key: offer.offer-france-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223554
+    m_Key: offer.offer-france-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675465923223555
+    m_Key: offer.offer-france-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213440
+    m_Key: offer.offer-france-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213441
+    m_Key: offer.offer-france-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466225213442
+    m_Key: offer.offer-france-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009024
+    m_Key: offer.offer-france-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009025
+    m_Key: offer.offer-france-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009026
+    m_Key: offer.offer-france-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466523009027
+    m_Key: offer.offer-france-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466862747648
+    m_Key: offer.offer-india-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466866941952
+    m_Key: offer.offer-india-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675466866941953
+    m_Key: offer.offer-india-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467223457792
+    m_Key: offer.offer-india-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652096
+    m_Key: offer.offer-india-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652097
+    m_Key: offer.offer-india-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467227652098
+    m_Key: offer.offer-india-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750848
+    m_Key: offer.offer-india-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750849
+    m_Key: offer.offer-india-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750850
+    m_Key: offer.offer-india-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467596750851
+    m_Key: offer.offer-india-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683776
+    m_Key: offer.offer-mexico-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683777
+    m_Key: offer.offer-mexico-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675467940683778
+    m_Key: offer.offer-mexico-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450880
+    m_Key: offer.offer-mexico-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450881
+    m_Key: offer.offer-mexico-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468259450882
+    m_Key: offer.offer-mexico-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468263645184
+    m_Key: offer.offer-mexico-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829376
+    m_Key: offer.offer-mexico-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829377
+    m_Key: offer.offer-mexico-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829378
+    m_Key: offer.offer-mexico-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468569829379
+    m_Key: offer.offer-mexico-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402176
+    m_Key: offer.offer-navajo-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402177
+    m_Key: offer.offer-navajo-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402178
+    m_Key: offer.offer-navajo-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675468884402179
+    m_Key: offer.offer-navajo-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169280
+    m_Key: offer.offer-navajo-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169281
+    m_Key: offer.offer-navajo-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469203169282
+    m_Key: offer.offer-navajo-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547776
+    m_Key: offer.offer-navajo-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547777
+    m_Key: offer.offer-navajo-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469513547778
+    m_Key: offer.offer-navajo-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926272
+    m_Key: offer.offer-spacex-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926273
+    m_Key: offer.offer-spacex-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926274
+    m_Key: offer.offer-spacex-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675469823926275
+    m_Key: offer.offer-spacex-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110464
+    m_Key: offer.offer-spacex-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110465
+    m_Key: offer.offer-spacex-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110466
+    m_Key: offer.offer-spacex-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470130110467
+    m_Key: offer.offer-spacex-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470134304768
+    m_Key: offer.offer-spacex-01.stage.1.objective.2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100352
+    m_Key: offer.offer-spacex-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100353
+    m_Key: offer.offer-spacex-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100354
+    m_Key: offer.offer-spacex-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470432100355
+    m_Key: offer.offer-spacex-03.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701632
+    m_Key: offer.offer-usa-03.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701633
+    m_Key: offer.offer-usa-03.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701634
+    m_Key: offer.offer-usa-03.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701635
+    m_Key: offer.offer-usa-03.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675470725701636
+    m_Key: offer.offer-usa-03.stage.1.objective.2.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108608
+    m_Key: offer.offer-usa-01.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108609
+    m_Key: offer.offer-usa-01.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108610
+    m_Key: offer.offer-usa-01.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471015108611
+    m_Key: offer.offer-usa-01.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292800
+    m_Key: offer.offer-usa-02.stage.1.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292801
+    m_Key: offer.offer-usa-02.stage.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292802
+    m_Key: offer.offer-usa-02.stage.1.objective.0.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675471321292803
+    m_Key: offer.offer-usa-02.stage.1.objective.1.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1788316969066496
+    m_Key: building.electricbattery.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1788316969066497
+    m_Key: building.electricbattery.description
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-india-03
   Customer: {fileID: 11400000, guid: 25c88a3a458474041a03a7c451c7c696, type: 2}
-  Title: "Civic Guest Program"
-  Description: "The final Indian request is a public-facing one: open the first civic guest module and prove the colony can welcome non-specialists."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: IndustryIndia
-  IntroMessage: "The guest program is meant to humanize the colony, not just fund it."
-  AcceptMessage: "Finish the public-facing module and pass the final visit."
-  CompleteMessage: "The guest program launched and broadened the colony's reputation."
-  FailMessage: "The visit made the colony feel too improvised for civilians."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1800
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: india-guest-ready
-    Title: "Public Module"
-    Description: "Add water support and keep a visible cash reserve for the public launch."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: india-guest-water
       ObjectiveType: 3
-      Description: "Build 1 Water Reclamation unit."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 11
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: india-guest-gold
       ObjectiveType: 7
-      Description: "Reach 220 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 220
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: india-guest-pass
-    Title: "First Civic Visit"
-    Description: "Welcome the first visitors and pass the civic readiness inspection."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: india-guest-pass
       ObjectiveType: 10
-      Description: "Pass the civic visit inspection."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

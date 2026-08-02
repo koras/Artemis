@@ -47,14 +47,6 @@ namespace _Project.Scripts.Presentation.UI
                 || _unlockedButtonIds.Contains(buttonId);
         }
 
-        public string GetDescription(string buttonId)
-        {
-            return _definitionsByButtonId.TryGetValue(buttonId, out HudMenuButtonDefinition definition)
-                && !string.IsNullOrWhiteSpace(definition.Description)
-                ? definition.Description
-                : string.Empty;
-        }
-
         public void HandleBuildingViewCreated(BuildingDef buildingDef)
         {
             if (buildingDef == null)

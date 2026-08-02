@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-india-02
   Customer: {fileID: 11400000, guid: 25c88a3a458474041a03a7c451c7c696, type: 2}
-  Title: "Delegation Habitat"
-  Description: "The next phase is social as much as technical: create a larger, calmer habitat for a civilian delegation."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: IndustryIndia
-  IntroMessage: "A civilian delegation needs more than a miner bunk."
-  AcceptMessage: "Expand the habitat and keep the daily support loop visible."
-  CompleteMessage: "The habitat is ready for a formal delegation."
-  FailMessage: "The delegation wing never felt stable enough."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 960
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: india-habitat-build
-    Title: "Delegation Quarters"
-    Description: "Widen the habitat and add sleeping capacity for official guests."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: india-habitat-life
       ObjectiveType: 5
-      Description: "Reach life-module width 12."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: india-habitat-sleep
       ObjectiveType: 3
-      Description: "Build 2 Sleep Modules."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 9
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: india-habitat-utilities
-    Title: "Civil Utilities"
-    Description: "Support the new quarters with food and oxygen stability."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: india-habitat-dinner
       ObjectiveType: 3
-      Description: "Build 1 Dinner Station."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 12
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: india-habitat-oxy
       ObjectiveType: 6
-      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 13

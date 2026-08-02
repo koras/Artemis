@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-spacex-03
   Customer: {fileID: 11400000, guid: 3702a689729f2424c804cfb01113b103, type: 2}
-  Title: "First Tourist Wave"
-  Description: "The final SpaceX test is simple to say and hard to fake: host the first paying tourists without the base feeling fragile."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: Aerospace
-  IntroMessage: "A tourism pilot is pencilled into the launch board."
-  AcceptMessage: "Build the guest experience, keep support online, and pass the final welcome inspection."
-  CompleteMessage: "The first tourist wave left glowing reports and opened a new market."
-  FailMessage: "The guests saw too much mining camp and not enough colony."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1680
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: spacex-tourism-guest
-    Title: "Guest Experience"
-    Description: "Add hospitality and keep oxygen stable for a full sol."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: spacex-tourism-dinner
       ObjectiveType: 3
-      Description: "Build 1 Dinner Station."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 12
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: spacex-tourism-oxy
       ObjectiveType: 6
-      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 13
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 25
     BonusReputation: 0
   - StageId: spacex-tourism-pass
-    Title: "Tourist Arrival"
-    Description: "Hold cash for premium support and pass the tourism inspection."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: spacex-tourism-gold
       ObjectiveType: 7
-      Description: "Reach 300 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 300
       BuildObjectType: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: spacex-tourism-pass
       ObjectiveType: 10
-      Description: "Pass the tourism inspection."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

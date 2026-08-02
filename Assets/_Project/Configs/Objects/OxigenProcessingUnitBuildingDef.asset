@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: OxigenProcessingUnitBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 15
-  UiName: Oxigen Processing Unit
-  UiDescription: Oxigen Processing Unit
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: 31da32c16332be84a89da16a182ff9e5, type: 3}
   BuiltSprite: {fileID: 21300000, guid: 6eae4214021382d4cbbf03e7a232af38, type: 3}
   Width: 4

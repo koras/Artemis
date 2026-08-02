@@ -28,3 +28,4 @@ This is the closest instruction file for work inside `Artemis-Moon/`.
 ## Runtime Invariant and Failure Policy
 - Treat dependencies, services, and UI elements required by a feature's normal runtime contract as mandatory. Do not hide their absence with null checks, fallback values, silent returns, or degraded behavior; invariant violations must surface as exceptions.
 - Keep null guards and fallbacks only for data or UI explicitly documented as optional, or for lifecycle cleanup where absence is an allowed state. Do not use them to support partially initialized or stale runtime state.
+- Do not add artificial validation or fallback for required values: avoid patterns such as `string.IsNullOrWhiteSpace(requiredId) ? string.Empty`, `<missing>`, silent default substitution, or a new `?? throw new ArgumentNullException(...)` used only to replace the normal failure with a custom message. Let the existing invariant failure remain visible.

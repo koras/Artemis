@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829fb78073e4dd19595dd7b60f15bfc, type: 3}
   m_Name: NavajoOfferCustomerDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferCustomerDefinition
-  FirstName: Kai
-  LastName: Begay
-  CompanyName: Red Mesa Artisan Cooperative
-  CompanyDescription: Community-centered business representative focused on authentic
-    handmade products, fair trade values, and sustainable growth.
+  CustomerId: navajo
   OfferAffinityTag: IndustryNavajo
+  _fullNameLocalizationKey: full_name
+  _companyNameLocalizationKey: company_name
+  _companyDescriptionLocalizationKey: company_description
   KindPortrait: {fileID: 21300000, guid: ae5f8232b71479e43b200e62573f7a4c, type: 3}
   NeutralPortrait: {fileID: 21300000, guid: ae5f8232b71479e43b200e62573f7a4c, type: 3}
   AngryPortrait: {fileID: 21300000, guid: ae5f8232b71479e43b200e62573f7a4c, type: 3}

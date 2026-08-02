@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-navajo-02
   Customer: {fileID: 11400000, guid: 8c3ff65201b60d848aeb871837c9b828, type: 2}
-  Title: "Cultural Habitat"
-  Description: "The next request asks for space, not cargo: a visible cultural and memorial wing inside the colony."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: IndustryNavajo
-  IntroMessage: "A colony without memory looks temporary, no matter how rich it becomes."
-  AcceptMessage: "Build the cultural wing and keep the essentials stable."
-  CompleteMessage: "The memorial wing gave the colony a sense of continuity."
-  FailMessage: "The space felt too thin to carry the meaning it needed."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 900
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: navajo-memorial-build
-    Title: "Cultural Space"
-    Description: "Expand the habitat and add a visible landmark path."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: navajo-memorial-life
       ObjectiveType: 5
-      Description: "Reach life-module width 8."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: navajo-memorial-bridge
       ObjectiveType: 3
-      Description: "Build 1 Bridge section."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 14
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 15
     BonusReputation: 0
   - StageId: navajo-memorial-stable
-    Title: "Quiet Utility"
-    Description: "Keep oxygen stable while the cooperative reviews the new space."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: navajo-memorial-oxy
       ObjectiveType: 6
-      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 13

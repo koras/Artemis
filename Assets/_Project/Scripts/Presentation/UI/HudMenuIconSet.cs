@@ -1,8 +1,15 @@
 using System;
+using _Project.Scripts.Data.Localization;
 using UnityEngine;
 
 namespace _Project.Scripts.Presentation.UI
 {
+    /// <summary>
+    /// Набор иконок HUD и условий появления кнопок меню.
+    /// В Unity Inspector поле описания кнопки рисуется как dropdown через
+    /// <c>LocalizationKeyPropertyDrawer</c>.
+    /// </summary>
+    [LocalizationNamespace("hud", nameof(HudMenuIconSet.LocalizationId))]
     [CreateAssetMenu(fileName = "HudMenuIconSet", menuName = "Artemis/UI/HUD Menu Icon Set")]
     public sealed class HudMenuIconSet : ScriptableObject
     {
@@ -48,7 +55,11 @@ namespace _Project.Scripts.Presentation.UI
 
         [Header("Menu Button Unlocks (Optional)")]
         // По умолчанию каталог пустой, поэтому существующие кнопки видимы сразу.
-        [SerializeField] private HudMenuButtonDefinition[] _menuButtonDefinitions = Array.Empty<HudMenuButtonDefinition>();
+        [LocalizationCollection("button", nameof(HudMenuButtonDefinition.ButtonId))]
+        [SerializeField]
+        private HudMenuButtonDefinition[] _menuButtonDefinitions = Array.Empty<HudMenuButtonDefinition>();
+
+        public string LocalizationId => "menu";
 
         public Sprite BottomMenuEnergyIcon => _bottomMenuEnergyIcon;
         public Sprite BottomMenuOxygenIcon => _bottomMenuOxygenIcon;

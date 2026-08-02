@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34e3a9090d5446ba54a9e4f23cf7551, type: 3}
   m_Name: FishShopProductDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Shop.ShopProductDefinition
-  ProductId: Fish
-  ProductName: Fish
-  Description: "\u0432\u044B\u0430\u0444\u044B\u0432\u0430\u0444\u044B\u0432\u0430"
+  ProductId: fish
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   ProductSprite: {fileID: 21300000, guid: 678c823a0ebd40f4a8327c4a84fea4d1, type: 3}
   Category: 0
   ResourceType: 10

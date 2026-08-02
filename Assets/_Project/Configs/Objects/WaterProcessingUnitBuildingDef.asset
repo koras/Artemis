@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WaterProcessingUnitBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 16
-  UiName: WaterProcessingUnit
-  UiDescription: WaterProcessingUnit
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 21300000, guid: 74aa40edc69c28d4db17bbf91e8ce1b5, type: 3}
   BuiltSprite: {fileID: 21300000, guid: 87266012cbe9e1e4ca40d5e182eaebd3, type: 3}
   Width: 4

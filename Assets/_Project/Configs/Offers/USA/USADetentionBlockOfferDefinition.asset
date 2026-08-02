@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-usa-03
   Customer: {fileID: 11400000, guid: 8458ebd819267f146bcd4c46790fc19b, type: 2}
-  Title: "Containment Block Review"
-  Description: "The last request is political: build an isolated holding block for security incidents without destabilizing the colony economy."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: Industry
-  IntroMessage: "Security planners want an answer before the next policy hearing."
-  AcceptMessage: "Create a detention-ready wing with food, beds, and buffer funding."
-  CompleteMessage: "The review board approved the moon security program."
-  FailMessage: "The block was judged too weak or too expensive to trust."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1440
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: usa-detention-build
-    Title: "Containment Prep"
-    Description: "Lay down the isolated support block and give it enough beds to function."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: usa-detention-storage
       ObjectiveType: 3
-      Description: "Build 3 Storage buildings."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 5
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: usa-detention-sleep
       ObjectiveType: 3
-      Description: "Build 2 Sleep Modules."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 9
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: usa-detention-review
-    Title: "Federal Review"
-    Description: "Feed the block, keep cash on hand, and survive the final review."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: usa-detention-dinner
       ObjectiveType: 3
-      Description: "Build 1 Dinner Station."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 12
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: usa-detention-gold
       ObjectiveType: 7
-      Description: "Reach 260 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 260
       BuildObjectType: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: usa-detention-pass
       ObjectiveType: 10
-      Description: "Pass the final security review."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

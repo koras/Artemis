@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-france-01
   Customer: {fileID: 11400000, guid: 89fc6c8f2735d3742a69ebd167d403ee, type: 2}
-  Title: "Regolith for Research"
-  Description: "French labs want clean regolith shipments to justify a larger scientific station on the moon."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: Science
-  IntroMessage: "The first batch is meant for a fragile research window."
-  AcceptMessage: "Secure the regolith and send it before the science slot expires."
-  CompleteMessage: "The laboratory shipment impressed the bureau."
-  FailMessage: "The regolith never reached the scientists in time."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 90
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: france-stock
-    Title: "Research Stockpile"
-    Description: "Gather regolith fit for laboratory use."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: france-stock-reg
       ObjectiveType: 2
-      Description: "Accumulate 12 Rogalite."
+      _descriptionLocalizationKey: description
       ResourceId: Rogalite
       RequiredAmount: 12
       BuildObjectType: 0
@@ -56,12 +56,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: france-send
-    Title: "Laboratory Shipment"
-    Description: "Reserve the sample and wait for the next mission to return."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: france-send-reg
       ObjectiveType: 1
-      Description: "Reserve 12 Rogalite for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: Rogalite
       RequiredAmount: 12
       BuildObjectType: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: france-send-mission
       ObjectiveType: 8
-      Description: "Wait for the next mission arrival."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

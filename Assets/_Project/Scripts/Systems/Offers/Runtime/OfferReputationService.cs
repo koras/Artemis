@@ -124,26 +124,11 @@ namespace _Project.Scripts.Systems.Offers.Runtime
         }
 
         /// <summary>
-        /// Builds stable customer key from company name or full name.
+        /// Builds stable customer key from the technical customer localization ID.
         /// </summary>
         public static string GetCustomerKey(OfferCustomerDefinition customer)
         {
-            if (customer == null)
-            {
-                return string.Empty;
-            }
-
-            if (!string.IsNullOrWhiteSpace(customer.CompanyName))
-            {
-                return customer.CompanyName.Trim();
-            }
-
-            if (!string.IsNullOrWhiteSpace(customer.FullName))
-            {
-                return customer.FullName.Trim();
-            }
-
-            return string.Empty;
+            return customer == null ? string.Empty : customer.LocalizationId;
         }
     }
 }

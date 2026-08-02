@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BeerShopProductDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Shop.ShopProductDefinition
   ProductId: beer
-  ProductName: Beer
-  Description: 
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   ProductSprite: {fileID: 21300000, guid: ac412bc84b609924aad5021f1244e65c, type: 3}
   Category: 0
   ResourceType: 9

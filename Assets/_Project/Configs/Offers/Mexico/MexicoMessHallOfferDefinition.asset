@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-mexico-02
   Customer: {fileID: 11400000, guid: a1e38f0ac46f78d498a333316c7539cb, type: 2}
-  Title: "Mess Hall Service Wing"
-  Description: "With dispatches working, the next task is service quality inside the colony: food, flow, and practical support under load."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: IndustryMexico
-  IntroMessage: "A colony that can sell goods should also know how to host people."
-  AcceptMessage: "Build the service wing and keep it operating for a full cycle."
-  CompleteMessage: "The service wing proved the base can host a steady crowd."
-  FailMessage: "The wing never looked ready for real traffic."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 900
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: mexico-service-build
-    Title: "Service Wing"
-    Description: "Add dining capacity and reinforce the logistics spine behind it."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: mexico-service-dinner
       ObjectiveType: 3
-      Description: "Build 1 Dinner Station."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 12
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: mexico-service-storage
       ObjectiveType: 3
-      Description: "Build 2 Storage buildings."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 5
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: mexico-service-host
-    Title: "Hosted Service"
-    Description: "Keep food and water support online while the service wing is reviewed."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: mexico-service-water
       ObjectiveType: 3
-      Description: "Build 1 Water Processing Unit."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 16
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: mexico-service-stable
       ObjectiveType: 6
-      Description: "Maintain 1 operational Dinner Station for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 12

@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-mexico-03
   Customer: {fileID: 11400000, guid: a1e38f0ac46f78d498a333316c7539cb, type: 2}
-  Title: "Base Celebration"
-  Description: "The final request turns the colony into a stage: hold a visible event without exposing how thin your support margins are."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: IndustryMexico
-  IntroMessage: "A public event can sell a story faster than any shipment manifest."
-  AcceptMessage: "Build the event buffer, keep funding on hand, and pass the final review."
-  CompleteMessage: "The celebration landed and turned the colony into a destination."
-  FailMessage: "The event exposed more fragility than charm."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1740
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: mexico-event-ready
-    Title: "Event Budget"
-    Description: "Widen the habitat and keep enough gold for a visible event."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: mexico-event-life
       ObjectiveType: 5
-      Description: "Reach life-module width 8."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: mexico-event-gold
       ObjectiveType: 7
-      Description: "Reach 180 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 180
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: mexico-event-pass
-    Title: "Base Celebration"
-    Description: "Receive the service review and pass the final event inspection."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: mexico-event-pass
       ObjectiveType: 10
-      Description: "Pass the celebration inspection."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

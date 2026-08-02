@@ -1,5 +1,7 @@
 using System;
 using _Project.Scripts.Data.Construction;
+using _Project.Scripts.Data.Localization;
+using UnityEngine;
 
 namespace _Project.Scripts.Data.Offers
 {
@@ -8,7 +10,11 @@ namespace _Project.Scripts.Data.Offers
     {
         public string ObjectiveId;
         public OfferObjectiveType ObjectiveType;
-        public string Description;
+
+        [LocalizationKey("Description", "description")]
+        [SerializeField]
+        private string _descriptionLocalizationKey = "description";
+
         public string ResourceId;
         public int RequiredAmount = 1;
         public BuildObjectType BuildObjectType;

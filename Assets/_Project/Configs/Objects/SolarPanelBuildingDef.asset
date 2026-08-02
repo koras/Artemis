@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SolarPanelBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 6
-  UiName: SolarPanel
-  UiDescription: 
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 1289016048, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
   BuiltSprite: {fileID: 1116287864, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
   Width: 2

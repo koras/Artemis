@@ -1,6 +1,8 @@
 using System;
 using _Project.Scripts.Data.Grid;
+using _Project.Scripts.Data.Localization;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace _Project.Scripts.Data.Construction
 {
@@ -43,13 +45,50 @@ namespace _Project.Scripts.Data.Construction
     /// Дефиниция строящегося объекта (ScriptableObject).
     /// Здесь все игровые атрибуты объекта.
     /// </summary>
+    /// <remarks>
+    /// Generic custom Inspector: <c>LocalizationConfigEditor</c> in
+    /// Assets/_Project/Scripts/Editor/LocalizationConfigEditors.cs.
+    /// Localization dropdowns: <c>LocalizationConfigEditorUtility</c> in
+    /// Assets/_Project/Scripts/Editor/LocalizationConfigEditorUtility.cs.
+    /// </remarks>
+    [LocalizationNamespace("building", nameof(BuildingDef.LocalizationId))]
     [CreateAssetMenu(menuName = "Artemis/Construction/Building Def", fileName = "BuildingDef")]
-    public sealed class BuildingDef : ScriptableObject
+    public sealed class BuildingDef : BaseLocalizedDefinitionConfig
     {
+        private const string NameSuffix = "name";
+        private const string DescriptionSuffix = "description";
+
         [Header("Identity")]
         public BuildObjectType ObjectType;
-        public string UiName;
-        [TextArea] public string UiDescription;
+
+        [LocalizationKey("Name", NameSuffix)]
+        [SerializeField, HideInInspector]
+        private string _nameLocalizationKey = NameSuffix;
+
+        [LocalizationKey("Description", DescriptionSuffix)]
+        [SerializeField, HideInInspector]
+        private string _descriptionLocalizationKey = DescriptionSuffix;
+
+        public string LocalizationId => ObjectType.ToString().ToLowerInvariant();
+
+        public string NameLocalizationKey => GetLocalizationKey(_nameLocalizationKey);
+
+        public string DescriptionLocalizationKey => GetLocalizationKey(_descriptionLocalizationKey);
+
+        public LocalizedString GetLocalizedName()
+        {
+            return new LocalizedString("UI", NameLocalizationKey);
+        }
+
+        public LocalizedString GetLocalizedDescription()
+        {
+            return new LocalizedString("UI", DescriptionLocalizationKey);
+        }
+
+        private string GetLocalizationKey(string suffix)
+        {
+            return $"building.{LocalizationId}.{suffix}";
+        }
 
         [Header("Sprites")]
         public Sprite PreviewSprite; // Превью-спрайт для размещения объекта.

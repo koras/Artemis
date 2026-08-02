@@ -41,356 +41,350 @@ MonoBehaviour:
   _exitWaterIcon: {fileID: 0}
   _exitOxygenIcon: {fileID: 0}
   _menuButtonDefinitions:
-  - ButtonId: 
-    Description: 
-    UnlockType: 0
-    RequiredBuildingDef: {fileID: 0}
-    RequiredOfferDefinition: {fileID: 0}
-    RequiresLifeModuleBuilt: 1
   - ButtonId: animal-diagnostics-close-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: battery-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 1
   - ButtonId: shower-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 1
   - ButtonId: bottom-menu-water-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: build-bridge-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: dinner-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 1
   - ButtonId: bottom-menu-energy-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: build-cable-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: build-ladder-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: build-life-module-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: build-oxygen-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: build-water-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: cancel-cable-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: build-storage-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 1
   - ButtonId: water-processing-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: water-reclamation-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: sleep-module-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 1
   - ButtonId: solar-panel-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 1
   - ButtonId: time-pause-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: time-play-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: time-speed-x1-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: time-speed-x10-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: time-speed-x20-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: time-speed-x5-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shovel-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-tab-orders
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-row-plus
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-row-order
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-row-minus
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-open-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-filter-personnel
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-filter-food
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-filter-all
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-close-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: regolith-processing-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: oxygen-storage-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: oxygen-processing-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offers-tab-new
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offers-tab-accepted
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offers-open-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: shop-filter-equipment
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: bottom-menu-oxygen-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: bottom-menu-module-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: cancel-life-module-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: cancel-oxygen-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: cancel-shovel-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: cancel-water-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: character-diagnostics-close-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: colony-event-ack-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: destruction-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: exit-cable-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offer-tooltip-reject-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offer-tooltip-header-close-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offer-tooltip-close-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offer-tooltip-accept-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: exit-water-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: exit-oxygen-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}
     RequiresLifeModuleBuilt: 0
   - ButtonId: offers-close-btn
-    Description: 
+    _descriptionLocalizationKey: description
     UnlockType: 0
     RequiredBuildingDef: {fileID: 0}
     RequiredOfferDefinition: {fileID: 0}

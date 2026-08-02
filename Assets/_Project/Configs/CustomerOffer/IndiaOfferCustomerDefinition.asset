@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829fb78073e4dd19595dd7b60f15bfc, type: 3}
   m_Name: IndiaOfferCustomerDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferCustomerDefinition
-  FirstName: Arjun
-  LastName: Patel
-  CompanyName: Lotus Bridge Exports
-  CompanyDescription: Growth-oriented commercial partner interested in bulk orders,
-    flexible pricing, and expansion into new market segments.
+  CustomerId: india
   OfferAffinityTag: IndustryIndia
+  _fullNameLocalizationKey: full_name
+  _companyNameLocalizationKey: company_name
+  _companyDescriptionLocalizationKey: company_description
   KindPortrait: {fileID: 1639928310117132956, guid: 49703f54dcb0d964a8e39c82955017e5, type: 3}
   NeutralPortrait: {fileID: 1639928310117132956, guid: 49703f54dcb0d964a8e39c82955017e5, type: 3}
   AngryPortrait: {fileID: 1639928310117132956, guid: 49703f54dcb0d964a8e39c82955017e5, type: 3}

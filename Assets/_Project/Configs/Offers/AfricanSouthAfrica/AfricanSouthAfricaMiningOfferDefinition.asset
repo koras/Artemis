@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-southafrica-01
   Customer: {fileID: 11400000, guid: 6e1ad63ad32f613458b418f88e2c5359, type: 2}
-  Title: "Deep Mining Contract"
-  Description: "South African buyers want a tougher mining signal: larger loads, harder tempo, and less tolerance for drift."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: IndustryAfricanSouthAfrica
-  IntroMessage: "The first test is simple: move heavier ore without excuses."
-  AcceptMessage: "Prepare the titan package and send it on time."
-  CompleteMessage: "The heavy-lift batch opened a harsher second contract."
-  FailMessage: "The mining contract slipped before the heavy buyers were convinced."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 120
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: south-stock
-    Title: "Deep Cut Stock"
-    Description: "Gather enough titan to satisfy a harder industrial buyer."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: south-stock-titan
       ObjectiveType: 2
-      Description: "Accumulate 16 Titan."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 16
       BuildObjectType: 0
@@ -56,12 +56,12 @@ MonoBehaviour:
     BonusGold: 15
     BonusReputation: 0
   - StageId: south-ship
-    Title: "Heavy Lift"
-    Description: "Reserve the titan and wait for the next mission arrival."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: south-ship-titan
       ObjectiveType: 1
-      Description: "Reserve 16 Titan for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: Titan
       RequiredAmount: 16
       BuildObjectType: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: south-ship-mission
       ObjectiveType: 8
-      Description: "Wait for the next mission arrival."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

@@ -13,16 +13,10 @@ MonoBehaviour:
   m_Name: FlowerSmallBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 23
-  UiName: FlowerSmall2
-  UiDescription: ' '
-  PreviewSprite: {fileID: -4499848698690054838, guid: 269c2b017fe81d44bab54143e4da8e1a, type: 3}
-  BuiltSprite: {fileID: -7132831629235962291, guid: 269c2b017fe81d44bab54143e4da8e1a, type: 3}
-  LadderBottomBuiltSprite: {fileID: 0}
-  LadderCenterBuiltSprite: {fileID: 0}
-  LadderTopBuiltSprite: {fileID: 0}
-  LadderBottomPreviewSprite: {fileID: 0}
-  LadderCenterPreviewSprite: {fileID: 0}
-  LadderTopPreviewSprite: {fileID: 0}
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
+  PreviewSprite: {fileID: 21300000, guid: d98a4fb3f7734c04c84dfe69cbe433ce, type: 3}
+  BuiltSprite: {fileID: 21300000, guid: d98a4fb3f7734c04c84dfe69cbe433ce, type: 3}
   Width: 1
   Height: 1
   CanRotate: 0

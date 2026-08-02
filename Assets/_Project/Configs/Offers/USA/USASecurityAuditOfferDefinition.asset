@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-usa-02
   Customer: {fileID: 11400000, guid: 8458ebd819267f146bcd4c46790fc19b, type: 2}
-  Title: "Federal Safety Audit"
-  Description: "The logistics lane is open. Now the federal observer wants a safer and wider storage wing before granting security clearance."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 2
   OfferAffinityTag: Industry
-  IntroMessage: "A federal safety office is preparing a surprise visit."
-  AcceptMessage: "Expand the storage wing and prove the oxygen line can stay stable."
-  CompleteMessage: "The audit signed off and unlocked the next control package."
-  FailMessage: "The inspector found a weak point in your support wing."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 720
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: usa-audit-build
-    Title: "Storage Wing"
-    Description: "Add more storage and expand the habitat spine around it."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: usa-audit-storage
       ObjectiveType: 3
-      Description: "Build 2 Storage buildings."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 5
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: usa-audit-life
       ObjectiveType: 5
-      Description: "Reach life-module width 8."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 30
     BonusReputation: 0
   - StageId: usa-audit-check
-    Title: "Safety Check"
-    Description: "Keep support systems online while the federal observer checks the base."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: usa-audit-oxygen
       ObjectiveType: 6
-      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 13
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: usa-audit-pass
       ObjectiveType: 10
-      Description: "Pass the inspection review."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

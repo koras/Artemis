@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-ethiopian-01
   Customer: {fileID: 11400000, guid: 7b8257436399d8b48ac40aa8083e5bd3, type: 2}
-  Title: "Sustainment Goods"
-  Description: "The first Ethiopian request focuses on dependable sustainment cargo for a colony that still feels exposed."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: IndustryEthiopian
-  IntroMessage: "The cargo is modest, but the promise behind it matters."
-  AcceptMessage: "Prepare the sustainment batch and deliver it on schedule."
-  CompleteMessage: "The sustainment goods arrived and opened a broader stability program."
-  FailMessage: "The sustainment program stumbled before it started."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 120
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: ethiopian-stock
-    Title: "Relief Stock"
-    Description: "Gather aluminium for the sustainment package."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: ethiopian-stock-al
       ObjectiveType: 2
-      Description: "Accumulate 10 aluminium."
+      _descriptionLocalizationKey: description
       ResourceId: aluminium
       RequiredAmount: 10
       BuildObjectType: 0
@@ -56,12 +56,12 @@ MonoBehaviour:
     BonusGold: 15
     BonusReputation: 0
   - StageId: ethiopian-ship
-    Title: "Supply Transfer"
-    Description: "Reserve the package and wait for the next mission arrival."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: ethiopian-ship-al
       ObjectiveType: 1
-      Description: "Reserve 10 aluminium for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: aluminium
       RequiredAmount: 10
       BuildObjectType: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: ethiopian-ship-mission
       ObjectiveType: 8
-      Description: "Wait for the next mission arrival."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

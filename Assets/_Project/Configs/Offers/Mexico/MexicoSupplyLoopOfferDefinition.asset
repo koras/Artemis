@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-mexico-01
   Customer: {fileID: 11400000, guid: a1e38f0ac46f78d498a333316c7539cb, type: 2}
-  Title: "Service Supply Loop"
-  Description: "Mexico wants a smaller but reliable service loop: repeatable dispatches that prove the base can support daily commerce."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 1
   OfferAffinityTag: IndustryMexico
-  IntroMessage: "This is the kind of contract that looks easy until your base gets busy."
-  AcceptMessage: "Prepare the first service batch and send it without delay."
-  CompleteMessage: "The service loop started cleanly and opened the next request."
-  FailMessage: "The service loop stalled before trust could build."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 120
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: mexico-stock
-    Title: "Local Stock"
-    Description: "Gather regolith for the fast service dispatch."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: mexico-stock-reg
       ObjectiveType: 2
-      Description: "Accumulate 10 Rogalite."
+      _descriptionLocalizationKey: description
       ResourceId: Rogalite
       RequiredAmount: 10
       BuildObjectType: 0
@@ -56,12 +56,12 @@ MonoBehaviour:
     BonusGold: 15
     BonusReputation: 0
   - StageId: mexico-ship
-    Title: "Fast Dispatch"
-    Description: "Reserve the regolith and wait for the next mission arrival."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: mexico-ship-reg
       ObjectiveType: 1
-      Description: "Reserve 10 Rogalite for shipment."
+      _descriptionLocalizationKey: description
       ResourceId: Rogalite
       RequiredAmount: 10
       BuildObjectType: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: mexico-ship-mission
       ObjectiveType: 8
-      Description: "Wait for the next mission arrival."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

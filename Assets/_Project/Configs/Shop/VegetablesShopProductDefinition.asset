@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34e3a9090d5446ba54a9e4f23cf7551, type: 3}
   m_Name: VegetablesShopProductDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Shop.ShopProductDefinition
-  ProductId: Vegetables
-  ProductName: Vegetables
-  Description: 
+  ProductId: vegetables
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   ProductSprite: {fileID: 21300000, guid: b4289018a3e3e594ea4d81f8dd2d3daf, type: 3}
   Category: 0
   ResourceType: 7

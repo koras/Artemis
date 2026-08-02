@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BatteryBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 8
-  UiName: Electric battery
-  UiDescription: Electric battery
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: -234510497, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
   BuiltSprite: {fileID: 480467094, guid: 24eab71a6bbef7f4ea94537a17f726a9, type: 3}
   Width: 2

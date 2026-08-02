@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829fb78073e4dd19595dd7b60f15bfc, type: 3}
   m_Name: ChinaOfferCustomerDefinition
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferCustomerDefinition
-  FirstName: Wei
-  LastName: Zhang
-  CompanyName: Jade River Imports
-  CompanyDescription: Large-scale import manager specializing in consumer products,
-    fast negotiations, and stable high-volume procurement.
+  CustomerId: china
   OfferAffinityTag: IndustryChina
+  _fullNameLocalizationKey: full_name
+  _companyNameLocalizationKey: company_name
+  _companyDescriptionLocalizationKey: company_description
   KindPortrait: {fileID: 21300000, guid: a7e2ffcda6e04dc47b5c61d3b0f94def, type: 3}
   NeutralPortrait: {fileID: 21300000, guid: a7e2ffcda6e04dc47b5c61d3b0f94def, type: 3}
   AngryPortrait: {fileID: 21300000, guid: a7e2ffcda6e04dc47b5c61d3b0f94def, type: 3}

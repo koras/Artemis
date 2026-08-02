@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PaintPlanetBuildingDef
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 25
-  UiName: PaintPlanet
-  UiDescription: A functional food service point for daily meals and short breaks
+  _nameLocalizationKey: name
+  _descriptionLocalizationKey: description
   PreviewSprite: {fileID: 6518226778588736714, guid: 9a79dcf88b3b41e42bb10fef80d2be8e, type: 3}
   BuiltSprite: {fileID: -6858397932410916100, guid: 9a79dcf88b3b41e42bb10fef80d2be8e, type: 3}
   Width: 1

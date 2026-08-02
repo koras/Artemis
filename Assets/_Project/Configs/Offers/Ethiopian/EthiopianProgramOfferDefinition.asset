@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-ethiopian-03
   Customer: {fileID: 11400000, guid: 7b8257436399d8b48ac40aa8083e5bd3, type: 2}
-  Title: "Stability Program Review"
-  Description: "The final Ethiopian request turns your humane base into a public program: prove it can stay kind without becoming weak."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 2
   OfferAffinityTag: IndustryEthiopian
-  IntroMessage: "This review will decide whether the colony can be sold as a stable community, not just a mine."
-  AcceptMessage: "Keep beds ready, hold a gold buffer, and pass the program review."
-  CompleteMessage: "The program review concluded that the colony can sustain more civilian life."
-  FailMessage: "The review judged the colony too brittle for expansion."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 1740
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: ethiopian-program-ready
-    Title: "Program Readiness"
-    Description: "Add beds and keep enough funding for a longer support cycle."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: ethiopian-program-sleep
       ObjectiveType: 3
-      Description: "Build 2 Sleep Modules."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 9
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: ethiopian-program-gold
       ObjectiveType: 7
-      Description: "Reach 200 stored Gold."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 200
       BuildObjectType: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: ethiopian-program-pass
-    Title: "Stability Review"
-    Description: "Receive the review team and pass the final stability inspection."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: ethiopian-program-pass
       ObjectiveType: 10
-      Description: "Pass the stability program inspection."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0

@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Offers.OfferDefinition
   OfferId: offer-ethiopian-02
   Customer: {fileID: 11400000, guid: 7b8257436399d8b48ac40aa8083e5bd3, type: 2}
-  Title: "Rest Zone Program"
-  Description: "The next phase wants the base to feel humane: food, rest, and a recovery loop that can stay calm under pressure."
+  _titleLocalizationKey: title
+  _descriptionLocalizationKey: description
+  _introLocalizationKey: intro
+  _acceptLocalizationKey: accept
+  _completeLocalizationKey: complete
+  _failLocalizationKey: fail
   Archetype: 2
   Category: 3
   OfferAffinityTag: IndustryEthiopian
-  IntroMessage: "A stable base is measured by how people recover, not just how they mine."
-  AcceptMessage: "Build the rest zone and keep its utilities healthy."
-  CompleteMessage: "The rest zone proved the colony can care for its people."
-  FailMessage: "The support loop never looked steady enough to trust."
   TriggerTypes: 5
   AppearanceRequirements: []
   MinGameMinutesToAppear: 900
@@ -39,12 +39,12 @@ MonoBehaviour:
   CompletionRequirements: []
   Stages:
   - StageId: ethiopian-rest-build
-    Title: "Rest Zone"
-    Description: "Expand the habitat and add a dinner space for the relief program."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: ethiopian-rest-life
       ObjectiveType: 5
-      Description: "Reach life-module width 8."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
       RequireOperational: 0
     - ObjectiveId: ethiopian-rest-dinner
       ObjectiveType: 3
-      Description: "Build 1 Dinner Station."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 12
@@ -66,12 +66,12 @@ MonoBehaviour:
     BonusGold: 20
     BonusReputation: 0
   - StageId: ethiopian-rest-utility
-    Title: "Utility Calm"
-    Description: "Keep water recovery and oxygen online for a full sol."
+    _titleLocalizationKey: title
+    _descriptionLocalizationKey: description
     Objectives:
     - ObjectiveId: ethiopian-rest-water
       ObjectiveType: 6
-      Description: "Maintain 1 operational Water Reclamation unit for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 11
@@ -81,7 +81,7 @@ MonoBehaviour:
       RequireOperational: 1
     - ObjectiveId: ethiopian-rest-oxy
       ObjectiveType: 6
-      Description: "Maintain 1 operational Oxygen Station for 1 sol."
+      _descriptionLocalizationKey: description
       ResourceId: ''
       RequiredAmount: 1
       BuildObjectType: 13
