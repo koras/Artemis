@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: d98a4fb3f7734c04c84dfe69cbe433ce
+guid: 329d654074f1f8b47a303ae8aa96a58a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8699761997361100065
-    second: flowers_scetch4_0
+      213: 4183646962611580528
+    second: medium_plant_2_0
+  - first:
+      213: 8990377047183155115
+    second: medium_plant_2_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,23 +129,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flowers_scetch4_0
+      name: MediumPlant2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 256
-        height: 256
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fda49d48e8c344780800000000000000
-      internalID: -8699761997361100065
+      spriteID: 07eea102fbc4f0a30800000000000000
+      internalID: 4183646962611580528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPlant2Preview
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baf5d269a4c34cc70800000000000000
+      internalID: 8990377047183155115
       vertices: []
       indices: 
       edges: []
@@ -151,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 0ca2e064dbb07d1488f001ba555f41f8
     internalID: 0
     vertices: []
     indices: 
@@ -159,9 +184,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      flowers_scetch4_0: -8699761997361100065
+      MediumPlant2: 4183646962611580528
+      MediumPlant2Preview: 8990377047183155115
+      medium_plant_2_2: 1494280177
+      medium_plant_2_3: 56114879
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

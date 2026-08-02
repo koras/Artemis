@@ -14,9 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
   ObjectType: 20
   UiName: FlowerBig1
-  UiDescription: A functional food service point for daily meals and short breaks
-  PreviewSprite: {fileID: 21300000, guid: 86ae1cc294f986e4e8c8edf048e99339, type: 3}
-  BuiltSprite: {fileID: 21300000, guid: 86ae1cc294f986e4e8c8edf048e99339, type: 3}
+  UiDescription: 'decor '
+  PreviewSprite: {fileID: -5318257297175187428, guid: 2f94b1db2859dfe44a78f2baa0fc6642, type: 3}
+  BuiltSprite: {fileID: 7653432352576896215, guid: 2f94b1db2859dfe44a78f2baa0fc6642, type: 3}
+  LadderBottomBuiltSprite: {fileID: 0}
+  LadderCenterBuiltSprite: {fileID: 0}
+  LadderTopBuiltSprite: {fileID: 0}
+  LadderBottomPreviewSprite: {fileID: 0}
+  LadderCenterPreviewSprite: {fileID: 0}
+  LadderTopPreviewSprite: {fileID: 0}
   Width: 1
   Height: 2
   CanRotate: 0

@@ -89,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &3615164343231762166
@@ -143,15 +143,15 @@ MonoBehaviour:
   _rootSpriteRenderer: {fileID: 0}
   _visualSpriteRenderer: {fileID: 2440433797078372340}
   _waterWarningChildName: WaterWarning
-  _waterWarningBlinkIntervalSeconds: 1
+  _waterWarningBlinkIntervalSeconds: 0
   _waterWarningSpriteRenderer: {fileID: 0}
   _powerWarningChildName: PowerWarning
-  _powerWarningBlinkIntervalSeconds: 1
+  _powerWarningBlinkIntervalSeconds: 0
   _powerWarningSpriteRenderer: {fileID: 0}
   _storageSkeletonAnimation: {fileID: 0}
   _loopAnimationName: storage_loop
   _openAnimationName: storage_open
   _closeAnimationName: storage_close
-  _loopAnimationSpeed: 1
-  _interactionAnimationSpeed: 1
+  _loopAnimationSpeed: 0
+  _interactionAnimationSpeed: 0
   _closeDelaySeconds: 0.15
