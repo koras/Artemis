@@ -1,6 +1,5 @@
 using System;
 using _Project.Scripts.Data.Localization;
-using UnityEngine;
 
 namespace _Project.Scripts.Data.Offers
 {
@@ -8,14 +7,6 @@ namespace _Project.Scripts.Data.Offers
     public sealed class OfferStageDefinition
     {
         public string StageId;
-
-        [LocalizationKey("Title", "title")]
-        [SerializeField]
-        private string _titleLocalizationKey = "title";
-
-        [LocalizationKey("Description", "description")]
-        [SerializeField]
-        private string _descriptionLocalizationKey = "description";
 
         [LocalizationCollection("objective")]
         public OfferObjectiveDefinition[] Objectives;

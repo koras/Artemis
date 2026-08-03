@@ -36,7 +36,7 @@ namespace _Project.Scripts.Systems.Navigation
         {
             path = _pathfinder.FindPath(_grid, new PathRequest(unitId, from, to));
             // Сохраняем последний рассчитанный путь для gizmo-отладки маршрутов.
-            _pathsByUnitId[unitId] = new CachedPath(from, to, path, 0);
+            _pathsByUnitId[unitId] = new CachedPath(from, to, path, 0, _grid.NavigationRevision);
             return path.Success;
         }
 
@@ -53,7 +53,7 @@ namespace _Project.Scripts.Systems.Navigation
                 new PathRequest(unitId, from, requestedCell),
                 maxDistanceFromStart,
                 out reachableCell);
-            _pathsByUnitId[unitId] = new CachedPath(from, reachableCell, path, 0);
+            _pathsByUnitId[unitId] = new CachedPath(from, reachableCell, path, 0, _grid.NavigationRevision);
             return path.Success;
         }
 
@@ -176,7 +176,7 @@ namespace _Project.Scripts.Systems.Navigation
             if (!_pathsByUnitId.TryGetValue(unitId, out CachedPath cached))
             {
                 PathResult fresh = _pathfinder.FindPath(_grid, new PathRequest(unitId, currentCell, goalCell));
-                cached = new CachedPath(currentCell, goalCell, fresh, 0);
+                cached = new CachedPath(currentCell, goalCell, fresh, 0, _grid.NavigationRevision);
                 _pathsByUnitId[unitId] = cached;
                 return cached;
             }
@@ -184,11 +184,13 @@ namespace _Project.Scripts.Systems.Navigation
             bool goalChanged = cached.GoalCell != goalCell;
             bool startMoved = cached.StartCell != currentCell && cached.EdgeIndex == 0;
             bool pathConsumed = cached.Path.Success && cached.EdgeIndex >= cached.Path.Edges.Count;
+            // Изменение проходимости клеток делает сохранённый маршрут недействительным.
+            bool navigationChanged = cached.NavigationRevision != _grid.NavigationRevision;
 
-            if (goalChanged || startMoved || !cached.Path.Success || pathConsumed)
+            if (goalChanged || startMoved || navigationChanged || !cached.Path.Success || pathConsumed)
             {
                 PathResult fresh = _pathfinder.FindPath(_grid, new PathRequest(unitId, currentCell, goalCell));
-                cached = new CachedPath(currentCell, goalCell, fresh, 0);
+                cached = new CachedPath(currentCell, goalCell, fresh, 0, _grid.NavigationRevision);
                 _pathsByUnitId[unitId] = cached;
             }
 
@@ -201,13 +203,20 @@ namespace _Project.Scripts.Systems.Navigation
             public Vector2Int GoalCell;
             public PathResult Path;
             public int EdgeIndex;
+            public int NavigationRevision;
 
-            public CachedPath(Vector2Int startCell, Vector2Int goalCell, PathResult path, int edgeIndex)
+            public CachedPath(
+                Vector2Int startCell,
+                Vector2Int goalCell,
+                PathResult path,
+                int edgeIndex,
+                int navigationRevision)
             {
                 StartCell = startCell;
                 GoalCell = goalCell;
                 Path = path;
                 EdgeIndex = edgeIndex;
+                NavigationRevision = navigationRevision;
             }
         }
 

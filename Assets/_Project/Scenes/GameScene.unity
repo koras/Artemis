@@ -326,7 +326,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1051630029
   m_SortingLayer: 1
-  m_SortingOrder: 15
+  m_SortingOrder: 100
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -453,7 +453,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1051630029
   m_SortingLayer: 1
-  m_SortingOrder: 55
+  m_SortingOrder: 100
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1069,7 +1069,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1051630029
   m_SortingLayer: 1
-  m_SortingOrder: 15
+  m_SortingOrder: 100
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1627,6 +1627,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 157497324}
+  - {fileID: 490886456}
   - {fileID: 168702711}
   - {fileID: 1182997908}
   - {fileID: 2026236841}
@@ -1638,8 +1640,6 @@ Transform:
   - {fileID: 1044807099}
   - {fileID: 1691144839}
   - {fileID: 2114129}
-  - {fileID: 157497324}
-  - {fileID: 490886456}
   - {fileID: 1811224634}
   m_Father: {fileID: 1110769636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1791,7 +1791,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1110769636}
-  - component: {fileID: 1110769637}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -1815,19 +1814,6 @@ Transform:
   - {fileID: 1002555030}
   m_Father: {fileID: 747654212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &1110769637
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110769635}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
-  m_Sort3DAs2D: 0
 --- !u!1 &1182997907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,7 +2274,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1051630029
   m_SortingLayer: 1
-  m_SortingOrder: 15
+  m_SortingOrder: 100
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3710,7 +3696,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1051630029
   m_SortingLayer: 1
-  m_SortingOrder: 12
+  m_SortingOrder: 100
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

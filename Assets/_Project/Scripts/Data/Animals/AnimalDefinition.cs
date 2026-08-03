@@ -38,8 +38,6 @@ namespace _Project.Scripts.Data.Animals
         [SerializeField] [Min(0.01f)] private float _movementSpeedMultiplier = 1f;
         [SerializeField] [Min(0.01f)] private float _maxMoveSpeed = 2.2f;
         [SerializeField] [Min(0.01f)] private float _moveAcceleration = 6f;
-        [SerializeField] [Min(0.01f)] private float _moveDeceleration = 9f;
-        [SerializeField] [Min(0.01f)] private float _slowdownDistance = 0.3f;
         [SerializeField] [Min(0.001f)] private float _stopDistance = 0.03f;
 
         [Header("Live Birth")]
@@ -78,8 +76,6 @@ namespace _Project.Scripts.Data.Animals
         public float MovementSpeedMultiplier => _movementSpeedMultiplier;
         public float MaxMoveSpeed => _maxMoveSpeed;
         public float MoveAcceleration => _moveAcceleration;
-        public float MoveDeceleration => _moveDeceleration;
-        public float SlowdownDistance => _slowdownDistance;
         public float StopDistance => _stopDistance;
         public float ReproductionIntervalGameHours => _reproductionIntervalGameHours;
         public int MaxPopulation => _maxPopulation;

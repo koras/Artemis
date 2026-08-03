@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 573654182067224857}
   - component: {fileID: 7123456789012345678}
   - component: {fileID: 6319294167730400302}
+  - component: {fileID: -7426556111425039364}
   m_Layer: 0
   m_Name: LadderBuildingView
   m_TagString: Untagged
@@ -116,3 +117,16 @@ MonoBehaviour:
   _powerWarningChildName: PowerWarning
   _powerWarningBlinkIntervalSeconds: 0
   _powerWarningSpriteRenderer: {fileID: 0}
+--- !u!210 &-7426556111425039364
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142369192712399337}
+  m_Enabled: 1
+  m_SortingLayerID: -1051630029
+  m_SortingLayer: 1
+  m_SortingOrder: 20
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0

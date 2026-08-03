@@ -406,6 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4543749889912018934}
   - component: {fileID: 2605068734458847715}
+  - component: {fileID: -430108748686270878}
   m_Layer: 0
   m_Name: SolarPanelBuildingView
   m_TagString: Untagged
@@ -454,6 +455,19 @@ MonoBehaviour:
   _powerWarningSpriteRenderer: {fileID: 8053848976749494282}
   _daylightSkeletonAnimation: {fileID: 0}
   _dayAnimationName: solar_loop
+--- !u!210 &-430108748686270878
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600097919409967424}
+  m_Enabled: 1
+  m_SortingLayerID: -1051630029
+  m_SortingLayer: 1
+  m_SortingOrder: 20
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &9188251967127638841
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,8 +33,6 @@ namespace _Project.Scripts.Presentation.Animals
         private float _movementSpeedMultiplier = 1f;
         private float _maxMoveSpeed = 2.2f;
         private float _moveAcceleration = 6f;
-        private float _moveDeceleration = 9f;
-        private float _slowdownDistance = 0.3f;
         private float _stopDistance = 0.03f;
         private SpriteRenderer _selectionRenderer;
 
@@ -79,11 +77,8 @@ namespace _Project.Scripts.Presentation.Animals
                 return;
             }
 
-            float desiredSpeed = BuildDesiredSpeed(distanceToTarget);
-            float speedChange = desiredSpeed >= _currentSpeed
-                ? _moveAcceleration * deltaTime
-                : _moveDeceleration * deltaTime;
-            _currentSpeed = Mathf.MoveTowards(_currentSpeed, desiredSpeed, speedChange);
+            // Keep the authored movement speed until the actor reaches the target cell.
+            _currentSpeed = Mathf.MoveTowards(_currentSpeed, _maxMoveSpeed, _moveAcceleration * deltaTime);
 
             float appliedSpeed = _currentSpeed * _movementSpeedMultiplier * _globalMovementSpeedMultiplier;
             float moveDistance = Mathf.Min(appliedSpeed * deltaTime, distanceToTarget);
@@ -118,15 +113,11 @@ namespace _Project.Scripts.Presentation.Animals
         public void ConfigureMovement(
             float maxMoveSpeed,
             float moveAcceleration,
-            float moveDeceleration,
-            float slowdownDistance,
             float stopDistance)
         {
             _maxMoveSpeed = Mathf.Max(0.01f, maxMoveSpeed);
             _moveAcceleration = Mathf.Max(0.01f, moveAcceleration);
-            _moveDeceleration = Mathf.Max(0.01f, moveDeceleration);
             _stopDistance = Mathf.Max(0.001f, stopDistance);
-            _slowdownDistance = Mathf.Max(_stopDistance, slowdownDistance);
         }
 
         public void SetGrowthProgress(float growthProgress, float minVisualScale, float maxVisualScale)
@@ -219,23 +210,6 @@ namespace _Project.Scripts.Presentation.Animals
 
             _baseLocalScale = _visual.localScale;
             _hasBaseLocalScale = true;
-        }
-
-        private float BuildDesiredSpeed(float distanceToTarget)
-        {
-            if (distanceToTarget <= _stopDistance)
-            {
-                return 0f;
-            }
-
-            if (distanceToTarget >= _slowdownDistance)
-            {
-                return _maxMoveSpeed;
-            }
-
-            // Braking is scaled between the authored slowdown radius and final stop radius.
-            float normalizedDistance = Mathf.InverseLerp(_stopDistance, _slowdownDistance, distanceToTarget);
-            return _maxMoveSpeed * normalizedDistance;
         }
     }
 }

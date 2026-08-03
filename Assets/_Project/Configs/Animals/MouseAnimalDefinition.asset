@@ -29,8 +29,6 @@ MonoBehaviour:
   _movementSpeedMultiplier: 1
   _maxMoveSpeed: 2.2
   _moveAcceleration: 6
-  _moveDeceleration: 9
-  _slowdownDistance: 0.3
   _stopDistance: 0.03
   _reproductionIntervalGameHours: 1
   _maxPopulation: 10

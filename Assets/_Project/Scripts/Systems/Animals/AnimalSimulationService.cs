@@ -477,8 +477,6 @@ namespace _Project.Scripts.Systems.Animals
             actor.ConfigureMovement(
                 definition.MaxMoveSpeed,
                 definition.MoveAcceleration,
-                definition.MoveDeceleration,
-                definition.SlowdownDistance,
                 definition.StopDistance);
             actor.SetGrowthProgress(state.GrowthProgress, definition.MinVisualScale, definition.MaxVisualScale);
             _states.Add(state);
