@@ -19,6 +19,7 @@ namespace _Project.Scripts.Presentation.Grid
         private readonly Tilemap _resourceTilemap;
         private readonly Tilemap _defaultTilemap;
         private readonly ResourceBoundaryShadowRenderer _resourceBoundaryShadowRenderer;
+        private readonly ResourceBoundaryShadowRenderer _protectedResourceTransitionRenderer;
 
         private readonly TileBase[] _ironTilesByRepeatIndex;
         private readonly TileBase[] _titanTilesByRepeatIndex;
@@ -113,6 +114,7 @@ namespace _Project.Scripts.Presentation.Grid
             bool showPipeMaskIndexDebug,
             Color pipeMaskIndexDebugColor,
             int pipeMaskIndexDebugSortingOrder,
+            Tilemap materialTransitionShaderTilemap,
             Tilemap materialTransitionTilemap,
             TileBase[] transitionTilesByOpenMask)
             : this(
@@ -157,11 +159,13 @@ namespace _Project.Scripts.Presentation.Grid
                 showPipeMaskIndexDebug,
                 pipeMaskIndexDebugColor,
                 pipeMaskIndexDebugSortingOrder,
+                materialTransitionShaderTilemap,
                 materialTransitionTilemap,
                 transitionTilesByOpenMask,
                 0.08f,
                 0.12f,
                 new Color(0.2f, 0.9f, 1f, 1f),
+                new Color(1f, 0.35f, 0.1f, 1f),
                 0.035f,
                 0.04f,
                 5f)
@@ -210,11 +214,13 @@ namespace _Project.Scripts.Presentation.Grid
             bool showPipeMaskIndexDebug,
             Color pipeMaskIndexDebugColor,
             int pipeMaskIndexDebugSortingOrder,
+            Tilemap materialTransitionShaderTilemap,
             Tilemap materialTransitionTilemap,
             TileBase[] transitionTilesByOpenMask,
             float resourceShadowSmoothing,
             float resourceShadowBorderInset,
             Color resourceShadowWaveColor,
+            Color resourceTransitionLineColor,
             float resourceShadowWaveThickness,
             float resourceShadowWaveAmplitude,
             float resourceShadowWaveFrequency)
@@ -229,7 +235,18 @@ namespace _Project.Scripts.Presentation.Grid
                 resourceShadowWaveColor,
                 resourceShadowWaveThickness,
                 resourceShadowWaveAmplitude,
-                resourceShadowWaveFrequency);
+                resourceShadowWaveFrequency,
+                false);
+            _protectedResourceTransitionRenderer = new ResourceBoundaryShadowRenderer(
+                resourceTilemap,
+                materialTransitionShaderTilemap,
+                resourceShadowSmoothing,
+                resourceShadowBorderInset,
+                resourceTransitionLineColor,
+                resourceShadowWaveThickness,
+                resourceShadowWaveAmplitude,
+                resourceShadowWaveFrequency,
+                true);
 
             _ironTilesByRepeatIndex = EnsureTileArray(ironTilesByRepeatIndex);
             _titanTilesByRepeatIndex = EnsureTileArray(titanTilesByRepeatIndex);
@@ -484,6 +501,7 @@ namespace _Project.Scripts.Presentation.Grid
             }
 
             _resourceBoundaryShadowRenderer?.SetCell(new Vector2Int(x, y), type);
+            _protectedResourceTransitionRenderer?.SetCell(new Vector2Int(x, y), type);
         }
 
         public void SetCustomMarkerTile(int x, int y, TileBase tile)
@@ -536,12 +554,14 @@ namespace _Project.Scripts.Presentation.Grid
 
             RenderProtectedResourceOverlay(grid);
             _resourceBoundaryShadowRenderer?.RenderFull(grid);
+            _protectedResourceTransitionRenderer?.RenderFull(grid);
         }
 
         public void UpdateResourceBoundarySettings(
             float smoothing,
             float borderInset,
             Color waveColor,
+            Color transitionLineColor,
             float waveThickness,
             float waveAmplitude,
             float waveFrequency)
@@ -550,6 +570,13 @@ namespace _Project.Scripts.Presentation.Grid
                 smoothing,
                 borderInset,
                 waveColor,
+                waveThickness,
+                waveAmplitude,
+                waveFrequency);
+            _protectedResourceTransitionRenderer?.UpdateSettings(
+                smoothing,
+                borderInset,
+                transitionLineColor,
                 waveThickness,
                 waveAmplitude,
                 waveFrequency);

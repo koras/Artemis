@@ -12,7 +12,7 @@ namespace _Project.Scripts.Presentation.Grid
         [Header("Ground Tilemaps")]
         // Shared tilemap for all natural resource cells.
         [SerializeField] private Tilemap _resourceTilemap;
-        // Separate overlay tilemap used only by the resource boundary shader.
+        // Separate overlay tilemap used only by MaterialTransitionShaderTilemap.
         [SerializeField] private Tilemap _shaderBoardTileMap;
         // Dedicated tilemap for default repeating base layer.
         [SerializeField] private Tilemap _defaultTilemap;
@@ -24,6 +24,8 @@ namespace _Project.Scripts.Presentation.Grid
         [SerializeField, Range(-0.25f, 0.5f)] private float _resourceShadowBorderInset = 0f;
         // Colour of the boundary wave.
         [SerializeField] private Color _resourceShadowWaveColor = new Color(0.2f, 0.9f, 1f, 1f);
+        // Separate colour for the protected-resource transition shader.
+        [SerializeField] private Color _resourceTransitionLineColor = new Color(1f, 0.35f, 0.1f, 1f);
         // Visible line thickness in tile-local units.
         [SerializeField, Range(0.001f, 0.25f)] private float _resourceShadowWaveThickness = 0.035f;
         // Controls how far the resource boundary deviates from a straight line.
@@ -130,6 +132,7 @@ namespace _Project.Scripts.Presentation.Grid
         [Header("Build Tiles")]
         [SerializeField] private TileBase _ladderTile;
         [SerializeField] private TileBase _emptyTile;
+        [SerializeField] private Tilemap _materialTransitionShaderTilemap;
         [SerializeField] private Tilemap _materialTransitionTilemap;
         [SerializeField] private TileBase[] _transitionTilesByOpenMask = new TileBase[47];
 
@@ -139,6 +142,7 @@ namespace _Project.Scripts.Presentation.Grid
         public float ResourceShadowSmoothing => _resourceShadowSmoothing;
         public float ResourceShadowBorderInset => _resourceShadowBorderInset;
         public Color ResourceShadowWaveColor => _resourceShadowWaveColor;
+        public Color ResourceTransitionLineColor => _resourceTransitionLineColor;
         public float ResourceShadowWaveThickness => _resourceShadowWaveThickness;
         public float ResourceShadowWaveAmplitude => _resourceShadowWaveAmplitude;
         public float ResourceShadowWaveFrequency => _resourceShadowWaveFrequency;
@@ -202,6 +206,7 @@ namespace _Project.Scripts.Presentation.Grid
         public int PipeMaskIndexDebugSortingOrder => _pipeMaskIndexDebugSortingOrder;
         public TileBase LadderTile => _ladderTile;
         public TileBase EmptyTile => _emptyTile;
+        public Tilemap MaterialTransitionShaderTilemap => _materialTransitionShaderTilemap;
         public Tilemap MaterialTransitionTilemap => _materialTransitionTilemap;
         public TileBase[] TransitionTilesByOpenMask => _transitionTilesByOpenMask;
     }

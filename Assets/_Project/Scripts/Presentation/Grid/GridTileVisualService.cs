@@ -64,11 +64,13 @@ namespace _Project.Scripts.Presentation.Grid
                 settings.ShowPipeMaskIndexDebug,
                 settings.PipeMaskIndexDebugColor,
                 settings.PipeMaskIndexDebugSortingOrder,
+                settings.MaterialTransitionShaderTilemap,
                 settings.MaterialTransitionTilemap,
                 settings.TransitionTilesByOpenMask,
                 settings.ResourceShadowSmoothing,
                 settings.ResourceShadowBorderInset,
                 settings.ResourceShadowWaveColor,
+                settings.ResourceTransitionLineColor,
                 settings.ResourceShadowWaveThickness,
                 settings.ResourceShadowWaveAmplitude,
                 settings.ResourceShadowWaveFrequency);
@@ -81,6 +83,7 @@ namespace _Project.Scripts.Presentation.Grid
                     settings.ResourceShadowSmoothing,
                     settings.ResourceShadowBorderInset,
                     settings.ResourceShadowWaveColor,
+                    settings.ResourceTransitionLineColor,
                     settings.ResourceShadowWaveThickness,
                     settings.ResourceShadowWaveAmplitude,
                     settings.ResourceShadowWaveFrequency);
