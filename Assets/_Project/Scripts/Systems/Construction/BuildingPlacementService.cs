@@ -136,6 +136,12 @@ namespace _Project.Scripts.Systems.Construction
         /// </summary>
         public bool TryCancelTaskAndReleasePlannedArea(Vector2Int cell)
         {
+            // A build task is indexed by its anchor, while the cancel tool can select any footprint cell.
+            if (_buildingManager.TryGetPlannedBuildingAnchorByCell(cell, out Vector2Int anchorCell))
+            {
+                cell = anchorCell;
+            }
+
             bool cancelled = _globalTaskBoardService.CancelTaskByCell(
                 cell,
                 out var cancelledBuildPayload,

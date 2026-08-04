@@ -14,6 +14,14 @@ namespace _Project.Scripts.Presentation.Grid
         // Dedicated tilemap for default repeating base layer.
         [SerializeField] private Tilemap _defaultTilemap;
 
+        [Header("Resource Boundary Shadow")]
+        // Controls how wide the fade is at a resource/non-resource border.
+        [SerializeField, Range(0.001f, 0.5f)] private float _resourceShadowSmoothing = 0.08f;
+        // Leaves this inset un-darkened at the outside edge of a resource cluster.
+        [SerializeField, Range(0f, 0.5f)] private float _resourceShadowBorderInset = 0.12f;
+        // Controls how far the resource boundary deviates from a straight line.
+        [SerializeField, Range(0f, 0.25f)] private float _resourceShadowWaveAmplitude = 0.04f;
+
         [Header("Natural Tiles (8x8 Repeat)")]
         // 64 tiles (indexed by x%8 + (y%8)*8) cut from one 8x8 seamless texture sheet for Iron.
         [SerializeField] private TileBase[] _ironTilesByRepeatIndex = new TileBase[64];
@@ -118,6 +126,9 @@ namespace _Project.Scripts.Presentation.Grid
 
         public Tilemap ResourceTilemap => _resourceTilemap;
         public Tilemap DefaultTilemap => _defaultTilemap;
+        public float ResourceShadowSmoothing => _resourceShadowSmoothing;
+        public float ResourceShadowBorderInset => _resourceShadowBorderInset;
+        public float ResourceShadowWaveAmplitude => _resourceShadowWaveAmplitude;
 
         public TileBase[] IronTilesByRepeatIndex => _ironTilesByRepeatIndex;
         public TileBase[] TitanTilesByRepeatIndex => _titanTilesByRepeatIndex;

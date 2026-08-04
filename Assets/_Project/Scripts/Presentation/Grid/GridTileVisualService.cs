@@ -64,7 +64,10 @@ namespace _Project.Scripts.Presentation.Grid
                 settings.PipeMaskIndexDebugColor,
                 settings.PipeMaskIndexDebugSortingOrder,
                 settings.MaterialTransitionTilemap,
-                settings.TransitionTilesByOpenMask);
+                settings.TransitionTilesByOpenMask,
+                settings.ResourceShadowSmoothing,
+                settings.ResourceShadowBorderInset,
+                settings.ResourceShadowWaveAmplitude);
         }
 
         public void RenderFull(GridState gridState)

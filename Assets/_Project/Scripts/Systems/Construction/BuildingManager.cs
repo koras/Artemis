@@ -674,6 +674,21 @@ namespace _Project.Scripts.Systems.Construction
         }
 
         /// <summary>
+        /// Returns the anchor cell of a planned building that contains the selected cell.
+        /// </summary>
+        public bool TryGetPlannedBuildingAnchorByCell(Vector2Int cell, out Vector2Int anchorCell)
+        {
+            if (TryGetPlannedBuildingByCell(cell, out BuildingRuntimeEntity entity))
+            {
+                anchorCell = entity.AnchorCell;
+                return true;
+            }
+
+            anchorCell = default;
+            return false;
+        }
+
+        /// <summary>
         /// Переводит постройку в статус InProgress по payload задачи строительства.
         /// </summary>
         public void MarkBuildInProgress(BuildTaskPayload payload)

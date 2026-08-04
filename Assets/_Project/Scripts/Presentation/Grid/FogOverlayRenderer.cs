@@ -39,6 +39,7 @@ namespace _Project.Scripts.Presentation.Grid
             // Runtime material instance, so changing mask does not affect other renderers.
             Material runtimeMaterial = new Material(fogMaterial);
             runtimeMaterial.SetTexture(FOG_MASK_TEXTURE, _fogMaskTexture);
+            runtimeMaterial.SetVector("_FogMaskSize", new Vector4(_gridState.Width, _gridState.Height, 0f, 0f));
             runtimeMaterial.SetVector("_GridSize", new Vector4(_gridState.Width, _gridState.Height, 0f, 0f));
             runtimeMaterial.SetFloat("_CellSize", cellSize);
             runtimeMaterial.SetVector("_GridOrigin", new Vector4(gridOrigin.x, gridOrigin.y, 0f, 0f));

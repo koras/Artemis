@@ -18,6 +18,7 @@ namespace _Project.Scripts.Presentation.Grid
 
         private readonly Tilemap _resourceTilemap;
         private readonly Tilemap _defaultTilemap;
+        private readonly ResourceBoundaryShadowRenderer _resourceBoundaryShadowRenderer;
 
         private readonly TileBase[] _ironTilesByRepeatIndex;
         private readonly TileBase[] _titanTilesByRepeatIndex;
@@ -113,9 +114,109 @@ namespace _Project.Scripts.Presentation.Grid
             int pipeMaskIndexDebugSortingOrder,
             Tilemap materialTransitionTilemap,
             TileBase[] transitionTilesByOpenMask)
+            : this(
+                resourceTilemap,
+                defaultTilemap,
+                ironTilesByRepeatIndex,
+                titanTilesByRepeatIndex,
+                aluminiumTilesByRepeatIndex,
+                rogaliteTilesByRepeatIndex,
+                atmosphereTilesByRepeatIndex,
+                defaultTilesByRepeatIndex,
+                digPreviewTilemap,
+                digPreviewTile,
+                digPreviewBlockedTile,
+                hoverHighlightTilemap,
+                hoverHighlightActiveTile,
+                hoverHighlightDefaultTile,
+                digMarkerTilemap,
+                digMarkerTile,
+                buildTaskMarkerTilemap,
+                buildTaskMarkerTile,
+                destructionMarkerTile,
+                reservedTilemap,
+                reservedTile,
+                protectedResourceOverlayTilemap,
+                protectedResourceOverlayTile,
+                protectedResourceOverlayLeftTile,
+                protectedResourceOverlayRightTile,
+                cablePreviewTilemap,
+                cablePreviewTilesByMask4,
+                cableBuiltTilemap,
+                cableBuiltTilesByMask4,
+                waterPreviewTilemap,
+                waterPreviewTilesByMask4,
+                waterBuiltTilemap,
+                waterBuiltTilesByMask4,
+                oxygenPreviewTilemap,
+                oxygenPreviewTilesByMask4,
+                oxygenBuiltTilemap,
+                oxygenBuiltTilesByMask4,
+                showPipeMaskIndexDebug,
+                pipeMaskIndexDebugColor,
+                pipeMaskIndexDebugSortingOrder,
+                materialTransitionTilemap,
+                transitionTilesByOpenMask,
+                0.08f,
+                0.12f,
+                0.04f)
+        {
+        }
+
+        public GridTilemapRenderer(
+            Tilemap resourceTilemap,
+            Tilemap defaultTilemap,
+            TileBase[] ironTilesByRepeatIndex,
+            TileBase[] titanTilesByRepeatIndex,
+            TileBase[] aluminiumTilesByRepeatIndex,
+            TileBase[] rogaliteTilesByRepeatIndex,
+            TileBase[] atmosphereTilesByRepeatIndex,
+            TileBase[] defaultTilesByRepeatIndex,
+            Tilemap digPreviewTilemap,
+            TileBase digPreviewTile,
+            TileBase digPreviewBlockedTile,
+            Tilemap hoverHighlightTilemap,
+            TileBase hoverHighlightActiveTile,
+            TileBase hoverHighlightDefaultTile,
+            Tilemap digMarkerTilemap,
+            TileBase digMarkerTile,
+            Tilemap buildTaskMarkerTilemap,
+            TileBase buildTaskMarkerTile,
+            TileBase destructionMarkerTile,
+            Tilemap reservedTilemap,
+            TileBase reservedTile,
+            Tilemap protectedResourceOverlayTilemap,
+            TileBase protectedResourceOverlayTile,
+            TileBase protectedResourceOverlayLeftTile,
+            TileBase protectedResourceOverlayRightTile,
+            Tilemap cablePreviewTilemap,
+            TileBase[] cablePreviewTilesByMask4,
+            Tilemap cableBuiltTilemap,
+            TileBase[] cableBuiltTilesByMask4,
+            Tilemap waterPreviewTilemap,
+            TileBase[] waterPreviewTilesByMask4,
+            Tilemap waterBuiltTilemap,
+            TileBase[] waterBuiltTilesByMask4,
+            Tilemap oxygenPreviewTilemap,
+            TileBase[] oxygenPreviewTilesByMask4,
+            Tilemap oxygenBuiltTilemap,
+            TileBase[] oxygenBuiltTilesByMask4,
+            bool showPipeMaskIndexDebug,
+            Color pipeMaskIndexDebugColor,
+            int pipeMaskIndexDebugSortingOrder,
+            Tilemap materialTransitionTilemap,
+            TileBase[] transitionTilesByOpenMask,
+            float resourceShadowSmoothing,
+            float resourceShadowBorderInset,
+            float resourceShadowWaveAmplitude)
         {
             _resourceTilemap = resourceTilemap;
             _defaultTilemap = defaultTilemap;
+            _resourceBoundaryShadowRenderer = new ResourceBoundaryShadowRenderer(
+                resourceTilemap,
+                resourceShadowSmoothing,
+                resourceShadowBorderInset,
+                resourceShadowWaveAmplitude);
 
             _ironTilesByRepeatIndex = EnsureTileArray(ironTilesByRepeatIndex);
             _titanTilesByRepeatIndex = EnsureTileArray(titanTilesByRepeatIndex);
@@ -368,6 +469,8 @@ namespace _Project.Scripts.Presentation.Grid
             {
                 _resourceTilemap.SetTile(position, tile);
             }
+
+            _resourceBoundaryShadowRenderer?.SetCell(new Vector2Int(x, y), type);
         }
 
         public void SetCustomMarkerTile(int x, int y, TileBase tile)
@@ -419,6 +522,7 @@ namespace _Project.Scripts.Presentation.Grid
             }
 
             RenderProtectedResourceOverlay(grid);
+            _resourceBoundaryShadowRenderer?.RenderFull(grid);
         }
 
         private void RenderProtectedResourceOverlay(GridState grid)

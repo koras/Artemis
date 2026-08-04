@@ -4,6 +4,7 @@ Shader "Custom/FogMaskOverlay"
     {
         [PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
         _FogMaskTex("Fog Mask", 2D) = "white" {}
+        _FogMaskSize("Fog Mask Size", Vector) = (1,1,0,0)
         _FogColor("Fog Color", Color) = (0,0,0,1)
         _FogDensity("Fog Density", Range(0, 2)) = 1
         _EdgeSoftness("Edge Softness", Range(0, 2)) = 0.5
@@ -46,8 +47,7 @@ Shader "Custom/FogMaskOverlay"
             SAMPLER(sampler_NoiseTex);
 
             CBUFFER_START(UnityPerMaterial)
-                float4 _FogMaskTex_ST;
-                float4 _MainTex_ST;
+                float4 _FogMaskSize;
                 float4 _FogColor;
                 float _FogDensity;
                 float _EdgeSoftness;
@@ -55,19 +55,17 @@ Shader "Custom/FogMaskOverlay"
                 float _NoiseScale;
             CBUFFER_END
 
-            float4 _FogMaskTex_TexelSize;
-
             Varyings vert(Attributes input)
             {
                 Varyings output;
                 output.positionHCS = TransformObjectToHClip(input.positionOS.xyz);
-                output.uv = TRANSFORM_TEX(input.uv, _FogMaskTex);
+                output.uv = input.uv;
                 return output;
             }
 
             half4 frag(Varyings input) : SV_Target
             {
-              float2 texelSize = _FogMaskTex_TexelSize.xy;
+              float2 texelSize = 1.0 / max(_FogMaskSize.xy, float2(1.0, 1.0));
                 float radius = max(1.0, _EdgeSoftness *  3.0);
                 float2 o = texelSize * radius;
 
