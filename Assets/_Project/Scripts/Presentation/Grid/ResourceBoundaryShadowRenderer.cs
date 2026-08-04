@@ -12,6 +12,7 @@ namespace _Project.Scripts.Presentation.Grid
     {
         private const string ShaderName = "_Project/Protected Resource Transition";
         private const string LegacyShaderName = "_Project/Resource Boundary Wave";
+        private const string DarkenShaderName = "_Project/Resource Darkening";
         private const string ResourceMaskProperty = "_ResourceMask";
         private const string GridSizeProperty = "_GridSize";
         private const string SmoothingProperty = "_Smoothing";
@@ -24,11 +25,17 @@ namespace _Project.Scripts.Presentation.Grid
         private const string CornerRadiusProperty = "_CornerRadius";
         private const string WaveAmplitudeProperty = "_WaveAmplitude";
         private const string WaveFrequencyProperty = "_WaveFrequency";
+        private const string DarkenColorProperty = "_DarkenColor";
+        private const string DarkenAmountProperty = "_DarkenAmount";
+        private const string BoundaryInsetPixelsProperty = "_BoundaryInsetPixels";
+        private const string TransitionPixelsProperty = "_TransitionPixels";
+        private const string PixelsPerTileProperty = "_PixelsPerTile";
 
         private readonly Tilemap _resourceTilemap;
         private readonly Tilemap _shaderBoardTileMap;
         private readonly TilemapRenderer _tilemapRenderer;
         private readonly bool _useProtectedResourceTransitionShader;
+        private readonly bool _renderResourceCellsOnly;
         private TileBase _solidOverlayTile;
         private float _smoothing;
         private float _borderInset;
@@ -36,6 +43,11 @@ namespace _Project.Scripts.Presentation.Grid
         private float _waveThickness;
         private float _waveAmplitude;
         private float _waveFrequency;
+        private Color _darkenColor;
+        private float _darkenAmount;
+        private float _boundaryInsetPixels;
+        private float _transitionPixels;
+        private float _pixelsPerTile;
 
         private Texture2D _resourceMask;
         private Color32[] _maskPixels;
@@ -51,18 +63,30 @@ namespace _Project.Scripts.Presentation.Grid
             float waveThickness,
             float waveAmplitude,
             float waveFrequency,
-            bool useProtectedResourceTransitionShader)
+            bool useProtectedResourceTransitionShader,
+            bool renderResourceCellsOnly = false,
+            Color darkenColor = default,
+            float darkenAmount = 0.65f,
+            float boundaryInsetPixels = 50f,
+            float transitionPixels = 20f,
+            float pixelsPerTile = 256f)
         {
             _resourceTilemap = resourceTilemap;
             _shaderBoardTileMap = shaderBoardTileMap;
             _tilemapRenderer = shaderBoardTileMap != null ? shaderBoardTileMap.GetComponent<TilemapRenderer>() : null;
             _useProtectedResourceTransitionShader = useProtectedResourceTransitionShader;
+            _renderResourceCellsOnly = renderResourceCellsOnly;
             _smoothing = smoothing;
             _borderInset = borderInset;
             _waveColor = waveColor;
             _waveThickness = waveThickness;
             _waveAmplitude = waveAmplitude;
             _waveFrequency = waveFrequency;
+            _darkenColor = darkenColor == default ? Color.black : darkenColor;
+            _darkenAmount = darkenAmount;
+            _boundaryInsetPixels = boundaryInsetPixels;
+            _transitionPixels = transitionPixels;
+            _pixelsPerTile = pixelsPerTile;
 
             if (_shaderBoardTileMap == null || _tilemapRenderer == null)
             {
@@ -80,7 +104,9 @@ namespace _Project.Scripts.Presentation.Grid
                 1f);
             _solidOverlayTile = overlayTile;
 
-            string shaderName = _useProtectedResourceTransitionShader ? ShaderName : LegacyShaderName;
+            string shaderName = _renderResourceCellsOnly
+                ? DarkenShaderName
+                : (_useProtectedResourceTransitionShader ? ShaderName : LegacyShaderName);
             Material material = new Material(Shader.Find(shaderName))
             {
                 name = "ResourceBoundaryShadow (Runtime)"
@@ -171,6 +197,37 @@ namespace _Project.Scripts.Presentation.Grid
             material.SetFloat(LegacyWaveThicknessProperty, _waveThickness);
             material.SetFloat(WaveAmplitudeProperty, _waveAmplitude);
             material.SetFloat(WaveFrequencyProperty, _waveFrequency);
+            material.SetColor(DarkenColorProperty, _darkenColor);
+            material.SetFloat(DarkenAmountProperty, _darkenAmount);
+            material.SetFloat(BoundaryInsetPixelsProperty, _boundaryInsetPixels);
+            material.SetFloat(TransitionPixelsProperty, _transitionPixels);
+            material.SetFloat(PixelsPerTileProperty, _pixelsPerTile);
+        }
+
+        public void UpdateDarkeningSettings(
+            Color darkenColor,
+            float darkenAmount,
+            float boundaryInsetPixels,
+            float transitionPixels,
+            float pixelsPerTile)
+        {
+            _darkenColor = darkenColor;
+            _darkenAmount = darkenAmount;
+            _boundaryInsetPixels = boundaryInsetPixels;
+            _transitionPixels = transitionPixels;
+            _pixelsPerTile = pixelsPerTile;
+
+            if (_tilemapRenderer == null)
+            {
+                return;
+            }
+
+            Material material = _tilemapRenderer.material;
+            material.SetColor(DarkenColorProperty, _darkenColor);
+            material.SetFloat(DarkenAmountProperty, _darkenAmount);
+            material.SetFloat(BoundaryInsetPixelsProperty, _boundaryInsetPixels);
+            material.SetFloat(TransitionPixelsProperty, _transitionPixels);
+            material.SetFloat(PixelsPerTileProperty, _pixelsPerTile);
         }
 
         private void EnsureMask()
@@ -214,6 +271,11 @@ namespace _Project.Scripts.Presentation.Grid
             material.SetFloat(LegacyWaveThicknessProperty, _waveThickness);
             material.SetFloat(WaveAmplitudeProperty, _waveAmplitude);
             material.SetFloat(WaveFrequencyProperty, _waveFrequency);
+            material.SetColor(DarkenColorProperty, _darkenColor);
+            material.SetFloat(DarkenAmountProperty, _darkenAmount);
+            material.SetFloat(BoundaryInsetPixelsProperty, _boundaryInsetPixels);
+            material.SetFloat(TransitionPixelsProperty, _transitionPixels);
+            material.SetFloat(PixelsPerTileProperty, _pixelsPerTile);
         }
 
         private void UpdateOverlayTile(int x, int y)
@@ -235,6 +297,11 @@ namespace _Project.Scripts.Presentation.Grid
 
         private bool ShouldRenderOverlayCell(int x, int y)
         {
+            if (_renderResourceCellsOnly)
+            {
+                return IsResourceAt(x, y);
+            }
+
             if (IsResourceAt(x, y))
             {
                 return true;

@@ -67,13 +67,19 @@ namespace _Project.Scripts.Presentation.Grid
                 settings.MaterialTransitionShaderTilemap,
                 settings.MaterialTransitionTilemap,
                 settings.TransitionTilesByOpenMask,
+                settings.DigLineTilemap,
                 settings.ResourceShadowSmoothing,
                 settings.ResourceShadowBorderInset,
                 settings.ResourceShadowWaveColor,
                 settings.ResourceTransitionLineColor,
                 settings.ResourceShadowWaveThickness,
                 settings.ResourceShadowWaveAmplitude,
-                settings.ResourceShadowWaveFrequency);
+                settings.ResourceShadowWaveFrequency,
+                settings.ResourceDarkeningColor,
+                settings.ResourceDarkeningAmount,
+                settings.ResourceDarkeningBoundaryInsetPixels,
+                settings.ResourceDarkeningTransitionPixels,
+                settings.ResourceDarkeningPixelsPerTile);
 
             settings.ResourceBoundarySettingsChanged += OnResourceBoundarySettingsChanged;
 
@@ -86,7 +92,12 @@ namespace _Project.Scripts.Presentation.Grid
                     settings.ResourceTransitionLineColor,
                     settings.ResourceShadowWaveThickness,
                     settings.ResourceShadowWaveAmplitude,
-                    settings.ResourceShadowWaveFrequency);
+                    settings.ResourceShadowWaveFrequency,
+                    settings.ResourceDarkeningColor,
+                    settings.ResourceDarkeningAmount,
+                    settings.ResourceDarkeningBoundaryInsetPixels,
+                    settings.ResourceDarkeningTransitionPixels,
+                    settings.ResourceDarkeningPixelsPerTile);
             }
         }
 

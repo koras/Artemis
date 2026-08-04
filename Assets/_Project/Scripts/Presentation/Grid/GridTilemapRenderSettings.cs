@@ -33,6 +33,15 @@ namespace _Project.Scripts.Presentation.Grid
         // Number of wave cycles per tile along a boundary.
         [SerializeField, Range(0.1f, 20f)] private float _resourceShadowWaveFrequency = 5f;
 
+        [Header("Resource Darkening on DigLineTilemap")]
+        // Overlay is kept inside resource cells and leaves a configurable edge untouched.
+        [SerializeField] private Tilemap _digLineTilemap;
+        [SerializeField] private Color _resourceDarkeningColor = Color.black;
+        [SerializeField, Range(0f, 1f)] private float _resourceDarkeningAmount = 0.65f;
+        [SerializeField, Range(0f, 200f)] private float _resourceDarkeningBoundaryInsetPixels = 50f;
+        [SerializeField, Range(0f, 200f)] private float _resourceDarkeningTransitionPixels = 20f;
+        [SerializeField, Range(1f, 1024f)] private float _resourceDarkeningPixelsPerTile = 256f;
+
         [Header("Natural Tiles (8x8 Repeat)")]
         // 64 tiles (indexed by x%8 + (y%8)*8) cut from one 8x8 seamless texture sheet for Iron.
         [SerializeField] private TileBase[] _ironTilesByRepeatIndex = new TileBase[64];
@@ -146,6 +155,12 @@ namespace _Project.Scripts.Presentation.Grid
         public float ResourceShadowWaveThickness => _resourceShadowWaveThickness;
         public float ResourceShadowWaveAmplitude => _resourceShadowWaveAmplitude;
         public float ResourceShadowWaveFrequency => _resourceShadowWaveFrequency;
+        public Tilemap DigLineTilemap => _digLineTilemap;
+        public Color ResourceDarkeningColor => _resourceDarkeningColor;
+        public float ResourceDarkeningAmount => _resourceDarkeningAmount;
+        public float ResourceDarkeningBoundaryInsetPixels => _resourceDarkeningBoundaryInsetPixels;
+        public float ResourceDarkeningTransitionPixels => _resourceDarkeningTransitionPixels;
+        public float ResourceDarkeningPixelsPerTile => _resourceDarkeningPixelsPerTile;
 
         public event Action ResourceBoundarySettingsChanged;
 
