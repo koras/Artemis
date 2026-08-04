@@ -74,6 +74,12 @@ Shader "_Project/Resource Darkening"
                 return SAMPLE_TEXTURE2D(_ResourceMask, sampler_ResourceMask, maskUv).a;
             }
 
+            float CornerTransition(float current, float diagonal, float sideA, float sideB)
+            {
+                // A non-resource diagonal with two resource sides forms a resource corner.
+                return current * (1.0 - diagonal) * sideA * sideB;
+            }
+
             half4 Frag(Varyings input) : SV_Target
             {
                 float2 cell = floor(input.localPosition);
@@ -87,6 +93,10 @@ Shader "_Project/Resource Darkening"
                 float right = IsResource(cell + float2(1, 0));
                 float bottom = IsResource(cell + float2(0, -1));
                 float top = IsResource(cell + float2(0, 1));
+                float bottomLeft = IsResource(cell + float2(-1, -1));
+                float bottomRight = IsResource(cell + float2(1, -1));
+                float topLeft = IsResource(cell + float2(-1, 1));
+                float topRight = IsResource(cell + float2(1, 1));
 
                 // Fade only the resource side of a resource/non-resource border.
                 float darkening = 1.0;
@@ -94,6 +104,30 @@ Shader "_Project/Resource Darkening"
                 darkening *= lerp(1.0, smoothstep(inset - edgeSoftness, inset + transition, 1.0 - cellUv.x), 1.0 - right);
                 darkening *= lerp(1.0, smoothstep(inset - edgeSoftness, inset + transition, cellUv.y), 1.0 - bottom);
                 darkening *= lerp(1.0, smoothstep(inset - edgeSoftness, inset + transition, 1.0 - cellUv.y), 1.0 - top);
+
+                // Cardinal checks cannot describe a diagonal corner. Use a circular
+                // distance so the untouched border joins smoothly at 45-degree angles.
+                float bottomLeftCorner = CornerTransition(current, bottomLeft, left, bottom);
+                float bottomRightCorner = CornerTransition(current, bottomRight, right, bottom);
+                float topLeftCorner = CornerTransition(current, topLeft, left, top);
+                float topRightCorner = CornerTransition(current, topRight, right, top);
+
+                darkening *= lerp(
+                    1.0,
+                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(0, 0))),
+                    bottomLeftCorner);
+                darkening *= lerp(
+                    1.0,
+                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(1, 0))),
+                    bottomRightCorner);
+                darkening *= lerp(
+                    1.0,
+                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(0, 1))),
+                    topLeftCorner);
+                darkening *= lerp(
+                    1.0,
+                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(1, 1))),
+                    topRightCorner);
 
                 half4 result = _DarkenColor * input.color * _Color;
                 result.a *= current * darkening * _DarkenAmount;

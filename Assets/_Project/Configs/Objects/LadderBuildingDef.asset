@@ -17,12 +17,12 @@ MonoBehaviour:
   _descriptionLocalizationKey: description
   PreviewSprite: {fileID: -1942671465, guid: e45bc713b97cd504d8c955fe23c36142, type: 3}
   BuiltSprite: {fileID: 1637759510, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
-  LadderBottomBuiltSprite: {fileID: -746511139, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
-  LadderCenterBuiltSprite: {fileID: 1637759510, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
-  LadderTopBuiltSprite: {fileID: 3181169863757504611, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
-  LadderBottomPreviewSprite: {fileID: 1099722540, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
-  LadderCenterPreviewSprite: {fileID: -1512300497, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
-  LadderTopPreviewSprite: {fileID: 7085338807174098435, guid: dbc432b77993f1d4a89742c9b22764d2, type: 3}
+  LadderBottomBuiltSprite: {fileID: -705463162, guid: 5574f27497eb74948ba53e9b1160bd8e, type: 3}
+  LadderCenterBuiltSprite: {fileID: -705463162, guid: 5574f27497eb74948ba53e9b1160bd8e, type: 3}
+  LadderTopBuiltSprite: {fileID: -705463162, guid: 5574f27497eb74948ba53e9b1160bd8e, type: 3}
+  LadderBottomPreviewSprite: {fileID: 1642254150, guid: 5574f27497eb74948ba53e9b1160bd8e, type: 3}
+  LadderCenterPreviewSprite: {fileID: 1642254150, guid: 5574f27497eb74948ba53e9b1160bd8e, type: 3}
+  LadderTopPreviewSprite: {fileID: 1642254150, guid: 5574f27497eb74948ba53e9b1160bd8e, type: 3}
   Width: 1
   Height: 1
   CanRotate: 0
