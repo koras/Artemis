@@ -24,6 +24,7 @@ namespace _Project.Scripts.Presentation.Grid
         {
             _gridTilemapRenderer = new GridTilemapRenderer(
                 settings.ResourceTilemap,
+                settings.ShaderBoardTileMap,
                 settings.DefaultTilemap,
                 settings.IronTilesByRepeatIndex,
                 settings.TitanTilesByRepeatIndex,
@@ -67,7 +68,23 @@ namespace _Project.Scripts.Presentation.Grid
                 settings.TransitionTilesByOpenMask,
                 settings.ResourceShadowSmoothing,
                 settings.ResourceShadowBorderInset,
-                settings.ResourceShadowWaveAmplitude);
+                settings.ResourceShadowWaveColor,
+                settings.ResourceShadowWaveThickness,
+                settings.ResourceShadowWaveAmplitude,
+                settings.ResourceShadowWaveFrequency);
+
+            settings.ResourceBoundarySettingsChanged += OnResourceBoundarySettingsChanged;
+
+            void OnResourceBoundarySettingsChanged()
+            {
+                _gridTilemapRenderer.UpdateResourceBoundarySettings(
+                    settings.ResourceShadowSmoothing,
+                    settings.ResourceShadowBorderInset,
+                    settings.ResourceShadowWaveColor,
+                    settings.ResourceShadowWaveThickness,
+                    settings.ResourceShadowWaveAmplitude,
+                    settings.ResourceShadowWaveFrequency);
+            }
         }
 
         public void RenderFull(GridState gridState)

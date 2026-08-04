@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,16 +12,24 @@ namespace _Project.Scripts.Presentation.Grid
         [Header("Ground Tilemaps")]
         // Shared tilemap for all natural resource cells.
         [SerializeField] private Tilemap _resourceTilemap;
+        // Separate overlay tilemap used only by the resource boundary shader.
+        [SerializeField] private Tilemap _shaderBoardTileMap;
         // Dedicated tilemap for default repeating base layer.
         [SerializeField] private Tilemap _defaultTilemap;
 
         [Header("Resource Boundary Shadow")]
         // Controls how wide the fade is at a resource/non-resource border.
         [SerializeField, Range(0.001f, 0.5f)] private float _resourceShadowSmoothing = 0.08f;
-        // Leaves this inset un-darkened at the outside edge of a resource cluster.
-        [SerializeField, Range(0f, 0.5f)] private float _resourceShadowBorderInset = 0.12f;
+        // 0 keeps the wave centre exactly on the resource boundary.
+        [SerializeField, Range(-0.25f, 0.5f)] private float _resourceShadowBorderInset = 0f;
+        // Colour of the boundary wave.
+        [SerializeField] private Color _resourceShadowWaveColor = new Color(0.2f, 0.9f, 1f, 1f);
+        // Visible line thickness in tile-local units.
+        [SerializeField, Range(0.001f, 0.25f)] private float _resourceShadowWaveThickness = 0.035f;
         // Controls how far the resource boundary deviates from a straight line.
         [SerializeField, Range(0f, 0.25f)] private float _resourceShadowWaveAmplitude = 0.04f;
+        // Number of wave cycles per tile along a boundary.
+        [SerializeField, Range(0.1f, 20f)] private float _resourceShadowWaveFrequency = 5f;
 
         [Header("Natural Tiles (8x8 Repeat)")]
         // 64 tiles (indexed by x%8 + (y%8)*8) cut from one 8x8 seamless texture sheet for Iron.
@@ -125,10 +134,24 @@ namespace _Project.Scripts.Presentation.Grid
         [SerializeField] private TileBase[] _transitionTilesByOpenMask = new TileBase[47];
 
         public Tilemap ResourceTilemap => _resourceTilemap;
+        public Tilemap ShaderBoardTileMap => _shaderBoardTileMap;
         public Tilemap DefaultTilemap => _defaultTilemap;
         public float ResourceShadowSmoothing => _resourceShadowSmoothing;
         public float ResourceShadowBorderInset => _resourceShadowBorderInset;
+        public Color ResourceShadowWaveColor => _resourceShadowWaveColor;
+        public float ResourceShadowWaveThickness => _resourceShadowWaveThickness;
         public float ResourceShadowWaveAmplitude => _resourceShadowWaveAmplitude;
+        public float ResourceShadowWaveFrequency => _resourceShadowWaveFrequency;
+
+        public event Action ResourceBoundarySettingsChanged;
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            // Inspector changes are forwarded to the live overlay while debugging in Play Mode.
+            ResourceBoundarySettingsChanged?.Invoke();
+        }
+#endif
 
         public TileBase[] IronTilesByRepeatIndex => _ironTilesByRepeatIndex;
         public TileBase[] TitanTilesByRepeatIndex => _titanTilesByRepeatIndex;

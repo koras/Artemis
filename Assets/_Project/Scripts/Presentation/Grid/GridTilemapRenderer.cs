@@ -73,6 +73,7 @@ namespace _Project.Scripts.Presentation.Grid
 
         public GridTilemapRenderer(
             Tilemap resourceTilemap,
+            Tilemap shaderBoardTileMap,
             Tilemap defaultTilemap,
             TileBase[] ironTilesByRepeatIndex,
             TileBase[] titanTilesByRepeatIndex,
@@ -116,6 +117,7 @@ namespace _Project.Scripts.Presentation.Grid
             TileBase[] transitionTilesByOpenMask)
             : this(
                 resourceTilemap,
+                shaderBoardTileMap,
                 defaultTilemap,
                 ironTilesByRepeatIndex,
                 titanTilesByRepeatIndex,
@@ -159,12 +161,16 @@ namespace _Project.Scripts.Presentation.Grid
                 transitionTilesByOpenMask,
                 0.08f,
                 0.12f,
-                0.04f)
+                new Color(0.2f, 0.9f, 1f, 1f),
+                0.035f,
+                0.04f,
+                5f)
         {
         }
 
         public GridTilemapRenderer(
             Tilemap resourceTilemap,
+            Tilemap shaderBoardTileMap,
             Tilemap defaultTilemap,
             TileBase[] ironTilesByRepeatIndex,
             TileBase[] titanTilesByRepeatIndex,
@@ -208,15 +214,22 @@ namespace _Project.Scripts.Presentation.Grid
             TileBase[] transitionTilesByOpenMask,
             float resourceShadowSmoothing,
             float resourceShadowBorderInset,
-            float resourceShadowWaveAmplitude)
+            Color resourceShadowWaveColor,
+            float resourceShadowWaveThickness,
+            float resourceShadowWaveAmplitude,
+            float resourceShadowWaveFrequency)
         {
             _resourceTilemap = resourceTilemap;
             _defaultTilemap = defaultTilemap;
             _resourceBoundaryShadowRenderer = new ResourceBoundaryShadowRenderer(
                 resourceTilemap,
+                shaderBoardTileMap,
                 resourceShadowSmoothing,
                 resourceShadowBorderInset,
-                resourceShadowWaveAmplitude);
+                resourceShadowWaveColor,
+                resourceShadowWaveThickness,
+                resourceShadowWaveAmplitude,
+                resourceShadowWaveFrequency);
 
             _ironTilesByRepeatIndex = EnsureTileArray(ironTilesByRepeatIndex);
             _titanTilesByRepeatIndex = EnsureTileArray(titanTilesByRepeatIndex);
@@ -523,6 +536,23 @@ namespace _Project.Scripts.Presentation.Grid
 
             RenderProtectedResourceOverlay(grid);
             _resourceBoundaryShadowRenderer?.RenderFull(grid);
+        }
+
+        public void UpdateResourceBoundarySettings(
+            float smoothing,
+            float borderInset,
+            Color waveColor,
+            float waveThickness,
+            float waveAmplitude,
+            float waveFrequency)
+        {
+            _resourceBoundaryShadowRenderer?.UpdateSettings(
+                smoothing,
+                borderInset,
+                waveColor,
+                waveThickness,
+                waveAmplitude,
+                waveFrequency);
         }
 
         private void RenderProtectedResourceOverlay(GridState grid)
