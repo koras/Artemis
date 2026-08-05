@@ -82,12 +82,13 @@ Shader "_Project/Resource Darkening"
 
             half4 Frag(Varyings input) : SV_Target
             {
+                float2 edgeSoftness = fwidth(input.localPosition) * 2.0;
                 float2 cell = floor(input.localPosition);
                 float2 cellUv = frac(input.localPosition);
                 float current = IsResource(cell);
                 float inset = saturate(_BoundaryInsetPixels / max(_PixelsPerTile, 1.0));
                 float transition = saturate(_TransitionPixels / max(_PixelsPerTile, 1.0));
-                float edgeSoftness = max(fwidth(cellUv.x), fwidth(cellUv.y)) * 2.0;
+                float cornerSoftness = max(edgeSoftness.x, edgeSoftness.y);
 
                 float left = IsResource(cell + float2(-1, 0));
                 float right = IsResource(cell + float2(1, 0));
@@ -100,10 +101,10 @@ Shader "_Project/Resource Darkening"
 
                 // Fade only the resource side of a resource/non-resource border.
                 float darkening = 1.0;
-                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness, inset + transition, cellUv.x), 1.0 - left);
-                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness, inset + transition, 1.0 - cellUv.x), 1.0 - right);
-                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness, inset + transition, cellUv.y), 1.0 - bottom);
-                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness, inset + transition, 1.0 - cellUv.y), 1.0 - top);
+                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness.x, inset + transition, cellUv.x), 1.0 - left);
+                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness.x, inset + transition, 1.0 - cellUv.x), 1.0 - right);
+                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness.y, inset + transition, cellUv.y), 1.0 - bottom);
+                darkening *= lerp(1.0, smoothstep(inset - edgeSoftness.y, inset + transition, 1.0 - cellUv.y), 1.0 - top);
 
                 // Cardinal checks cannot describe a diagonal corner. Use a circular
                 // distance so the untouched border joins smoothly at 45-degree angles.
@@ -114,19 +115,19 @@ Shader "_Project/Resource Darkening"
 
                 darkening *= lerp(
                     1.0,
-                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(0, 0))),
+                    smoothstep(inset - cornerSoftness, inset + transition, distance(cellUv, float2(0, 0))),
                     bottomLeftCorner);
                 darkening *= lerp(
                     1.0,
-                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(1, 0))),
+                    smoothstep(inset - cornerSoftness, inset + transition, distance(cellUv, float2(1, 0))),
                     bottomRightCorner);
                 darkening *= lerp(
                     1.0,
-                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(0, 1))),
+                    smoothstep(inset - cornerSoftness, inset + transition, distance(cellUv, float2(0, 1))),
                     topLeftCorner);
                 darkening *= lerp(
                     1.0,
-                    smoothstep(inset - edgeSoftness, inset + transition, distance(cellUv, float2(1, 1))),
+                    smoothstep(inset - cornerSoftness, inset + transition, distance(cellUv, float2(1, 1))),
                     topRightCorner);
 
                 half4 result = _DarkenColor * input.color * _Color;
