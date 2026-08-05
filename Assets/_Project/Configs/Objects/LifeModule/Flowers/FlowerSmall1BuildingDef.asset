@@ -15,8 +15,8 @@ MonoBehaviour:
   ObjectType: 22
   _nameLocalizationKey: name
   _descriptionLocalizationKey: description
-  PreviewSprite: {fileID: 21300000, guid: c5f8dcabda6331248b4ea351e2177067, type: 3}
-  BuiltSprite: {fileID: 21300000, guid: c5f8dcabda6331248b4ea351e2177067, type: 3}
+  PreviewSprite: {fileID: 862383902571249605, guid: c84db8dd1b5927440b5f812deb0645e6, type: 3}
+  BuiltSprite: {fileID: 3701232680283355799, guid: c84db8dd1b5927440b5f812deb0645e6, type: 3}
   Width: 1
   Height: 1
   CanRotate: 0

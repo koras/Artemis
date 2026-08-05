@@ -24,6 +24,7 @@ namespace _Project.Scripts.Presentation.Grid
         {
             _gridTilemapRenderer = new GridTilemapRenderer(
                 settings.ResourceTilemap,
+                settings.ShaderBoardTileMap,
                 settings.DefaultTilemap,
                 settings.IronTilesByRepeatIndex,
                 settings.TitanTilesByRepeatIndex,
@@ -63,11 +64,41 @@ namespace _Project.Scripts.Presentation.Grid
                 settings.ShowPipeMaskIndexDebug,
                 settings.PipeMaskIndexDebugColor,
                 settings.PipeMaskIndexDebugSortingOrder,
+                settings.MaterialTransitionShaderTilemap,
                 settings.MaterialTransitionTilemap,
                 settings.TransitionTilesByOpenMask,
+                settings.DigLineTilemap,
                 settings.ResourceShadowSmoothing,
                 settings.ResourceShadowBorderInset,
-                settings.ResourceShadowWaveAmplitude);
+                settings.ResourceShadowWaveColor,
+                settings.ResourceTransitionLineColor,
+                settings.ResourceShadowWaveThickness,
+                settings.ResourceShadowWaveAmplitude,
+                settings.ResourceShadowWaveFrequency,
+                settings.ResourceDarkeningColor,
+                settings.ResourceDarkeningAmount,
+                settings.ResourceDarkeningBoundaryInsetPixels,
+                settings.ResourceDarkeningTransitionPixels,
+                settings.ResourceDarkeningPixelsPerTile);
+
+            settings.ResourceBoundarySettingsChanged += OnResourceBoundarySettingsChanged;
+
+            void OnResourceBoundarySettingsChanged()
+            {
+                _gridTilemapRenderer.UpdateResourceBoundarySettings(
+                    settings.ResourceShadowSmoothing,
+                    settings.ResourceShadowBorderInset,
+                    settings.ResourceShadowWaveColor,
+                    settings.ResourceTransitionLineColor,
+                    settings.ResourceShadowWaveThickness,
+                    settings.ResourceShadowWaveAmplitude,
+                    settings.ResourceShadowWaveFrequency,
+                    settings.ResourceDarkeningColor,
+                    settings.ResourceDarkeningAmount,
+                    settings.ResourceDarkeningBoundaryInsetPixels,
+                    settings.ResourceDarkeningTransitionPixels,
+                    settings.ResourceDarkeningPixelsPerTile);
+            }
         }
 
         public void RenderFull(GridState gridState)

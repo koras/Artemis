@@ -19,6 +19,8 @@ namespace _Project.Scripts.Presentation.Grid
         private readonly Tilemap _resourceTilemap;
         private readonly Tilemap _defaultTilemap;
         private readonly ResourceBoundaryShadowRenderer _resourceBoundaryShadowRenderer;
+        private readonly ResourceBoundaryShadowRenderer _protectedResourceTransitionRenderer;
+        private readonly ResourceBoundaryShadowRenderer _resourceDarkeningRenderer;
 
         private readonly TileBase[] _ironTilesByRepeatIndex;
         private readonly TileBase[] _titanTilesByRepeatIndex;
@@ -73,6 +75,7 @@ namespace _Project.Scripts.Presentation.Grid
 
         public GridTilemapRenderer(
             Tilemap resourceTilemap,
+            Tilemap shaderBoardTileMap,
             Tilemap defaultTilemap,
             TileBase[] ironTilesByRepeatIndex,
             TileBase[] titanTilesByRepeatIndex,
@@ -112,10 +115,13 @@ namespace _Project.Scripts.Presentation.Grid
             bool showPipeMaskIndexDebug,
             Color pipeMaskIndexDebugColor,
             int pipeMaskIndexDebugSortingOrder,
+            Tilemap materialTransitionShaderTilemap,
             Tilemap materialTransitionTilemap,
-            TileBase[] transitionTilesByOpenMask)
+            TileBase[] transitionTilesByOpenMask,
+            Tilemap digLineTilemap)
             : this(
                 resourceTilemap,
+                shaderBoardTileMap,
                 defaultTilemap,
                 ironTilesByRepeatIndex,
                 titanTilesByRepeatIndex,
@@ -155,16 +161,23 @@ namespace _Project.Scripts.Presentation.Grid
                 showPipeMaskIndexDebug,
                 pipeMaskIndexDebugColor,
                 pipeMaskIndexDebugSortingOrder,
+                materialTransitionShaderTilemap,
                 materialTransitionTilemap,
                 transitionTilesByOpenMask,
+                digLineTilemap,
                 0.08f,
                 0.12f,
-                0.04f)
+                new Color(0.2f, 0.9f, 1f, 1f),
+                new Color(1f, 0.35f, 0.1f, 1f),
+                0.035f,
+                0.04f,
+                5f)
         {
         }
 
         public GridTilemapRenderer(
             Tilemap resourceTilemap,
+            Tilemap shaderBoardTileMap,
             Tilemap defaultTilemap,
             TileBase[] ironTilesByRepeatIndex,
             TileBase[] titanTilesByRepeatIndex,
@@ -204,19 +217,64 @@ namespace _Project.Scripts.Presentation.Grid
             bool showPipeMaskIndexDebug,
             Color pipeMaskIndexDebugColor,
             int pipeMaskIndexDebugSortingOrder,
+            Tilemap materialTransitionShaderTilemap,
             Tilemap materialTransitionTilemap,
             TileBase[] transitionTilesByOpenMask,
+            Tilemap digLineTilemap,
             float resourceShadowSmoothing,
             float resourceShadowBorderInset,
-            float resourceShadowWaveAmplitude)
+            Color resourceShadowWaveColor,
+            Color resourceTransitionLineColor,
+            float resourceShadowWaveThickness,
+            float resourceShadowWaveAmplitude,
+            float resourceShadowWaveFrequency,
+            Color resourceDarkeningColor = default,
+            float resourceDarkeningAmount = 0.65f,
+            float resourceDarkeningBoundaryInsetPixels = 50f,
+            float resourceDarkeningTransitionPixels = 20f,
+            float resourceDarkeningPixelsPerTile = 256f)
         {
             _resourceTilemap = resourceTilemap;
             _defaultTilemap = defaultTilemap;
+            // The overlay is scene-configurable, but can be created beside the resource
+            // tilemap for older scenes that do not yet contain DigLineTilemap.
+            digLineTilemap = EnsureOverlayTilemap("DigLineTilemap", digLineTilemap != null ? digLineTilemap : resourceTilemap, 5);
             _resourceBoundaryShadowRenderer = new ResourceBoundaryShadowRenderer(
                 resourceTilemap,
+                shaderBoardTileMap,
                 resourceShadowSmoothing,
                 resourceShadowBorderInset,
-                resourceShadowWaveAmplitude);
+                resourceShadowWaveColor,
+                resourceShadowWaveThickness,
+                resourceShadowWaveAmplitude,
+                resourceShadowWaveFrequency,
+                false);
+            _protectedResourceTransitionRenderer = new ResourceBoundaryShadowRenderer(
+                resourceTilemap,
+                materialTransitionShaderTilemap,
+                resourceShadowSmoothing,
+                resourceShadowBorderInset,
+                resourceTransitionLineColor,
+                resourceShadowWaveThickness,
+                resourceShadowWaveAmplitude,
+                resourceShadowWaveFrequency,
+                true);
+            _resourceDarkeningRenderer = new ResourceBoundaryShadowRenderer(
+                resourceTilemap,
+                digLineTilemap,
+                resourceShadowSmoothing,
+                resourceShadowBorderInset,
+                Color.black,
+                resourceShadowWaveThickness,
+                resourceShadowWaveAmplitude,
+                resourceShadowWaveFrequency,
+                false,
+                true,
+                resourceDarkeningColor,
+                resourceDarkeningAmount,
+                resourceDarkeningBoundaryInsetPixels,
+                resourceDarkeningTransitionPixels,
+                resourceDarkeningPixelsPerTile);
 
             _ironTilesByRepeatIndex = EnsureTileArray(ironTilesByRepeatIndex);
             _titanTilesByRepeatIndex = EnsureTileArray(titanTilesByRepeatIndex);
@@ -471,6 +529,8 @@ namespace _Project.Scripts.Presentation.Grid
             }
 
             _resourceBoundaryShadowRenderer?.SetCell(new Vector2Int(x, y), type);
+            _protectedResourceTransitionRenderer?.SetCell(new Vector2Int(x, y), type);
+            _resourceDarkeningRenderer?.SetCell(new Vector2Int(x, y), type);
         }
 
         public void SetCustomMarkerTile(int x, int y, TileBase tile)
@@ -523,6 +583,44 @@ namespace _Project.Scripts.Presentation.Grid
 
             RenderProtectedResourceOverlay(grid);
             _resourceBoundaryShadowRenderer?.RenderFull(grid);
+            _protectedResourceTransitionRenderer?.RenderFull(grid);
+            _resourceDarkeningRenderer?.RenderFull(grid);
+        }
+
+        public void UpdateResourceBoundarySettings(
+            float smoothing,
+            float borderInset,
+            Color waveColor,
+            Color transitionLineColor,
+            float waveThickness,
+            float waveAmplitude,
+            float waveFrequency,
+            Color darkeningColor,
+            float darkeningAmount,
+            float darkeningBoundaryInsetPixels,
+            float darkeningTransitionPixels,
+            float darkeningPixelsPerTile)
+        {
+            _resourceBoundaryShadowRenderer?.UpdateSettings(
+                smoothing,
+                borderInset,
+                waveColor,
+                waveThickness,
+                waveAmplitude,
+                waveFrequency);
+            _protectedResourceTransitionRenderer?.UpdateSettings(
+                smoothing,
+                borderInset,
+                transitionLineColor,
+                waveThickness,
+                waveAmplitude,
+                waveFrequency);
+            _resourceDarkeningRenderer?.UpdateDarkeningSettings(
+                darkeningColor,
+                darkeningAmount,
+                darkeningBoundaryInsetPixels,
+                darkeningTransitionPixels,
+                darkeningPixelsPerTile);
         }
 
         private void RenderProtectedResourceOverlay(GridState grid)

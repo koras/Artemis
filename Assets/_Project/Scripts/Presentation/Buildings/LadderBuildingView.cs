@@ -1,3 +1,5 @@
+using _Project.Scripts.Data.Construction;
+
 namespace _Project.Scripts.Presentation.Buildings
 {
     /// <summary>
@@ -11,7 +13,9 @@ namespace _Project.Scripts.Presentation.Buildings
         /// </summary>
         public void RefreshVisual(bool hasLadderBelow, bool hasLadderAbove)
         {
-            SetVisualSprite(BuildingDef.ResolveLadderSprite(hasLadderBelow, hasLadderAbove, false));
+            // The ladder prefab is wired with LadderBuildingDef; an invalid asset type must be visible immediately.
+            LadderBuildingDef ladderBuildingDef = (LadderBuildingDef)BuildingDef;
+            SetVisualSprite(ladderBuildingDef.ResolveLadderSprite(hasLadderBelow, hasLadderAbove, false));
         }
     }
 }

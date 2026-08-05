@@ -1152,9 +1152,11 @@ namespace _Project.Scripts.Input
                 return _buildingPlacementService.GetPreviewTile(buildingDef);
             }
 
+            // A ladder object must use the specialized definition so ladder visual settings cannot leak into other buildings.
+            LadderBuildingDef ladderBuildingDef = (LadderBuildingDef)buildingDef;
             bool hasLadderBelow = IsLadderForPreview(cell + Vector2Int.down, ladderLineStart, ladderLineEnd);
             bool hasLadderAbove = IsLadderForPreview(cell + Vector2Int.up, ladderLineStart, ladderLineEnd);
-            Sprite previewSprite = buildingDef.ResolveLadderSprite(hasLadderBelow, hasLadderAbove, true);
+            Sprite previewSprite = ladderBuildingDef.ResolveLadderSprite(hasLadderBelow, hasLadderAbove, true);
             return _buildingPlacementService.GetPreviewTile(buildingDef, previewSprite);
         }
 

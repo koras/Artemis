@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,16 +12,35 @@ namespace _Project.Scripts.Presentation.Grid
         [Header("Ground Tilemaps")]
         // Shared tilemap for all natural resource cells.
         [SerializeField] private Tilemap _resourceTilemap;
+        // Separate overlay tilemap used only by MaterialTransitionShaderTilemap.
+        [SerializeField] private Tilemap _shaderBoardTileMap;
         // Dedicated tilemap for default repeating base layer.
         [SerializeField] private Tilemap _defaultTilemap;
 
         [Header("Resource Boundary Shadow")]
         // Controls how wide the fade is at a resource/non-resource border.
         [SerializeField, Range(0.001f, 0.5f)] private float _resourceShadowSmoothing = 0.08f;
-        // Leaves this inset un-darkened at the outside edge of a resource cluster.
-        [SerializeField, Range(0f, 0.5f)] private float _resourceShadowBorderInset = 0.12f;
+        // 0 keeps the wave centre exactly on the resource boundary.
+        [SerializeField, Range(-0.25f, 0.5f)] private float _resourceShadowBorderInset = 0f;
+        // Colour of the boundary wave.
+        [SerializeField] private Color _resourceShadowWaveColor = new Color(0.2f, 0.9f, 1f, 1f);
+        // Separate colour for the protected-resource transition shader.
+        [SerializeField] private Color _resourceTransitionLineColor = new Color(1f, 0.35f, 0.1f, 1f);
+        // Visible line thickness in tile-local units.
+        [SerializeField, Range(0.001f, 0.25f)] private float _resourceShadowWaveThickness = 0.035f;
         // Controls how far the resource boundary deviates from a straight line.
         [SerializeField, Range(0f, 0.25f)] private float _resourceShadowWaveAmplitude = 0.04f;
+        // Number of wave cycles per tile along a boundary.
+        [SerializeField, Range(0.1f, 20f)] private float _resourceShadowWaveFrequency = 5f;
+
+        [Header("Resource Darkening on DigLineTilemap")]
+        // Overlay is kept inside resource cells and leaves a configurable edge untouched.
+        [SerializeField] private Tilemap _digLineTilemap;
+        [SerializeField] private Color _resourceDarkeningColor = Color.black;
+        [SerializeField, Range(0f, 1f)] private float _resourceDarkeningAmount = 0.65f;
+        [SerializeField, Range(0f, 200f)] private float _resourceDarkeningBoundaryInsetPixels = 50f;
+        [SerializeField, Range(0f, 200f)] private float _resourceDarkeningTransitionPixels = 20f;
+        [SerializeField, Range(1f, 1024f)] private float _resourceDarkeningPixelsPerTile = 256f;
 
         [Header("Natural Tiles (8x8 Repeat)")]
         // 64 tiles (indexed by x%8 + (y%8)*8) cut from one 8x8 seamless texture sheet for Iron.
@@ -121,14 +141,36 @@ namespace _Project.Scripts.Presentation.Grid
         [Header("Build Tiles")]
         [SerializeField] private TileBase _ladderTile;
         [SerializeField] private TileBase _emptyTile;
+        [SerializeField] private Tilemap _materialTransitionShaderTilemap;
         [SerializeField] private Tilemap _materialTransitionTilemap;
         [SerializeField] private TileBase[] _transitionTilesByOpenMask = new TileBase[47];
 
         public Tilemap ResourceTilemap => _resourceTilemap;
+        public Tilemap ShaderBoardTileMap => _shaderBoardTileMap;
         public Tilemap DefaultTilemap => _defaultTilemap;
         public float ResourceShadowSmoothing => _resourceShadowSmoothing;
         public float ResourceShadowBorderInset => _resourceShadowBorderInset;
+        public Color ResourceShadowWaveColor => _resourceShadowWaveColor;
+        public Color ResourceTransitionLineColor => _resourceTransitionLineColor;
+        public float ResourceShadowWaveThickness => _resourceShadowWaveThickness;
         public float ResourceShadowWaveAmplitude => _resourceShadowWaveAmplitude;
+        public float ResourceShadowWaveFrequency => _resourceShadowWaveFrequency;
+        public Tilemap DigLineTilemap => _digLineTilemap;
+        public Color ResourceDarkeningColor => _resourceDarkeningColor;
+        public float ResourceDarkeningAmount => _resourceDarkeningAmount;
+        public float ResourceDarkeningBoundaryInsetPixels => _resourceDarkeningBoundaryInsetPixels;
+        public float ResourceDarkeningTransitionPixels => _resourceDarkeningTransitionPixels;
+        public float ResourceDarkeningPixelsPerTile => _resourceDarkeningPixelsPerTile;
+
+        public event Action ResourceBoundarySettingsChanged;
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            // Inspector changes are forwarded to the live overlay while debugging in Play Mode.
+            ResourceBoundarySettingsChanged?.Invoke();
+        }
+#endif
 
         public TileBase[] IronTilesByRepeatIndex => _ironTilesByRepeatIndex;
         public TileBase[] TitanTilesByRepeatIndex => _titanTilesByRepeatIndex;
@@ -179,6 +221,7 @@ namespace _Project.Scripts.Presentation.Grid
         public int PipeMaskIndexDebugSortingOrder => _pipeMaskIndexDebugSortingOrder;
         public TileBase LadderTile => _ladderTile;
         public TileBase EmptyTile => _emptyTile;
+        public Tilemap MaterialTransitionShaderTilemap => _materialTransitionShaderTilemap;
         public Tilemap MaterialTransitionTilemap => _materialTransitionTilemap;
         public TileBase[] TransitionTilesByOpenMask => _transitionTilesByOpenMask;
     }
