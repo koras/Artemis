@@ -6,7 +6,7 @@ namespace _Project.Scripts.Presentation.UI
     public sealed class ConstructionToolDefinitions : MonoBehaviour
     {
         [Header("Construction Defs")]
-        [SerializeField] private BuildingDef _ladderBuildingDef;
+        [SerializeField] private LadderBuildingDef _ladderBuildingDef;
         [SerializeField] private BuildingDef _bridgeBuildingDef;
         [SerializeField] private BuildingDef _storageBuildingDef;
         [SerializeField] private BuildingDef _solarPanelBuildingDef;
@@ -30,7 +30,7 @@ namespace _Project.Scripts.Presentation.UI
         [SerializeField] private BuildingDef _paintPlanetBuildingDef;
         [SerializeField] private BuildingDef _paintRockerBuildingDef;
 
-        public BuildingDef LadderBuildingDef => _ladderBuildingDef;
+        public LadderBuildingDef LadderBuildingDef => _ladderBuildingDef;
         public BuildingDef BridgeBuildingDef => _bridgeBuildingDef;
         public BuildingDef StorageBuildingDef => _storageBuildingDef;
         public BuildingDef SolarPanelBuildingDef => _solarPanelBuildingDef;

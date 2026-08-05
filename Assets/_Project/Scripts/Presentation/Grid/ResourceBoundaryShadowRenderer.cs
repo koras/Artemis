@@ -34,6 +34,9 @@ namespace _Project.Scripts.Presentation.Grid
         private readonly Tilemap _resourceTilemap;
         private readonly Tilemap _shaderBoardTileMap;
         private readonly TilemapRenderer _tilemapRenderer;
+        private MeshFilter _darkeningMeshFilter;
+        private MeshRenderer _darkeningMeshRenderer;
+        private Mesh _darkeningMesh;
         private readonly bool _useProtectedResourceTransitionShader;
         private readonly bool _renderResourceCellsOnly;
         private TileBase _solidOverlayTile;
@@ -111,7 +114,21 @@ namespace _Project.Scripts.Presentation.Grid
             {
                 name = "ResourceBoundaryShadow (Runtime)"
             };
-            _tilemapRenderer.material = material;
+            if (_renderResourceCellsOnly)
+            {
+                GameObject meshObject = new GameObject("DigLineOverlayMesh (Runtime)");
+                meshObject.transform.SetParent(shaderBoardTileMap.transform, false);
+                _darkeningMeshFilter = meshObject.AddComponent<MeshFilter>();
+                _darkeningMeshRenderer = meshObject.AddComponent<MeshRenderer>();
+                _darkeningMeshRenderer.sortingLayerID = _tilemapRenderer.sortingLayerID;
+                _darkeningMeshRenderer.sortingOrder = _tilemapRenderer.sortingOrder + 1;
+                _darkeningMeshRenderer.sharedMaterial = material;
+                _tilemapRenderer.enabled = false;
+            }
+            else
+            {
+                _tilemapRenderer.material = material;
+            }
         }
 
         public void RenderFull(GridState grid)
@@ -126,12 +143,23 @@ namespace _Project.Scripts.Presentation.Grid
             EnsureMask();
             _shaderBoardTileMap.ClearAllTiles();
 
+            if (_renderResourceCellsOnly)
+            {
+                EnsureDarkeningMesh();
+            }
+
             for (int y = 0; y < _height; y++)
             {
                 for (int x = 0; x < _width; x++)
                 {
                     SetPixel(x, y, GetProtectedResourceId(grid.GetCell(x, y).Type));
                 }
+            }
+
+            if (_renderResourceCellsOnly)
+            {
+                ApplyMask();
+                return;
             }
 
             for (int y = 0; y < _height; y++)
@@ -153,6 +181,12 @@ namespace _Project.Scripts.Presentation.Grid
             }
 
             SetPixel(cell.x, cell.y, GetProtectedResourceId(cellType));
+
+            if (_renderResourceCellsOnly)
+            {
+                ApplyMask();
+                return;
+            }
 
             // A changed cell can affect the boundary geometry in all eight neighbours.
             for (int y = cell.y - 1; y <= cell.y + 1; y++)
@@ -186,7 +220,7 @@ namespace _Project.Scripts.Presentation.Grid
                 return;
             }
 
-            Material material = _tilemapRenderer.material;
+            Material material = GetOverlayMaterial();
             material.SetFloat(SmoothingProperty, _smoothing);
             material.SetFloat(BorderInsetProperty, _borderInset);
             material.SetFloat(LineOffsetProperty, _borderInset);
@@ -222,7 +256,7 @@ namespace _Project.Scripts.Presentation.Grid
                 return;
             }
 
-            Material material = _tilemapRenderer.material;
+            Material material = GetOverlayMaterial();
             material.SetColor(DarkenColorProperty, _darkenColor);
             material.SetFloat(DarkenAmountProperty, _darkenAmount);
             material.SetFloat(BoundaryInsetPixelsProperty, _boundaryInsetPixels);
@@ -258,7 +292,7 @@ namespace _Project.Scripts.Presentation.Grid
         {
             _resourceMask.SetPixelData(_maskPixels, 0);
             _resourceMask.Apply(false, false);
-            Material material = _tilemapRenderer.material;
+            Material material = GetOverlayMaterial();
             material.SetTexture(ResourceMaskProperty, _resourceMask);
             material.SetVector(GridSizeProperty, new Vector4(_width, _height, 0f, 0f));
             material.SetFloat(SmoothingProperty, _smoothing);
@@ -276,6 +310,50 @@ namespace _Project.Scripts.Presentation.Grid
             material.SetFloat(BoundaryInsetPixelsProperty, _boundaryInsetPixels);
             material.SetFloat(TransitionPixelsProperty, _transitionPixels);
             material.SetFloat(PixelsPerTileProperty, _pixelsPerTile);
+        }
+
+        private Material GetOverlayMaterial()
+        {
+            return _renderResourceCellsOnly
+                ? _darkeningMeshRenderer.sharedMaterial
+                : _tilemapRenderer.material;
+        }
+
+        private void EnsureDarkeningMesh()
+        {
+            if (_darkeningMesh == null)
+            {
+                _darkeningMesh = new Mesh
+                {
+                    name = "DigLineTilemapMesh (Runtime)"
+                };
+            }
+
+            _darkeningMesh.Clear();
+            _darkeningMesh.vertices = new[]
+            {
+                new Vector3(0f, 0f, 0f),
+                new Vector3(_width, 0f, 0f),
+                new Vector3(0f, _height, 0f),
+                new Vector3(_width, _height, 0f)
+            };
+            _darkeningMesh.uv = new[]
+            {
+                new Vector2(0f, 0f),
+                new Vector2(1f, 0f),
+                new Vector2(0f, 1f),
+                new Vector2(1f, 1f)
+            };
+            _darkeningMesh.colors = new[]
+            {
+                Color.white,
+                Color.white,
+                Color.white,
+                Color.white
+            };
+            _darkeningMesh.triangles = new[] { 0, 1, 2, 2, 1, 3 };
+            _darkeningMesh.RecalculateBounds();
+            _darkeningMeshFilter.sharedMesh = _darkeningMesh;
         }
 
         private void UpdateOverlayTile(int x, int y)

@@ -926,7 +926,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2303,7 +2303,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 12
     NearClipPlane: 0.5
     FarClipPlane: 1000
     Dutch: 0
@@ -3040,9 +3040,9 @@ MonoBehaviour:
   _digLineTilemap: {fileID: 0}
   _resourceDarkeningColor: {r: 0, g: 0, b: 0, a: 1}
   _resourceDarkeningAmount: 0.481
-  _resourceDarkeningBoundaryInsetPixels: 28
-  _resourceDarkeningTransitionPixels: 43
-  _resourceDarkeningPixelsPerTile: 201
+  _resourceDarkeningBoundaryInsetPixels: 21
+  _resourceDarkeningTransitionPixels: 65
+  _resourceDarkeningPixelsPerTile: 518
   _ironTilesByRepeatIndex:
   - {fileID: 11400000, guid: 1b63634e5e90c9e4988d88fe6789e631, type: 2}
   - {fileID: 11400000, guid: 2719bdb1086b70f4eb49683c9214e8b6, type: 2}

@@ -102,6 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2322120298508948384}
   - component: {fileID: 5889491837288469024}
+  - component: {fileID: -1458467323419330189}
   m_Layer: 0
   m_Name: FlowerBig1BuildingView
   m_TagString: Untagged
@@ -155,3 +156,16 @@ MonoBehaviour:
   _loopAnimationSpeed: 0
   _interactionAnimationSpeed: 0
   _closeDelaySeconds: 0.15
+--- !u!210 &-1458467323419330189
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615164343231762166}
+  m_Enabled: 1
+  m_SortingLayerID: -1051630029
+  m_SortingLayer: 1
+  m_SortingOrder: 20
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0

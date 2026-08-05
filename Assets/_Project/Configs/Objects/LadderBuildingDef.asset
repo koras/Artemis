@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de745ccf7ca431bb9ed3fab8711d922, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e7f40d6cfb7460a8cbb1c30f72c0d4e, type: 3}
   m_Name: LadderBuildingDef
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.BuildingDef
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Data.Construction.LadderBuildingDef
   ObjectType: 1
   _nameLocalizationKey: name
   _descriptionLocalizationKey: description

@@ -53,7 +53,7 @@ namespace _Project.Scripts.Data.Construction
     /// </remarks>
     [LocalizationNamespace("building", nameof(BuildingDef.LocalizationId))]
     [CreateAssetMenu(menuName = "Artemis/Construction/Building Def", fileName = "BuildingDef")]
-    public sealed class BuildingDef : BaseLocalizedDefinitionConfig
+    public class BuildingDef : BaseLocalizedDefinitionConfig
     {
         private const string NameSuffix = "name";
         private const string DescriptionSuffix = "description";
@@ -93,47 +93,6 @@ namespace _Project.Scripts.Data.Construction
         [Header("Sprites")]
         public Sprite PreviewSprite; // Превью-спрайт для размещения объекта.
         public Sprite BuiltSprite;   // Финальный спрайт построенного объекта (prefab-based путь).
-
-        [Header("Ladder Sprites")]
-        // Separate ladder parts. These fields are empty for non-ladder building definitions.
-        public Sprite LadderBottomBuiltSprite;
-        public Sprite LadderCenterBuiltSprite;
-        public Sprite LadderTopBuiltSprite;
-        public Sprite LadderBottomPreviewSprite;
-        public Sprite LadderCenterPreviewSprite;
-        public Sprite LadderTopPreviewSprite;
-
-        /// <summary>
-        /// Resolves a ladder part using the presence of ladder cells above and below.
-        /// Falls back to the regular BuildingDef sprite when a specialized sprite is not assigned.
-        /// </summary>
-        public Sprite ResolveLadderSprite(bool hasLadderBelow, bool hasLadderAbove, bool isPreview)
-        {
-            if (ObjectType != BuildObjectType.Ladder)
-            {
-                return isPreview ? PreviewSprite : BuiltSprite;
-            }
-
-            // If only the lower neighbor is missing, use the bottom end; if only the upper neighbor is missing, use the top end.
-            // When both neighbors are present or both are absent, use the center part.
-            if (!hasLadderBelow && hasLadderAbove)
-            {
-                return isPreview
-                    ? (LadderBottomPreviewSprite != null ? LadderBottomPreviewSprite : PreviewSprite)
-                    : (LadderBottomBuiltSprite != null ? LadderBottomBuiltSprite : BuiltSprite);
-            }
-
-            if (hasLadderBelow && !hasLadderAbove)
-            {
-                return isPreview
-                    ? (LadderTopPreviewSprite != null ? LadderTopPreviewSprite : PreviewSprite)
-                    : (LadderTopBuiltSprite != null ? LadderTopBuiltSprite : BuiltSprite);
-            }
-
-            return isPreview
-                ? (LadderCenterPreviewSprite != null ? LadderCenterPreviewSprite : PreviewSprite)
-                : (LadderCenterBuiltSprite != null ? LadderCenterBuiltSprite : BuiltSprite);
-        }
 
         [Header("Placement")]
         public int Width = 1;
